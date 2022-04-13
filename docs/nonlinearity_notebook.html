@@ -93,23 +93,30 @@ const thebe_selector_output = ".output, .cell_output"
     <div class="bd-toc-item active">
         <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="index.html">
+  <a class="reference internal" href="../welcome.html">
    Welcome to the Climate Modelling and Data Analysis Course
   </a>
  </li>
 </ul>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
+ <li class="toctree-l1 has-children">
   <a class="reference internal" href="intro_to_python.html">
    Lesson 0 -Introduction to Python
   </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="simple">
+  </ul>
  </li>
  <li class="toctree-l1 has-children">
   <a class="reference internal" href="analytical_models.html">
    Lesson 1 - Analytical Models
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
-  <label for="toctree-checkbox-1">
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -140,8 +147,8 @@ const thebe_selector_output = ".output, .cell_output"
   <a class="reference internal" href="numerical_models.html">
    Lesson 2 - Numerical Models
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
-  <label for="toctree-checkbox-2">
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -225,11 +232,11 @@ const thebe_selector_output = ".output, .cell_output"
         aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
     <div class="dropdown-buttons sourcebuttons">
         <a class="repository-button"
-            href="https://github.com/sauterto/climate_modelling.git"><button type="button" class="btn btn-secondary topbarbtn"
+            href="https://github.com/sauterto/climate_modelling"><button type="button" class="btn btn-secondary topbarbtn"
                 data-toggle="tooltip" data-placement="left" title="Source repository"><i
                     class="fab fa-github"></i>repository</button></a>
         <a class="issues-button"
-            href="https://github.com/sauterto/climate_modelling.git/issues/new?title=Issue%20on%20page%20%2Fdocs/nonlinearity_notebook.html&body=Your%20issue%20content%20here."><button
+            href="https://github.com/sauterto/climate_modelling/issues/new?title=Issue%20on%20page%20%2Fdocs/nonlinearity_notebook.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
         
@@ -250,7 +257,7 @@ const thebe_selector_output = ".output, .cell_output"
         aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
     <div class="dropdown-buttons">
         
-        <a class="binder-button" href="https://mybinder.org/v2/gh/sauterto/climate_modelling.git/main?urlpath=tree/docs/nonlinearity_notebook.ipynb"><button type="button"
+        <a class="binder-button" href="https://mybinder.org/v2/gh/sauterto/climate_modelling/main?urlpath=tree/./docs/nonlinearity_notebook.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
                 data-placement="left"><img class="binder-button-logo"
                     src="../_static/images/logo_binder.svg"
@@ -258,7 +265,7 @@ const thebe_selector_output = ".output, .cell_output"
         
         
         
-        <a class="colab-button" href="https://colab.research.google.com/github/sauterto/climate_modelling.git/blob/main/docs/nonlinearity_notebook.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+        <a class="colab-button" href="https://colab.research.google.com/github/sauterto/climate_modelling/blob/main/./docs/nonlinearity_notebook.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
                 title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
                     src="../_static/images/logo_colab.png"
                     alt="Interact on Colab">Colab</button></a>
@@ -445,7 +452,7 @@ y_{t+1} = r \cdot y_{t} \cdot (1-y_{t}),
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x117079550&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x11b8021c0&gt;]
 </pre></div>
 </div>
 <img alt="../_images/nonlinearity_notebook_3_1.png" src="../_images/nonlinearity_notebook_3_1.png" />
@@ -507,7 +514,7 @@ y_{t+1} = r \cdot y_{t} \cdot (1-y_{t}),
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x1170b6340&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x107b7e070&gt;]
 </pre></div>
 </div>
 <img alt="../_images/nonlinearity_notebook_6_1.png" src="../_images/nonlinearity_notebook_6_1.png" />
@@ -574,7 +581,7 @@ y_{t+1} = r \cdot y_{t} \cdot (1-y_{t}),
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x11727ed30&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x11b9ff850&gt;]
 </pre></div>
 </div>
 <img alt="../_images/nonlinearity_notebook_9_1.png" src="../_images/nonlinearity_notebook_9_1.png" />
@@ -650,7 +657,7 @@ y_{t+1} = r \cdot y_{t} \cdot (1-y_{t}),
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x1172bdcd0&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x11ba82700&gt;]
 </pre></div>
 </div>
 <img alt="../_images/nonlinearity_notebook_12_1.png" src="../_images/nonlinearity_notebook_12_1.png" />
@@ -724,7 +731,7 @@ weather and climate?</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x117375ee0&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x11baf9910&gt;]
 </pre></div>
 </div>
 <img alt="../_images/nonlinearity_notebook_15_1.png" src="../_images/nonlinearity_notebook_15_1.png" />
