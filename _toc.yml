@@ -2,11 +2,11 @@
 # Learn more at https://jupyterbook.org/customize/toc.html
 
 format: jb-book
-root: docs/index
+root: welcome 
 chapters:
 - file: docs/intro_to_python  
-  #  sections:
-    #  - file: notebooks/solution_nb_python_exercises
+  sections:
+  - file: solution_nb_python_exercises
 - file: docs/analytical_models
   sections:
   - file: docs/nonlinearity
