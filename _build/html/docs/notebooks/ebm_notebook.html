@@ -7,54 +7,54 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Exercise: Simple Energy Balance Model &#8212; Climate Modelling and Data Analysis</title>
     
-  <link href="../_static/css/theme.css" rel="stylesheet">
-  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+  <link href="../../_static/css/theme.css" rel="stylesheet">
+  <link href="../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
 
     
   <link rel="stylesheet"
-    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
   <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
   <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
     
       
 
     
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
-    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+  <link rel="preload" as="script" href="../../_static/js/index.be7d3bbb2ef33a8344ce.js">
 
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/doctools.js"></script>
-    <script src="../_static/clipboard.min.js"></script>
-    <script src="../_static/copybutton.js"></script>
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../_static/togglebutton.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script src="../../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
-    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -74,38 +74,38 @@ const thebe_selector_output = ".output, .cell_output"
 <div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
     
         <div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="../index.html">
+    <a class="navbar-brand text-wrap" href="../../index.html">
       
         <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
         
       
       
-      <img src="../_static/logo.png" class="logo" alt="logo">
+      <img src="../../_static/logo.png" class="logo" alt="logo">
       
       
       <h1 class="site-logo" id="site-title">Climate Modelling and Data Analysis</h1>
       
     </a>
-</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
         <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../docs/intro.html">
+  <a class="reference internal" href="../intro.html">
    Welcome to the Climate Modelling and Data Analysis Course
   </a>
  </li>
 </ul>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../docs/intro_to_python.html">
+  <a class="reference internal" href="../intro_to_python.html">
    Lesson 0 -Introduction to Python
   </a>
  </li>
  <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../docs/analytical_models.html">
+  <a class="reference internal" href="../analytical_models.html">
    Lesson 1 - Analytical Models
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
@@ -115,29 +115,29 @@ const thebe_selector_output = ".output, .cell_output"
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="../docs/nonlinearity.html">
+    <a class="reference internal" href="../nonlinearity.html">
      Exercise: Nonlinearity and Chaos
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../docs/sublimation_model.html">
+    <a class="reference internal" href="../sublimation_model.html">
      Exercise: Sublimation Model
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../docs/glacier_wind_model.html">
+    <a class="reference internal" href="../glacier_wind_model.html">
      Exercise: Glacier Winds
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../docs/ebm_model.html">
+    <a class="reference internal" href="../ebm_model.html">
      Exercise: Simplified Energy Balance Model
     </a>
    </li>
   </ul>
  </li>
  <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../docs/numerical_models.html">
+  <a class="reference internal" href="../numerical_models.html">
    Lesson 2 - Numerical Models
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
@@ -147,22 +147,22 @@ const thebe_selector_output = ".output, .cell_output"
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="../docs/glacier_wind_model_numerical.html">
+    <a class="reference internal" href="../glacier_wind_model_numerical.html">
      Exercise: Glacier Wind Model (revisited)
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../docs/heat_equation.html">
+    <a class="reference internal" href="../heat_equation.html">
      Exercise: Heat Equation
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../docs/heat_equation_vector.html">
+    <a class="reference internal" href="../heat_equation_vector.html">
      Exercise: Heat Equation (revisited)
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../docs/advection_diffusion.html">
+    <a class="reference internal" href="../advection_diffusion.html">
      Exercise: Advection-Diffusion Model
     </a>
    </li>
@@ -209,7 +209,7 @@ const thebe_selector_output = ".output, .cell_output"
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../_sources/notebooks/ebm_notebook.ipynb"><button type="button"
+        <a class="dropdown-buttons" href="../../_sources/docs/notebooks/ebm_notebook.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
                 data-placement="left">.ipynb</button></a>
         <!-- Download PDF via print -->
@@ -229,7 +229,7 @@ const thebe_selector_output = ".output, .cell_output"
                 data-toggle="tooltip" data-placement="left" title="Source repository"><i
                     class="fab fa-github"></i>repository</button></a>
         <a class="issues-button"
-            href="https://github.com/sauterto/climate_modelling.git/issues/new?title=Issue%20on%20page%20%2Fnotebooks/ebm_notebook.html&body=Your%20issue%20content%20here."><button
+            href="https://github.com/sauterto/climate_modelling.git/issues/new?title=Issue%20on%20page%20%2Fdocs/notebooks/ebm_notebook.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
         
@@ -250,17 +250,17 @@ const thebe_selector_output = ".output, .cell_output"
         aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
     <div class="dropdown-buttons">
         
-        <a class="binder-button" href="https://mybinder.org/v2/gh/sauterto/climate_modelling.git/main?urlpath=tree/docs/notebooks/ebm_notebook.ipynb"><button type="button"
+        <a class="binder-button" href="https://mybinder.org/v2/gh/sauterto/climate_modelling.git/main?urlpath=tree/docs/docs/notebooks/ebm_notebook.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
                 data-placement="left"><img class="binder-button-logo"
-                    src="../_static/images/logo_binder.svg"
+                    src="../../_static/images/logo_binder.svg"
                     alt="Interact on binder">Binder</button></a>
         
         
         
-        <a class="colab-button" href="https://colab.research.google.com/github/sauterto/climate_modelling.git/blob/main/docs/notebooks/ebm_notebook.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+        <a class="colab-button" href="https://colab.research.google.com/github/sauterto/climate_modelling.git/blob/main/docs/docs/notebooks/ebm_notebook.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
                 title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
-                    src="../_static/images/logo_colab.png"
+                    src="../../_static/images/logo_colab.png"
                     alt="Interact on Colab">Colab</button></a>
         
         
@@ -458,7 +458,7 @@ const thebe_selector_output = ".output, .cell_output"
 <h2>Problem description:<a class="headerlink" href="#problem-description" title="Permalink to this headline">¶</a></h2>
 <p>The model to be developed is zero-dimensional, i.e. we consider the Earth as a sphere and calculate the global averaged and long-term equilibrium of radiation fluxes. Furthermore, we neglect spatial variabilities. With this simple approach, Arthenius was already able to gain good insights in the 19th century.</p>
 <p>The energy balance is determined by the global radiation and the outgoing long-wave radiation. Part of the incoming short-wave radiation is reflected at the earth’s surface. For this purpose, a global albedo is defined. According to the Stefan-Boltzmann law, the earth’s surface radiates long-wave energy. Due to the path (transmission) through the atmosphere, part of this radiation energy is absorbed and remains in the Earth system. We also assume that the surface of the Earth is uniform with a constant heat capacity and a homogeneous surface temperature.</p>
-<p><img alt="image.jpeg" src="notebooks/attachment:image.jpeg" /></p>
+<p><img alt="image.jpeg" src="docs/notebooks/attachment:image.jpeg" /></p>
 <img src="pics/ebm_02.jpg" width="600" ><div class="section" id="task-2-write-a-function-ebm-which-solves-the-energy-balance-equation">
 <h3>Task 2: Write a function ebm which solves the energy balance equation.<a class="headerlink" href="#task-2-write-a-function-ebm-which-solves-the-energy-balance-equation" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
@@ -530,10 +530,10 @@ C_w &amp;= 10^8 ~ J/(m^2 \cdot K) \\
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fb468f65a58&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f8708b60978&gt;]
 </pre></div>
 </div>
-<img alt="../_images/ebm_notebook_6_1.png" src="../_images/ebm_notebook_6_1.png" />
+<img alt="../../_images/ebm_notebook_6_1.png" src="../../_images/ebm_notebook_6_1.png" />
 </div>
 </div>
 </div>
@@ -552,10 +552,10 @@ C_w &amp;= 10^8 ~ J/(m^2 \cdot K) \\
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fb478dc7940&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f86f90019b0&gt;]
 </pre></div>
 </div>
-<img alt="../_images/ebm_notebook_8_1.png" src="../_images/ebm_notebook_8_1.png" />
+<img alt="../../_images/ebm_notebook_8_1.png" src="../../_images/ebm_notebook_8_1.png" />
 </div>
 </div>
 </div>
@@ -575,10 +575,10 @@ C_w &amp;= 10^8 ~ J/(m^2 \cdot K) \\
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fb458ae0a20&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f8718d599b0&gt;]
 </pre></div>
 </div>
-<img alt="../_images/ebm_notebook_10_1.png" src="../_images/ebm_notebook_10_1.png" />
+<img alt="../../_images/ebm_notebook_10_1.png" src="../../_images/ebm_notebook_10_1.png" />
 </div>
 </div>
 </div>
@@ -601,10 +601,10 @@ C_w &amp;= 10^8 ~ J/(m^2 \cdot K) \\
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7fb479150cc0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f86e901ba20&gt;
 </pre></div>
 </div>
-<img alt="../_images/ebm_notebook_12_1.png" src="../_images/ebm_notebook_12_1.png" />
+<img alt="../../_images/ebm_notebook_12_1.png" src="../../_images/ebm_notebook_12_1.png" />
 </div>
 </div>
 </div>
@@ -624,10 +624,10 @@ C_w &amp;= 10^8 ~ J/(m^2 \cdot K) \\
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7fb42802aac8&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f8709066dd8&gt;
 </pre></div>
 </div>
-<img alt="../_images/ebm_notebook_14_1.png" src="../_images/ebm_notebook_14_1.png" />
+<img alt="../../_images/ebm_notebook_14_1.png" src="../../_images/ebm_notebook_14_1.png" />
 </div>
 </div>
 </div>
@@ -647,10 +647,10 @@ C_w &amp;= 10^8 ~ J/(m^2 \cdot K) \\
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7fb469734ef0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f86f93aa3c8&gt;
 </pre></div>
 </div>
-<img alt="../_images/ebm_notebook_16_1.png" src="../_images/ebm_notebook_16_1.png" />
+<img alt="../../_images/ebm_notebook_16_1.png" src="../../_images/ebm_notebook_16_1.png" />
 </div>
 </div>
 </div>
@@ -670,7 +670,7 @@ C_w &amp;= 10^8 ~ J/(m^2 \cdot K) \\
         },
         kernelOptions: {
             kernelName: "python3",
-            path: "./notebooks"
+            path: "./docs/notebooks"
         },
         predefinedOutput: true
     }
@@ -700,7 +700,7 @@ C_w &amp;= 10^8 ~ J/(m^2 \cdot K) \\
       </div>
     </div>
   
-  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+  <script src="../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
 
   </body>
 </html>
