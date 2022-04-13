@@ -268,6 +268,9 @@ const thebe_selector_output = ".output, .cell_output"
                     src="../_static/images/logo_colab.png"
                     alt="Interact on Colab">Colab</button></a>
         
+        <button type="button" class="btn btn-secondary topbarbtn"
+            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
+                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
         
     </div>
 </div>
@@ -930,8 +933,8 @@ Values in  Centigrade degrees:
     {
         requestKernel: true,
         binderOptions: {
-            repo: "binder-examples/jupyter-stacks-datascience",
-            ref: "master",
+            repo: "sauterto/climate_modelling",
+            ref: "main",
         },
         codeMirrorConfig: {
             theme: "abcdef",
