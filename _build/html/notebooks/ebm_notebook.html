@@ -1,0 +1,706 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exercise: Simple Energy Balance Model &#8212; Climate Modelling and Data Analysis</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Climate Modelling and Data Analysis</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../docs/intro.html">
+   Welcome to the Climate Modelling and Data Analysis Course
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../docs/intro_to_python.html">
+   Lesson 0 -Introduction to Python
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../docs/analytical_models.html">
+   Lesson 1 - Analytical Models
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../docs/nonlinearity.html">
+     Exercise: Nonlinearity and Chaos
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../docs/sublimation_model.html">
+     Exercise: Sublimation Model
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../docs/glacier_wind_model.html">
+     Exercise: Glacier Winds
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../docs/ebm_model.html">
+     Exercise: Simplified Energy Balance Model
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../docs/numerical_models.html">
+   Lesson 2 - Numerical Models
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../docs/glacier_wind_model_numerical.html">
+     Exercise: Glacier Wind Model (revisited)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../docs/heat_equation.html">
+     Exercise: Heat Equation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../docs/heat_equation_vector.html">
+     Exercise: Heat Equation (revisited)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../docs/advection_diffusion.html">
+     Exercise: Advection-Diffusion Model
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/notebooks/ebm_notebook.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/sauterto/climate_modelling.git"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/sauterto/climate_modelling.git/issues/new?title=Issue%20on%20page%20%2Fnotebooks/ebm_notebook.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/sauterto/climate_modelling.git/main?urlpath=tree/docs/notebooks/ebm_notebook.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <a class="colab-button" href="https://colab.research.google.com/github/sauterto/climate_modelling.git/blob/main/docs/notebooks/ebm_notebook.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="../_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#learning-objectives">
+   Learning objectives:
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#insights-and-open-question">
+   Insights and open question:
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#problem-description">
+   Problem description:
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#task-2-write-a-function-ebm-which-solves-the-energy-balance-equation">
+     Task 2: Write a function ebm which solves the energy balance equation.
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#task-3-integrate-the-equation-over-a-time-of-200-years-and-plot-the-result-use-the-following-initial-and-boundary-conditions">
+     Task 3: Integrate the equation over a time of 200 years and plot the result. Use the following initial and boundary conditions:
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#task-4-what-happens-if-the-intial-temperature-is-set-to-293-k">
+     Task 4: What happens if the intial temperature is set to 293 K ?
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#task-5-what-changes-do-you-observe-with-a-higher-c-w-value-e-g-c-w-10-cdot10-8-j-m-2-cdot-k">
+     Task 5: What changes do you observe with a higher
+     <span class="math notranslate nohighlight">
+      \(C_w\)
+     </span>
+     value (e.g.
+     <span class="math notranslate nohighlight">
+      \(C_w=10\cdot10^8 ~ J/(m^2 \cdot K)\)
+     </span>
+     )?
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#task-6-how-does-the-result-change-when-tau-1">
+     Task 6: How does the result change when
+     <span class="math notranslate nohighlight">
+      \(\tau=1\)
+     </span>
+     ?
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#case-study-venus">
+     Case Study: Venus.
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#compare-the-measurements-with-your-simulation">
+     Compare the measurements with your simulation.
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Exercise: Simple Energy Balance Model</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#learning-objectives">
+   Learning objectives:
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#insights-and-open-question">
+   Insights and open question:
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#problem-description">
+   Problem description:
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#task-2-write-a-function-ebm-which-solves-the-energy-balance-equation">
+     Task 2: Write a function ebm which solves the energy balance equation.
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#task-3-integrate-the-equation-over-a-time-of-200-years-and-plot-the-result-use-the-following-initial-and-boundary-conditions">
+     Task 3: Integrate the equation over a time of 200 years and plot the result. Use the following initial and boundary conditions:
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#task-4-what-happens-if-the-intial-temperature-is-set-to-293-k">
+     Task 4: What happens if the intial temperature is set to 293 K ?
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#task-5-what-changes-do-you-observe-with-a-higher-c-w-value-e-g-c-w-10-cdot10-8-j-m-2-cdot-k">
+     Task 5: What changes do you observe with a higher
+     <span class="math notranslate nohighlight">
+      \(C_w\)
+     </span>
+     value (e.g.
+     <span class="math notranslate nohighlight">
+      \(C_w=10\cdot10^8 ~ J/(m^2 \cdot K)\)
+     </span>
+     )?
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#task-6-how-does-the-result-change-when-tau-1">
+     Task 6: How does the result change when
+     <span class="math notranslate nohighlight">
+      \(\tau=1\)
+     </span>
+     ?
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#case-study-venus">
+     Case Study: Venus.
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#compare-the-measurements-with-your-simulation">
+     Compare the measurements with your simulation.
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="exercise-simple-energy-balance-model">
+<h1>Exercise: Simple Energy Balance Model<a class="headerlink" href="#exercise-simple-energy-balance-model" title="Permalink to this headline">¶</a></h1>
+<p>In this exercise we will develop a simple zero-dimensional energy balance model for the Earth. With this conceptual model we will look at complex interactions in the atmosphere with simplified processes. We will show how simple model can help to derive important insights into the Earth system and how sensitivity simulations provide a deeper understanding of the observed climate variability.</p>
+<div class="section" id="learning-objectives">
+<h2>Learning objectives:<a class="headerlink" href="#learning-objectives" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Develop a simple conceptual model</p></li>
+<li><p>Integrate a model in time</p></li>
+<li><p>How to set up sensitivity runs</p></li>
+<li><p>Equilibrium states in the Earth system</p></li>
+<li><p>Greenhouse effect</p></li>
+</ul>
+</div>
+<div class="section" id="insights-and-open-question">
+<h2>Insights and open question:<a class="headerlink" href="#insights-and-open-question" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Why can we run climate simulations for many decades even though our predictability of weather events is very limited?</p></li>
+<li><p>With this model we will perform sensitivity simulations that will show us important processes in the atmosphere.</p></li>
+</ul>
+</div>
+<div class="section" id="problem-description">
+<h2>Problem description:<a class="headerlink" href="#problem-description" title="Permalink to this headline">¶</a></h2>
+<p>The model to be developed is zero-dimensional, i.e. we consider the Earth as a sphere and calculate the global averaged and long-term equilibrium of radiation fluxes. Furthermore, we neglect spatial variabilities. With this simple approach, Arthenius was already able to gain good insights in the 19th century.</p>
+<p>The energy balance is determined by the global radiation and the outgoing long-wave radiation. Part of the incoming short-wave radiation is reflected at the earth’s surface. For this purpose, a global albedo is defined. According to the Stefan-Boltzmann law, the earth’s surface radiates long-wave energy. Due to the path (transmission) through the atmosphere, part of this radiation energy is absorbed and remains in the Earth system. We also assume that the surface of the Earth is uniform with a constant heat capacity and a homogeneous surface temperature.</p>
+<p><img alt="image.jpeg" src="notebooks/attachment:image.jpeg" /></p>
+<img src="pics/ebm_02.jpg" width="600" ><div class="section" id="task-2-write-a-function-ebm-which-solves-the-energy-balance-equation">
+<h3>Task 2: Write a function ebm which solves the energy balance equation.<a class="headerlink" href="#task-2-write-a-function-ebm-which-solves-the-energy-balance-equation" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="k">def</span> <span class="nf">ebm</span><span class="p">(</span><span class="n">SWin</span><span class="p">,</span><span class="n">T0</span><span class="p">,</span><span class="n">c</span><span class="p">,</span><span class="n">alpha</span><span class="p">,</span><span class="n">tau</span><span class="p">,</span><span class="n">years</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39; This is a simple Energy Balance Model with global radiation and outgoing longwave radiation.</span>
+
+<span class="sd">    Syntax: ebm(T0,c,alpha,tau)</span>
+
+<span class="sd">    with</span>
+<span class="sd">    T0     :: Initial temperature (Kelvin)</span>
+<span class="sd">    c      :: Heat capacity J/(m2*K)</span>
+<span class="sd">    alpha  :: Albedo [-]</span>
+<span class="sd">    tau    :: Transmissivity [-]</span>
+
+<span class="sd">    Example: ebm(273.2, 10e8, 0.3, 0.64)</span>
+
+<span class="sd">    Author: Tobias Sauter</span>
+<span class="sd">    Date:   06/04/2022</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="c1"># Constants</span>
+    <span class="n">epsilon</span> <span class="o">=</span> <span class="mf">5.67e-8</span><span class="p">;</span>    <span class="c1"># Stefan-Bolzmann Constant (W/(m2*K4);</span>
+
+    <span class="c1"># Time step</span>
+    <span class="n">steps</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>                           <span class="c1"># days</span>
+    <span class="n">dt</span> <span class="o">=</span> <span class="mi">60</span><span class="o">*</span><span class="mi">60</span><span class="o">*</span><span class="mi">24</span><span class="o">*</span><span class="n">steps</span><span class="p">;</span>                  <span class="c1"># convert days to seconds</span>
+    <span class="n">integration</span> <span class="o">=</span> <span class="p">(</span><span class="mi">365</span><span class="o">/</span><span class="n">steps</span><span class="p">)</span><span class="o">*</span><span class="n">years</span><span class="p">;</span>      <span class="c1"># Integrate over x years</span>
+
+    <span class="c1"># Init arrays and variables</span>
+    <span class="n">timeseries</span> <span class="o">=</span> <span class="p">[];</span>
+    <span class="n">Ti</span> <span class="o">=</span> <span class="n">T0</span><span class="p">;</span>
+
+    <span class="c1"># Calculation</span>
+    <span class="k">for</span> <span class="n">z</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">integration</span><span class="p">)):</span>
+        <span class="n">T</span> <span class="o">=</span> <span class="n">Ti</span> <span class="o">+</span> <span class="p">(</span><span class="n">dt</span><span class="o">/</span><span class="n">c</span> <span class="o">*</span> <span class="p">(</span><span class="n">SWin</span> <span class="o">-</span> <span class="n">alpha</span><span class="o">*</span><span class="n">SWin</span> <span class="o">-</span> <span class="mf">0.95</span><span class="o">*</span><span class="n">epsilon</span><span class="o">*</span><span class="n">Ti</span><span class="o">**</span><span class="mi">4</span><span class="o">*</span><span class="n">tau</span><span class="p">));</span>  
+        <span class="n">timeseries</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">T</span><span class="p">);</span>
+        <span class="n">Ti</span> <span class="o">=</span> <span class="n">T</span><span class="p">;</span>
+        
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">timeseries</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="task-3-integrate-the-equation-over-a-time-of-200-years-and-plot-the-result-use-the-following-initial-and-boundary-conditions">
+<h3>Task 3: Integrate the equation over a time of 200 years and plot the result. Use the following initial and boundary conditions:<a class="headerlink" href="#task-3-integrate-the-equation-over-a-time-of-200-years-and-plot-the-result-use-the-following-initial-and-boundary-conditions" title="Permalink to this headline">¶</a></h3>
+<p><span class="math notranslate nohighlight">\(
+\begin{align}
+S_0 &amp;=1360 ~ W m^{-2} \\
+T(0)&amp;= 273 ~ K \\ 
+C_w &amp;= 10^8 ~ J/(m^2 \cdot K) \\
+\alpha &amp;= 0.3 \\
+\tau &amp;= 0.64
+\end{align}
+\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Integrate the model</span>
+<span class="n">T_273</span> <span class="o">=</span> <span class="n">ebm</span><span class="p">(</span><span class="mf">342.0</span><span class="p">,</span><span class="mf">273.2</span><span class="p">,</span> <span class="mf">10e8</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.64</span><span class="p">,</span> <span class="mi">500</span><span class="p">)</span>
+
+<span class="c1"># Plot results</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">T_273</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fdd190629e8&gt;]
+</pre></div>
+</div>
+<img alt="../_images/ebm_notebook_6_1.png" src="../_images/ebm_notebook_6_1.png" />
+</div>
+</div>
+</div>
+<div class="section" id="task-4-what-happens-if-the-intial-temperature-is-set-to-293-k">
+<h3>Task 4: What happens if the intial temperature is set to 293 K ?<a class="headerlink" href="#task-4-what-happens-if-the-intial-temperature-is-set-to-293-k" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Integrate the model</span>
+<span class="n">T_293</span> <span class="o">=</span> <span class="n">ebm</span><span class="p">(</span><span class="mf">342.0</span><span class="p">,</span><span class="mf">293.2</span><span class="p">,</span> <span class="mf">10e8</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.64</span><span class="p">,</span> <span class="mi">500</span><span class="p">)</span>
+
+<span class="c1"># Plot results</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">T_293</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">T_273</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fdcf8f17a58&gt;]
+</pre></div>
+</div>
+<img alt="../_images/ebm_notebook_8_1.png" src="../_images/ebm_notebook_8_1.png" />
+</div>
+</div>
+</div>
+<div class="section" id="task-5-what-changes-do-you-observe-with-a-higher-c-w-value-e-g-c-w-10-cdot10-8-j-m-2-cdot-k">
+<h3>Task 5: What changes do you observe with a higher <span class="math notranslate nohighlight">\(C_w\)</span> value (e.g. <span class="math notranslate nohighlight">\(C_w=10\cdot10^8 ~ J/(m^2 \cdot K)\)</span>)?<a class="headerlink" href="#task-5-what-changes-do-you-observe-with-a-higher-c-w-value-e-g-c-w-10-cdot10-8-j-m-2-cdot-k" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Integrate the model</span>
+<span class="n">T_293_Cw</span> <span class="o">=</span> <span class="n">ebm</span><span class="p">(</span><span class="mf">342.0</span><span class="p">,</span><span class="mf">293.2</span><span class="p">,</span> <span class="mi">10</span><span class="o">*</span><span class="mf">10e8</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.64</span><span class="p">,</span> <span class="mi">500</span><span class="p">)</span>
+
+<span class="c1"># Plot results</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">T_293</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">T_273</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">T_293_Cw</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fdd190e9b38&gt;]
+</pre></div>
+</div>
+<img alt="../_images/ebm_notebook_10_1.png" src="../_images/ebm_notebook_10_1.png" />
+</div>
+</div>
+</div>
+<div class="section" id="task-6-how-does-the-result-change-when-tau-1">
+<h3>Task 6: How does the result change when <span class="math notranslate nohighlight">\(\tau=1\)</span>?<a class="headerlink" href="#task-6-how-does-the-result-change-when-tau-1" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Integrate the model</span>
+<span class="n">T_293_tau</span> <span class="o">=</span> <span class="n">ebm</span><span class="p">(</span><span class="mf">342.0</span><span class="p">,</span><span class="mf">293.2</span><span class="p">,</span> <span class="mf">10e8</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mi">500</span><span class="p">)</span>
+
+<span class="c1"># Plot results</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">T_293</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;$T_</span><span class="si">{293}</span><span class="s1">$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">T_273</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;$T_</span><span class="si">{273}</span><span class="s1">$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">T_293_Cw</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;$T_{293 C_w}$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">T_293_tau</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;$T_{293 </span><span class="se">\t</span><span class="s1">au}$&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7fdd195eab00&gt;
+</pre></div>
+</div>
+<img alt="../_images/ebm_notebook_12_1.png" src="../_images/ebm_notebook_12_1.png" />
+</div>
+</div>
+</div>
+<div class="section" id="case-study-venus">
+<h3>Case Study: Venus.<a class="headerlink" href="#case-study-venus" title="Permalink to this headline">¶</a></h3>
+<p>Calculate the mean surface temperature on Venus. Due to its proximity to the Sun, Venus has a very high irradiance of <span class="math notranslate nohighlight">\(S_{0}=2619 ~ Wm^{-2}\)</span>. Due to the high cloud cover, the albedo is about 0.7. What surface temperature can be expected? (Use the previous values for <span class="math notranslate nohighlight">\(C_w\)</span> and <span class="math notranslate nohighlight">\(\tau\)</span>).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Integrate the model</span>
+<span class="n">T_venus</span> <span class="o">=</span> <span class="n">ebm</span><span class="p">(</span><span class="mi">2619</span><span class="o">/</span><span class="mi">4</span><span class="p">,</span> <span class="mf">288.2</span><span class="p">,</span> <span class="mf">10e8</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">,</span> <span class="mf">0.64</span><span class="p">,</span> <span class="mi">500</span><span class="p">)</span>
+
+<span class="c1"># Plot results</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">T_venus</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;$T_</span><span class="si">{venus}</span><span class="s1">$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7fdcf93c1d68&gt;
+</pre></div>
+</div>
+<img alt="../_images/ebm_notebook_14_1.png" src="../_images/ebm_notebook_14_1.png" />
+</div>
+</div>
+</div>
+<div class="section" id="compare-the-measurements-with-your-simulation">
+<h3>Compare the measurements with your simulation.<a class="headerlink" href="#compare-the-measurements-with-your-simulation" title="Permalink to this headline">¶</a></h3>
+<p>Is there a difference? If so, why does this difference exist? (Use the model to prove your hypothesis)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Integrate the model</span>
+<span class="n">T_venus</span> <span class="o">=</span> <span class="n">ebm</span><span class="p">(</span><span class="mi">2619</span><span class="o">/</span><span class="mi">4</span><span class="p">,</span> <span class="mf">288.2</span><span class="p">,</span> <span class="mf">10e8</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">,</span> <span class="mf">0.015</span><span class="p">,</span> <span class="mi">500</span><span class="p">)</span>
+
+<span class="c1"># Plot results</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">T_venus</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;$T_</span><span class="si">{venus}</span><span class="s1">$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7fdd28d0d358&gt;
+</pre></div>
+</div>
+<img alt="../_images/ebm_notebook_16_1.png" src="../_images/ebm_notebook_16_1.png" />
+</div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./notebooks"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By Tobias Sauter<br/>
+    
+        &copy; Copyright 2021.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>
