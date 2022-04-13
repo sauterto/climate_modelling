@@ -13,4 +13,3 @@ the further units. Those with experience in Python can safely skip the lessons.
 [Solution: Python Exercise](python:solution)
 ```
 
-[![Made withJupyter](https://img.shields.io/badge/Made%20with-Jupyter-orange?style=for-the-badge&logo=Jupyter)]([asdf](python:exercise))

@@ -74,7 +74,6 @@ def ebm(SWin,T0,c,alpha,tau,years):
     return np.array(timeseries)
 
 
-
 # ### Task 3: Integrate the equation over a time of 200 years and plot the result. Use the following initial and boundary conditions: 
 # 
 # $
