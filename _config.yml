@@ -33,4 +33,7 @@ html:
 
 launch_buttons:
   binderhub_url: "https://mybinder.org"
+  binder_repo_org                  : "sauterto"  # The username or organization that owns this repository
+  binder_repo_name                 : "climate_modelling"  # The name of the repository on the web
+  binder_repo_branch               : "main"
   colab_url: "https://colab.research.google.com"
