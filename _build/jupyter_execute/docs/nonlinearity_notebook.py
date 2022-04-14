@@ -47,6 +47,7 @@ def von_may(y0,r):
     return(result)
 
 
+
 # Run the code for several initial and parameter combination. What is particularly striking about increasing r-values?
 # 
 # 
@@ -108,6 +109,7 @@ def ensemble_may(n, y0, r):
         
         
     return(result)
+
 
 
 # In[4]:

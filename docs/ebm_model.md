@@ -8,7 +8,7 @@ help to derive important insights into the Earth system and how
 sensitivity simulations provide a deeper understanding of the observed climate
 variability.
 
- ```{figure} ../pics/ebm_01.png
+ ```{figure} ./pics/ebm_01.png
 :height: 300px
 :name: ebm_sketch
 
@@ -33,7 +33,7 @@ sphere and calculate the global averaged and long-term equilibrium of radiation
 fluxes. Furthermore, we neglect spatial variabilities. With this simple
 approach, Arthenius was already able to gain good insights in the 19th century.
 
-```{figure} ../pics/ebm_02.png
+```{figure} ./pics/ebm_02.png
 :height: 400px
 :name: ebm_fluxes 
 
@@ -89,7 +89,7 @@ high cloud cover, the albedo is about 0.7. What surface temperature can be
 expected? (Use the previous values for $C_w$ and $\tau$).
 
 :::{figure-md} venus
-<img src="../pics/venus.png" alt="venus" class="bg-primary mb-1" width="600px">
+<img src="./pics/venus.png" alt="venus" class="bg-primary mb-1" width="600px">
 
 Nightside surface temperature of Venus with spatial resolution of 0.5° × 0.5°.
 Surface temperature retrievals are based on IR1 data from Akatsuki mission

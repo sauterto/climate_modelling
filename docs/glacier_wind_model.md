@@ -1,7 +1,7 @@
 (ebm_header)=
 # Exercise: Glacier Winds  
 
- ```{figure} ../pics/katabatic_shaw.png
+ ```{figure} ./pics/katabatic_shaw.png
 :height: 600px
 :name: shaw
 Figure 1: A schematic of the potential wind flow and interplay of local effects
@@ -28,7 +28,7 @@ Near the surface the wind is usually calm and the wind velocity gradually
 increases with height, frequently forming a pronounced low-level jet (LLJ).
 Above the LLJ winds gradually changes to geostrophic.
 
- ```{figure} ../pics/glacier_wind_oerlemans.png
+ ```{figure} ./pics/glacier_wind_oerlemans.png
 :height: 300px
 :name: oerlemans
 
@@ -37,7 +37,7 @@ Observed wind and temperature profiles on 29 July 2007. Profiles are shown for e
 ```
 
 
- ```{figure} ../pics/SBL_schematic.png
+ ```{figure} ./pics/SBL_schematic.png
 :height: 400px
 :name: ebm_sketch
 
