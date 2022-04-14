@@ -401,12 +401,74 @@ steeper the terrain, the lower the maximum.</p>
 </div>
 <div class="section" id="problem-description">
 <h2>Problem description:<a class="headerlink" href="#problem-description" title="Permalink to this headline">¶</a></h2>
-<p>The starting point for our analysis is the ‘Von-May-Equation’, which is given by</p>
-<div class="math notranslate nohighlight">
-\[
-y_{t+1} = r \cdot y_{t} \cdot (1-y_{t}),
+<p>The Navier-Stokes equations describes the motion of fluids. For shallow
+steady-state katabatic flow we can simplify these equations by using the Boussinesq
+approximation and assuming a hydrostatic equilibrium. Furthermore, we assume
+that friction balances the acceleration by buoyancy forcing. Thus, the first-order momentum and heat budgets can be written as</p>
+<div class="math notranslate nohighlight" id="equation-momentum">
+<span class="eqno">(1)<a class="headerlink" href="#equation-momentum" title="Permalink to this equation">¶</a></span>\[
+\frac{g \cdot sin(\eta)}{T_0} = \frac{\partial F_u}{\partial z}
 \]</div>
-<p>with <span class="math notranslate nohighlight">\(r\)</span> an pre-defined parameter and <span class="math notranslate nohighlight">\(y\)</span> the function value at time <span class="math notranslate nohighlight">\(t\)</span> and <span class="math notranslate nohighlight">\(t+1\)</span>.</p>
+<div class="math notranslate nohighlight" id="equation-heat">
+<span class="eqno">(2)<a class="headerlink" href="#equation-heat" title="Permalink to this equation">¶</a></span>\[
+-\gamma_{\theta} \cdot sin(\eta) \cdot u = \frac{\partial F_{\theta}}{\partial z}
+\]</div>
+<p>with <span class="math notranslate nohighlight">\(g\)</span> the gravitational acceleration, <span class="math notranslate nohighlight">\(T_0\)</span> the characteristic temperature, <span class="math notranslate nohighlight">\(F_u\)</span> the turbulent momentum flux, <span class="math notranslate nohighlight">\(F_{\theta}\)</span> the turbulent heat flux, <span class="math notranslate nohighlight">\(z\)</span> the height above the ground, <span class="math notranslate nohighlight">\(u\)</span> the wind speed, <span class="math notranslate nohighlight">\(\theta\)</span> the potential temperature, and <span class="math notranslate nohighlight">\(\eta\)</span> the glacier slope. To close the equation we parametrize the momentum and heat flux with simple K-theory:</p>
+<div class="math notranslate nohighlight" id="equation-k-theory">
+<span class="eqno">(3)<a class="headerlink" href="#equation-k-theory" title="Permalink to this equation">¶</a></span>\[
+F_u = -K_m \frac{du}{dz}, F_{\theta} = -K_h \frac{d\theta}{dz}.
+\]</div>
+<p>The two constants <span class="math notranslate nohighlight">\(K_h\)</span> and <span class="math notranslate nohighlight">\(K_h\)</span> are the eddy diffusivities for momentum and heat. Pluggin these equations into Eq.<a class="reference internal" href="#equation-momentum">(1)</a> and <a class="reference internal" href="#equation-heat">(2)</a> we obtain:</p>
+<div class="math notranslate nohighlight" id="equation-momentum-eq">
+<span class="eqno">(4)<a class="headerlink" href="#equation-momentum-eq" title="Permalink to this equation">¶</a></span>\[
+\frac{g \cdot sin(\eta)}{T_0} \theta + \frac{d}{dz}\left(K_m \frac{du}{dz}\right) = 0.
+\]</div>
+<div class="math notranslate nohighlight" id="equation-heat-eq">
+<span class="eqno">(5)<a class="headerlink" href="#equation-heat-eq" title="Permalink to this equation">¶</a></span>\[
+-\gamma_{\theta} \cdot sin(\eta) \cdot u + \frac{d}{dz}\left(K_h \frac{d\theta}{dz}\right) = 0.
+\]</div>
+<p>To sake of simplicity we also write <span class="math notranslate nohighlight">\(s=-sin(\eta) ~ (&gt;0)\)</span>. Prandtl (1942) solved these equation to understand thermally induced slope flows. The final equation can be written as:</p>
+<div class="math notranslate nohighlight" id="equation-ode-momentum">
+<span class="eqno">(6)<a class="headerlink" href="#equation-ode-momentum" title="Permalink to this equation">¶</a></span>\[
+K_m \frac{d^2 u}{dz^2} - \frac{g \cdot s}{T_0} \theta = 0.
+\]</div>
+<div class="math notranslate nohighlight" id="equation-ode-heat">
+<span class="eqno">(7)<a class="headerlink" href="#equation-ode-heat" title="Permalink to this equation">¶</a></span>\[
+K_h \frac{d^2 \theta}{dz^2} - \gamma_{\theta} \cdot s \cdot u = 0.
+\]</div>
+<p>This set of equation form a system of homogeneous linear differential equations of fourth order.
+The general solution can be found using a linear combination of the fundamental basis function</p>
+<div class="math notranslate nohighlight" id="equation-characteristic-function">
+<span class="eqno">(8)<a class="headerlink" href="#equation-characteristic-function" title="Permalink to this equation">¶</a></span>\[
+u(z) = \sum_{i=1}^{4} a_i e^{\lambda_i z}, \theta(z) = \sum_{i=1}^{4} a_i e^{\lambda_i z}.
+\]</div>
+<p>The constants and <span class="math notranslate nohighlight">\(a_i\)</span> and the the eigenvalue <span class="math notranslate nohighlight">\(\lambda_i\)</span> are both omplex. Using the following boundary condition:</p>
+<div class="math notranslate nohighlight" id="equation-bc-u">
+<span class="eqno">(9)<a class="headerlink" href="#equation-bc-u" title="Permalink to this equation">¶</a></span>\[
+u(z=0, z \rightarrow \inf) = 0,
+\]</div>
+<div class="math notranslate nohighlight" id="equation-bc-theta">
+<span class="eqno">(10)<a class="headerlink" href="#equation-bc-theta" title="Permalink to this equation">¶</a></span>\[
+\theta(z \rightarrow \inf) = 0, \theta(z=0)=C,
+\]</div>
+<p>we find the single solution</p>
+<div class="math notranslate nohighlight" id="equation-sol-theta">
+<span class="eqno">(11)<a class="headerlink" href="#equation-sol-theta" title="Permalink to this equation">¶</a></span>\[
+\theta(z) = C \exp^{-z/\lambda} \cos(z/\lambda)
+\]</div>
+<div class="math notranslate nohighlight" id="equation-sol-u">
+<span class="eqno">(12)<a class="headerlink" href="#equation-sol-u" title="Permalink to this equation">¶</a></span>\[
+u(z) = C \mu \exp^{-z/\lambda} \sin(z/\lambda)
+\]</div>
+<p>with</p>
+<div class="math notranslate nohighlight" id="equation-lambda">
+<span class="eqno">(13)<a class="headerlink" href="#equation-lambda" title="Permalink to this equation">¶</a></span>\[
+\lambda=\left(\frac{4 \cdot T_0 \cdot K_m \cdot K_h}{g \cdot s^2 \cdot \gamma_{theta}}\right)^{\frac{1}{4}}
+\]</div>
+<div class="math notranslate nohighlight" id="equation-mu">
+<span class="eqno">(14)<a class="headerlink" href="#equation-mu" title="Permalink to this equation">¶</a></span>\[
+\mu = \left( \frac{g \cdot K_h}{T_0 \cdot K_m \cdot \gamma_{\theta}}\right)^{\frac{1}{2}}
+\]</div>
 </div>
 <div class="section" id="tasks">
 <h2>Tasks<a class="headerlink" href="#tasks" title="Permalink to this headline">¶</a></h2>

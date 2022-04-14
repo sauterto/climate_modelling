@@ -64,13 +64,81 @@ steeper the terrain, the lower the maximum.
 ### After the exercise you should be able to answer the following questions:
 
 ### Problem description:
-The starting point for our analysis is the 'Von-May-Equation', which is given by
+The Navier-Stokes equations describes the motion of fluids. For shallow
+steady-state katabatic flow we can simplify these equations by using the Boussinesq
+approximation and assuming a hydrostatic equilibrium. Furthermore, we assume
+that friction balances the acceleration by buoyancy forcing. Thus, the first-order momentum and heat budgets can be written as
 
 $$
-y_{t+1} = r \cdot y_{t} \cdot (1-y_{t}),
-$$
+\frac{g \cdot sin(\eta)}{T_0} = \frac{\partial F_u}{\partial z}
+$$ (momentum)
 
-with $r$ an pre-defined parameter and $y$ the function value at time $t$ and $t+1$. 
+$$
+-\gamma_{\theta} \cdot sin(\eta) \cdot u = \frac{\partial F_{\theta}}{\partial z}
+$$ (heat)
+
+with $g$ the gravitational acceleration, $T_0$ the characteristic temperature, $F_u$ the turbulent momentum flux, $F_{\theta}$ the turbulent heat flux, $z$ the height above the ground, $u$ the wind speed, $\theta$ the potential temperature, and $\eta$ the glacier slope. To close the equation we parametrize the momentum and heat flux with simple K-theory:
+
+$$
+F_u = -K_m \frac{du}{dz}, F_{\theta} = -K_h \frac{d\theta}{dz}.
+$$ (k_theory)
+
+The two constants $K_h$ and $K_h$ are the eddy diffusivities for momentum and heat. Pluggin these equations into Eq.{eq}`momentum` and {eq}`heat` we obtain:
+
+$$
+\frac{g \cdot sin(\eta)}{T_0} \theta + \frac{d}{dz}\left(K_m \frac{du}{dz}\right) = 0.
+$$ (momentum_eq)
+
+$$
+-\gamma_{\theta} \cdot sin(\eta) \cdot u + \frac{d}{dz}\left(K_h \frac{d\theta}{dz}\right) = 0.
+$$ (heat_eq)
+
+To sake of simplicity we also write $s=-sin(\eta) ~ (>0)$. Prandtl (1942) solved these equation to understand thermally induced slope flows. The final equation can be written as:
+
+$$
+K_m \frac{d^2 u}{dz^2} - \frac{g \cdot s}{T_0} \theta = 0.
+$$ (ode_momentum) 
+
+$$
+K_h \frac{d^2 \theta}{dz^2} - \gamma_{\theta} \cdot s \cdot u = 0.
+$$ (ode_heat)
+
+This set of equation form a system of homogeneous linear differential equations of fourth order. 
+The general solution can be found using a linear combination of the fundamental basis function
+
+$$
+u(z) = \sum_{i=1}^{4} a_i e^{\lambda_i z}, \theta(z) = \sum_{i=1}^{4} a_i e^{\lambda_i z}.
+$$ (characteristic_function)
+
+The constants and $a_i$ and the the eigenvalue $\lambda_i$ are both omplex. Using the following boundary condition:
+
+$$
+u(z=0, z \rightarrow \inf) = 0,
+$$ (bc_u)
+
+$$
+\theta(z \rightarrow \inf) = 0, \theta(z=0)=C,
+$$ (bc_theta)
+
+we find the single solution
+
+$$
+\theta(z) = C \exp^{-z/\lambda} \cos(z/\lambda)
+$$ (sol_theta)
+
+$$
+u(z) = C \mu \exp^{-z/\lambda} \sin(z/\lambda)
+$$ (sol_u)
+
+with
+
+$$
+\lambda=\left(\frac{4 \cdot T_0 \cdot K_m \cdot K_h}{g \cdot s^2 \cdot \gamma_{theta}}\right)^{\frac{1}{4}}
+$$ (lambda)
+
+$$
+\mu = \left( \frac{g \cdot K_h}{T_0 \cdot K_m \cdot \gamma_{\theta}}\right)^{\frac{1}{2}}
+$$ (mu)
 
 ### Tasks 
 1. Write a function which solves the Von-May-Equation.
