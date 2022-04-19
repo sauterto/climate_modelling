@@ -401,6 +401,10 @@ steeper the terrain, the lower the maximum.</p>
 </div>
 <div class="section" id="problem-description">
 <h2>Problem description:<a class="headerlink" href="#problem-description" title="Permalink to this headline">¶</a></h2>
+<div class="figure align-default" id="prandtl">
+<a class="reference internal image-reference" href="../_images/prandtl_schematic.png"><img alt="../_images/prandtl_schematic.png" src="../_images/prandtl_schematic.png" style="height: 400px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 4 </span><span class="caption-text">Schematic temperature and wind profiles over glacier slopes.</span><a class="headerlink" href="#prandtl" title="Permalink to this image">¶</a></p>
+</div>
 <p>The Navier-Stokes equations describes the motion of fluids. For shallow
 steady-state katabatic flow we can simplify these equations by using the Boussinesq
 approximation and assuming a hydrostatic equilibrium. Furthermore, we assume
@@ -451,7 +455,10 @@ u(z=0, z \rightarrow \inf) = 0,
 <span class="eqno">(10)<a class="headerlink" href="#equation-bc-theta" title="Permalink to this equation">¶</a></span>\[
 \theta(z \rightarrow \inf) = 0, \theta(z=0)=C,
 \]</div>
-<p>we find the single solution</p>
+<p>we find the general solutions.</p>
+<div class="admonition-analytical-prandtl-model admonition">
+<p class="admonition-title">Analytical Prandtl-Model</p>
+<p>The equations that fullfills the conditions are</p>
 <div class="math notranslate nohighlight" id="equation-sol-theta">
 <span class="eqno">(11)<a class="headerlink" href="#equation-sol-theta" title="Permalink to this equation">¶</a></span>\[
 \theta(z) = C \exp^{-z/\lambda} \cos(z/\lambda)
@@ -470,24 +477,16 @@ u(z) = C \mu \exp^{-z/\lambda} \sin(z/\lambda)
 \mu = \left( \frac{g \cdot K_h}{T_0 \cdot K_m \cdot \gamma_{\theta}}\right)^{\frac{1}{2}}
 \]</div>
 </div>
+</div>
 <div class="section" id="tasks">
 <h2>Tasks<a class="headerlink" href="#tasks" title="Permalink to this headline">¶</a></h2>
 <ol class="simple">
-<li><p>Write a function which solves the Von-May-Equation.</p></li>
-<li><p>Run the code for several initial and parameter combination. What is particularly striking about increasing r-values?</p></li>
-</ol>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">=</span><span class="mf">0.5</span> <span class="ow">and</span> <span class="n">r</span><span class="o">=</span><span class="mf">2.80</span> <span class="p">(</span><span class="n">alternatively</span><span class="p">,</span> <span class="n">use</span> <span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">=</span><span class="mf">0.9</span><span class="p">)</span> 
-<span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">=</span><span class="mf">0.5</span> <span class="ow">and</span> <span class="n">r</span><span class="o">=</span><span class="mf">3.30</span> <span class="p">(</span><span class="n">alternatively</span><span class="p">,</span> <span class="n">use</span> <span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">=</span><span class="mf">0.9</span><span class="p">)</span> 
-<span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">=</span><span class="mf">0.5</span> <span class="ow">and</span> <span class="n">r</span><span class="o">=</span><span class="mf">3.95</span> <span class="p">(</span><span class="n">alternatively</span><span class="p">,</span> <span class="n">use</span> <span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">=</span><span class="mf">0.495</span><span class="p">)</span> 
-<span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">=</span><span class="mf">0.8</span> <span class="ow">and</span> <span class="n">r</span><span class="o">=</span><span class="mf">2.80</span> 
-</pre></div>
-</div>
-<ol class="simple">
-<li><p>Extend this Von-May function by generating 20 random r-values and run
-simulations with them. Sample the values from a normal distribution with
-mean 3.95 and standard deviation 0.015 (limit the r-values between 0 and 4). Then average over all time series. Plot
-both the time series, the averaged time series and the histogram of the
-averaged time series. What do you observe?</p></li>
+<li><p>Implement theaanalytical  Prandtl-Model in Pyton</p></li>
+<li><p>Run the code for several initial and parameter combination. What general statements can be derived from the simulations?</p></li>
+<li><p>Scale the height with the natural length scale <span class="math notranslate nohighlight">\(\lambda\)</span> of the flow, temperature
+with <span class="math notranslate nohighlight">\(C\)</span> and wind speed with <span class="math notranslate nohighlight">\(\mu C\)</span>. Plot the wind and temperature profile
+again. At what height is the wind maximum? Derive the height of the wind
+maximum from Eq. <a class="reference internal" href="#equation-sol-u">(12)</a> .</p></li>
 </ol>
 <div class="admonition-revisit-the-ebm-model admonition">
 <p class="admonition-title">Revisit the EBM-Model</p>

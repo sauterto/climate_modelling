@@ -64,6 +64,14 @@ steeper the terrain, the lower the maximum.
 ### After the exercise you should be able to answer the following questions:
 
 ### Problem description:
+
+ ```{figure} ./pics/prandtl_schematic.png
+:height: 400px
+:name: prandtl
+
+Schematic temperature and wind profiles over glacier slopes.
+```
+
 The Navier-Stokes equations describes the motion of fluids. For shallow
 steady-state katabatic flow we can simplify these equations by using the Boussinesq
 approximation and assuming a hydrostatic equilibrium. Furthermore, we assume
@@ -120,7 +128,11 @@ $$
 \theta(z \rightarrow \inf) = 0, \theta(z=0)=C,
 $$ (bc_theta)
 
-we find the single solution
+we find the general solutions.
+
+```{admonition} Analytical Prandtl-Model
+
+The equations that fullfills the conditions are
 
 $$
 \theta(z) = C \exp^{-z/\lambda} \cos(z/\lambda)
@@ -139,22 +151,15 @@ $$ (lambda)
 $$
 \mu = \left( \frac{g \cdot K_h}{T_0 \cdot K_m \cdot \gamma_{\theta}}\right)^{\frac{1}{2}}
 $$ (mu)
+```
 
 ### Tasks 
-1. Write a function which solves the Von-May-Equation.
-2. Run the code for several initial and parameter combination. What is particularly striking about increasing r-values?
-```
-y(0)=0.5 and r=2.80 (alternatively, use y(0)=0.9) 
-y(0)=0.5 and r=3.30 (alternatively, use y(0)=0.9) 
-y(0)=0.5 and r=3.95 (alternatively, use y(0)=0.495) 
-y(0)=0.8 and r=2.80 
-```
-
-3. Extend this Von-May function by generating 20 random r-values and run
-   simulations with them. Sample the values from a normal distribution with
-mean 3.95 and standard deviation 0.015 (limit the r-values between 0 and 4). Then average over all time series. Plot
-both the time series, the averaged time series and the histogram of the
-averaged time series. What do you observe?
+1. Implement theaanalytical  Prandtl-Model in Pyton 
+2. Run the code for several initial and parameter combination. What general statements can be derived from the simulations?
+3. Scale the height with the natural length scale $\lambda$ of the flow, temperature
+   with $C$ and wind speed with $\mu C$. Plot the wind and temperature profile
+again. At what height is the wind maximum? Derive the height of the wind
+maximum from Eq. {eq}`sol_u` . 
 
 
 
