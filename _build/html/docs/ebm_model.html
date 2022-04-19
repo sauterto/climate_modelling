@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Exercise: Simplified Energy Balance Model &#8212; Climate Modelling and Data Analysis</title>
+    <title>Simplified Energy Balance Model &#8212; Climate Modelling and Data Analysis</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet">
   <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -150,7 +150,7 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
-     Exercise: Simplified Energy Balance Model
+     Simplified Energy Balance Model
     </a>
    </li>
   </ul>
@@ -285,8 +285,13 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#problem-description">
-   Problem description:
+  <a class="reference internal nav-link" href="#preliminary-considerations-the-global-energy-budget">
+   Preliminary considerations: The global energy budget
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#simple-energy-balance-model-problem-description">
+   Simple Energy Balance Model: Problem description
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -304,7 +309,7 @@ const thebe_selector_output = ".output, .cell_output"
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Exercise: Simplified Energy Balance Model</h1>
+                <h1>Simplified Energy Balance Model</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -325,8 +330,13 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#problem-description">
-   Problem description:
+  <a class="reference internal nav-link" href="#preliminary-considerations-the-global-energy-budget">
+   Preliminary considerations: The global energy budget
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#simple-energy-balance-model-problem-description">
+   Simple Energy Balance Model: Problem description
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -343,27 +353,22 @@ const thebe_selector_output = ".output, .cell_output"
             
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="exercise-simplified-energy-balance-model">
-<span id="ebm-header"></span><h1>Exercise: Simplified Energy Balance Model<a class="headerlink" href="#exercise-simplified-energy-balance-model" title="Permalink to this headline">¶</a></h1>
+  <div class="tex2jax_ignore mathjax_ignore section" id="simplified-energy-balance-model">
+<span id="ebm-header"></span><h1>Simplified Energy Balance Model<a class="headerlink" href="#simplified-energy-balance-model" title="Permalink to this headline">¶</a></h1>
 <p>In this exercise we will develop a simple zero-dimensional energy balance model
 for the Earth. With this conceptual model we will look at complex interactions
 in the atmosphere with simplified processes. We will show how simple model can
 help to derive important insights into the Earth system and how
 sensitivity simulations provide a deeper understanding of the observed climate
 variability.</p>
-<div class="figure align-default" id="ebm-sketch">
-<a class="reference internal image-reference" href="../_images/ebm_01.png"><img alt="../_images/ebm_01.png" src="../_images/ebm_01.png" style="height: 300px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 5 </span><span class="caption-text">Schematic of the zero-dimensional Energy Balance Model.</span><a class="headerlink" href="#ebm-sketch" title="Permalink to this image">¶</a></p>
-</div>
-<hr class="docutils" />
 <div class="section" id="learning-objectives">
 <h2>Learning objectives:<a class="headerlink" href="#learning-objectives" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
+<li><p>Equilibrium states in the Earth system</p></li>
+<li><p>Greenhouse effect</p></li>
 <li><p>Develop a simple conceptual model</p></li>
 <li><p>Integrate a model in time</p></li>
 <li><p>How to set up sensitivity runs</p></li>
-<li><p>Equilibrium states in the Earth system</p></li>
-<li><p>Greenhouse effect</p></li>
 </ul>
 </div>
 <div class="section" id="after-the-exercise-you-should-be-able-to-answer-the-following-questions">
@@ -373,18 +378,84 @@ variability.</p>
 <li><p>With this model we will perform sensitivity simulations that will show us important processes in the atmosphere.</p></li>
 </ul>
 </div>
-<div class="section" id="problem-description">
-<h2>Problem description:<a class="headerlink" href="#problem-description" title="Permalink to this headline">¶</a></h2>
-<p>The model to be developed is zero-dimensional, i.e. we consider the Earth as a
+<div class="section" id="preliminary-considerations-the-global-energy-budget">
+<h2>Preliminary considerations: The global energy budget<a class="headerlink" href="#preliminary-considerations-the-global-energy-budget" title="Permalink to this headline">¶</a></h2>
+<div class="figure align-default" id="globalenergybudget">
+<a class="reference internal image-reference" href="../_images/GlobalEnergyBudget.png"><img alt="../_images/GlobalEnergyBudget.png" src="../_images/GlobalEnergyBudget.png" style="height: 600px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 5 </span><span class="caption-text">Observed global energy flows (Trenberth and Fasullo (2012).</span><a class="headerlink" href="#globalenergybudget" title="Permalink to this image">¶</a></p>
+</div>
+<p>Assume that the Earth behaves like a blackbody radiator with effective global mean surface
+<strong>emission temperature</strong> <span class="math notranslate nohighlight">\(T_s\)</span>. Use the Stefan-Boltzmann law to calculate the
+emission temperature using the observed <strong>outgoing longwave radiation</strong> (OLR) (see
+<a class="reference internal" href="#globalenergybudget"><span class="std std-numref">Fig. 5</span></a>)</p>
+<div class="math notranslate nohighlight">
+\[
+OLR = \sigma T_s^4
+\]</div>
+<p>with <span class="math notranslate nohighlight">\(\sigma=5.67\cdot10^{-8}\)</span> the Stefan=Boltzmann constant.
+Compare the value with the mean global surface
+temperature of the earth? Does the model assumption that the Earth is a
+blackbody radiator seem justified?</p>
+<blockquote>
+<div><p><strong>Task 1:</strong> Write a Python function for the OLR and effective temperature for later use.</p>
+</div></blockquote>
+<p>The emission into space is reduced due to the greenhouse effect. We make a
+simplified assumption that only part of the radiation is emitted into space
+and part of the energy remains in the system.</p>
+<blockquote>
+<div><p><strong>Task 2:</strong> Extend the OLR function by
+another <strong>transmissivity</strong> constant <span class="math notranslate nohighlight">\(\tau\)</span> which takes this effect into
+account. Determine the transmissivity for a global mean temperature of 288 K.</p>
+</div></blockquote>
+<blockquote>
+<div><p><strong>Task 3:</strong> Determine the planetary albedo from the observations
+(<a class="reference internal" href="#globalenergybudget"><span class="std std-numref">Fig. 5</span></a>) and write a function for the absorbed
+shortwave radiation, the part of the incoming sunlight that is not reflected
+back to space.</p>
+</div></blockquote>
+<blockquote>
+<div><p><strong>Task 4:</strong>  What additional amount of energy would have to remain in the system for the
+global temperature to rise by 4 K?</p>
+</div></blockquote>
+<p>Before we turn to a time-dependent energy balance model, we want to deal with
+the concept of <strong>equilibrium temperature</strong>. It is based on the fundamental
+assumption that the energy balance in the Earth system is balanced, i.e.</p>
+<div class="math notranslate nohighlight">
+\[
+ASR=OLR
+\]</div>
+<p>This condition can only be fulfilled if there is a corresponding equilibrium
+temperature that ensures that the OLR balances the short-wave radiation
+balance. This equation is given as follows</p>
+<div class="math notranslate nohighlight">
+\[
+(1-\alpha) \cdot Q = \tau \sigma T_s^4.
+\]</div>
+<blockquote>
+<div><p><strong>Task 5:</strong> Rearrange the equation according to the temperature denoting our
+equilibrium temperature. Substitute the observed values for insolation,
+transmissivity and planetary albedo and calculate the equlibrium temperature.</p>
+</div></blockquote>
+<blockquote>
+<div><p><strong>Task 6:</strong> Suppose that, due to a changing climate the atmos</p>
+</div></blockquote>
+</div>
+<div class="section" id="simple-energy-balance-model-problem-description">
+<h2>Simple Energy Balance Model: Problem description<a class="headerlink" href="#simple-energy-balance-model-problem-description" title="Permalink to this headline">¶</a></h2>
+<div class="figure align-default" id="ebm-sketch">
+<a class="reference internal image-reference" href="../_images/ebm_01.png"><img alt="../_images/ebm_01.png" src="../_images/ebm_01.png" style="height: 300px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 6 </span><span class="caption-text">Schematic of the zero-dimensional Energy Balance Model.</span><a class="headerlink" href="#ebm-sketch" title="Permalink to this image">¶</a></p>
+</div>
+<p>Next, we develop a time-dependent zero-dimensional model, i.e. we consider the Earth as a
 sphere and calculate the global averaged and long-term equilibrium of radiation
 fluxes. Furthermore, we neglect spatial variabilities. With this simple
 approach, Arthenius was already able to gain good insights in the 19th century.</p>
 <div class="figure align-default" id="ebm-fluxes">
 <a class="reference internal image-reference" href="../_images/ebm_02.png"><img alt="../_images/ebm_02.png" src="../_images/ebm_02.png" style="height: 400px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 6 </span><span class="caption-text">Considered energy fluxes and processes.</span><a class="headerlink" href="#ebm-fluxes" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 7 </span><span class="caption-text">Considered energy fluxes and processes.</span><a class="headerlink" href="#ebm-fluxes" title="Permalink to this image">¶</a></p>
 </div>
 <p>The energy balance is determined by the global radiation and the outgoing
-long-wave radiation (see <a class="reference internal" href="#ebm-fluxes"><span class="std std-numref">Fig. 6</span></a>). Part of the incoming short-wave radiation is reflected at
+long-wave radiation (see <a class="reference internal" href="#ebm-fluxes"><span class="std std-numref">Fig. 7</span></a>). Part of the incoming short-wave radiation is reflected at
 the earth’s surface. For this purpose, a global albedo is defined. According to
 the Stefan-Boltzmann law, the earth’s surface radiates long-wave energy. Due to
 the path (transmission) through the atmosphere, part of this radiation energy
@@ -394,11 +465,10 @@ temperature.</p>
 <p>We can formulate the following energy balance equation</p>
 <div class="math notranslate nohighlight">
 \[
-\frac{dE}{dt}=\frac{C_w \cdot dT}{dt} = SW_{in}+SW_{out}+LW_{out},
+\frac{dE}{dt}=\frac{C_w \cdot dT}{dt} = ASR+OLR,
 \]</div>
-<p>with <span class="math notranslate nohighlight">\(dE\)</span> the change in energy, <span class="math notranslate nohighlight">\(C_w\)</span> the heat capacity, <span class="math notranslate nohighlight">\(SW_{in}\)</span> the incoming
-shortwave radiation, <span class="math notranslate nohighlight">\(SW_{out}\)</span> the outgoing shortwave radiation, and
-<span class="math notranslate nohighlight">\(LW_{out}\)</span> the outgoing longwave radiation.</p>
+<p>with <span class="math notranslate nohighlight">\(dE\)</span> the change in energy, <span class="math notranslate nohighlight">\(C_w\)</span> the heat capacity, <span class="math notranslate nohighlight">\(ASR\)</span> the absorbed shortwave radiation
+and <span class="math notranslate nohighlight">\(OLR\)</span> the outgoing longwave radiation.</p>
 <p>While the incoming short-wave radiation is given, the outgoing fluxes are parameterised with simple approaches:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -412,6 +482,8 @@ transmissivity.</p>
 <div class="section" id="tasks">
 <h2>Tasks<a class="headerlink" href="#tasks" title="Permalink to this headline">¶</a></h2>
 <ol class="simple">
+<li><p>Determine the <strong>planetary albedo</strong> <span class="math notranslate nohighlight">\(\alpha\)</span> from <a class="reference internal" href="#globalenergybudget"><span class="std std-numref">Fig. 5</span></a>.</p></li>
+<li><p>Write a Python function to calculate the <strong>absorbed shortwave radiation</strong> (ASR).</p></li>
 <li><p>Discretise the energy balance equation. Use an explicit forward in time discretisation.</p></li>
 <li><p>Write a function ebm which solves the equation.</p></li>
 <li><p>Integrate the equation over a time of 1000 years. Use the following initial
@@ -432,7 +504,7 @@ expected? (Use the previous values for <span class="math notranslate nohighlight
 </ul>
 <div class="figure align-default" id="venus">
 <a class="bg-primary mb-1 reference internal image-reference" href="../_images/venus.png"><img alt="venus" class="bg-primary mb-1" src="../_images/venus.png" style="width: 600px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 7 </span><span class="caption-text">Nightside surface temperature of Venus with spatial resolution of 0.5° × 0.5°.
+<p class="caption"><span class="caption-number">Fig. 8 </span><span class="caption-text">Nightside surface temperature of Venus with spatial resolution of 0.5° × 0.5°.
 Surface temperature retrievals are based on IR1 data from Akatsuki mission
 between July 21, 2016 and December 7, 2016. White areas indicate either data is
 absent or erroneous. High altitude regions are relatively colder than low
@@ -440,7 +512,7 @@ altitude regions (Data source:
 <a class="reference external" href="https://darts.jaxa.jp/planet/project/akatsuki/ir1.html.en">https://darts.jaxa.jp/planet/project/akatsuki/ir1.html.en</a>)</span><a class="headerlink" href="#venus" title="Permalink to this image">¶</a></p>
 </div>
 <ul class="simple">
-<li><p><a class="reference internal" href="#venus"><span class="std std-numref">Fig. 7</span></a> shows the surface temperatures of Venus derived from IR measurements.
+<li><p><a class="reference internal" href="#venus"><span class="std std-numref">Fig. 8</span></a> shows the surface temperatures of Venus derived from IR measurements.
 Compare the measurements with your simulation. Is there a difference? If so,
 why does this difference exist.</p></li>
 </ul>

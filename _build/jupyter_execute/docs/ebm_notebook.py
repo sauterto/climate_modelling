@@ -1,36 +1,90 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # Exercise: Simple Energy Balance Model
-# 
-# In this exercise we will develop a simple zero-dimensional energy balance model for the Earth. With this conceptual model we will look at complex interactions in the atmosphere with simplified processes. We will show how simple model can help to derive important insights into the Earth system and how sensitivity simulations provide a deeper understanding of the observed climate variability.
-# 
-# ## Learning objectives:
-# - Develop a simple conceptual model
-# - Integrate a model in time
-# - How to set up sensitivity runs
-# - Equilibrium states in the Earth system
-# - Greenhouse effect
-# 
-# 
-# ## Insights and open question:
-# - Why can we run climate simulations for many decades even though our predictability of weather events is very limited?
-# 
-# - With this model we will perform sensitivity simulations that will show us important processes in the atmosphere. 
-# 
-# ## Problem description:
-# The model to be developed is zero-dimensional, i.e. we consider the Earth as a sphere and calculate the global averaged and long-term equilibrium of radiation fluxes. Furthermore, we neglect spatial variabilities. With this simple approach, Arthenius was already able to gain good insights in the 19th century. 
-# 
-# The energy balance is determined by the global radiation and the outgoing long-wave radiation. Part of the incoming short-wave radiation is reflected at the earth's surface. For this purpose, a global albedo is defined. According to the Stefan-Boltzmann law, the earth's surface radiates long-wave energy. Due to the path (transmission) through the atmosphere, part of this radiation energy is absorbed and remains in the Earth system. We also assume that the surface of the Earth is uniform with a constant heat capacity and a homogeneous surface temperature. 
-# 
-
-# ![image.jpeg](attachment:image.jpeg)
-
 # <img src="pics/ebm_02.jpg" width="600" >
+
+# In[1]:
+
+
+# Stefan-Boltzmann constant
+sigma = 5.67e-8
+
+def T_eff(OLR):
+    """ Effective global mean emission temperature """
+    return (OLR/sigma)**(0.25)
+     
+def OLR(T):
+    """ Stefan-Boltzmann law """
+    return sigma * T**4
+
+
+# In[2]:
+
+
+def OLR(T, tau):
+    """ Stefan-Boltzmann law """
+    return tau * sigma * T**4
+
+def tau(OLR, T):
+    """ Calculate transmissivity """
+    return OLR / (sigma*T**4)
+
+
+# In[3]:
+
+
+print("Transmissivity assuming a global mean temperature of 288 K: {}".format(tau(238.5, 288)))
+print("Additionaly energy to increase global mean temperature by 4 K: {} W m^-2".format(OLR(292, 0.61)-OLR(288, 0.61)))
+
+
+# In[4]:
+
+
+Q = 341.3           # area-averaged insolation 
+Freflected = 101.9  # reflected shortwave flux in W/m2
+alpha = Freflected/Q
+
+print("Planetary Albedo: {0}".format(alpha))
+
+
+# In[5]:
+
+
+def ASR(Q, albedo):
+    """ Absorbed shortwave radiation """
+    return (1-albedo) * Q
+
+
+# In[6]:
+
+
+print("Absorbed shortwave radiation: {}".format(ASR(Q, alpha)))
+
+
+# In[7]:
+
+
+def equilibrium_temperature(alpha,Q,tau):
+    """ Equilibrium temperature """
+    return ((1-alpha)*Q/(tau*sigma))**(1/4)
+
+Teq_observed = equilibrium_temperature(alpha,Q,tau(238.5, 288))
+print(Teq_observed)
+
+
+# In[8]:
+
+
+Teq_new = equilibrium_temperature(0.32,Q,0.57)
+
+#  an example of formatted print output, limiting to two or one decimal places
+print('The new equilibrium temperature is {:.2f} K.'.format(Teq_new))
+print('The equilibrium temperature increased by about {:.1f} K.'.format(Teq_new-Teq_observed))
+
 
 # ### Task 2: Write a function ebm which solves the energy balance equation.
 
-# In[1]:
+# In[9]:
 
 
 import numpy as np
@@ -74,6 +128,7 @@ def ebm(SWin,T0,c,alpha,tau,years):
     return np.array(timeseries)
 
 
+
 # ### Task 3: Integrate the equation over a time of 200 years and plot the result. Use the following initial and boundary conditions: 
 # 
 # $
@@ -86,7 +141,7 @@ def ebm(SWin,T0,c,alpha,tau,years):
 # \end{align}
 # $
 
-# In[2]:
+# In[10]:
 
 
 # Integrate the model
@@ -99,7 +154,7 @@ plt.plot(T_273)
 
 # ### Task 4: What happens if the intial temperature is set to 293 K ?
 
-# In[3]:
+# In[11]:
 
 
 # Integrate the model
@@ -114,7 +169,7 @@ plt.plot(T_273)
 # ### Task 5: What changes do you observe with a higher $C_w$ value (e.g. $C_w=10\cdot10^8 ~ J/(m^2 \cdot K)$)?
 # 
 
-# In[4]:
+# In[12]:
 
 
 # Integrate the model
@@ -129,7 +184,7 @@ plt.plot(T_293_Cw)
 
 # ### Task 6: How does the result change when $\tau=1$?
 
-# In[5]:
+# In[13]:
 
 
 # Integrate the model
@@ -149,7 +204,7 @@ plt.legend()
 # 
 # Calculate the mean surface temperature on Venus. Due to its proximity to the Sun, Venus has a very high irradiance of $S_{0}=2619 ~ Wm^{-2}$. Due to the high cloud cover, the albedo is about 0.7. What surface temperature can be expected? (Use the previous values for $C_w$ and $\tau$).
 
-# In[6]:
+# In[14]:
 
 
 # Integrate the model
@@ -165,7 +220,7 @@ plt.legend()
 # 
 # Is there a difference? If so, why does this difference exist? (Use the model to prove your hypothesis)
 
-# In[7]:
+# In[15]:
 
 
 # Integrate the model

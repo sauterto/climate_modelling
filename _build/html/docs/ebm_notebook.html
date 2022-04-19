@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Exercise: Simple Energy Balance Model &#8212; Climate Modelling and Data Analysis</title>
+    <title>Task 2: Write a function ebm which solves the energy balance equation. &#8212; Climate Modelling and Data Analysis</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet">
   <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -148,7 +148,7 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="ebm_model.html">
-     Exercise: Simplified Energy Balance Model
+     Simplified Energy Balance Model
     </a>
    </li>
   </ul>
@@ -297,69 +297,52 @@ const thebe_selector_output = ".output, .cell_output"
             </div>
             <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#learning-objectives">
-   Learning objectives:
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Task 2: Write a function ebm which solves the energy balance equation.
   </a>
  </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#insights-and-open-question">
-   Insights and open question:
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#task-3-integrate-the-equation-over-a-time-of-200-years-and-plot-the-result-use-the-following-initial-and-boundary-conditions">
+   Task 3: Integrate the equation over a time of 200 years and plot the result. Use the following initial and boundary conditions:
   </a>
  </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#problem-description">
-   Problem description:
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#task-4-what-happens-if-the-intial-temperature-is-set-to-293-k">
+   Task 4: What happens if the intial temperature is set to 293 K ?
   </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#task-2-write-a-function-ebm-which-solves-the-energy-balance-equation">
-     Task 2: Write a function ebm which solves the energy balance equation.
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#task-3-integrate-the-equation-over-a-time-of-200-years-and-plot-the-result-use-the-following-initial-and-boundary-conditions">
-     Task 3: Integrate the equation over a time of 200 years and plot the result. Use the following initial and boundary conditions:
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#task-4-what-happens-if-the-intial-temperature-is-set-to-293-k">
-     Task 4: What happens if the intial temperature is set to 293 K ?
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#task-5-what-changes-do-you-observe-with-a-higher-c-w-value-e-g-c-w-10-cdot10-8-j-m-2-cdot-k">
-     Task 5: What changes do you observe with a higher
-     <span class="math notranslate nohighlight">
-      \(C_w\)
-     </span>
-     value (e.g.
-     <span class="math notranslate nohighlight">
-      \(C_w=10\cdot10^8 ~ J/(m^2 \cdot K)\)
-     </span>
-     )?
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#task-6-how-does-the-result-change-when-tau-1">
-     Task 6: How does the result change when
-     <span class="math notranslate nohighlight">
-      \(\tau=1\)
-     </span>
-     ?
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#case-study-venus">
-     Case Study: Venus.
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#compare-the-measurements-with-your-simulation">
-     Compare the measurements with your simulation.
-    </a>
-   </li>
-  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#task-5-what-changes-do-you-observe-with-a-higher-c-w-value-e-g-c-w-10-cdot10-8-j-m-2-cdot-k">
+   Task 5: What changes do you observe with a higher
+   <span class="math notranslate nohighlight">
+    \(C_w\)
+   </span>
+   value (e.g.
+   <span class="math notranslate nohighlight">
+    \(C_w=10\cdot10^8 ~ J/(m^2 \cdot K)\)
+   </span>
+   )?
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#task-6-how-does-the-result-change-when-tau-1">
+   Task 6: How does the result change when
+   <span class="math notranslate nohighlight">
+    \(\tau=1\)
+   </span>
+   ?
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#case-study-venus">
+   Case Study: Venus.
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#compare-the-measurements-with-your-simulation">
+   Compare the measurements with your simulation.
+  </a>
  </li>
 </ul>
 
@@ -371,7 +354,7 @@ const thebe_selector_output = ".output, .cell_output"
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Exercise: Simple Energy Balance Model</h1>
+                <h1>Task 2: Write a function ebm which solves the energy balance equation.</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -381,69 +364,52 @@ const thebe_selector_output = ".output, .cell_output"
                         </div>
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#learning-objectives">
-   Learning objectives:
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Task 2: Write a function ebm which solves the energy balance equation.
   </a>
  </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#insights-and-open-question">
-   Insights and open question:
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#task-3-integrate-the-equation-over-a-time-of-200-years-and-plot-the-result-use-the-following-initial-and-boundary-conditions">
+   Task 3: Integrate the equation over a time of 200 years and plot the result. Use the following initial and boundary conditions:
   </a>
  </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#problem-description">
-   Problem description:
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#task-4-what-happens-if-the-intial-temperature-is-set-to-293-k">
+   Task 4: What happens if the intial temperature is set to 293 K ?
   </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#task-2-write-a-function-ebm-which-solves-the-energy-balance-equation">
-     Task 2: Write a function ebm which solves the energy balance equation.
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#task-3-integrate-the-equation-over-a-time-of-200-years-and-plot-the-result-use-the-following-initial-and-boundary-conditions">
-     Task 3: Integrate the equation over a time of 200 years and plot the result. Use the following initial and boundary conditions:
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#task-4-what-happens-if-the-intial-temperature-is-set-to-293-k">
-     Task 4: What happens if the intial temperature is set to 293 K ?
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#task-5-what-changes-do-you-observe-with-a-higher-c-w-value-e-g-c-w-10-cdot10-8-j-m-2-cdot-k">
-     Task 5: What changes do you observe with a higher
-     <span class="math notranslate nohighlight">
-      \(C_w\)
-     </span>
-     value (e.g.
-     <span class="math notranslate nohighlight">
-      \(C_w=10\cdot10^8 ~ J/(m^2 \cdot K)\)
-     </span>
-     )?
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#task-6-how-does-the-result-change-when-tau-1">
-     Task 6: How does the result change when
-     <span class="math notranslate nohighlight">
-      \(\tau=1\)
-     </span>
-     ?
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#case-study-venus">
-     Case Study: Venus.
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#compare-the-measurements-with-your-simulation">
-     Compare the measurements with your simulation.
-    </a>
-   </li>
-  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#task-5-what-changes-do-you-observe-with-a-higher-c-w-value-e-g-c-w-10-cdot10-8-j-m-2-cdot-k">
+   Task 5: What changes do you observe with a higher
+   <span class="math notranslate nohighlight">
+    \(C_w\)
+   </span>
+   value (e.g.
+   <span class="math notranslate nohighlight">
+    \(C_w=10\cdot10^8 ~ J/(m^2 \cdot K)\)
+   </span>
+   )?
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#task-6-how-does-the-result-change-when-tau-1">
+   Task 6: How does the result change when
+   <span class="math notranslate nohighlight">
+    \(\tau=1\)
+   </span>
+   ?
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#case-study-venus">
+   Case Study: Venus.
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#compare-the-measurements-with-your-simulation">
+   Compare the measurements with your simulation.
+  </a>
  </li>
 </ul>
 
@@ -454,33 +420,122 @@ const thebe_selector_output = ".output, .cell_output"
             
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="exercise-simple-energy-balance-model">
-<h1>Exercise: Simple Energy Balance Model<a class="headerlink" href="#exercise-simple-energy-balance-model" title="Permalink to this headline">¶</a></h1>
-<p>In this exercise we will develop a simple zero-dimensional energy balance model for the Earth. With this conceptual model we will look at complex interactions in the atmosphere with simplified processes. We will show how simple model can help to derive important insights into the Earth system and how sensitivity simulations provide a deeper understanding of the observed climate variability.</p>
-<div class="section" id="learning-objectives">
-<h2>Learning objectives:<a class="headerlink" href="#learning-objectives" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li><p>Develop a simple conceptual model</p></li>
-<li><p>Integrate a model in time</p></li>
-<li><p>How to set up sensitivity runs</p></li>
-<li><p>Equilibrium states in the Earth system</p></li>
-<li><p>Greenhouse effect</p></li>
-</ul>
+  <img src="pics/ebm_02.jpg" width="600" ><div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Stefan-Boltzmann constant</span>
+<span class="n">sigma</span> <span class="o">=</span> <span class="mf">5.67e-8</span>
+
+<span class="k">def</span> <span class="nf">T_eff</span><span class="p">(</span><span class="n">OLR</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Effective global mean emission temperature &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">OLR</span><span class="o">/</span><span class="n">sigma</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="mf">0.25</span><span class="p">)</span>
+     
+<span class="k">def</span> <span class="nf">OLR</span><span class="p">(</span><span class="n">T</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Stefan-Boltzmann law &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">sigma</span> <span class="o">*</span> <span class="n">T</span><span class="o">**</span><span class="mi">4</span>
+</pre></div>
 </div>
-<div class="section" id="insights-and-open-question">
-<h2>Insights and open question:<a class="headerlink" href="#insights-and-open-question" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li><p>Why can we run climate simulations for many decades even though our predictability of weather events is very limited?</p></li>
-<li><p>With this model we will perform sensitivity simulations that will show us important processes in the atmosphere.</p></li>
-</ul>
 </div>
-<div class="section" id="problem-description">
-<h2>Problem description:<a class="headerlink" href="#problem-description" title="Permalink to this headline">¶</a></h2>
-<p>The model to be developed is zero-dimensional, i.e. we consider the Earth as a sphere and calculate the global averaged and long-term equilibrium of radiation fluxes. Furthermore, we neglect spatial variabilities. With this simple approach, Arthenius was already able to gain good insights in the 19th century.</p>
-<p>The energy balance is determined by the global radiation and the outgoing long-wave radiation. Part of the incoming short-wave radiation is reflected at the earth’s surface. For this purpose, a global albedo is defined. According to the Stefan-Boltzmann law, the earth’s surface radiates long-wave energy. Due to the path (transmission) through the atmosphere, part of this radiation energy is absorbed and remains in the Earth system. We also assume that the surface of the Earth is uniform with a constant heat capacity and a homogeneous surface temperature.</p>
-<p><img alt="image.jpeg" src="docs/attachment:image.jpeg" /></p>
-<img src="pics/ebm_02.jpg" width="600" ><div class="section" id="task-2-write-a-function-ebm-which-solves-the-energy-balance-equation">
-<h3>Task 2: Write a function ebm which solves the energy balance equation.<a class="headerlink" href="#task-2-write-a-function-ebm-which-solves-the-energy-balance-equation" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">OLR</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">tau</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Stefan-Boltzmann law &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">tau</span> <span class="o">*</span> <span class="n">sigma</span> <span class="o">*</span> <span class="n">T</span><span class="o">**</span><span class="mi">4</span>
+
+<span class="k">def</span> <span class="nf">tau</span><span class="p">(</span><span class="n">OLR</span><span class="p">,</span> <span class="n">T</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Calculate transmissivity &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">OLR</span> <span class="o">/</span> <span class="p">(</span><span class="n">sigma</span><span class="o">*</span><span class="n">T</span><span class="o">**</span><span class="mi">4</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Transmissivity assuming a global mean temperature of 288 K: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">tau</span><span class="p">(</span><span class="mf">238.5</span><span class="p">,</span> <span class="mi">288</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Additionaly energy to increase global mean temperature by 4 K: </span><span class="si">{}</span><span class="s2"> W m^-2&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">OLR</span><span class="p">(</span><span class="mi">292</span><span class="p">,</span> <span class="mf">0.61</span><span class="p">)</span><span class="o">-</span><span class="n">OLR</span><span class="p">(</span><span class="mi">288</span><span class="p">,</span> <span class="mf">0.61</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Transmissivity assuming a global mean temperature of 288 K: 0.6114139923687018
+Additionaly energy to increase global mean temperature by 4 K: 13.497319422719983 W m^-2
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Q</span> <span class="o">=</span> <span class="mf">341.3</span>           <span class="c1"># area-averaged insolation </span>
+<span class="n">Freflected</span> <span class="o">=</span> <span class="mf">101.9</span>  <span class="c1"># reflected shortwave flux in W/m2</span>
+<span class="n">alpha</span> <span class="o">=</span> <span class="n">Freflected</span><span class="o">/</span><span class="n">Q</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Planetary Albedo: </span><span class="si">{0}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">alpha</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Planetary Albedo: 0.29856431292118374
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">ASR</span><span class="p">(</span><span class="n">Q</span><span class="p">,</span> <span class="n">albedo</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Absorbed shortwave radiation &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">albedo</span><span class="p">)</span> <span class="o">*</span> <span class="n">Q</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Absorbed shortwave radiation: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ASR</span><span class="p">(</span><span class="n">Q</span><span class="p">,</span> <span class="n">alpha</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Absorbed shortwave radiation: 239.4
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">equilibrium_temperature</span><span class="p">(</span><span class="n">alpha</span><span class="p">,</span><span class="n">Q</span><span class="p">,</span><span class="n">tau</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Equilibrium temperature &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="p">((</span><span class="mi">1</span><span class="o">-</span><span class="n">alpha</span><span class="p">)</span><span class="o">*</span><span class="n">Q</span><span class="o">/</span><span class="p">(</span><span class="n">tau</span><span class="o">*</span><span class="n">sigma</span><span class="p">))</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">4</span><span class="p">)</span>
+
+<span class="n">Teq_observed</span> <span class="o">=</span> <span class="n">equilibrium_temperature</span><span class="p">(</span><span class="n">alpha</span><span class="p">,</span><span class="n">Q</span><span class="p">,</span><span class="n">tau</span><span class="p">(</span><span class="mf">238.5</span><span class="p">,</span> <span class="mi">288</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">Teq_observed</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>288.2713144788922
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Teq_new</span> <span class="o">=</span> <span class="n">equilibrium_temperature</span><span class="p">(</span><span class="mf">0.32</span><span class="p">,</span><span class="n">Q</span><span class="p">,</span><span class="mf">0.57</span><span class="p">)</span>
+
+<span class="c1">#  an example of formatted print output, limiting to two or one decimal places</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The new equilibrium temperature is </span><span class="si">{:.2f}</span><span class="s1"> K.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">Teq_new</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The equilibrium temperature increased by about </span><span class="si">{:.1f}</span><span class="s1"> K.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">Teq_new</span><span class="o">-</span><span class="n">Teq_observed</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The new equilibrium temperature is 291.10 K.
+The equilibrium temperature increased by about 2.8 K.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="task-2-write-a-function-ebm-which-solves-the-energy-balance-equation">
+<h1>Task 2: Write a function ebm which solves the energy balance equation.<a class="headerlink" href="#task-2-write-a-function-ebm-which-solves-the-energy-balance-equation" title="Permalink to this headline">¶</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -528,7 +583,7 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 <div class="section" id="task-3-integrate-the-equation-over-a-time-of-200-years-and-plot-the-result-use-the-following-initial-and-boundary-conditions">
-<h3>Task 3: Integrate the equation over a time of 200 years and plot the result. Use the following initial and boundary conditions:<a class="headerlink" href="#task-3-integrate-the-equation-over-a-time-of-200-years-and-plot-the-result-use-the-following-initial-and-boundary-conditions" title="Permalink to this headline">¶</a></h3>
+<h1>Task 3: Integrate the equation over a time of 200 years and plot the result. Use the following initial and boundary conditions:<a class="headerlink" href="#task-3-integrate-the-equation-over-a-time-of-200-years-and-plot-the-result-use-the-following-initial-and-boundary-conditions" title="Permalink to this headline">¶</a></h1>
 <p><span class="math notranslate nohighlight">\(
 \begin{align}
 S_0 &amp;=1360 ~ W m^{-2} \\
@@ -550,15 +605,15 @@ C_w &amp;= 10^8 ~ J/(m^2 \cdot K) \\
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x11e1ac5b0&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f8bd8b9fcf8&gt;]
 </pre></div>
 </div>
-<img alt="../_images/ebm_notebook_6_1.png" src="../_images/ebm_notebook_6_1.png" />
+<img alt="../_images/ebm_notebook_12_1.png" src="../_images/ebm_notebook_12_1.png" />
 </div>
 </div>
 </div>
 <div class="section" id="task-4-what-happens-if-the-intial-temperature-is-set-to-293-k">
-<h3>Task 4: What happens if the intial temperature is set to 293 K ?<a class="headerlink" href="#task-4-what-happens-if-the-intial-temperature-is-set-to-293-k" title="Permalink to this headline">¶</a></h3>
+<h1>Task 4: What happens if the intial temperature is set to 293 K ?<a class="headerlink" href="#task-4-what-happens-if-the-intial-temperature-is-set-to-293-k" title="Permalink to this headline">¶</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Integrate the model</span>
@@ -572,15 +627,15 @@ C_w &amp;= 10^8 ~ J/(m^2 \cdot K) \\
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x1073e2a00&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f8b98b98e80&gt;]
 </pre></div>
 </div>
-<img alt="../_images/ebm_notebook_8_1.png" src="../_images/ebm_notebook_8_1.png" />
+<img alt="../_images/ebm_notebook_14_1.png" src="../_images/ebm_notebook_14_1.png" />
 </div>
 </div>
 </div>
 <div class="section" id="task-5-what-changes-do-you-observe-with-a-higher-c-w-value-e-g-c-w-10-cdot10-8-j-m-2-cdot-k">
-<h3>Task 5: What changes do you observe with a higher <span class="math notranslate nohighlight">\(C_w\)</span> value (e.g. <span class="math notranslate nohighlight">\(C_w=10\cdot10^8 ~ J/(m^2 \cdot K)\)</span>)?<a class="headerlink" href="#task-5-what-changes-do-you-observe-with-a-higher-c-w-value-e-g-c-w-10-cdot10-8-j-m-2-cdot-k" title="Permalink to this headline">¶</a></h3>
+<h1>Task 5: What changes do you observe with a higher <span class="math notranslate nohighlight">\(C_w\)</span> value (e.g. <span class="math notranslate nohighlight">\(C_w=10\cdot10^8 ~ J/(m^2 \cdot K)\)</span>)?<a class="headerlink" href="#task-5-what-changes-do-you-observe-with-a-higher-c-w-value-e-g-c-w-10-cdot10-8-j-m-2-cdot-k" title="Permalink to this headline">¶</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Integrate the model</span>
@@ -595,15 +650,15 @@ C_w &amp;= 10^8 ~ J/(m^2 \cdot K) \\
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x11e2b1520&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f8bc8bf0eb8&gt;]
 </pre></div>
 </div>
-<img alt="../_images/ebm_notebook_10_1.png" src="../_images/ebm_notebook_10_1.png" />
+<img alt="../_images/ebm_notebook_16_1.png" src="../_images/ebm_notebook_16_1.png" />
 </div>
 </div>
 </div>
 <div class="section" id="task-6-how-does-the-result-change-when-tau-1">
-<h3>Task 6: How does the result change when <span class="math notranslate nohighlight">\(\tau=1\)</span>?<a class="headerlink" href="#task-6-how-does-the-result-change-when-tau-1" title="Permalink to this headline">¶</a></h3>
+<h1>Task 6: How does the result change when <span class="math notranslate nohighlight">\(\tau=1\)</span>?<a class="headerlink" href="#task-6-how-does-the-result-change-when-tau-1" title="Permalink to this headline">¶</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Integrate the model</span>
@@ -621,15 +676,15 @@ C_w &amp;= 10^8 ~ J/(m^2 \cdot K) \\
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x11e3dffa0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f8bc8ccfe80&gt;
 </pre></div>
 </div>
-<img alt="../_images/ebm_notebook_12_1.png" src="../_images/ebm_notebook_12_1.png" />
+<img alt="../_images/ebm_notebook_18_1.png" src="../_images/ebm_notebook_18_1.png" />
 </div>
 </div>
 </div>
 <div class="section" id="case-study-venus">
-<h3>Case Study: Venus.<a class="headerlink" href="#case-study-venus" title="Permalink to this headline">¶</a></h3>
+<h1>Case Study: Venus.<a class="headerlink" href="#case-study-venus" title="Permalink to this headline">¶</a></h1>
 <p>Calculate the mean surface temperature on Venus. Due to its proximity to the Sun, Venus has a very high irradiance of <span class="math notranslate nohighlight">\(S_{0}=2619 ~ Wm^{-2}\)</span>. Due to the high cloud cover, the albedo is about 0.7. What surface temperature can be expected? (Use the previous values for <span class="math notranslate nohighlight">\(C_w\)</span> and <span class="math notranslate nohighlight">\(\tau\)</span>).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -644,15 +699,15 @@ C_w &amp;= 10^8 ~ J/(m^2 \cdot K) \\
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x11e4c7130&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f8b98de1e48&gt;
 </pre></div>
 </div>
-<img alt="../_images/ebm_notebook_14_1.png" src="../_images/ebm_notebook_14_1.png" />
+<img alt="../_images/ebm_notebook_20_1.png" src="../_images/ebm_notebook_20_1.png" />
 </div>
 </div>
 </div>
 <div class="section" id="compare-the-measurements-with-your-simulation">
-<h3>Compare the measurements with your simulation.<a class="headerlink" href="#compare-the-measurements-with-your-simulation" title="Permalink to this headline">¶</a></h3>
+<h1>Compare the measurements with your simulation.<a class="headerlink" href="#compare-the-measurements-with-your-simulation" title="Permalink to this headline">¶</a></h1>
 <p>Is there a difference? If so, why does this difference exist? (Use the model to prove your hypothesis)</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -667,12 +722,10 @@ C_w &amp;= 10^8 ~ J/(m^2 \cdot K) \\
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x11f1960d0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f8bc8d42908&gt;
 </pre></div>
 </div>
-<img alt="../_images/ebm_notebook_16_1.png" src="../_images/ebm_notebook_16_1.png" />
-</div>
-</div>
+<img alt="../_images/ebm_notebook_22_1.png" src="../_images/ebm_notebook_22_1.png" />
 </div>
 </div>
 </div>
