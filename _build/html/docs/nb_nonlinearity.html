@@ -123,7 +123,7 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1 has-children">
   <a class="reference internal" href="analytical_models.html">
-   Lesson 1 - Analytical Models
+   Lesson 1 - Global Energy Balance Model
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
   <label for="toctree-checkbox-2">
@@ -139,6 +139,16 @@ const thebe_selector_output = ".output, .cell_output"
    <li class="toctree-l2">
     <a class="reference internal" href="nonlinearity.html">
      Exercise: Nonlinearity and Chaos
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="greenhouse_model.html">
+     Greenhouse Model
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="glacier_wind_model.html">
+     Exercise: Glacier Winds
     </a>
    </li>
   </ul>
@@ -449,7 +459,7 @@ y_{t+1} = r \cdot y_{t} \cdot (1-y_{t}),
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fed009faf60&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fb4808d4f28&gt;]
 </pre></div>
 </div>
 <img alt="../_images/nb_nonlinearity_3_1.png" src="../_images/nb_nonlinearity_3_1.png" />
@@ -511,7 +521,7 @@ y_{t+1} = r \cdot y_{t} \cdot (1-y_{t}),
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fed3131ce48&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fb4712a4f28&gt;]
 </pre></div>
 </div>
 <img alt="../_images/nb_nonlinearity_6_1.png" src="../_images/nb_nonlinearity_6_1.png" />
@@ -580,7 +590,7 @@ y_{t+1} = r \cdot y_{t} \cdot (1-y_{t}),
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fed40ffa518&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fb451147a90&gt;]
 </pre></div>
 </div>
 <img alt="../_images/nb_nonlinearity_9_1.png" src="../_images/nb_nonlinearity_9_1.png" />
@@ -658,7 +668,7 @@ y_{t+1} = r \cdot y_{t} \cdot (1-y_{t}),
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fed0860dfd0&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fb460d329b0&gt;]
 </pre></div>
 </div>
 <img alt="../_images/nb_nonlinearity_12_1.png" src="../_images/nb_nonlinearity_12_1.png" />
@@ -734,7 +744,7 @@ weather and climate?</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fed00f49e10&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fb471371828&gt;]
 </pre></div>
 </div>
 <img alt="../_images/nb_nonlinearity_15_1.png" src="../_images/nb_nonlinearity_15_1.png" />
@@ -747,17 +757,17 @@ weather and climate?</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(array([ 1.,  2., 14., 11., 27., 21., 34., 58., 59., 72., 76., 49., 59.,
-        67., 51., 38., 48., 40., 39., 46., 34., 43., 36., 22., 27., 15.,
-         6.,  4.,  0.,  2.]),
- array([286.55116706, 286.69050588, 286.8298447 , 286.96918351,
-        287.10852233, 287.24786114, 287.38719996, 287.52653877,
-        287.66587759, 287.80521641, 287.94455522, 288.08389404,
-        288.22323285, 288.36257167, 288.50191048, 288.6412493 ,
-        288.78058812, 288.91992693, 289.05926575, 289.19860456,
-        289.33794338, 289.4772822 , 289.61662101, 289.75595983,
-        289.89529864, 290.03463746, 290.17397627, 290.31331509,
-        290.45265391, 290.59199272, 290.73133154]),
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(array([ 1.,  0.,  2.,  4.,  8., 14., 31., 37., 63., 69., 56., 78., 90.,
+        60., 64., 64., 57., 40., 30., 41., 38., 28., 37., 22., 21., 17.,
+         7., 14.,  5.,  3.]),
+ array([286.25685524, 286.40239288, 286.54793053, 286.69346818,
+        286.83900583, 286.98454347, 287.13008112, 287.27561877,
+        287.42115641, 287.56669406, 287.71223171, 287.85776935,
+        288.003307  , 288.14884465, 288.29438229, 288.43991994,
+        288.58545759, 288.73099523, 288.87653288, 289.02207053,
+        289.16760818, 289.31314582, 289.45868347, 289.60422112,
+        289.74975876, 289.89529641, 290.04083406, 290.1863717 ,
+        290.33190935, 290.477447  , 290.62298464]),
  &lt;BarContainer object of 30 artists&gt;)
 </pre></div>
 </div>

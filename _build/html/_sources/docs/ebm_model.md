@@ -30,8 +30,8 @@ variability.
 
 Observed global energy flows (Trenberth and Fasullo (2012).
 ```
-Assume that the Earth behaves like a blackbody radiator with effective global mean surface
-**emission temperature** $T_s$. Use the Stefan-Boltzmann law to calculate the
+Assume that the Earth behaves like a blackbody radiator with **effective global mean surface
+emission temperature** $T_s$. Use the Stefan-Boltzmann law to calculate the
 emission temperature using the observed **outgoing longwave radiation** (OLR) (see
 {numref}`globalEnergyBudget`)
 
@@ -51,12 +51,12 @@ simplified assumption that only part of the radiation is emitted into space
 and part of the energy remains in the system. 
 
 > **Task 2:** Extend the OLR function by
-another **transmissivity** constant $\tau$ which takes this effect into
+a **transmissivity** constant $\tau$ which takes this effect into
 account. Determine the transmissivity for a global mean temperature of 288 K.
 
 > **Task 3:** Determine the planetary albedo from the observations
 > ({numref}`globalEnergyBudget`) and write a function for the absorbed
-> shortwave radiation, the part of the incoming sunlight that is not reflected
+> shortwave radiation (ASR), the part of the incoming sunlight that is not reflected
 > back to space.
 
 > **Task 4:**  What additional amount of energy would have to remain in the system for the
@@ -72,22 +72,22 @@ $$
 
 This condition can only be fulfilled if there is a corresponding equilibrium
 temperature that ensures that the OLR balances the short-wave radiation
-balance. This equation is given as follows
+balance. It follows that
 
 $$
 (1-\alpha) \cdot Q = \tau \sigma T_s^4.
 $$ (ET)
 
-> **Task 5:** Rearrange the equation according to the temperature denoting our
+> **Task 5:** Rearrange Eq {eq}`ET` for the temperature denoting our
 equilibrium temperature. Substitute the observed values for insolation,
 transmissivity and planetary albedo and calculate the equlibrium temperature.
 
-> **Task 6:** With simple approaches such as equlibrium temperature, conceptual
-> scenarios can be calculated. For example, the connection between the increase
-> in albedo due to more cloud cover and the associated decrease in
-> transmissivity can be investigated. For example, assume that the planetary
+> **Task 6:** Conceptual approaches, such as equilibrium temperature, can be
+> used to calculate simple scenarios like the relationship between the
+> increase in albedo due to increased cloud cover and the associated decrease
+> in transmissivity. For example, assume that the planetary
 > albedo increases to 0.32 due to more cloud cover and that the transmissivity
-> decreases to 0.57. What is the equilibrium temperature? 
+> decreases to 0.57. What would be the new equilibrium temperature? 
 
 
 
@@ -120,31 +120,32 @@ Considered energy fluxes and processes.
 
 The energy balance is determined by the global radiation and the outgoing
 long-wave radiation (see {numref}`ebm_fluxes`). Part of the incoming short-wave radiation is reflected at
-the earth's surface. For this purpose, a global albedo is defined. According to
+the earth's surface given by global albedo. According to
 the Stefan-Boltzmann law, the earth's surface radiates long-wave energy. Due to
 the path (transmission) through the atmosphere, part of this radiation energy
 is absorbed and remains in the Earth system. We also assume that the surface of
 the Earth is uniform with a constant heat capacity and a homogeneous surface
 temperature. 
 
-We can formulate the following energy balance equation
+If these assumptions are made, the change of energy in the Earth system can be
+described in a simplified way by 
 
 $$
 \frac{dE}{dt}=\frac{C_w \cdot dT_s}{dt} = ASR+OLR,
 $$ (EB)
 
-with $dE$ the change in energy, $C_w$ [J m$^{-2}$ K$^{-1}$] the heat capacity, $T_s$ [K] the global mean surface temperatur, $ASR$ the absorbed shortwave radiation
-and $OLR$ the outgoing longwave radiation. The term $/frac{dT_s}{dt}$ is the rate of change of the global average surface temperature.  
+with $dE$ the change in energy, $C_w$ [J m$^{-2}$ K$^{-1}$] the heat capacity, $T_s$ [K] the global mean surface temperatur, ASR the absorbed shortwave radiation
+and OLR the outgoing longwave radiation. The term $\frac{dT_s}{dt}$ is the rate of change of the global average surface temperature.  
 
 ```{admonition} How to solve model?
 This simple model equation is a first-order Ordinary Differential Equation
 (ODE) for $T_s$ as a function of time. Under certain conditions, analytical
-solutions exist for this type of equation. In many cases, these equations must
+solutions exist for this type of equation. However in many cases, these equations must
 or are solved numerically. We will look at how these equations are discretised
 at a later stage. 
 
-In general, the derivative of temperature can be approximated by a difference
-approach and we can rewrite as
+In general, the derivative can be approximated by a finite difference, then the
+above equation can be rewritten as
 
 $$
 \frac{dE}{dt}=\frac{C_w \cdot \Delta T_s}{\Delta t} = ASR+OLR,
@@ -164,12 +165,12 @@ $$ (EB_discretized)
 > Assume an initial temperature of 288 K and integrate the function for three timesteps (choose $dt$ = 1 year)  and observe how the temperature changes. 
 
 > **Task 9**: Integrate the equation over a time of 1000 years. Use the following initial
-   and boundary conditions: $S_0=1360 ~ W m^{-2}$, $T(0) = 273 ~ K$, $C_w = 10^8 ~ J/(m^2 \cdot K)$, $\alpha = 0.3$, $\tau
-= 0.61$. Describe in your own words what you observe.
+   and boundary conditions: $S_0$=1360  W m$^{-2}$, $T(0)$ = 273  K, $C_w$ = 10^8  J/(m$^2 \cdot$ K), $\alpha$ = 0.3, $\tau$
+= 0.61. Describe in your own words what you observe.
 
 > **Task 10**: What happens if the intial temperature is set to 293 K?
 
-> **Task 11**: What changes do you observe with a higher $C_w$ value (e.g. $C_w=10\cdot10^8 ~ J/(m^2 \cdot K)$?
+> **Task 11**: What changes do you observe with a higher $C_w$ value (e.g. $C_w$ =10$\cdot10^8$  J/(m$^2 \cdot$ K)?
 
 > **Task 12**: How does the result change when $\tau=1$?
 

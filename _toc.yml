@@ -12,7 +12,8 @@ chapters:
   sections:
   - file: docs/ebm_model
   - file: docs/nonlinearity
-    #- file: docs/glacier_wind_model
+  - file: docs/greenhouse_model
+  - file: docs/glacier_wind_model
 - file: docs/numerical_models 
   sections:
   - file: docs/glacier_wind_model_numerical

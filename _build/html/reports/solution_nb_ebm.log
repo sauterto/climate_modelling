@@ -25,7 +25,7 @@ print('New equlibrium emperature {:.2f} after 1 year'.format(T))
 
 [0;31m---------------------------------------------------------------------------[0m
 [0;31mNameError[0m                                 Traceback (most recent call last)
-[0;32m/var/folders/tt/q4k5594x1tz82j1yrmtkdw080000gn/T/ipykernel_4482/4112886546.py[0m in [0;36m<module>[0;34m[0m
+[0;32m/var/folders/tt/q4k5594x1tz82j1yrmtkdw080000gn/T/ipykernel_8526/4112886546.py[0m in [0;36m<module>[0;34m[0m
 [1;32m      1[0m [0mT0[0m [0;34m=[0m [0;36m288[0m[0;34m[0m[0m
 [1;32m      2[0m [0mdt[0m [0;34m=[0m [0;36m60[0m[0;34m*[0m[0;36m60[0m[0;34m*[0m[0;36m24[0m[0;34m*[0m[0;36m365[0m[0;34m[0m[0m
 [0;32m----> 3[0;31m [0mT[0m [0;34m=[0m [0mstep_forward[0m[0;34m([0m[0;36m341.3[0m[0;34m,[0m [0mT0[0m[0;34m,[0m [0mCw[0m[0;34m,[0m [0;36m0.32[0m[0;34m,[0m [0;36m0.57[0m[0;34m,[0m [0mdt[0m[0;34m)[0m[0;34m[0m[0m

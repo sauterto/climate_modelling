@@ -4,9 +4,9 @@
 Many processes in nature are non-linear. These non-linearities can lead to
 chaotic behaviour of systems that make deterministic prediction impossible. In
 this exercise we will look at the non-linearities of processes and investigate
-the behaviour of such systems. For simplicity, we will use the 'Von-May-Equation'. i
-This seemingly very simple equation helps us to analyse the
-apparently random solutions (chaos), which react sensitively to small
+the behaviour of such systems. For simplicity, we will use the 'Von-May-Equation'.
+This seemingly very simple equation helps us to analyse
+apparently random solutions (chaos), which react sensitively to small perturbations.
 
 ### Learning objectives:
 * A basic understanding of nonlinearity and chaos
@@ -45,32 +45,32 @@ with $r$ an pre-defined parameter and $y$ the function value at time $t$ and $t+
 
 
 ```{admonition} Revisit the EBM-Model
-So far, the greenhouse effect has been parameterised by tau in the energy
+So far, the greenhouse effect has been parameterised by $\tau$ in the energy
 balance model. However, the transmissivity (clouds etc.) fluctuates with the
-development of the weather. The simple model has no information about the
-dynamics. In order to nevertheless include dynamics, we modify the energy
-balance model a little and generate a new tau at each time step. To do this, we
+ weather. At this point, the simple model does not account for this
+dynamic. In order to include dynamics, we slightly modify the energy
+balance model and generate a new $\tau$ at each time step. To do this, we
 sample the transmission values from a normal distribution with a standard
 deviation of 1 percent. 
 
-> **Task 4**: Run the energy balance model $T(0)=288 ~ K$, $C_w= 2\cdot10^8 ~ J/(m^2
-> \cdot K)$, $\alpha=0.3$, and $\tau_{mean}=0.608 (\pm 1\%)$
+> **Task 4**: Run the energy balance model T(0)=288  K, $C_w$ = 2$\cdot10^8$  J/(m$^2
+> \cdot$ K), $\alpha$ =0.3, and $\tau_{mean}$=0.608 ($\pm$ 1%)
 
 > **Task 5**: Yet, the model does not take into account changes in albedo that result
 >  from changes in glaciation and land use as a consequence of a changing
 > climate. Therefore, we are now extending the model with a simple ice/land use
 > albedo parameterisation. In this parameterisation, the albedo is solely a
-> function of mean temperature. As a non-linear function we assume a sigmoid function with 
+> function of the mean temperature. To add some nonlinearity we assume a sigmoid function with 
 >
 >$$
 \alpha(T_i) = 0.3 \cdot (1-0.03 \cdot \tanh(1.548 \cdot (T_i-288))).
->$$
+$$
 >
 >Carry out the following simulations:
 > - Run the energy balance model with four different initial conditions for
->$T(0)=288 ~ K$, while fixing the other parameters to $C_w= 2\cdot10^8 ~ J/(m^2
->\cdot K)$, $\alpha=0.3$, and $\tau_{mean}=0.64%)$
->What can be said about the state of equilibrium?
+> T(0)=288  K, while fixing the other parameters to $C_w$ = 2$\cdot10^8$  J/(m$^2
+>\cdot$ K), $\alpha$ =0.3, and $\tau_{mean}$ = 0.64%)
+>What can be said about the equilibrium state?
 >
 > - Repeat the previous simulation, but again sample the transmissivity on a
 > normal distribution with a standard deviation of 3%.  What special feature can
