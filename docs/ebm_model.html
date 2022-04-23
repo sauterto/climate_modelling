@@ -56,7 +56,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Exercise: Nonlinearity and Chaos" href="nonlinearity.html" />
-    <link rel="prev" title="Lesson 1 - Analytical Models" href="analytical_models.html" />
+    <link rel="prev" title="Lesson 1 - Global Energy Balance Model" href="analytical_models.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -125,7 +125,7 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1 current active has-children">
   <a class="reference internal" href="analytical_models.html">
-   Lesson 1 - Analytical Models
+   Lesson 1 - Global Energy Balance Model
   </a>
   <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
   <label for="toctree-checkbox-2">
@@ -141,6 +141,16 @@ const thebe_selector_output = ".output, .cell_output"
    <li class="toctree-l2">
     <a class="reference internal" href="nonlinearity.html">
      Exercise: Nonlinearity and Chaos
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="greenhouse_model.html">
+     Greenhouse Model
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="glacier_wind_model.html">
+     Exercise: Glacier Winds
     </a>
    </li>
   </ul>
@@ -378,8 +388,8 @@ variability.</p>
 <a class="reference internal image-reference" href="../_images/GlobalEnergyBudget.png"><img alt="../_images/GlobalEnergyBudget.png" src="../_images/GlobalEnergyBudget.png" style="height: 600px;" /></a>
 <p class="caption"><span class="caption-number">Fig. 1 </span><span class="caption-text">Observed global energy flows (Trenberth and Fasullo (2012).</span><a class="headerlink" href="#globalenergybudget" title="Permalink to this image">¶</a></p>
 </div>
-<p>Assume that the Earth behaves like a blackbody radiator with effective global mean surface
-<strong>emission temperature</strong> <span class="math notranslate nohighlight">\(T_s\)</span>. Use the Stefan-Boltzmann law to calculate the
+<p>Assume that the Earth behaves like a blackbody radiator with <strong>effective global mean surface
+emission temperature</strong> <span class="math notranslate nohighlight">\(T_s\)</span>. Use the Stefan-Boltzmann law to calculate the
 emission temperature using the observed <strong>outgoing longwave radiation</strong> (OLR) (see
 <a class="reference internal" href="#globalenergybudget"><span class="std std-numref">Fig. 1</span></a>)</p>
 <div class="math notranslate nohighlight" id="equation-olr">
@@ -398,13 +408,13 @@ simplified assumption that only part of the radiation is emitted into space
 and part of the energy remains in the system.</p>
 <blockquote>
 <div><p><strong>Task 2:</strong> Extend the OLR function by
-another <strong>transmissivity</strong> constant <span class="math notranslate nohighlight">\(\tau\)</span> which takes this effect into
+a <strong>transmissivity</strong> constant <span class="math notranslate nohighlight">\(\tau\)</span> which takes this effect into
 account. Determine the transmissivity for a global mean temperature of 288 K.</p>
 </div></blockquote>
 <blockquote>
 <div><p><strong>Task 3:</strong> Determine the planetary albedo from the observations
 (<a class="reference internal" href="#globalenergybudget"><span class="std std-numref">Fig. 1</span></a>) and write a function for the absorbed
-shortwave radiation, the part of the incoming sunlight that is not reflected
+shortwave radiation (ASR), the part of the incoming sunlight that is not reflected
 back to space.</p>
 </div></blockquote>
 <blockquote>
@@ -420,23 +430,23 @@ ASR=OLR
 \]</div>
 <p>This condition can only be fulfilled if there is a corresponding equilibrium
 temperature that ensures that the OLR balances the short-wave radiation
-balance. This equation is given as follows</p>
+balance. It follows that</p>
 <div class="math notranslate nohighlight" id="equation-et">
 <span class="eqno">(2)<a class="headerlink" href="#equation-et" title="Permalink to this equation">¶</a></span>\[
 (1-\alpha) \cdot Q = \tau \sigma T_s^4.
 \]</div>
 <blockquote>
-<div><p><strong>Task 5:</strong> Rearrange the equation according to the temperature denoting our
+<div><p><strong>Task 5:</strong> Rearrange Eq <a class="reference internal" href="#equation-et">(2)</a> for the temperature denoting our
 equilibrium temperature. Substitute the observed values for insolation,
 transmissivity and planetary albedo and calculate the equlibrium temperature.</p>
 </div></blockquote>
 <blockquote>
-<div><p><strong>Task 6:</strong> With simple approaches such as equlibrium temperature, conceptual
-scenarios can be calculated. For example, the connection between the increase
-in albedo due to more cloud cover and the associated decrease in
-transmissivity can be investigated. For example, assume that the planetary
+<div><p><strong>Task 6:</strong> Conceptual approaches, such as equilibrium temperature, can be
+used to calculate simple scenarios like the relationship between the
+increase in albedo due to increased cloud cover and the associated decrease
+in transmissivity. For example, assume that the planetary
 albedo increases to 0.32 due to more cloud cover and that the transmissivity
-decreases to 0.57. What is the equilibrium temperature?</p>
+decreases to 0.57. What would be the new equilibrium temperature?</p>
 </div></blockquote>
 </div>
 <div class="section" id="simple-energy-balance-model-problem-description">
@@ -462,28 +472,29 @@ approach, Arthenius was already able to gain good insights in the 19th century.<
 </div>
 <p>The energy balance is determined by the global radiation and the outgoing
 long-wave radiation (see <a class="reference internal" href="#ebm-fluxes"><span class="std std-numref">Fig. 3</span></a>). Part of the incoming short-wave radiation is reflected at
-the earth’s surface. For this purpose, a global albedo is defined. According to
+the earth’s surface given by global albedo. According to
 the Stefan-Boltzmann law, the earth’s surface radiates long-wave energy. Due to
 the path (transmission) through the atmosphere, part of this radiation energy
 is absorbed and remains in the Earth system. We also assume that the surface of
 the Earth is uniform with a constant heat capacity and a homogeneous surface
 temperature.</p>
-<p>We can formulate the following energy balance equation</p>
+<p>If these assumptions are made, the change of energy in the Earth system can be
+described in a simplified way by</p>
 <div class="math notranslate nohighlight" id="equation-eb">
 <span class="eqno">(3)<a class="headerlink" href="#equation-eb" title="Permalink to this equation">¶</a></span>\[
 \frac{dE}{dt}=\frac{C_w \cdot dT_s}{dt} = ASR+OLR,
 \]</div>
-<p>with <span class="math notranslate nohighlight">\(dE\)</span> the change in energy, <span class="math notranslate nohighlight">\(C_w\)</span> [J m<span class="math notranslate nohighlight">\(^{-2}\)</span> K<span class="math notranslate nohighlight">\(^{-1}\)</span>] the heat capacity, <span class="math notranslate nohighlight">\(T_s\)</span> [K] the global mean surface temperatur, <span class="math notranslate nohighlight">\(ASR\)</span> the absorbed shortwave radiation
-and <span class="math notranslate nohighlight">\(OLR\)</span> the outgoing longwave radiation. The term <span class="math notranslate nohighlight">\(/frac{dT_s}{dt}\)</span> is the rate of change of the global average surface temperature.</p>
+<p>with <span class="math notranslate nohighlight">\(dE\)</span> the change in energy, <span class="math notranslate nohighlight">\(C_w\)</span> [J m<span class="math notranslate nohighlight">\(^{-2}\)</span> K<span class="math notranslate nohighlight">\(^{-1}\)</span>] the heat capacity, <span class="math notranslate nohighlight">\(T_s\)</span> [K] the global mean surface temperatur, ASR the absorbed shortwave radiation
+and OLR the outgoing longwave radiation. The term <span class="math notranslate nohighlight">\(\frac{dT_s}{dt}\)</span> is the rate of change of the global average surface temperature.</p>
 <div class="admonition-how-to-solve-model admonition">
 <p class="admonition-title">How to solve model?</p>
 <p>This simple model equation is a first-order Ordinary Differential Equation
 (ODE) for <span class="math notranslate nohighlight">\(T_s\)</span> as a function of time. Under certain conditions, analytical
-solutions exist for this type of equation. In many cases, these equations must
+solutions exist for this type of equation. However in many cases, these equations must
 or are solved numerically. We will look at how these equations are discretised
 at a later stage.</p>
-<p>In general, the derivative of temperature can be approximated by a difference
-approach and we can rewrite as</p>
+<p>In general, the derivative can be approximated by a finite difference, then the
+above equation can be rewritten as</p>
 <div class="math notranslate nohighlight" id="equation-eb-difference">
 <span class="eqno">(4)<a class="headerlink" href="#equation-eb-difference" title="Permalink to this equation">¶</a></span>\[
 \frac{dE}{dt}=\frac{C_w \cdot \Delta T_s}{\Delta t} = ASR+OLR,
@@ -504,14 +515,14 @@ Assume an initial temperature of 288 K and integrate the function for three time
 </div></blockquote>
 <blockquote>
 <div><p><strong>Task 9</strong>: Integrate the equation over a time of 1000 years. Use the following initial
-and boundary conditions: <span class="math notranslate nohighlight">\(S_0=1360 ~ W m^{-2}\)</span>, <span class="math notranslate nohighlight">\(T(0) = 273 ~ K\)</span>, <span class="math notranslate nohighlight">\(C_w = 10^8 ~ J/(m^2 \cdot K)\)</span>, <span class="math notranslate nohighlight">\(\alpha = 0.3\)</span>, <span class="math notranslate nohighlight">\(\tau
-= 0.61\)</span>. Describe in your own words what you observe.</p>
+and boundary conditions: <span class="math notranslate nohighlight">\(S_0\)</span>=1360  W m<span class="math notranslate nohighlight">\(^{-2}\)</span>, <span class="math notranslate nohighlight">\(T(0)\)</span> = 273  K, <span class="math notranslate nohighlight">\(C_w\)</span> = 10^8  J/(m<span class="math notranslate nohighlight">\(^2 \cdot\)</span> K), <span class="math notranslate nohighlight">\(\alpha\)</span> = 0.3, <span class="math notranslate nohighlight">\(\tau\)</span>
+= 0.61. Describe in your own words what you observe.</p>
 </div></blockquote>
 <blockquote>
 <div><p><strong>Task 10</strong>: What happens if the intial temperature is set to 293 K?</p>
 </div></blockquote>
 <blockquote>
-<div><p><strong>Task 11</strong>: What changes do you observe with a higher <span class="math notranslate nohighlight">\(C_w\)</span> value (e.g. <span class="math notranslate nohighlight">\(C_w=10\cdot10^8 ~ J/(m^2 \cdot K)\)</span>?</p>
+<div><p><strong>Task 11</strong>: What changes do you observe with a higher <span class="math notranslate nohighlight">\(C_w\)</span> value (e.g. <span class="math notranslate nohighlight">\(C_w\)</span> =10<span class="math notranslate nohighlight">\(\cdot10^8\)</span>  J/(m<span class="math notranslate nohighlight">\(^2 \cdot\)</span> K)?</p>
 </div></blockquote>
 <blockquote>
 <div><p><strong>Task 12</strong>: How does the result change when <span class="math notranslate nohighlight">\(\tau=1\)</span>?</p>
@@ -574,7 +585,7 @@ why does this difference exist.</p></li>
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Lesson 1 - Analytical Models</p>
+            <p class="prev-next-title">Lesson 1 - Global Energy Balance Model</p>
         </div>
     </a>
     <a class='right-next' id="next-link" href="nonlinearity.html" title="next page">

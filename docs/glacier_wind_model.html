@@ -55,6 +55,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Lesson 2 - Numerical Models" href="numerical_models.html" />
+    <link rel="prev" title="Greenhouse Model" href="greenhouse_model.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -98,7 +100,7 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
 </ul>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
  <li class="toctree-l1 has-children">
   <a class="reference internal" href="intro_to_python.html">
    Lesson 0 -Introduction to Python
@@ -121,16 +123,16 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
   </ul>
  </li>
- <li class="toctree-l1 has-children">
+ <li class="toctree-l1 current active has-children">
   <a class="reference internal" href="analytical_models.html">
-   Lesson 1 - Analytical Models
+   Lesson 1 - Global Energy Balance Model
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
   <label for="toctree-checkbox-2">
    <i class="fas fa-chevron-down">
    </i>
   </label>
-  <ul>
+  <ul class="current">
    <li class="toctree-l2">
     <a class="reference internal" href="ebm_model.html">
      Simplified Energy Balance Model
@@ -139,6 +141,16 @@ const thebe_selector_output = ".output, .cell_output"
    <li class="toctree-l2">
     <a class="reference internal" href="nonlinearity.html">
      Exercise: Nonlinearity and Chaos
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="greenhouse_model.html">
+     Greenhouse Model
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Exercise: Glacier Winds
     </a>
    </li>
   </ul>
@@ -335,7 +347,7 @@ const thebe_selector_output = ".output, .cell_output"
 <span id="ebm-header"></span><h1>Exercise: Glacier Winds<a class="headerlink" href="#exercise-glacier-winds" title="Permalink to this headline">¶</a></h1>
 <div class="figure align-default" id="shaw">
 <a class="reference internal image-reference" href="../_images/katabatic_shaw.png"><img alt="../_images/katabatic_shaw.png" src="../_images/katabatic_shaw.png" style="height: 600px;" /></a>
-<p class="caption"><span class="caption-text">Figure 1: A schematic of the potential wind flow and interplay of local effects
+<p class="caption"><span class="caption-number">Fig. 7 </span><span class="caption-text">Figure 1: A schematic of the potential wind flow and interplay of local effects
 on Tsanteleina Glacier in the Italian Alps. The diagram represents wind
 modelling, measured data and observations from the field. (1) The interactions
 of down-glacier katabatic winds (blue) and up-valley winds/local heat sources
@@ -347,7 +359,7 @@ calm, high pressure conditions. Arrows correspond to synoptic westerlies
 </div>
 <p>Katabatic flow associated with the stable boundary layer (SBL)
 often develop above glacier when advection of warm air over the much cooler glacier
-surface leads to a strong stratification and downward directed buoyancy flux (<code class="xref std std-numref docutils literal notranslate"><span class="pre">shaw</span></code>).
+surface leads to a strong stratification and downward directed buoyancy flux (<a class="reference internal" href="#shaw"><span class="std std-numref">Fig. 7</span></a>).
 The permanent cold glacier surface produces a shallow cold air layer above the
 ground, which drains down the slopes following the local topography. The
 development of persistent shallow (5-100 m) downslope winds above glaciers are
@@ -359,18 +371,18 @@ increases with height, frequently forming a pronounced low-level jet (LLJ).
 Above the LLJ winds gradually changes to geostrophic.</p>
 <div class="figure align-default" id="oerlemans">
 <a class="reference internal image-reference" href="../_images/glacier_wind_oerlemans.png"><img alt="../_images/glacier_wind_oerlemans.png" src="../_images/glacier_wind_oerlemans.png" style="height: 300px;" /></a>
-<p class="caption"><span class="caption-text">Observed wind and temperature profiles on 29 July 2007. Profiles are shown for every 3 hours
+<p class="caption"><span class="caption-number">Fig. 8 </span><span class="caption-text">Observed wind and temperature profiles on 29 July 2007. Profiles are shown for every 3 hours
 (UT), but represent 30-min averages. (Source: Oerlemans, 2010)</span><a class="headerlink" href="#oerlemans" title="Permalink to this image">¶</a></p>
 </div>
 <div class="figure align-default" id="ebm-sketch">
 <a class="reference internal image-reference" href="../_images/SBL_schematic.png"><img alt="../_images/SBL_schematic.png" src="../_images/SBL_schematic.png" style="height: 400px;" /></a>
-<p class="caption"><span class="caption-text">Boundary layer processes over mountain glaciers. Shown are the wind profile
+<p class="caption"><span class="caption-number">Fig. 9 </span><span class="caption-text">Boundary layer processes over mountain glaciers. Shown are the wind profile
 (U), potential temerature profile (theta), low-level jet (LLJ), downward
 directed heat flux (Qh), similarity relationships (local and z-less scaling
 regions) and the origin of downburst events.</span><a class="headerlink" href="#ebm-sketch" title="Permalink to this image">¶</a></p>
 </div>
 <p>In alpine regions, well developed glacier winds often show a wind maximum in
-the lowest 1-10 meters above the surface (<code class="xref std std-numref docutils literal notranslate"><span class="pre">oerlemans</span></code>). Usually the
+the lowest 1-10 meters above the surface (<a class="reference internal" href="#oerlemans"><span class="std std-numref">Fig. 8</span></a>). Usually the
 strongest winds occur during the warmest air temperatures. The observations
 imply that there is a correlation between the height and strength of the
 katabatic wind - the stronger the jet, the higher the maximum.
@@ -391,56 +403,56 @@ steeper the terrain, the lower the maximum.</p>
 <h2>Problem description:<a class="headerlink" href="#problem-description" title="Permalink to this headline">¶</a></h2>
 <div class="figure align-default" id="prandtl">
 <a class="reference internal image-reference" href="../_images/prandtl_schematic.png"><img alt="../_images/prandtl_schematic.png" src="../_images/prandtl_schematic.png" style="height: 400px;" /></a>
-<p class="caption"><span class="caption-text">Schematic temperature and wind profiles over glacier slopes.</span><a class="headerlink" href="#prandtl" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 10 </span><span class="caption-text">Schematic temperature and wind profiles over glacier slopes.</span><a class="headerlink" href="#prandtl" title="Permalink to this image">¶</a></p>
 </div>
 <p>The Navier-Stokes equations describes the motion of fluids. For shallow
 steady-state katabatic flow we can simplify these equations by using the Boussinesq
 approximation and assuming a hydrostatic equilibrium. Furthermore, we assume
 that friction balances the acceleration by buoyancy forcing. Thus, the first-order momentum and heat budgets can be written as</p>
 <div class="math notranslate nohighlight" id="equation-momentum">
-<span class="eqno">()<a class="headerlink" href="#equation-momentum" title="Permalink to this equation">¶</a></span>\[
+<span class="eqno">(12)<a class="headerlink" href="#equation-momentum" title="Permalink to this equation">¶</a></span>\[
 \frac{g \cdot sin(\eta)}{T_0} = \frac{\partial F_u}{\partial z}
 \]</div>
 <div class="math notranslate nohighlight" id="equation-heat">
-<span class="eqno">()<a class="headerlink" href="#equation-heat" title="Permalink to this equation">¶</a></span>\[
+<span class="eqno">(13)<a class="headerlink" href="#equation-heat" title="Permalink to this equation">¶</a></span>\[
 -\gamma_{\theta} \cdot sin(\eta) \cdot u = \frac{\partial F_{\theta}}{\partial z}
 \]</div>
 <p>with <span class="math notranslate nohighlight">\(g\)</span> the gravitational acceleration, <span class="math notranslate nohighlight">\(T_0\)</span> the characteristic temperature, <span class="math notranslate nohighlight">\(F_u\)</span> the turbulent momentum flux, <span class="math notranslate nohighlight">\(F_{\theta}\)</span> the turbulent heat flux, <span class="math notranslate nohighlight">\(z\)</span> the height above the ground, <span class="math notranslate nohighlight">\(u\)</span> the wind speed, <span class="math notranslate nohighlight">\(\theta\)</span> the potential temperature, and <span class="math notranslate nohighlight">\(\eta\)</span> the glacier slope. To close the equation we parametrize the momentum and heat flux with simple K-theory:</p>
 <div class="math notranslate nohighlight" id="equation-k-theory">
-<span class="eqno">()<a class="headerlink" href="#equation-k-theory" title="Permalink to this equation">¶</a></span>\[
+<span class="eqno">(14)<a class="headerlink" href="#equation-k-theory" title="Permalink to this equation">¶</a></span>\[
 F_u = -K_m \frac{du}{dz}, F_{\theta} = -K_h \frac{d\theta}{dz}.
 \]</div>
-<p>The two constants <span class="math notranslate nohighlight">\(K_h\)</span> and <span class="math notranslate nohighlight">\(K_h\)</span> are the eddy diffusivities for momentum and heat. Pluggin these equations into Eq.<a class="reference internal" href="#equation-momentum">()</a> and <a class="reference internal" href="#equation-heat">()</a> we obtain:</p>
+<p>The two constants <span class="math notranslate nohighlight">\(K_h\)</span> and <span class="math notranslate nohighlight">\(K_h\)</span> are the eddy diffusivities for momentum and heat. Pluggin these equations into Eq.<a class="reference internal" href="#equation-momentum">(12)</a> and <a class="reference internal" href="#equation-heat">(13)</a> we obtain:</p>
 <div class="math notranslate nohighlight" id="equation-momentum-eq">
-<span class="eqno">()<a class="headerlink" href="#equation-momentum-eq" title="Permalink to this equation">¶</a></span>\[
+<span class="eqno">(15)<a class="headerlink" href="#equation-momentum-eq" title="Permalink to this equation">¶</a></span>\[
 \frac{g \cdot sin(\eta)}{T_0} \theta + \frac{d}{dz}\left(K_m \frac{du}{dz}\right) = 0.
 \]</div>
 <div class="math notranslate nohighlight" id="equation-heat-eq">
-<span class="eqno">()<a class="headerlink" href="#equation-heat-eq" title="Permalink to this equation">¶</a></span>\[
+<span class="eqno">(16)<a class="headerlink" href="#equation-heat-eq" title="Permalink to this equation">¶</a></span>\[
 -\gamma_{\theta} \cdot sin(\eta) \cdot u + \frac{d}{dz}\left(K_h \frac{d\theta}{dz}\right) = 0.
 \]</div>
 <p>To sake of simplicity we also write <span class="math notranslate nohighlight">\(s=-sin(\eta) ~ (&gt;0)\)</span>. Prandtl (1942) solved these equation to understand thermally induced slope flows. The final equation can be written as:</p>
 <div class="math notranslate nohighlight" id="equation-ode-momentum">
-<span class="eqno">()<a class="headerlink" href="#equation-ode-momentum" title="Permalink to this equation">¶</a></span>\[
+<span class="eqno">(17)<a class="headerlink" href="#equation-ode-momentum" title="Permalink to this equation">¶</a></span>\[
 K_m \frac{d^2 u}{dz^2} - \frac{g \cdot s}{T_0} \theta = 0.
 \]</div>
 <div class="math notranslate nohighlight" id="equation-ode-heat">
-<span class="eqno">()<a class="headerlink" href="#equation-ode-heat" title="Permalink to this equation">¶</a></span>\[
+<span class="eqno">(18)<a class="headerlink" href="#equation-ode-heat" title="Permalink to this equation">¶</a></span>\[
 K_h \frac{d^2 \theta}{dz^2} - \gamma_{\theta} \cdot s \cdot u = 0.
 \]</div>
 <p>This set of equation form a system of homogeneous linear differential equations of fourth order.
 The general solution can be found using a linear combination of the fundamental basis function</p>
 <div class="math notranslate nohighlight" id="equation-characteristic-function">
-<span class="eqno">()<a class="headerlink" href="#equation-characteristic-function" title="Permalink to this equation">¶</a></span>\[
+<span class="eqno">(19)<a class="headerlink" href="#equation-characteristic-function" title="Permalink to this equation">¶</a></span>\[
 u(z) = \sum_{i=1}^{4} a_i e^{\lambda_i z}, \theta(z) = \sum_{i=1}^{4} a_i e^{\lambda_i z}.
 \]</div>
 <p>The constants and <span class="math notranslate nohighlight">\(a_i\)</span> and the the eigenvalue <span class="math notranslate nohighlight">\(\lambda_i\)</span> are both omplex. Using the following boundary condition:</p>
 <div class="math notranslate nohighlight" id="equation-bc-u">
-<span class="eqno">()<a class="headerlink" href="#equation-bc-u" title="Permalink to this equation">¶</a></span>\[
+<span class="eqno">(20)<a class="headerlink" href="#equation-bc-u" title="Permalink to this equation">¶</a></span>\[
 u(z=0, z \rightarrow \inf) = 0,
 \]</div>
 <div class="math notranslate nohighlight" id="equation-bc-theta">
-<span class="eqno">()<a class="headerlink" href="#equation-bc-theta" title="Permalink to this equation">¶</a></span>\[
+<span class="eqno">(21)<a class="headerlink" href="#equation-bc-theta" title="Permalink to this equation">¶</a></span>\[
 \theta(z \rightarrow \inf) = 0, \theta(z=0)=C,
 \]</div>
 <p>we find the general solutions.</p>
@@ -448,20 +460,20 @@ u(z=0, z \rightarrow \inf) = 0,
 <p class="admonition-title">Analytical Prandtl-Model</p>
 <p>The equations that fullfills the conditions are</p>
 <div class="math notranslate nohighlight" id="equation-sol-theta">
-<span class="eqno">()<a class="headerlink" href="#equation-sol-theta" title="Permalink to this equation">¶</a></span>\[
+<span class="eqno">(22)<a class="headerlink" href="#equation-sol-theta" title="Permalink to this equation">¶</a></span>\[
 \theta(z) = C \exp^{-z/\lambda} \cos(z/\lambda)
 \]</div>
 <div class="math notranslate nohighlight" id="equation-sol-u">
-<span class="eqno">()<a class="headerlink" href="#equation-sol-u" title="Permalink to this equation">¶</a></span>\[
+<span class="eqno">(23)<a class="headerlink" href="#equation-sol-u" title="Permalink to this equation">¶</a></span>\[
 u(z) = C \mu \exp^{-z/\lambda} \sin(z/\lambda)
 \]</div>
 <p>with</p>
 <div class="math notranslate nohighlight" id="equation-lambda">
-<span class="eqno">()<a class="headerlink" href="#equation-lambda" title="Permalink to this equation">¶</a></span>\[
+<span class="eqno">(24)<a class="headerlink" href="#equation-lambda" title="Permalink to this equation">¶</a></span>\[
 \lambda=\left(\frac{4 \cdot T_0 \cdot K_m \cdot K_h}{g \cdot s^2 \cdot \gamma_{theta}}\right)^{\frac{1}{4}}
 \]</div>
 <div class="math notranslate nohighlight" id="equation-mu">
-<span class="eqno">()<a class="headerlink" href="#equation-mu" title="Permalink to this equation">¶</a></span>\[
+<span class="eqno">(25)<a class="headerlink" href="#equation-mu" title="Permalink to this equation">¶</a></span>\[
 \mu = \left( \frac{g \cdot K_h}{T_0 \cdot K_m \cdot \gamma_{\theta}}\right)^{\frac{1}{2}}
 \]</div>
 </div>
@@ -474,7 +486,7 @@ u(z) = C \mu \exp^{-z/\lambda} \sin(z/\lambda)
 <li><p>Scale the height with the natural length scale <span class="math notranslate nohighlight">\(\lambda\)</span> of the flow, temperature
 with <span class="math notranslate nohighlight">\(C\)</span> and wind speed with <span class="math notranslate nohighlight">\(\mu C\)</span>. Plot the wind and temperature profile
 again. At what height is the wind maximum? Derive the height of the wind
-maximum from Eq. <a class="reference internal" href="#equation-sol-u">()</a> .</p></li>
+maximum from Eq. <a class="reference internal" href="#equation-sol-u">(23)</a> .</p></li>
 </ol>
 <div class="admonition-revisit-the-ebm-model admonition">
 <p class="admonition-title">Revisit the EBM-Model</p>
@@ -541,7 +553,21 @@ weather and climate?</p></li>
               
             
                 <!-- Previous / next buttons -->
-<div class='prev-next-area'>
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="greenhouse_model.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Greenhouse Model</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="numerical_models.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Lesson 2 - Numerical Models</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
 </div>
             
         </div>
