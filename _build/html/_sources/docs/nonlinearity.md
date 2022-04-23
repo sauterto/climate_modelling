@@ -26,21 +26,21 @@ $$
 
 with $r$ an pre-defined parameter and $y$ the function value at time $t$ and $t+1$. 
 
-### Tasks 
-1. Write a function which solves the Von-May-Equation.
-2. Run the code for several initial and parameter combination. What is particularly striking about increasing r-values?
-```
-y(0)=0.5 and r=2.80 (alternatively, use y(0)=0.9) 
-y(0)=0.5 and r=3.30 (alternatively, use y(0)=0.9) 
-y(0)=0.5 and r=3.95 (alternatively, use y(0)=0.495) 
-y(0)=0.8 and r=2.80 
-```
+> **Task 1**: Write a function which solves the Von-May-Equation.
 
-3. Extend this Von-May function by generating 20 random r-values and run
-   simulations with them. Sample the values from a normal distribution with
-mean 3.95 and standard deviation 0.015 (limit the r-values between 0 and 4). Then average over all time series. Plot
-both the time series, the averaged time series and the histogram of the
-averaged time series. What do you observe?
+> **Task 2**: Run the code for several initial and parameter combination. What is particularly striking about increasing r-values?
+> ```
+> y(0)=0.5 and r=2.80 (alternatively, use y(0)=0.9) 
+> y(0)=0.5 and r=3.30 (alternatively, use y(0)=0.9) 
+> y(0)=0.5 and r=3.95 (alternatively, use y(0)=0.495) 
+> y(0)=0.8 and r=2.80 
+> ```
+
+> **Task 3**: Extend this Von-May function by generating 20 random r-values and run
+>   simulations with them. Sample the values from a normal distribution with
+> mean 3.95 and standard deviation 0.015 (limit the r-values between 0 and 4). Then average over all time series. Plot
+> both the time series, the averaged time series and the histogram of the
+> averaged time series. What do you observe?
 
 
 
@@ -51,36 +51,34 @@ development of the weather. The simple model has no information about the
 dynamics. In order to nevertheless include dynamics, we modify the energy
 balance model a little and generate a new tau at each time step. To do this, we
 sample the transmission values from a normal distribution with a standard
-deviation of 3 percent. 
+deviation of 1 percent. 
 
-- Run the energy balance model $T(0)=288 ~ K$, $C_w= 2\cdot10^8 ~ J/(m^2
-\cdot K)$, $\alpha=0.3$, and $\tau_{mean}=0.64 (\pm 3\%)$
+> **Task 4**: Run the energy balance model $T(0)=288 ~ K$, $C_w= 2\cdot10^8 ~ J/(m^2
+> \cdot K)$, $\alpha=0.3$, and $\tau_{mean}=0.608 (\pm 1\%)$
 
-- Yet, the model does not take into account changes in albedo that result
-  from changes in glaciation and land use as a consequence of a changing
-climate. Therefore, we are now extending the model with a simple ice/land use
-albedo parameterisation. In this parameterisation, the albedo is solely a
-function of mean temperature. As a non-linear function we assume a sigmoid function with 
+> **Task 5**: Yet, the model does not take into account changes in albedo that result
+>  from changes in glaciation and land use as a consequence of a changing
+> climate. Therefore, we are now extending the model with a simple ice/land use
+> albedo parameterisation. In this parameterisation, the albedo is solely a
+> function of mean temperature. As a non-linear function we assume a sigmoid function with 
+>
+>$$
+\alpha(T_i) = 0.3 \cdot (1-0.03 \cdot \tanh(1.548 \cdot (T_i-288))).
+>$$
+>
+>Carry out the following simulations:
+> - Run the energy balance model with four different initial conditions for
+>$T(0)=288 ~ K$, while fixing the other parameters to $C_w= 2\cdot10^8 ~ J/(m^2
+>\cdot K)$, $\alpha=0.3$, and $\tau_{mean}=0.64%)$
+>What can be said about the state of equilibrium?
+>
+> - Repeat the previous simulation, but again sample the transmissivity on a
+> normal distribution with a standard deviation of 3%.  What special feature can
+> now be observed? What conclusions can be inferred regarding the prediction of
+> weather and climate?
 
-$$
-\alpha(T_i) = 0.3 \cdot (1-0.025 \cdot \tanh(1.548 \cdot (T_i-288))).
-$$
+> **Task 6**: Execute the script with four different initial conditions for T(0)= 286, 293, 288.6, and 288.9  K. 
 
-Carry out the following simulations:
-1) Run the energy balance model with four different initial conditions for
-$T(0)=288 ~ K$, while fixing the other parameters to $C_w= 2\cdot10^8 ~ J/(m^2
-\cdot K)$, $\alpha=0.3$, and $\tau_{mean}=0.64%)$
-What can be said about the state of equilibrium?
-
-2) Repeat the previous simulation, but again sample the transmissivity on a
-normal distribution with a standard deviation of 3%.  What special feature can
-now be observed? What conclusions can be inferred regarding the prediction of
-weather and climate?
-
-
-Execute the script with four different initial conditions for $T(0)= [286, 293, 288.6, 288.9] ~ K$. 
-
-- What are the disadvantages of this simplified model?
 
 ```
 

@@ -10,10 +10,9 @@ chapters:
   - file: docs/solution_nb_python_exercises
 - file: docs/analytical_models
   sections:
-  - file: docs/nonlinearity
-  - file: docs/sublimation_model
-  - file: docs/glacier_wind_model
   - file: docs/ebm_model
+  - file: docs/nonlinearity
+    #- file: docs/glacier_wind_model
 - file: docs/numerical_models 
   sections:
   - file: docs/glacier_wind_model_numerical

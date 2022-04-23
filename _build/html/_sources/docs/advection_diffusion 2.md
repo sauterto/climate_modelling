@@ -1,2 +1,0 @@
-# Exercise: Advection-Diffusion Model 
-
