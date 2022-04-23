@@ -6,7 +6,7 @@
 # 
 # Here you find a set of exercises to revisit your python abilities.
 
-# ## Exercise 01: Create a function that takes an integer as an argument and returns "Even" for even numbers or "Odd" for odd numbers.
+# Exercise 01: Create a function that takes an integer as an argument and returns "Even" for even numbers or "Odd" for odd numbers.
 
 # In[1]:
 
@@ -39,7 +39,7 @@ except AssertionError:
     print("Test 3: Incorrect")
 
 
-# ## Exercise 02: This code does not execute properly. Try to figure out why.
+# Exercise 02: This code does not execute properly. Try to figure out why.
 
 # In[3]:
 
@@ -58,7 +58,7 @@ except AssertionError:
     print("Test: Incorrect")
 
 
-# ## Exercise 03: You get an array of numbers, return the sum of all of the positives ones.
+# Exercise 03: You get an array of numbers, return the sum of all of the positives ones.
 # 
 # Example [1,-4,7,12] => 1 + 7 + 12 = 20
 # 
@@ -86,7 +86,7 @@ except AssertionError:
     print("Test 2: Incorrect")
 
 
-# ## Exercise 04: Given an array of integers your solution should find the smallest integer.
+# Exercise 04: Given an array of integers your solution should find the smallest integer.
 # 
 # For example:
 # 
@@ -117,11 +117,9 @@ except AssertionError:
     print("Test 2: Incorrect")
 
 
-# ## Exercise 05: Your task is to create a function that does four basic mathematical operations.
+# Exercise 05: Your task is to create a function that does four basic mathematical operations.
 # 
-# The function should take three arguments - operation(string/char), value1(number), value2(number).
-# 
-# The function should return result of numbers after applying the chosen operation.
+# The function should take three arguments - operation(string/char), value1(number), value2(number) and should return result of numbers after applying the chosen operation.
 # 
 # *Examples (Operator, value1, value2) --> output*
 # 
@@ -160,7 +158,7 @@ except AssertionError:
     print("Test 2: Incorrect")
 
 
-# ## Exercise 06: In this kata you will create a function that takes in a list and returns a list with the reverse order.
+# Exercise 06: In this kata you will create a function that takes in a list and returns a list with the reverse order.
 # 
 # Examples (Input -> Output)
 # 
@@ -191,7 +189,7 @@ except AssertionError:
     print("Test 2: Incorrect")
 
 
-# ## Exercise 07: Write a function that computes the volume of a sphere given its radius.
+# Exercise 07: Write a function that computes the volume of a sphere given its radius.
 
 # In[13]:
 
@@ -210,7 +208,7 @@ except AssertionError:
     print("Test: Incorrect")
 
 
-# ## Exercise 08: Write a function that checks whether a number is in a given range (inclusive of high and low)
+# Exercise 08: Write a function that checks whether a number is in a given range (inclusive of high and low)
 
 # In[15]:
 
@@ -230,7 +228,7 @@ except AssertionError:
     print("Test: Incorrect")
 
 
-# ## Exercise 09: Write a Python function that takes a list and returns a new list with unique elements of the first list.
+# Exercise 09: Write a Python function that takes a list and returns a new list with unique elements of the first list.
 # 
 # ```
 # Sample List : [1,1,1,1,2,2,3,3,3,3,4,5]
@@ -259,7 +257,7 @@ except AssertionError:
     print("Test: Incorrect")
 
 
-# ## Exercise 10: Write a Python function to multiply all the numbers in a list.
+# Exercise 10: Write a Python function to multiply all the numbers in a list.
 # 
 # ```
 # Sample List : [1, 2, 3, -4]
@@ -286,7 +284,7 @@ except AssertionError:
     print("Test: Incorrect")
 
 
-# ## Exercise 11: Write a Python funtion that takes a list and takes the differences between the elemtens
+# Exercise 11: Write a Python funtion that takes a list and takes the differences between the elemtens
 # 
 # ```
 # Sample List: [1,3,7,5,5,2,0,1,2]
@@ -315,7 +313,7 @@ except AssertionError:
     print("Test: Incorrect")
 
 
-# ## Exercise 12: Some numpy exercises
+# Exercise 12: Some numpy exercises
 
 # **Write a NumPy program to create an array with values ranging from a to b.**
 # 
