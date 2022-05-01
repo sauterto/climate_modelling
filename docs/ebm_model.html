@@ -55,8 +55,6 @@ const thebe_selector_output = ".output, .cell_output"
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Exercise: Nonlinearity and Chaos" href="nonlinearity.html" />
-    <link rel="prev" title="Lesson 1 - Global Energy Balance Model" href="analytical_models.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -95,7 +93,7 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
 </ul>
-<ul class="current nav bd-sidenav">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1 has-children">
   <a class="reference internal" href="intro_to_python.html">
    Lesson 0 -Introduction to Python
@@ -114,70 +112,6 @@ const thebe_selector_output = ".output, .cell_output"
    <li class="toctree-l2">
     <a class="reference internal" href="solution_nb_python_exercises.html">
      Python exercises
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 current active has-children">
-  <a class="reference internal" href="analytical_models.html">
-   Lesson 1 - Global Energy Balance Model
-  </a>
-  <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
-  <label for="toctree-checkbox-2">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul class="current">
-   <li class="toctree-l2 current active">
-    <a class="current reference internal" href="#">
-     Simplified Energy Balance Model
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="nonlinearity.html">
-     Exercise: Nonlinearity and Chaos
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="greenhouse_model.html">
-     Greenhouse Model
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="glacier_wind_model.html">
-     Exercise: Glacier Winds
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="numerical_models.html">
-   Lesson 2 - Numerical Models
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
-  <label for="toctree-checkbox-3">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="glacier_wind_model_numerical.html">
-     Exercise: Glacier Wind Model (revisited)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="heat_equation.html">
-     Exercise: Heat Equation
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="heat_equation_vector.html">
-     Exercise: Heat Equation (revisited)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="advection_diffusion.html">
-     Exercise: Advection-Diffusion Model
     </a>
    </li>
   </ul>
@@ -381,14 +315,14 @@ variability.</p>
 <h2>Preliminary considerations: The global energy budget<a class="headerlink" href="#preliminary-considerations-the-global-energy-budget" title="Permalink to this headline">¶</a></h2>
 <div class="figure align-default" id="globalenergybudget">
 <a class="reference internal image-reference" href="../_images/GlobalEnergyBudget.png"><img alt="../_images/GlobalEnergyBudget.png" src="../_images/GlobalEnergyBudget.png" style="height: 600px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 1 </span><span class="caption-text">Observed global energy flows (Trenberth and Fasullo (2012).</span><a class="headerlink" href="#globalenergybudget" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-text">Observed global energy flows (Trenberth and Fasullo (2012).</span><a class="headerlink" href="#globalenergybudget" title="Permalink to this image">¶</a></p>
 </div>
 <p>Assume that the Earth behaves like a blackbody radiator with <strong>effective global mean surface
 emission temperature</strong> <span class="math notranslate nohighlight">\(T_s\)</span>. Use the Stefan-Boltzmann law to calculate the
 emission temperature using the observed <strong>outgoing longwave radiation</strong> (OLR) (see
-<a class="reference internal" href="#globalenergybudget"><span class="std std-numref">Fig. 1</span></a>)</p>
+<code class="xref std std-numref docutils literal notranslate"><span class="pre">globalEnergyBudget</span></code>)</p>
 <div class="math notranslate nohighlight" id="equation-olr">
-<span class="eqno">(1)<a class="headerlink" href="#equation-olr" title="Permalink to this equation">¶</a></span>\[
+<span class="eqno">()<a class="headerlink" href="#equation-olr" title="Permalink to this equation">¶</a></span>\[
 OLR = \sigma T_s^4
 \]</div>
 <p>with <span class="math notranslate nohighlight">\(\sigma=5.67\cdot10^{-8}\)</span> the Stefan=Boltzmann constant.
@@ -408,7 +342,7 @@ account. Determine the transmissivity for a global mean temperature of 288 K.</p
 </div></blockquote>
 <blockquote>
 <div><p><strong>Task 3:</strong> Determine the planetary albedo from the observations
-(<a class="reference internal" href="#globalenergybudget"><span class="std std-numref">Fig. 1</span></a>) and write a function for the absorbed
+(<code class="xref std std-numref docutils literal notranslate"><span class="pre">globalEnergyBudget</span></code>) and write a function for the absorbed
 shortwave radiation (ASR), the part of the incoming sunlight that is not reflected
 back to space.</p>
 </div></blockquote>
@@ -427,11 +361,11 @@ ASR=OLR
 temperature that ensures that the OLR balances the short-wave radiation
 balance. It follows that</p>
 <div class="math notranslate nohighlight" id="equation-et">
-<span class="eqno">(2)<a class="headerlink" href="#equation-et" title="Permalink to this equation">¶</a></span>\[
+<span class="eqno">()<a class="headerlink" href="#equation-et" title="Permalink to this equation">¶</a></span>\[
 (1-\alpha) \cdot Q = \tau \sigma T_s^4.
 \]</div>
 <blockquote>
-<div><p><strong>Task 5:</strong> Rearrange Eq <a class="reference internal" href="#equation-et">(2)</a> for the temperature denoting our
+<div><p><strong>Task 5:</strong> Rearrange Eq <a class="reference internal" href="#equation-et">()</a> for the temperature denoting our
 equilibrium temperature. Substitute the observed values for insolation,
 transmissivity and planetary albedo and calculate the equlibrium temperature.</p>
 </div></blockquote>
@@ -448,7 +382,7 @@ decreases to 0.57. What would be the new equilibrium temperature?</p>
 <h2>Simple Energy Balance Model: Problem description<a class="headerlink" href="#simple-energy-balance-model-problem-description" title="Permalink to this headline">¶</a></h2>
 <div class="figure align-default" id="ebm-sketch">
 <a class="reference internal image-reference" href="../_images/ebm_01.png"><img alt="../_images/ebm_01.png" src="../_images/ebm_01.png" style="height: 300px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 2 </span><span class="caption-text">Schematic of the zero-dimensional Energy Balance Model.</span><a class="headerlink" href="#ebm-sketch" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-text">Schematic of the zero-dimensional Energy Balance Model.</span><a class="headerlink" href="#ebm-sketch" title="Permalink to this image">¶</a></p>
 </div>
 <p>Natural processes always counteract disturbances in order to stabilise the
 system that has been brought out of equilibrium. The adjustment of the system
@@ -463,10 +397,10 @@ fluxes. Furthermore, we neglect spatial variabilities. With this simple
 approach, Arthenius was already able to gain good insights in the 19th century.</p>
 <div class="figure align-default" id="ebm-fluxes">
 <a class="reference internal image-reference" href="../_images/ebm_02.png"><img alt="../_images/ebm_02.png" src="../_images/ebm_02.png" style="height: 400px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 3 </span><span class="caption-text">Considered energy fluxes and processes.</span><a class="headerlink" href="#ebm-fluxes" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-text">Considered energy fluxes and processes.</span><a class="headerlink" href="#ebm-fluxes" title="Permalink to this image">¶</a></p>
 </div>
 <p>The energy balance is determined by the global radiation and the outgoing
-long-wave radiation (see <a class="reference internal" href="#ebm-fluxes"><span class="std std-numref">Fig. 3</span></a>). Part of the incoming short-wave radiation is reflected at
+long-wave radiation (see <code class="xref std std-numref docutils literal notranslate"><span class="pre">ebm_fluxes</span></code>). Part of the incoming short-wave radiation is reflected at
 the earth’s surface given by global albedo. According to
 the Stefan-Boltzmann law, the earth’s surface radiates long-wave energy. Due to
 the path (transmission) through the atmosphere, part of this radiation energy
@@ -476,7 +410,7 @@ temperature.</p>
 <p>If these assumptions are made, the change of energy in the Earth system can be
 described in a simplified way by</p>
 <div class="math notranslate nohighlight" id="equation-eb">
-<span class="eqno">(3)<a class="headerlink" href="#equation-eb" title="Permalink to this equation">¶</a></span>\[
+<span class="eqno">()<a class="headerlink" href="#equation-eb" title="Permalink to this equation">¶</a></span>\[
 \frac{dE}{dt}=\frac{C_w \cdot dT_s}{dt} = ASR+OLR,
 \]</div>
 <p>with <span class="math notranslate nohighlight">\(dE\)</span> the change in energy, <span class="math notranslate nohighlight">\(C_w\)</span> [J m<span class="math notranslate nohighlight">\(^{-2}\)</span> K<span class="math notranslate nohighlight">\(^{-1}\)</span>] the heat capacity, <span class="math notranslate nohighlight">\(T_s\)</span> [K] the global mean surface temperatur, ASR the absorbed shortwave radiation
@@ -491,18 +425,18 @@ at a later stage.</p>
 <p>In general, the derivative can be approximated by a finite difference, then the
 above equation can be rewritten as</p>
 <div class="math notranslate nohighlight" id="equation-eb-difference">
-<span class="eqno">(4)<a class="headerlink" href="#equation-eb-difference" title="Permalink to this equation">¶</a></span>\[
+<span class="eqno">()<a class="headerlink" href="#equation-eb-difference" title="Permalink to this equation">¶</a></span>\[
 \frac{dE}{dt}=\frac{C_w \cdot \Delta T_s}{\Delta t} = ASR+OLR,
 \]</div>
 <p>where <span class="math notranslate nohighlight">\(\Delta T\)</span> is the temperatur difference <span class="math notranslate nohighlight">\(\Delta T=T_2-T_1\)</span> between two discrete points in time <span class="math notranslate nohighlight">\(\Delta t = t_2-t_1\)</span>.
 The <span class="math notranslate nohighlight">\(\Delta t\)</span> is called the <strong>timestep</strong>. Substituting the difference approach into the above equation we get</p>
 <div class="math notranslate nohighlight" id="equation-eb-discretized">
-<span class="eqno">(5)<a class="headerlink" href="#equation-eb-discretized" title="Permalink to this equation">¶</a></span>\[
+<span class="eqno">()<a class="headerlink" href="#equation-eb-discretized" title="Permalink to this equation">¶</a></span>\[
 \frac{dE}{dt}=C_w \frac{T_2-T_1}{\Delta t} = ASR+OLR.
 \]</div>
 </div>
 <blockquote>
-<div><p><strong>Task 7</strong>: Rearrange Eq. <a class="reference internal" href="#equation-eb-discretized">(5)</a> so that you can predict future temperature.</p>
+<div><p><strong>Task 7</strong>: Rearrange Eq. <a class="reference internal" href="#equation-eb-discretized">()</a> so that you can predict future temperature.</p>
 </div></blockquote>
 <blockquote>
 <div><p><strong>Task 8</strong>: Write a function called <em>step_forward(T, dt)</em> that returns the new temperature given the old temeprature <span class="math notranslate nohighlight">\(T\)</span> and timestep <span class="math notranslate nohighlight">\(dt\)</span>.
@@ -535,7 +469,7 @@ expected? (Use the previous values for <span class="math notranslate nohighlight
 </ul>
 <div class="figure align-default" id="venus">
 <a class="bg-primary mb-1 reference internal image-reference" href="../_images/venus.png"><img alt="venus" class="bg-primary mb-1" src="../_images/venus.png" style="width: 600px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 4 </span><span class="caption-text">Nightside surface temperature of Venus with spatial resolution of 0.5° × 0.5°.
+<p class="caption"><span class="caption-text">Nightside surface temperature of Venus with spatial resolution of 0.5° × 0.5°.
 Surface temperature retrievals are based on IR1 data from Akatsuki mission
 between July 21, 2016 and December 7, 2016. White areas indicate either data is
 absent or erroneous. High altitude regions are relatively colder than low
@@ -543,7 +477,7 @@ altitude regions (Data source:
 <a class="reference external" href="https://darts.jaxa.jp/planet/project/akatsuki/ir1.html.en">https://darts.jaxa.jp/planet/project/akatsuki/ir1.html.en</a>)</span><a class="headerlink" href="#venus" title="Permalink to this image">¶</a></p>
 </div>
 <ul class="simple">
-<li><p><a class="reference internal" href="#venus"><span class="std std-numref">Fig. 4</span></a> shows the surface temperatures of Venus derived from IR measurements.
+<li><p><code class="xref std std-numref docutils literal notranslate"><span class="pre">venus</span></code> shows the surface temperatures of Venus derived from IR measurements.
 Compare the measurements with your simulation. Is there a difference? If so,
 why does this difference exist.</p></li>
 </ul>
@@ -575,21 +509,7 @@ why does this difference exist.</p></li>
               
             
                 <!-- Previous / next buttons -->
-<div class='prev-next-area'> 
-    <a class='left-prev' id="prev-link" href="analytical_models.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Lesson 1 - Global Energy Balance Model</p>
-        </div>
-    </a>
-    <a class='right-next' id="next-link" href="nonlinearity.html" title="next page">
-    <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Exercise: Nonlinearity and Chaos</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
-    </a>
+<div class='prev-next-area'>
 </div>
             
         </div>

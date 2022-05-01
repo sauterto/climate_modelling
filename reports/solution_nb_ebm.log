@@ -1,19 +1,19 @@
 Traceback (most recent call last):
-  File "/Users/tsauter/venv/lib/python3.7/site-packages/jupyter_cache/executors/utils.py", line 56, in single_nb_execution
-    record_timing=False,
-  File "/Users/tsauter/venv/lib/python3.7/site-packages/nbclient/client.py", line 1117, in execute
+  File "/Users/tsauter/venv/totoro/lib/python3.8/site-packages/jupyter_cache/executors/utils.py", line 51, in single_nb_execution
+    executenb(
+  File "/Users/tsauter/venv/totoro/lib/python3.8/site-packages/nbclient/client.py", line 1204, in execute
     return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
-  File "/Users/tsauter/venv/lib/python3.7/site-packages/nbclient/util.py", line 78, in wrapped
+  File "/Users/tsauter/venv/totoro/lib/python3.8/site-packages/nbclient/util.py", line 84, in wrapped
     return just_run(coro(*args, **kwargs))
-  File "/Users/tsauter/venv/lib/python3.7/site-packages/nbclient/util.py", line 57, in just_run
+  File "/Users/tsauter/venv/totoro/lib/python3.8/site-packages/nbclient/util.py", line 62, in just_run
     return loop.run_until_complete(coro)
-  File "/Library/Frameworks/Python.framework/Versions/3.7/lib/python3.7/asyncio/base_events.py", line 568, in run_until_complete
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.8/lib/python3.8/asyncio/base_events.py", line 616, in run_until_complete
     return future.result()
-  File "/Users/tsauter/venv/lib/python3.7/site-packages/nbclient/client.py", line 559, in async_execute
-    cell, index, execution_count=self.code_cells_executed + 1
-  File "/Users/tsauter/venv/lib/python3.7/site-packages/nbclient/client.py", line 862, in async_execute_cell
-    self._check_raise_for_error(cell, exec_reply)
-  File "/Users/tsauter/venv/lib/python3.7/site-packages/nbclient/client.py", line 765, in _check_raise_for_error
+  File "/Users/tsauter/venv/totoro/lib/python3.8/site-packages/nbclient/client.py", line 663, in async_execute
+    await self.async_execute_cell(
+  File "/Users/tsauter/venv/totoro/lib/python3.8/site-packages/nbclient/client.py", line 965, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/Users/tsauter/venv/totoro/lib/python3.8/site-packages/nbclient/client.py", line 862, in _check_raise_for_error
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
@@ -25,11 +25,11 @@ print('New equlibrium emperature {:.2f} after 1 year'.format(T))
 
 [0;31m---------------------------------------------------------------------------[0m
 [0;31mNameError[0m                                 Traceback (most recent call last)
-[0;32m/var/folders/tt/q4k5594x1tz82j1yrmtkdw080000gn/T/ipykernel_8526/4112886546.py[0m in [0;36m<module>[0;34m[0m
-[1;32m      1[0m [0mT0[0m [0;34m=[0m [0;36m288[0m[0;34m[0m[0m
-[1;32m      2[0m [0mdt[0m [0;34m=[0m [0;36m60[0m[0;34m*[0m[0;36m60[0m[0;34m*[0m[0;36m24[0m[0;34m*[0m[0;36m365[0m[0;34m[0m[0m
-[0;32m----> 3[0;31m [0mT[0m [0;34m=[0m [0mstep_forward[0m[0;34m([0m[0;36m341.3[0m[0;34m,[0m [0mT0[0m[0;34m,[0m [0mCw[0m[0;34m,[0m [0;36m0.32[0m[0;34m,[0m [0;36m0.57[0m[0;34m,[0m [0mdt[0m[0;34m)[0m[0;34m[0m[0m
-[0m[1;32m      4[0m [0mprint[0m[0;34m([0m[0;34m'New equlibrium emperature {:.2f} after 1 year'[0m[0;34m.[0m[0mformat[0m[0;34m([0m[0mT[0m[0;34m)[0m[0;34m)[0m[0;34m[0m[0m
+Input [0;32mIn [10][0m, in [0;36m<cell line: 3>[0;34m()[0m
+[1;32m      1[0m T0 [38;5;241m=[39m [38;5;241m288[39m
+[1;32m      2[0m dt [38;5;241m=[39m [38;5;241m60[39m[38;5;241m*[39m[38;5;241m60[39m[38;5;241m*[39m[38;5;241m24[39m[38;5;241m*[39m[38;5;241m365[39m
+[0;32m----> 3[0m T [38;5;241m=[39m step_forward([38;5;241m341.3[39m, T0, [43mCw[49m, [38;5;241m0.32[39m, [38;5;241m0.57[39m, dt)
+[1;32m      4[0m [38;5;28mprint[39m([38;5;124m'[39m[38;5;124mNew equlibrium emperature [39m[38;5;132;01m{:.2f}[39;00m[38;5;124m after 1 year[39m[38;5;124m'[39m[38;5;241m.[39mformat(T))
 
 [0;31mNameError[0m: name 'Cw' is not defined
 NameError: name 'Cw' is not defined
