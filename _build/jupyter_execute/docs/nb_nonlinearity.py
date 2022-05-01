@@ -42,7 +42,6 @@ def von_may(y0,r):
     return(result)
 
 
-
 # Run the code for several initial and parameter combination. What is particularly striking about increasing r-values?
 # 
 # 
@@ -104,7 +103,6 @@ def ensemble_may(n, y0, r):
         
         
     return(result)
-
 
 
 # In[4]:
@@ -237,6 +235,7 @@ def ebm_ice_albedo(T0, Q=341.3, Cw=10e8, alpha=0.3, tau=0.64, years=100):
 
 
 # In[8]:
+
 
 
 yrs, Ts286 = ebm_ice_albedo(286, Q=342, Cw=2*10**8, alpha=0.30, tau=0.608, years=100)
