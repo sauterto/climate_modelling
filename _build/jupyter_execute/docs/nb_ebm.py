@@ -4,8 +4,6 @@
 # (ebm:exercise)=
 # # Simplified Energy Balance Model
 
-# <img src="pics/ebm_02.jpg" width="600" >
-
 # **Task 1:** Write a Python function for the OLR and effective temperature for later use.
 
 # In[1]:
