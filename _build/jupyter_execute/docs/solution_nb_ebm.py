@@ -6,7 +6,7 @@
 
 # <img src="pics/ebm_02.jpg" width="600" >
 
-# Task 1: Write a Python function for the OLR and effective temperature for later use.
+# **Task 1:** Write a Python function for the OLR and effective temperature for later use.
 
 # In[1]:
 
@@ -23,7 +23,7 @@ def OLR(T):
     return sigma * T**4
 
 
-# Task 2: Extend the OLR function by another **transmissivity** constant $\tau$ which takes this effect into account. Determine the transmissivity for a global mean temperature of 288 K.
+# **Task 2:** Extend the OLR function by another **transmissivity** constant $\tau$ which takes this effect into account. Determine the transmissivity for a global mean temperature of 288 K.
 
 # In[2]:
 
@@ -41,10 +41,9 @@ def tau(OLR, T):
 
 
 print("Transmissivity assuming a global mean temperature of 288 K: {:.2f}".format(tau(238.5, 288)))
-print("Additionaly energy to increase global mean temperature by 4 K: {:.2f} W m^-2".format(OLR(292, 0.61)-OLR(288, 0.61)))
 
 
-# Task 3: Determine the planetary albedo from the observations and write a function for the absorbed shortwave radiation, the part of the incoming sunlight that is not reflected back to space
+# **Task 3:** Determine the planetary albedo from the observations and write a function for the absorbed shortwave radiation, the part of the incoming sunlight that is not reflected back to space
 
 # In[4]:
 
@@ -55,8 +54,6 @@ alpha = Freflected/Q
 
 print("Planetary Albedo: {0}".format(alpha))
 
-
-# Task 4: What additional amount of energy would have to remain in the system for the global temperature to rise by 4 K?
 
 # In[5]:
 
@@ -72,9 +69,17 @@ def ASR(Q, albedo):
 print("Absorbed shortwave radiation: {}".format(ASR(Q, alpha)))
 
 
-# Task 5: Rearrange the equation according to the temperature denoting our equilibrium temperature. Substitute the observed values for insolation, transmissivity and planetary albedo and calculate the equlibrium temperature.
+# **Task 4:** What additional amount of energy would have to remain in the system for the global temperature to rise by 4 K?
 
 # In[7]:
+
+
+print("Additionaly energy to increase global mean temperature by 4 K: {:.2f} W m^-2".format(OLR(292, 0.61)-OLR(288, 0.61)))
+
+
+# **Task 5:** Rearrange the equation according to the temperature denoting our equilibrium temperature. Substitute the observed values for insolation, transmissivity and planetary albedo and calculate the equlibrium temperature.
+
+# In[8]:
 
 
 def equilibrium_temperature(alpha,Q,tau):
@@ -85,9 +90,9 @@ Teq_observed = equilibrium_temperature(alpha,Q,tau(238.5, 288))
 print(Teq_observed)
 
 
-# Task 6: With simple approaches such as equlibrium temperature, conceptual scenarios can be calculated. For example, the connection between the increase in albedo due to more cloud cover and the associated decrease in transmissivity can be investigated. For example, assume that the planetary albedo increases to 0.32 due to more cloud cover and that the transmissivity decreases to 0.57. What is the equilibrium temperature?
+# **Task 6:** With simple approaches such as equlibrium temperature, conceptual scenarios can be calculated. For example, the connection between the increase in albedo due to more cloud cover and the associated decrease in transmissivity can be investigated. For example, assume that the planetary albedo increases to 0.32 due to more cloud cover and that the transmissivity decreases to 0.57. What is the equilibrium temperature?
 
-# In[8]:
+# In[9]:
 
 
 Teq_new = equilibrium_temperature(0.32, Q, 0.57)
@@ -97,39 +102,40 @@ print('The new equilibrium temperature is {:.2f} K.'.format(Teq_new))
 print('The equilibrium temperature increased by about {:.1f} K.'.format(Teq_new-Teq_observed))
 
 
-# Task 8: Write a function called *step_forward(T, dt)* that returns the new temperature given the old temeprature T and timestep dt. Assume an initial temperature of 288 K and integrate the function for a few timestep and observe how the temperature changes.
+# **Task 8:** Write a function called *step_forward(T, dt)* that returns the new temperature given the old temeprature T and timestep dt. Assume an initial temperature of 288 K and integrate the function for a few timestep and observe how the temperature changes.
 
-# In[9]:
+# In[10]:
 
 
 def step_forward(Q, T, Cw, alpha, tau, dt):
     return T + dt / Cw * ( ASR(Q, alpha) - OLR(T, tau) )
 
 
-# In[10]:
+# In[11]:
 
 
 T0 = 288
 dt = 60*60*24*365
+Cw = 10**10
 T = step_forward(341.3, T0, Cw, 0.32, 0.57, dt)
 print('New equlibrium emperature {:.2f} after 1 year'.format(T))
 
 
-# In[52]:
+# In[12]:
 
 
 T = step_forward(Q, T, Cw, 0.32, 0.57, dt)
 print('New equlibrium temperature {:.2f} after 2 years'.format(T))
 
 
-# In[53]:
+# In[13]:
 
 
 T = step_forward(Q, T, Cw, 0.32, 0.57, dt)
 print('New equlibrium temperature {:.2f} after 3 years'.format(T))
 
 
-# Task 9: Integrate the equation over a time of 200 years and plot the result. Use the following initial and boundary conditions: 
+# **Task 9:** Integrate the equation over a time of 200 years and plot the result. Use the following initial and boundary conditions: 
 # 
 # $
 # \begin{align}
@@ -141,7 +147,7 @@ print('New equlibrium temperature {:.2f} after 3 years'.format(T))
 # \end{align}
 # $
 
-# In[22]:
+# In[14]:
 
 
 import numpy as np
@@ -185,7 +191,7 @@ def ebm(T0, Q=341.3, Cw=10e8, alpha=0.3, tau=0.64, years=100):
 
 
 
-# In[23]:
+# In[15]:
 
 
 # Integrate the model
@@ -196,9 +202,9 @@ fig = plt.figure(figsize=(20,5))
 plt.plot(T_273)
 
 
-# Task 10: What happens if the intial temperature is set to 293 K ?
+# **Task 10:** What happens if the intial temperature is set to 293 K ?
 
-# In[24]:
+# In[16]:
 
 
 # Integrate the model
@@ -210,10 +216,10 @@ plt.plot(T_293)
 plt.plot(T_273)
 
 
-# Task 11: What changes do you observe with a higher $C_w$ value (e.g. $C_w=10\cdot10^8 ~ J/(m^2 \cdot K)$)?
+# **Task 11:** What changes do you observe with a higher $C_w$ value (e.g. $C_w=10\cdot10^8 ~ J/(m^2 \cdot K)$)?
 # 
 
-# In[25]:
+# In[17]:
 
 
 # Integrate the model
@@ -226,9 +232,9 @@ plt.plot(T_273)
 plt.plot(T_293_Cw)
 
 
-# Task 12: How does the result change when $\tau=1$?
+# **Task 12:** How does the result change when $\tau=1$?
 
-# In[26]:
+# In[18]:
 
 
 # Integrate the model
@@ -248,7 +254,7 @@ plt.legend()
 # 
 # Calculate the mean surface temperature on Venus. Due to its proximity to the Sun, Venus has a very high irradiance of $S_{0}=2619 ~ Wm^{-2}$. Due to the high cloud cover, the albedo is about 0.7. What surface temperature can be expected? (Use the previous values for $C_w$ and $\tau$).
 
-# In[33]:
+# In[19]:
 
 
 # Integrate the model
@@ -264,7 +270,7 @@ plt.legend()
 # 
 # Is there a difference? If so, why does this difference exist? (Use the model to prove your hypothesis)
 
-# In[38]:
+# In[20]:
 
 
 # Integrate the model

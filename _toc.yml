@@ -8,10 +8,10 @@ chapters:
   sections:
   - file: docs/nb_python_exercises
   - file: docs/solution_nb_python_exercises
-    #- file: docs/analytical_models
-    #sections:
-    #- file: docs/ebm_model
-    #- file: docs/nonlinearity
+- file: docs/analytical_models.md
+  sections:
+  - file: docs/ebm_model
+  - file: docs/nonlinearity
     #- file: docs/greenhouse_model
     #- file: docs/glacier_wind_model
     #- file: docs/numerical_models 

@@ -6,7 +6,7 @@
 
 # <img src="pics/ebm_02.jpg" width="600" >
 
-# Task 1: Write a Python function for the OLR and effective temperature for later use.
+# **Task 1:** Write a Python function for the OLR and effective temperature for later use.
 
 # In[1]:
 
@@ -25,7 +25,7 @@ def OLR(T):
     pass
 
 
-# Task 2: Extend the OLR function by another **transmissivity** constant $\tau$ which takes this effect into account. Determine the transmissivity for a global mean temperature of 288 K.
+# **Task 2:** Extend the OLR function by another **transmissivity** constant $\tau$ which takes this effect into account. Determine the transmissivity for a global mean temperature of 288 K.
 
 # In[2]:
 
@@ -47,7 +47,7 @@ def tau(OLR, T):
 # Print the results
 
 
-# Task 3: Determine the planetary albedo from the observations and write a function for the absorbed shortwave radiation, the part of the incoming sunlight that is not reflected back to space
+# **Task 3:** Determine the planetary albedo from the observations and write a function for the absorbed shortwave radiation, the part of the incoming sunlight that is not reflected back to space
 
 # In[4]:
 
@@ -55,7 +55,7 @@ def tau(OLR, T):
 # Calculate the planetary albedo
 
 
-# Task 4: What additional amount of energy would have to remain in the system for the global temperature to rise by 4 K?
+# **Task 4:** What additional amount of energy would have to remain in the system for the global temperature to rise by 4 K?
 
 # In[5]:
 
@@ -73,7 +73,7 @@ def ASR(Q, albedo):
 # Print the results
 
 
-# Task 5: Rearrange the equation according to the temperature denoting our equilibrium temperature. Substitute the observed values for insolation, transmissivity and planetary albedo and calculate the equlibrium temperature.
+# **Task 5:** Rearrange the equation according to the temperature denoting our equilibrium temperature. Substitute the observed values for insolation, transmissivity and planetary albedo and calculate the equlibrium temperature.
 
 # In[7]:
 
@@ -90,7 +90,7 @@ def equilibrium_temperature(alpha,Q,tau):
 # Print the results
 
 
-# Task 6: With simple approaches such as equlibrium temperature, conceptual scenarios can be calculated. For example, the connection between the increase in albedo due to more cloud cover and the associated decrease in transmissivity can be investigated. For example, assume that the planetary albedo increases to 0.32 due to more cloud cover and that the transmissivity decreases to 0.57. What is the equilibrium temperature?
+# **Task 6:** With simple approaches such as equlibrium temperature, conceptual scenarios can be calculated. For example, the connection between the increase in albedo due to more cloud cover and the associated decrease in transmissivity can be investigated. For example, assume that the planetary albedo increases to 0.32 due to more cloud cover and that the transmissivity decreases to 0.57. What is the equilibrium temperature?
 
 # In[9]:
 
@@ -98,7 +98,7 @@ def equilibrium_temperature(alpha,Q,tau):
 # Make your calculations here
 
 
-# Task 8: Write a function called *step_forward(T, dt)* that returns the new temperature given the old temeprature T and timestep dt. Assume an initial temperature of 288 K and integrate the function for a few timestep and observe how the temperature changes.
+# **Task 8:** Write a function called *step_forward(T, dt)* that returns the new temperature given the old temeprature T and timestep dt. Assume an initial temperature of 288 K and integrate the function for a few timestep and observe how the temperature changes.
 
 # In[10]:
 
@@ -126,7 +126,7 @@ def step_forward(Q, T, Cw, alpha, tau, dt):
 # Do third step forward
 
 
-# Task 9: Integrate the equation over a time of 200 years and plot the result. Use the following initial and boundary conditions: 
+# **Task 9:** Integrate the equation over a time of 200 years and plot the result. Use the following initial and boundary conditions: 
 # 
 # $
 # \begin{align}
@@ -175,7 +175,7 @@ def ebm(T0, Q=341.3, Cw=10e8, alpha=0.3, tau=0.64, years=100):
 # Experiment 1
 
 
-# Task 10: What happens if the intial temperature is set to 293 K ?
+# **Task 10:** What happens if the intial temperature is set to 293 K ?
 
 # In[16]:
 
@@ -183,7 +183,7 @@ def ebm(T0, Q=341.3, Cw=10e8, alpha=0.3, tau=0.64, years=100):
 # Experiment 2
 
 
-# Task 11: What changes do you observe with a higher $C_w$ value (e.g. $C_w=10\cdot10^8 ~ J/(m^2 \cdot K)$)?
+# **Task 11:** What changes do you observe with a higher $C_w$ value (e.g. $C_w=10\cdot10^8 ~ J/(m^2 \cdot K)$)?
 # 
 
 # In[17]:
@@ -192,7 +192,7 @@ def ebm(T0, Q=341.3, Cw=10e8, alpha=0.3, tau=0.64, years=100):
 # Experiment 3
 
 
-# Task 12: How does the result change when $\tau=1$?
+# **Task 12:** How does the result change when $\tau=1$?
 
 # In[18]:
 
