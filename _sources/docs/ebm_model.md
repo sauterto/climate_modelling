@@ -9,6 +9,9 @@ sensitivity simulations provide a deeper understanding of the observed climate
 variability.
 
 ### Learning objectives:
+* Global surface emission temperature
+* What is transmissivity
+* Equilibrium temperature	
 * Equilibrium states in the Earth system
 * Greenhouse effect
 * Develop a simple conceptual model
@@ -137,7 +140,7 @@ $$ (EB)
 with $dE$ the change in energy, $C_w$ [J m$^{-2}$ K$^{-1}$] the heat capacity, $T_s$ [K] the global mean surface temperatur, ASR the absorbed shortwave radiation
 and OLR the outgoing longwave radiation. The term $\frac{dT_s}{dt}$ is the rate of change of the global average surface temperature.  
 
-```{admonition} How to solve model?
+```{admonition} How to solve time dependend models?
 This simple model equation is a first-order Ordinary Differential Equation
 (ODE) for $T_s$ as a function of time. Under certain conditions, analytical
 solutions exist for this type of equation. However in many cases, these equations must

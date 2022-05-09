@@ -1,5 +1,5 @@
 (ebm_header)=
-# Exercise: Nonlinearity and Chaos 
+# Exercise: Nonlinearity, Feedbacks and Predictability 
 
 Many processes in nature are non-linear. These non-linearities can lead to
 chaotic behaviour of systems that make deterministic prediction impossible. In
@@ -10,12 +10,19 @@ apparently random solutions (chaos), which react sensitively to small perturbati
 
 ### Learning objectives:
 * A basic understanding of nonlinearity and chaos
-* Damped processes and noise
+* What are feedbacks
+* Sensitivity of climate models
+* Equilibrium climate sensitivity and feedback factors
+* What is parametrization
+* Equilibrium climate states
 * What is hidden behind the term 'butterfly-effect'?
 
 ### After the exercise you should be able to answer the following questions:
 * Why can we run climate simulations for many decades even though our predictability of weather events is very limited?
 * Why are the initial conditions for fluid dynamic models so import?
+
+### Python Notebooks
+[Nonlinearity, Feedbacks and Predictability](nonlinearity:exercise)
 
 ### Problem description:
 The starting point for our analysis is the 'Von-May-Equation', which is given by
@@ -54,7 +61,7 @@ sample the transmission values from a normal distribution with a standard
 deviation of 1 percent. 
 
 > **Task 4**: Run the energy balance model T(0)=288  K, $C_w$ = 2$\cdot10^8$  J/(m$^2
-> \cdot$ K), $\alpha$ =0.3, and $\tau_{mean}$=0.608 ($\pm$ 1%)
+> \cdot$ K), $\alpha$ =0.3, and $\tau_{mean}$=0.608 ($\pm$ 10%). Describe the time series.
 
 > **Task 5**: Yet, the model does not take into account changes in albedo that result
 >  from changes in glaciation and land use as a consequence of a changing
@@ -63,23 +70,37 @@ deviation of 1 percent.
 > function of the mean temperature. To add some nonlinearity we assume a sigmoid function with 
 >
 >$$
-\alpha(T_i) = 0.3 \cdot (1-0.03 \cdot \tanh(1.548 \cdot (T_i-288))).
+\alpha(T_i) = 0.3 \cdot (1-0.2 \cdot \tanh(0.5 \cdot (T_i-288))).
 $$
 >
->Carry out the following simulations:
-> - Run the energy balance model with four different initial conditions for
-> T(0)=288  K, while fixing the other parameters to $C_w$ = 2$\cdot10^8$  J/(m$^2
->\cdot$ K), $\alpha$ =0.3, and $\tau_{mean}$ = 0.64%)
->What can be said about the equilibrium state?
+> (i) Plot the albedo function.
 >
-> - Repeat the previous simulation, but again sample the transmissivity on a
-> normal distribution with a standard deviation of 3%.  What special feature can
-> now be observed? What conclusions can be inferred regarding the prediction of
-> weather and climate?
-
-> **Task 6**: Execute the script with four different initial conditions for T(0)= 286, 293, 288.6, and 288.9  K. 
-
-
+> (ii) Carry out the following simulations:
+> - Run the energy balance model with four different initial conditions for
+> T(0)=286.0, 287.9, 288.0, and 293.0 K, while fixing the other parameters to $C_w$ = 2$\cdot10^8$  J/(m$^2
+>\cdot$ K) and $\tau_{mean}$ = 0.64%)
+>
+> What can be said about equilibrium climatic states?
+>
+> **Task 6**: Repeat the previous exercise with a linear parameterisation:
+>
+>$$
+    f(x)= 
+\begin{cases}
+    \alpha_i,& \text{if } T\leq T_i\\
+    \alpha_g,& \text{if } T \geq T_g\\
+    \alpha_g+b(T_g-T) & \text{if } T_i<T<T_g
+\end{cases}
+$$ 
+>
+> **Task 7**: Determine the equilibrium climate sensitivity (ECS) and the feedback factor for the simulation from Task 5. 
+>
+> **Task 8**: Repeat the simulation from Task 5 (sigmoid function for albedo)
+> with T(0)=289 K, but again sample the transmissivity on a normal distribution
+> with a standard deviation of 10%.  What special feature can now be observed?
+> What conclusions can be inferred regarding the prediction of weather and
+> climate?
+>
 ```
 
 

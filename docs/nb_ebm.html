@@ -121,6 +121,28 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
   </ul>
  </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="analytical_models.html">
+   Lesson 1 - Global Energy Balance Model
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="ebm_model.html">
+     Simplified Energy Balance Model
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="nonlinearity.html">
+     Exercise: Nonlinearity and Chaos
+    </a>
+   </li>
+  </ul>
+ </li>
 </ul>
 
     </div>
@@ -274,7 +296,7 @@ const thebe_selector_output = ".output, .cell_output"
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="simplified-energy-balance-model">
 <span id="ebm-exercise"></span><h1>Simplified Energy Balance Model<a class="headerlink" href="#simplified-energy-balance-model" title="Permalink to this headline">¶</a></h1>
-<img src="pics/ebm_02.jpg" width="600" ><p>Task 1: Write a Python function for the OLR and effective temperature for later use.</p>
+<img src="pics/ebm_02.jpg" width="600" ><p><strong>Task 1:</strong> Write a Python function for the OLR and effective temperature for later use.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Stefan-Boltzmann constant</span>
@@ -293,7 +315,7 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 </div>
-<p>Task 2: Extend the OLR function by another <strong>transmissivity</strong> constant <span class="math notranslate nohighlight">\(\tau\)</span> which takes this effect into account. Determine the transmissivity for a global mean temperature of 288 K.</p>
+<p><strong>Task 2:</strong> Extend the OLR function by another <strong>transmissivity</strong> constant <span class="math notranslate nohighlight">\(\tau\)</span> which takes this effect into account. Determine the transmissivity for a global mean temperature of 288 K.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">OLR</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">tau</span><span class="p">):</span>
@@ -316,7 +338,7 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 </div>
-<p>Task 3: Determine the planetary albedo from the observations and write a function for the absorbed shortwave radiation, the part of the incoming sunlight that is not reflected back to space</p>
+<p><strong>Task 3:</strong> Determine the planetary albedo from the observations and write a function for the absorbed shortwave radiation, the part of the incoming sunlight that is not reflected back to space</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate the planetary albedo</span>
@@ -324,7 +346,7 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 </div>
-<p>Task 4: What additional amount of energy would have to remain in the system for the global temperature to rise by 4 K?</p>
+<p><strong>Task 4:</strong> What additional amount of energy would have to remain in the system for the global temperature to rise by 4 K?</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">ASR</span><span class="p">(</span><span class="n">Q</span><span class="p">,</span> <span class="n">albedo</span><span class="p">):</span>
@@ -343,7 +365,7 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 </div>
-<p>Task 5: Rearrange the equation according to the temperature denoting our equilibrium temperature. Substitute the observed values for insolation, transmissivity and planetary albedo and calculate the equlibrium temperature.</p>
+<p><strong>Task 5:</strong> Rearrange the equation according to the temperature denoting our equilibrium temperature. Substitute the observed values for insolation, transmissivity and planetary albedo and calculate the equlibrium temperature.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">equilibrium_temperature</span><span class="p">(</span><span class="n">alpha</span><span class="p">,</span><span class="n">Q</span><span class="p">,</span><span class="n">tau</span><span class="p">):</span>
@@ -361,7 +383,7 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 </div>
-<p>Task 6: With simple approaches such as equlibrium temperature, conceptual scenarios can be calculated. For example, the connection between the increase in albedo due to more cloud cover and the associated decrease in transmissivity can be investigated. For example, assume that the planetary albedo increases to 0.32 due to more cloud cover and that the transmissivity decreases to 0.57. What is the equilibrium temperature?</p>
+<p><strong>Task 6:</strong> With simple approaches such as equlibrium temperature, conceptual scenarios can be calculated. For example, the connection between the increase in albedo due to more cloud cover and the associated decrease in transmissivity can be investigated. For example, assume that the planetary albedo increases to 0.32 due to more cloud cover and that the transmissivity decreases to 0.57. What is the equilibrium temperature?</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Make your calculations here</span>
@@ -369,7 +391,7 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 </div>
-<p>Task 8: Write a function called <em>step_forward(T, dt)</em> that returns the new temperature given the old temeprature T and timestep dt. Assume an initial temperature of 288 K and integrate the function for a few timestep and observe how the temperature changes.</p>
+<p><strong>Task 8:</strong> Write a function called <em>step_forward(T, dt)</em> that returns the new temperature given the old temeprature T and timestep dt. Assume an initial temperature of 288 K and integrate the function for a few timestep and observe how the temperature changes.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">step_forward</span><span class="p">(</span><span class="n">Q</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">Cw</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">tau</span><span class="p">,</span> <span class="n">dt</span><span class="p">):</span>
@@ -400,7 +422,7 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 </div>
-<p>Task 9: Integrate the equation over a time of 200 years and plot the result. Use the following initial and boundary conditions:</p>
+<p><strong>Task 9:</strong> Integrate the equation over a time of 200 years and plot the result. Use the following initial and boundary conditions:</p>
 <p><span class="math notranslate nohighlight">\(
 \begin{align}
 S_0 &amp;=1360 ~ W m^{-2} \\
@@ -448,7 +470,7 @@ C_w &amp;= 10^8 ~ J/(m^2 \cdot K) \\
 </div>
 </div>
 </div>
-<p>Task 10: What happens if the intial temperature is set to 293 K ?</p>
+<p><strong>Task 10:</strong> What happens if the intial temperature is set to 293 K ?</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Experiment 2</span>
@@ -456,7 +478,7 @@ C_w &amp;= 10^8 ~ J/(m^2 \cdot K) \\
 </div>
 </div>
 </div>
-<p>Task 11: What changes do you observe with a higher <span class="math notranslate nohighlight">\(C_w\)</span> value (e.g. <span class="math notranslate nohighlight">\(C_w=10\cdot10^8 ~ J/(m^2 \cdot K)\)</span>)?</p>
+<p><strong>Task 11:</strong> What changes do you observe with a higher <span class="math notranslate nohighlight">\(C_w\)</span> value (e.g. <span class="math notranslate nohighlight">\(C_w=10\cdot10^8 ~ J/(m^2 \cdot K)\)</span>)?</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Experiment 3</span>
@@ -464,7 +486,7 @@ C_w &amp;= 10^8 ~ J/(m^2 \cdot K) \\
 </div>
 </div>
 </div>
-<p>Task 12: How does the result change when <span class="math notranslate nohighlight">\(\tau=1\)</span>?</p>
+<p><strong>Task 12:</strong> How does the result change when <span class="math notranslate nohighlight">\(\tau=1\)</span>?</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Experiment 4</span>
