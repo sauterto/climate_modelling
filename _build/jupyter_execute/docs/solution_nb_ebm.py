@@ -191,6 +191,7 @@ def ebm(T0, Q=341.3, Cw=10e8, alpha=0.3, tau=0.64, years=100):
 
 
 
+
 # In[15]:
 
 

@@ -28,6 +28,7 @@ def von_may(y0,r):
     pass
 
 
+
 # **Task 2:** Run the code for several initial and parameter combination. What is particularly striking about increasing r-values?
 # 
 # 
