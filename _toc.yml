@@ -11,7 +11,7 @@ chapters:
 - file: docs/analytical_models.md
   sections:
   - file: docs/ebm_model
-  - file: docs/nonlinearity
+    #  - file: docs/nonlinearity
     #- file: docs/greenhouse_model
     #- file: docs/glacier_wind_model
     #- file: docs/numerical_models 
