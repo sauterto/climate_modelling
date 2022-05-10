@@ -25,6 +25,7 @@ variability.
 ### Python Notebooks
 [Energy Balance Model](ebm:exercise)
 
+[Solution: Energy Balance Model](ebm:solution)
 
 ### Preliminary considerations: The global energy budget
 ```{figure} ./pics/GlobalEnergyBudget.png
