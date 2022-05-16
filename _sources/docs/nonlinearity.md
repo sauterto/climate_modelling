@@ -24,6 +24,8 @@ apparently random solutions (chaos), which react sensitively to small perturbati
 ### Python Notebooks
 [Nonlinearity, Feedbacks and Predictability](nonlinearity:exercise)
 
+[Solution: Nonlinearity, Feedbacks and Predictability](nonlinearity:solution_incomplete)
+
 ### Problem description:
 The starting point for our analysis is the 'Von-May-Equation', which is given by
 
