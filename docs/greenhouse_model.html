@@ -55,7 +55,6 @@ const thebe_selector_output = ".output, .cell_output"
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="prev" title="Nonlinearity, Feedbacks and Predictability" href="nonlinearity.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -99,7 +98,7 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
 </ul>
-<ul class="current nav bd-sidenav">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1 has-children">
   <a class="reference internal" href="intro_to_python.html">
    Lesson 0 -Introduction to Python
@@ -122,16 +121,16 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
   </ul>
  </li>
- <li class="toctree-l1 current active has-children">
+ <li class="toctree-l1 has-children">
   <a class="reference internal" href="analytical_models.html">
    Lesson 1 - Global Energy Balance Model
   </a>
-  <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
   <label for="toctree-checkbox-2">
    <i class="fas fa-chevron-down">
    </i>
   </label>
-  <ul class="current">
+  <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="ebm_model.html">
      Simplified Energy Balance Model
@@ -140,11 +139,6 @@ const thebe_selector_output = ".output, .cell_output"
    <li class="toctree-l2">
     <a class="reference internal" href="nonlinearity.html">
      Nonlinearity, Feedbacks and Predictability
-    </a>
-   </li>
-   <li class="toctree-l2 current active">
-    <a class="current reference internal" href="#">
-     Greenhouse Model
     </a>
    </li>
   </ul>
@@ -385,7 +379,7 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <div class="figure align-default" id="one-layer-model">
 <a class="reference internal image-reference" href="../_images/one_layer_model.png"><img alt="../_images/one_layer_model.png" src="../_images/one_layer_model.png" style="height: 450px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 5 </span><span class="caption-text">One-layer greenhouse model. (Rose, Brian E. J. (2020, November 9). Insolation, The Climate Laboratory, <a class="reference external" href="https://brian-rose.github.io/ClimateLaboratoryBook/courseware/insolation.html">https://brian-rose.github.io/ClimateLaboratoryBook/courseware/insolation.html</a>).</span><a class="headerlink" href="#one-layer-model" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-text">One-layer greenhouse model. (Rose, Brian E. J. (2020, November 9). Insolation, The Climate Laboratory, <a class="reference external" href="https://brian-rose.github.io/ClimateLaboratoryBook/courseware/insolation.html">https://brian-rose.github.io/ClimateLaboratoryBook/courseware/insolation.html</a>).</span><a class="headerlink" href="#one-layer-model" title="Permalink to this image">¶</a></p>
 </div>
 <p>As with the simple energy balance model, we draw up the energy balances. This
 time we look at the energy balance of each layer individually and solve the two
@@ -395,7 +389,7 @@ long-wave radiation from the atmosphere. Only the outgoing long-wave radiation c
 the Earth’s surface to lose energy. Thus, the energy balance equation can be
 written as follows:</p>
 <div class="math notranslate nohighlight" id="equation-eb-surface">
-<span class="eqno">(6)<a class="headerlink" href="#equation-eb-surface" title="Permalink to this equation">¶</a></span>\[
+<span class="eqno">()<a class="headerlink" href="#equation-eb-surface" title="Permalink to this equation">¶</a></span>\[
 (1-\alpha) \cdot Q + \sigma T_a^4 = \sigma T_s^4.
 \]</div>
 <p>The atmosphere, on the other hand, receives additional energy through the
@@ -403,7 +397,7 @@ long-wave radiation of the Earth’s surface and loses energy in the form of
 long-wave radiation in the direction of the Earth’s surface and outer space.
 The budget can thus be written as</p>
 <div class="math notranslate nohighlight" id="equation-eb-atm">
-<span class="eqno">(7)<a class="headerlink" href="#equation-eb-atm" title="Permalink to this equation">¶</a></span>\[
+<span class="eqno">()<a class="headerlink" href="#equation-eb-atm" title="Permalink to this equation">¶</a></span>\[
 \sigma T_s^4 = 2 \sigma T_a^4.
 \]</div>
 <p>The factor 2 (on the right hand side) results from the fact that the atmosphere emits both towards the
@@ -411,7 +405,7 @@ Earth’s surface and into space. Therefore, the surface temperature must have
 <span class="math notranslate nohighlight">\(T_s&gt;T_a\)</span> with <span class="math notranslate nohighlight">\(T_s = \sqrt[\leftroot{-2}\uproot{2}4]{2} \cdot T_a \approx 1.2
 \cdot T_a\)</span>.</p>
 <blockquote>
-<div><p><strong>Task 1</strong>: Plug Eq. <a class="reference internal" href="#equation-eb-atm">(7)</a> into Eq. <a class="reference internal" href="#equation-eb-surface">(6)</a> and solve for
+<div><p><strong>Task 1</strong>: Plug Eq. <a class="reference internal" href="#equation-eb-atm">()</a> into Eq. <a class="reference internal" href="#equation-eb-surface">()</a> and solve for
 the radiative equilibrium suface temperature <span class="math notranslate nohighlight">\(T_e\)</span>. Since all
 the outgoing longwave radiation to outer space results from the atmosphere,
 the atmospheric temperture <span class="math notranslate nohighlight">\(T_a\)</span> is identical to the emission temperature <span class="math notranslate nohighlight">\(T_e\)</span>.</p>
@@ -441,25 +435,25 @@ intended to indicate that there is no spectral dependence of absorption and
 emission.</p>
 <div class="figure align-default" id="two-layer-model">
 <a class="reference internal image-reference" href="../_images/two_layer_model.png"><img alt="../_images/two_layer_model.png" src="../_images/two_layer_model.png" style="height: 450px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 6 </span><span class="caption-text">Two-layer greenhouse model. (Rose, Brian E. J. (2020, November 9). Insolation, The Climate Laboratory, <a class="reference external" href="https://brian-rose.github.io/ClimateLaboratoryBook/courseware/insolation.html">https://brian-rose.github.io/ClimateLaboratoryBook/courseware/insolation.html</a>).</span><a class="headerlink" href="#two-layer-model" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-text">Two-layer greenhouse model. (Rose, Brian E. J. (2020, November 9). Insolation, The Climate Laboratory, <a class="reference external" href="https://brian-rose.github.io/ClimateLaboratoryBook/courseware/insolation.html">https://brian-rose.github.io/ClimateLaboratoryBook/courseware/insolation.html</a>).</span><a class="headerlink" href="#two-layer-model" title="Permalink to this image">¶</a></p>
 </div>
 <p>In the following, we consider the upward beam of long-wave radiation, which is
 labelled U in fig. The earth’s surface emits long-wave energy according to
 the Stefan-Boltzmann law:</p>
 <div class="math notranslate nohighlight" id="equation-ts">
-<span class="eqno">(8)<a class="headerlink" href="#equation-ts" title="Permalink to this equation">¶</a></span>\[
+<span class="eqno">()<a class="headerlink" href="#equation-ts" title="Permalink to this equation">¶</a></span>\[
 U_0 = (\sigma T_s^4)
 \]</div>
 <p>A fraction of this radiation is absorbed by layer 0. The remaining portion is
 passed on to layer 1 with the additional radiation coming from layer 0. The flux
 between layer 0 and layer 1 can then be written as</p>
 <div class="math notranslate nohighlight" id="equation-u1">
-<span class="eqno">(9)<a class="headerlink" href="#equation-u1" title="Permalink to this equation">¶</a></span>\[
+<span class="eqno">()<a class="headerlink" href="#equation-u1" title="Permalink to this equation">¶</a></span>\[
 U_1=(1-\epsilon)\sigma T_s^4+\epsilon \sigma T_0^4
 \]</div>
 <p>Similarly, the upward longwave radiation above layer 1 can be determined and written as</p>
 <div class="math notranslate nohighlight" id="equation-u2">
-<span class="eqno">(10)<a class="headerlink" href="#equation-u2" title="Permalink to this equation">¶</a></span>\[
+<span class="eqno">()<a class="headerlink" href="#equation-u2" title="Permalink to this equation">¶</a></span>\[
 U_2=(1-\epsilon)U_1+\epsilon \sigma T_1^4
 \]</div>
 <blockquote>
@@ -477,7 +471,7 @@ solve the equation. What do the terms represent?</p>
 <div><p><strong>Task 6</strong>: We will tune our model so that it reproduces the observed global mean OLR given observed global mean temperatures. Determine the average temperatures (1000-500 hPa, 500 hPa to tropopause) for the two-layer model from the following sounding.</p>
 <div class="figure align-default" id="id2">
 <a class="reference internal image-reference" href="../_images/vertical_profile.png"><img alt="../_images/vertical_profile.png" src="../_images/vertical_profile.png" style="height: 450px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 7 </span><span class="caption-text">Atmospheric sounding from the NCEP-Reanalysis data. (Rose, Brian E. J. (2020, November 9). Insolation, The Climate Laboratory, <a class="reference external" href="https://brian-rose.github.io/ClimateLaboratoryBook/courseware/insolation.html">https://brian-rose.github.io/ClimateLaboratoryBook/courseware/insolation.html</a>).</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-text">Atmospheric sounding from the NCEP-Reanalysis data. (Rose, Brian E. J. (2020, November 9). Insolation, The Climate Laboratory, <a class="reference external" href="https://brian-rose.github.io/ClimateLaboratoryBook/courseware/insolation.html">https://brian-rose.github.io/ClimateLaboratoryBook/courseware/insolation.html</a>).</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
 </div>
 </div></blockquote>
 <blockquote>
@@ -535,14 +529,7 @@ What does this mean for the OLR?</p>
               
             
                 <!-- Previous / next buttons -->
-<div class='prev-next-area'> 
-    <a class='left-prev' id="prev-link" href="nonlinearity.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Nonlinearity, Feedbacks and Predictability</p>
-        </div>
-    </a>
+<div class='prev-next-area'>
 </div>
             
         </div>
