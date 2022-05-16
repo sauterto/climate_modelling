@@ -1,13 +1,6 @@
 (greenhouse_header)=
 # Greenhouse Model 
 
-```{figure} ./pics/one_layer_model.png
-:height: 450px
-:name: one_layer_model
-
-One-layer greenhouse model. (Rose, Brian E. J. (2020, November 9). Insolation, The Climate Laboratory, https://brian-rose.github.io/ClimateLaboratoryBook/courseware/insolation.html).
-```
-
 ### Learning objectives:
 * Equilibrium states in the Earth system
 * Greenhouse effect
@@ -20,9 +13,11 @@ One-layer greenhouse model. (Rose, Brian E. J. (2020, November 9). Insolation, T
 * With this model we will perform sensitivity simulations that will show us important processes in the atmosphere.
 
 ### Python Notebooks
-[Energy Balance Model](ebm:exercise)
+[Greenhouse Model](greenhouse:exercise)
+
 
 ### Energy balance of the one-layer model
+
 #### Assumptions
 Shortwave radiation:
 - Atmosphere is completely transparent to shortwave solar radiation
@@ -34,6 +29,15 @@ Longwave radiation
 - Atmosphere is completely opaque to infrared radiation
 - Atmosphere radiates equally up and down
 - There are no other heat transfer mechanisms
+
+```{figure} ./pics/one_layer_model.png
+:height: 450px
+:name: one_layer_model
+
+One-layer greenhouse model. (Rose, Brian E. J. (2020, November 9). Insolation, The Climate Laboratory, https://brian-rose.github.io/ClimateLaboratoryBook/courseware/insolation.html).
+```
+
+
 
 As with the simple energy balance model, we draw up the energy balances. This
 time we look at the energy balance of each layer individually and solve the two
@@ -63,17 +67,16 @@ $T_s>T_a$ with $T_s = \sqrt[\leftroot{-2}\uproot{2}4]{2} \cdot T_a \approx 1.2
 \cdot T_a$. 
 
 > **Task 1**: Plug Eq. {eq}`EB_atm` into Eq. {eq}`EB_surface` and solve for
-> the suface temperature $T_s$ and the atmospheric temperature $T_a$. Since all
+> the radiative equilibrium suface temperature $T_e$. Since all
 > the outgoing longwave radiation to outer space results from the atmosphere,
-> the atmospheric temperture is identical to the emission temperature $T_e$.
+> the atmospheric temperture $T_a$ is identical to the emission temperature $T_e$.
 
-> **Task 2**: The observed emission temperature is approximately 255 K. What is
-> the surface temperature with the single layer model? Why does the model
-> overestimate the surface temperature?
-
+> **Task 2**: What is the surface temperature with the single layer model? Why
+> does the model overestimate the surface temperature?
 
 
-### Energy balance of the one-layer model
+
+### Energy balance of the two-layer model
 In this part we want to introduce a more sophisticated two-layer model for the
 long-wave radiative transfer. In addition to an additional layer, we also
 assume that each layer absorbs only a part of the radiation. This conceptual
@@ -118,21 +121,40 @@ $$
 U_2=(1-\epsilon)U_1+\epsilon \sigma T_1^4
 $$ (U2)
 
-Putting $U_1$ into this equation gives us
+> **Task 3**: Since there is no more atmosphere above layer 1, this upwelling
+> beam is our OLR for this model. Plug $U_1$ into the equation of $U_2$ and
+> solve the equation. What do the terms represent? 
 
-$$
-OLR = U_2 = (1-\epsilon)^2 \sigma T_s^4 + \epsilon(1-\epsilon)\sigma T_0^4 + \epsilon \sigma T_1^4
-$$ (OLR)
+> **Task 4**: Write a Python function for the `OLR` (Task 3). 
 
-> **Task 3**: Write a Python function for the Eq. {eq}`OLR`. 
+> **Task 5**: What happens if $\epsilon$ is zero or one? What does this mean physically?
 
-> **Task 4**: What happens if $\epsilon$ is zero or one? WWhat does this mean physically?
+> **Task 6**: We will tune our model so that it reproduces the observed global mean OLR given observed global mean temperatures. Determine the average temperatures (1000-500 hPa, 500 hPa to tropopause) for the two-layer model from the following sounding.
+> ```{figure} ./pics/vertical_profile.png
+> :height: 450px
+> :name: one_layer_model
+>
+> Atmospheric sounding from the NCEP-Reanalysis data. (Rose, Brian E. J. (2020, November 9). Insolation, The Climate Laboratory, https://brian-rose.github.io/ClimateLaboratoryBook/courseware/insolation.html).
+>```
 
-> **Task 5**: We know from radiosonde ascents that the mean temperature between
-> 500 and 1000 hPa is about 275 K. Let us also assume that the temperature above
-> this is about 230 K. We also know the OLR from the observed energy balance is
-> about 238.5 W m$^{-2}$. Using these values, find graphically the best fit for $\epsilon$.
+> **Task 7**: Find graphically the best fit value of $\epsilon$ using the observed temperatures and OLR.
 
-> **Task 6**: The contributions of the individual layers can be derived from
-> Eq. {eq}`OLR`. Use the previously determined epsilon and calculate the
-> contributions of the individual layers to the OLR. Which layer contributes most?
+> **Task 8**: Write a Python function to calculate each term in the OLR.
+> Plug-in the observed temperatures and the tuned value for epsilon and
+> calculate the terms.
+
+> **Task 9**: Changing the level of emission by adding absorbers $\epsilon=\epsilon+\Delta \epsilon$, e.g. by 10 %.
+> Suppose further that this increase happens abruptly so that there is no time
+> for the temperatures to respond to this change. We hold the temperatures
+> fixed in the column and ask how the radiative fluxes change.
+> Do you expect the OLR to increase or decrease? Which terms in the OLR go up and which go down?
+
+> **Task 10**: Calculate the radiative forcing for the previous simulation.
+
+> **Task 11**: What is the greenhouse effect for an isothermal atmosphere?
+
+> **Task 12**: For a more realistic example of radiative forcing due to an
+> increase in greenhouse absorbers, we use our observed temperatures and the
+> tuned value for epsilon. Assume an increase of epsilon by 2 %. What is the radiative forcing?
+> What does this mean for the OLR? 
+

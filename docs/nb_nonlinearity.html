@@ -141,6 +141,11 @@ const thebe_selector_output = ".output, .cell_output"
      Exercise: Nonlinearity, Feedbacks and Predictability
     </a>
    </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="greenhouse_model.html">
+     Greenhouse Model
+    </a>
+   </li>
   </ul>
  </li>
 </ul>
@@ -250,53 +255,6 @@ const thebe_selector_output = ".output, .cell_output"
         <!-- Table of contents -->
         <div class="d-none d-md-block col-md-2 bd-toc show noprint">
             
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
-            </div>
-            <nav id="bd-toc-nav" aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#">
-   Von-May function
-  </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#problem-description">
-     Problem description:
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#extend-the-von-may-function">
-     Extend the Von-May function
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#revisit-the-ebm-model">
-   Revisit the EBM-Model
-  </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#include-a-dynamic-transmissivity-in-the-energy-balance-model">
-     Include a dynamic transmissivity in the energy balance model.
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#extend-the-model-with-a-simple-ice-land-use-albedo-parameterisation-sigmoid-version">
-     Extend the model with a simple ice/land use albedo parameterisation. (sigmoid version)
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#extend-the-model-with-a-simple-ice-land-use-albedo-parameterisation-linear-version">
-     Extend the model with a simple ice/land use albedo parameterisation. (linear version)
-    </a>
-   </li>
-  </ul>
- </li>
-</ul>
-
-            </nav>
         </div>
     </div>
 </div>
@@ -309,53 +267,6 @@ const thebe_selector_output = ".output, .cell_output"
                 <div id="print-main-content">
                     <div id="jb-print-toc">
                         
-                        <div>
-                            <h2> Contents </h2>
-                        </div>
-                        <nav aria-label="Page">
-                            <ul class="visible nav section-nav flex-column">
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#">
-   Von-May function
-  </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#problem-description">
-     Problem description:
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#extend-the-von-may-function">
-     Extend the Von-May function
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#revisit-the-ebm-model">
-   Revisit the EBM-Model
-  </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#include-a-dynamic-transmissivity-in-the-energy-balance-model">
-     Include a dynamic transmissivity in the energy balance model.
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#extend-the-model-with-a-simple-ice-land-use-albedo-parameterisation-sigmoid-version">
-     Extend the model with a simple ice/land use albedo parameterisation. (sigmoid version)
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#extend-the-model-with-a-simple-ice-land-use-albedo-parameterisation-linear-version">
-     Extend the model with a simple ice/land use albedo parameterisation. (linear version)
-    </a>
-   </li>
-  </ul>
- </li>
-</ul>
-
-                        </nav>
                     </div>
                 </div>
             </div>
@@ -365,8 +276,7 @@ const thebe_selector_output = ".output, .cell_output"
   <div class="section" id="von-may-function">
 <h1>Von-May function<a class="headerlink" href="#von-may-function" title="Permalink to this headline">¶</a></h1>
 <p><strong>Task 1</strong>: Write a function which solves the Von-May-Equation.</p>
-<div class="section" id="problem-description">
-<h2>Problem description:<a class="headerlink" href="#problem-description" title="Permalink to this headline">¶</a></h2>
+<p><strong>Problem description:</strong></p>
 <blockquote>The starting point for our analysis is the ‘Von-May-Equation’, which is given by <br>
 <p><strong>\begin{align}<br />
 y_{t+1} = r \cdot y_{t} \cdot (1-y_{t}),
@@ -398,9 +308,7 @@ y_{t+1} = r \cdot y_{t} \cdot (1-y_{t}),
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="extend-the-von-may-function">
-<h2>Extend the Von-May function<a class="headerlink" href="#extend-the-von-may-function" title="Permalink to this headline">¶</a></h2>
+<p><strong>Extend the Von-May function</strong></p>
 <p><strong>Task 3:</strong> Extend this Von-May function by generating 20 random r-values and run simulations with them. Sample the values from a normal distribution with mean 3.95 and standard deviation 0.015 (limit the r-values between 0 and 4). Then average over all time series. Plot both the time series, the averaged time series and the histogram of the averaged time series. What do you observe?</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -421,12 +329,8 @@ y_{t+1} = r \cdot y_{t} \cdot (1-y_{t}),
 </div>
 </div>
 </div>
-</div>
-</div>
-<div class="section" id="revisit-the-ebm-model">
-<h1>Revisit the EBM-Model<a class="headerlink" href="#revisit-the-ebm-model" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="include-a-dynamic-transmissivity-in-the-energy-balance-model">
-<h2>Include a dynamic transmissivity in the energy balance model.<a class="headerlink" href="#include-a-dynamic-transmissivity-in-the-energy-balance-model" title="Permalink to this headline">¶</a></h2>
+<p><strong>Revisit the EBM-Model</strong></p>
+<p>Include a dynamic transmissivity in the energy balance model.</p>
 <p><strong>Task 4:</strong> Run the energy balance model <span class="math notranslate nohighlight">\(T(0)=288 ~ K\)</span>, <span class="math notranslate nohighlight">\(C_w= 2\cdot10^8 ~ J/(m^2
  57 \cdot K)\)</span>, <span class="math notranslate nohighlight">\(\alpha=0.3\)</span>, and <span class="math notranslate nohighlight">\(\tau_{mean}=0.608 (\pm 10\%)\)</span></p>
 <div class="cell docutils container">
@@ -467,9 +371,7 @@ y_{t+1} = r \cdot y_{t} \cdot (1-y_{t}),
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="extend-the-model-with-a-simple-ice-land-use-albedo-parameterisation-sigmoid-version">
-<h2>Extend the model with a simple ice/land use albedo parameterisation. (sigmoid version)<a class="headerlink" href="#extend-the-model-with-a-simple-ice-land-use-albedo-parameterisation-sigmoid-version" title="Permalink to this headline">¶</a></h2>
+<p><strong>Extend the model with a simple ice/land use albedo parameterisation. (sigmoid version)</strong></p>
 <p><strong>Task 5:</strong> In this parameterisation, the albedo is solely a function of mean temperature. As a non-linear function we assume a sigmoid function with</p>
 <p>\begin{align}
 \alpha(T_i) = 0.3 \cdot (1-0.2 \cdot \tanh(0.5 \cdot (T_i-288))).
@@ -504,9 +406,7 @@ y_{t+1} = r \cdot y_{t} \cdot (1-y_{t}),
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="extend-the-model-with-a-simple-ice-land-use-albedo-parameterisation-linear-version">
-<h2>Extend the model with a simple ice/land use albedo parameterisation. (linear version)<a class="headerlink" href="#extend-the-model-with-a-simple-ice-land-use-albedo-parameterisation-linear-version" title="Permalink to this headline">¶</a></h2>
+<p><strong>Extend the model with a simple ice/land use albedo parameterisation. (linear version)</strong></p>
 <p><strong>Task 6:</strong> In this parameterisation, the albedo is solely a function of mean temperature. We assume a simple linear relation according to</p>
 <p>\begin{align}
 f(x)=
@@ -588,7 +488,6 @@ f(x)=
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Make more plots to illustrate the characteristics of the time series</span>
 </pre></div>
-</div>
 </div>
 </div>
 </div>
