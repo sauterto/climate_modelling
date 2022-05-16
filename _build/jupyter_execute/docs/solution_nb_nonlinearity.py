@@ -27,18 +27,34 @@ def von_may(y0,r):
     '''
     This function integrates the Von-May Equationn using a then initial condition y0, 
     and the parameter r
+    
+    y0 :: initial value
+    r  :: pre-defined parameter
+    
     '''
 
     # Assignments
-    yi = y0    
+    # The variable yi contains always y-value at timestep t. 
+    # At the beginning, we assume that the old value 
+    # corresponds to the intial value. 
+    yi = y0  
+    
+    # The newly calculated y-values are stored in the result list. 
+    # The first value in the list is the initial value for y
     result = [yi]
 
-    # Integrate over 50 time steps
+    # Integrate the Von-May equation over 500 time steps
     for t in range(500):
-        y = r*yi*(1-yi)    # Von-May-Gleichung
-        yi = y             # Store new values for next step
-        result.append(y)   # Append the y-value to the result list
+        # Here, we calculate the new y-values according to the Von-May-Gleichung
+        y = r*yi*(1-yi)    
+        
+        # Store newly calculated values to yi (old value for the next iteration)
+        yi = y   
+        
+        # Append the new y-value to the result list
+        result.append(y)   
 
+    # Return the result list
     return(result)
 
 
@@ -56,11 +72,14 @@ def von_may(y0,r):
 # In[2]:
 
 
-# Integrate the equation
-res = von_may(0.5, 3.93)
+# Run the von_may function and store the result in the variable res
+res = von_may(0.5, 3.95)
 
 # Plot the equation
+# Initialize the figure
 plt.figure(figsize=(20,10))
+
+# Plot the res-List
 plt.plot(res);
 
 
@@ -71,8 +90,9 @@ plt.plot(res);
 # In[3]:
 
 
-import random
-import numpy as np
+# Import some modules which are used in the function
+import random         # Module to generate random number
+import numpy as np    # Numpy
 
 def ensemble_may(n, y0, r):
     '''
@@ -81,37 +101,54 @@ def ensemble_may(n, y0, r):
 
     Example: ensemble(50, 0.5, 3.95)
 
-    Author: Tobias Sauter
-    Date:   07/04/2022
+    n    :: number of ensemble members
+    y0   :: initial value
+    r    :: pre-defined parameter
 
     '''
 
-    # Assignments     
+    # Assignments   
+    # The ensemble members are stored in the result list. 
+    # Here, we initialize an empty list
     result = []
+    
+    # Initialize the random number generator (see random module)
     random.seed()
-    # Generate ensemble members
+    
+    # Generate n ensemble members (n-loops)
     for ens_member in range(n):
         
-        # Generate random parameter r
-        rnd = random.normalvariate(r,0.02)
-        if rnd<=0 or rnd>4:
-            # set constraints for the random number 0<rnd<4
-            while rnd<=0 or rnd>4:
-                rnd = random.normalvariate(r,0.02);
+        # Here, we limit the randomly generated r-value between 0 and 4
+        # We initialise rnd with -999 so that the condition is fulfilled 
+        # in the following while loop. The while loop is executed until 
+        # the random r parameter is between 0 and 4.
+        rnd = -999
+        
+        # set constraints for the random number 0<rnd<4
+        while rnd<=0 or rnd>4:
+            # Generate random r-parameter rnd with the mean r and the standard
+            # deviation 0.02
+            rnd = random.normalvariate(r,0.02);      
                 
-        # Integrate the equation
+        # Integrate the von-may equation with a random r-parameter
         result.append(von_may(y0,rnd))
         
-        
+    # Return the result
     return(result)
 
 
 # In[4]:
 
 
+# Execute the ensemble_may function and store the result in ens
 ens = ensemble_may(10, 0.5, 3.93)
+
+# Here, we take the time-mean of each of the ensemble members
+# First, the list is converted to a numpy array (np.array(ens)). After 
+# that the mean along each row is calculated (np.mean())
 ens_mean = np.mean(np.array(ens),axis=0)
 
+# Create two subplot
 fig, ax = plt.subplots(1,2, figsize=(15,5))
 ax[0].hist(ens_mean, 20);
 ax[1].plot(ens_mean);
@@ -126,47 +163,55 @@ ax[1].plot(ens_mean);
 # In[5]:
 
 
-import random
-import numpy as np
-import matplotlib.pyplot as plt
-
+# Import some modules which are used in the function
+import random         # Module to generate random number
+import numpy as np    # Numpy
 
 def OLR(T, tau):
     """ Stefan-Boltzmann law """
-    sigma = 5.67e-8
-    return tau * sigma * T**4
+    sigma = 5.67e-8              # Stefan-Boltzmann constant
+    return tau * sigma * T**4    # Return the OLR calculated by the Stefan-Boltzmann law
 
 def ASR(Q, alpha):
     """ Absorbed shortwave radiation """
-    return (1-alpha) * Q
+    return (1-alpha) * Q         # Return the ASR, with the albedo value alpha
 
 
 def step_forward(Q, T, Cw, alpha, tau, dt):
-        return T + dt / Cw * ( ASR(Q, alpha) - OLR(T, tau) )
+    # Return the updated T-value (time-dependent EBM)    
+    return T + dt / Cw * ( ASR(Q, alpha) - OLR(T, tau) ) 
 
 
 # In[6]:
 
 
 def ebm_stochastic(T0, Q=341.3, Cw=10e8, alpha=0.3, tau=0.64, years=100):
-    ''' This is a simple Energy Balance Model with global radiation and outgoing longwave radiation.'''
+    ''' This is a simple Energy Balance Model with a random tranmissivity.'''
   
-    # Create result arrays
+    # Create result arrays (numpy) filled with zeros
+    # Ts stores the temperature values, years the years since the beginning of
+    # the simulation
     Ts    = np.zeros(years+1)
     Years = np.zeros(years+1)
     
-    # Timestep
+    # Timestep in seconds (time step is 1 year)
     dt = 60*60*24*365                  # convert days to seconds
 
     # Initial and boundary conditions
+    # Set the first value in the Ts to the initial condition
     Ts[0] = T0 
 
-    # Calculation
+    # Integration over all years
     for n in range(years):
+        # Generate a random tau value with mean value tau and standard-deviation
+        # of 10 % its value
         tau_rnd = random.normalvariate(tau,tau*0.1)
+        # Store the number of iterations in the Years array
         Years[n+1] = n+1
+        # Store the new temperature value in Ts
         Ts[n+1] = step_forward( Q, Ts[n], Cw, alpha, tau_rnd, dt )
         
+    # Return both the temperature and year array
     return Years, Ts
         
 
@@ -174,9 +219,10 @@ def ebm_stochastic(T0, Q=341.3, Cw=10e8, alpha=0.3, tau=0.64, years=100):
 # In[7]:
 
 
-# Plot the results
-
+# Execute the ebm_stochastic function for 1000 years
 yrs, Ts = ebm_stochastic(273, Q=342, Cw=2*10e8, alpha=0.30, tau=0.608, years=1000)
+
+# Plot the results
 fig, ax = plt.subplots(1,1,figsize=(20,5))
 ax.plot(yrs,Ts);
 
@@ -196,31 +242,37 @@ ax.plot(yrs,Ts);
 # In[8]:
 
 
-import random
-import numpy as np
-import matplotlib.pyplot as plt
+# Import some modules which are used in the function
+import random         # Module to generate random number
+import numpy as np    # Numpy
 
 
 def ebm_ice_albedo(T0, Q=341.3, Cw=10e8, alpha=0.3, tau=0.64, years=100):
-    ''' This is a simple Energy Balance Model with global radiation and outgoing longwave radiation.'''
+    ''' This is a simple Energy Balance Model including ice-albedo feedback.'''
   
-    # Create result arrays
+    # Create result arrays (numpy) filled with zeros
+    # Ts stores the temperature values, years the years since the beginning of
+    # the simulation
     Ts    = np.zeros(years+1)
     Years = np.zeros(years+1)
     
-    # Timestep
+    # Timestep in seconds (time step is 1 year)
     dt = 60*60*24*365                  # convert days to seconds
 
     # Initial and boundary conditions
+    # Set the first value in the Ts to the initial condition
     Ts[0] = T0 
 
-    # Calculation
+    # Integration over all years
     for n in range(years):
+        # Parametrization of albedo. The albedo is a function of temperature.
         alpha_adapt = alpha * (1 - 0.2 * np.tanh(0.5*(Ts[n]-288)))
+        # Store the number of iterations in the Years array
         Years[n+1] = n+1
+        # Store the new temperature value in Ts
         Ts[n+1] = step_forward( Q, Ts[n], Cw, alpha_adapt, tau, dt )
         
-        
+    # Return both the temperature and year array
     return Years, Ts
 
 
@@ -228,20 +280,24 @@ def ebm_ice_albedo(T0, Q=341.3, Cw=10e8, alpha=0.3, tau=0.64, years=100):
 
 
 # Plot the albedo function
+# Create an array containing the temperature range from 282 K to 295 K
+T_range = np.arange(282,295,0.1)
+
+# Plot the albedo function
 plt.figure(figsize=(15,8))
-plt.plot(np.arange(280,295,0.1),0.3 * (1 - 0.2 * np.tanh(0.5*(np.arange(280,295,0.1)-288))));
+plt.plot(T_range, 0.3 * (1 - 0.2 * np.tanh(0.5*(T_range-288))));
 
 
 # In[10]:
 
 
-# Run the simulations and plot the results
+# Run several ice-albedo feedback simulations with different initial conditions
 yrs, Ts286 = ebm_ice_albedo(286.0, Q=342, Cw=2*10**8, alpha=0.30, tau=0.608, years=100)
 yrs, Ts287 = ebm_ice_albedo(287.9, Q=342, Cw=2*10**8, alpha=0.30, tau=0.608, years=100)
 yrs, Ts288 = ebm_ice_albedo(288.0, Q=342, Cw=2*10**8, alpha=0.30, tau=0.608, years=100)
 yrs, Ts293 = ebm_ice_albedo(293.0, Q=342, Cw=2*10**8, alpha=0.30, tau=0.608, years=100)
 
-
+# Plot the result
 fig, ax = plt.subplots(1,1,figsize=(15,5))
 ax.plot(yrs, Ts286); ax.plot(yrs, Ts287); ax.plot(yrs, Ts288); ax.plot(yrs, Ts293);
 
@@ -266,115 +322,186 @@ ax.plot(yrs, Ts286); ax.plot(yrs, Ts287); ax.plot(yrs, Ts288); ax.plot(yrs, Ts29
 # In[11]:
 
 
-import random
-import numpy as np
-import matplotlib.pyplot as plt
+# Import some modules which are used in the function
+import random         # Module to generate random number
+import numpy as np    # Numpy
 
 
 def ebm_ice_albedo_2(T0, Q=341.3, Cw=10e8, alpha=0.3, tau=0.608, years=100):
-    ''' This is a simple Energy Balance Model with global radiation and outgoing longwave radiation.'''
+    ''' This is a simple Energy Balance Model with a linear ice-albedo 
+    parametrization.'''
   
-    # Create result arrays
+    # Create result arrays (numpy) filled with zeros
+    # Ts stores the temperature values, years the years since the beginning of
+    # the simulation
     Ts    = np.zeros(years+1)
     Years = np.zeros(years+1)
     
-    # Timestep
+    # Timestep in seconds (time step is 1 year)
     dt = 60*60*24*365                  # convert days to seconds
 
     # Initial and boundary conditions
-    Ts[0] = T0 
-    a_i = 0.6
-    a_g = 0.20
-    T_i = 273
-    T_g = 292
+    Ts[0] = T0 # Set first value in the temperature array to the initial value
+    a_i = 0.6  # This albedo value is used when the temperature < T_i
+    a_g = 0.2  # This albedo value is used when the temperature > T_g
+    T_i = 273  # This is the temperature threshold for snowball earth
+    T_g = 292  # This is the temperature threshold when the earth is ice-free
     
-    # Calculation
+    # Integrate over all years
     for n in range(years):
+        # ice-albedo parametrization
+        # if temperature is smaller equal T_i
         if Ts[n]<=T_i:
+            # Set albedo to snowball earth albedo a_i
             alpha_adapt = a_i
+        # if temperature is greater equal T_i
         elif Ts[n]>=T_g:
+            # Set albedo to ice-free albedo a_g
             alpha_adapt = a_g
+        # When temperature is between T_i and T_g
         else:
+            # Calculate the parameter b 
             b = (a_i-a_g)/(T_g-T_i)
+            # Calculate new albedo
             alpha_adapt = a_g + b*(T_g-Ts[n])
 
+        # Store the number of iterations in the Years array
         Years[n+1] = n+1
+        # Store the new temperature value in Ts
         Ts[n+1] = step_forward( Q, Ts[n], Cw, alpha_adapt, tau, dt )
         
-        
+    # return the Years and Ts arrays
     return Years, Ts
 
 
 # In[12]:
 
 
-# Run the simulations and plot the results
-yrs, Ts286 = ebm_ice_albedo_2(286, Q=342, Cw=2*10**8, alpha=0.30, tau=0.608, years=100)
+# Run several ice-albedo simulations using different initial conditions
+yrs, Ts286 = ebm_ice_albedo_2(280, Q=342, Cw=2*10**8, alpha=0.30, tau=0.608, years=100)
 yrs, Ts287 = ebm_ice_albedo_2(287, Q=342, Cw=2*10**8, alpha=0.30, tau=0.608, years=100)
 yrs, Ts288 = ebm_ice_albedo_2(288, Q=342, Cw=2*10**8, alpha=0.30, tau=0.608, years=100)
 yrs, Ts293 = ebm_ice_albedo_2(293, Q=342, Cw=2*10**8, alpha=0.30, tau=0.608, years=100)
 
-
+# Plot the results
 fig, ax = plt.subplots(1,1,figsize=(15,8))
 ax.plot(yrs, Ts286); ax.plot(yrs, Ts287); ax.plot(yrs, Ts288); ax.plot(yrs, Ts293);
 
 
-# **Task 7:** Determine the equilibrium climate sensitivity (ECS) and the feedback factor for the simulation from Task 5 using T(0)=289 K.  (sigmoid albedo parametrisation)
-
 # In[13]:
 
 
-import random
-import numpy as np
-import matplotlib.pyplot as plt
+# Here we check the albedo parametrisation
 
-
-def ebm_ice_albedo_stochastic_ECS(T0, Q=341.3, Cw=10e8, alpha=0.3, tau=0.64, years=100):
-    ''' This is a simple Energy Balance Model with global radiation and outgoing longwave radiation.'''
-      
-    # Timestep
-    dt = 60*60*24*365                  # convert days to seconds
-    integration = int((365/10)*years)
-    
-    # Create result arrays
-    Ts    = np.zeros(years+1)
-    netQ  = np.zeros(years)
-    dT    = np.zeros(years)
-    Years = np.zeros(years+1)
-    
-    
+def albedo(Ts):
     # Initial and boundary conditions
-    Ts[0] = T0
+    a_i = 0.6  # This albedo value is used when the temperature < T_i
+    a_g = 0.2  # This albedo value is used when the temperature > T_g
+    T_i = 273  # This is the temperature threshold for snowball earth
+    T_g = 292  # This is the temperature threshold when the earth is ice-free
+    
+    # ice-albedo parametrization
+    # if temperature is smaller equal T_i
+    if Ts<=T_i:
+        # Set albedo to snowball earth albedo a_i
+        alpha_adapt = a_i
+    # if temperature is greater equal T_i
+    elif Ts>=T_g:
+        # Set albedo to ice-free albedo a_g
+        alpha_adapt = a_g
+    # When temperature is between T_i and T_g
+    else:
+        # Calculate the parameter b 
+        b = (a_i-a_g)/(T_g-T_i)
+        # Calculate new albedo
+        alpha_adapt = a_g + b*(T_g-Ts)
 
-    # Calculation
-    for n in range(years):
-        alpha_adapt = alpha * (1 - 0.2 * np.tanh(0.5*(Ts[n]-288)))
-        
-        tau_rnd = random.normalvariate(tau,tau*0.01)
-        Years[n+1] = n+1
-        Ts[n+1] = step_forward( Q, Ts[n], Cw, alpha_adapt, tau, dt )
-        netQ[n] = ASR(Q, alpha_adapt) - OLR(Ts[n], tau)
-        dT[n] = Ts[n] - Ts[0]
-        
-    return Years, Ts, dT, netQ
+    # Return albdo value
+    return alpha_adapt
 
+# Create an empty list which stores the albedo values
+res = []
+
+# Create an array containing the temperature range from 282 K to 295 K
+T_range = np.arange(265,300,0.1)
+
+# Fill the result list with albedos
+for i in T_range:
+    res.append(albedo(i))
+
+# Plot the results
+plt.plot(T_range,res);
+
+
+# **Task 7:** Determine the equilibrium climate sensitivity (ECS) and the feedback factor for the simulation from Task 5 using T(0)=289 K.  (sigmoid albedo parametrisation)
 
 # In[14]:
 
 
-# Run the simulations and plot the results
-yrs, Ts289, dT, netQ = ebm_ice_albedo_stochastic_ECS(289, Q=342, Cw=2*10**8, alpha=0.30, tau=0.608, years=50)
+# Import some modules which are used in the function
+import random         # Module to generate random number
+import numpy as np    # Numpy
+
+def ebm_ice_albedo_stochastic_ECS(T0, Q=341.3, Cw=10e8, alpha=0.3, tau=0.64, years=100):
+    ''' This is a simple Energy Balance Model with a random transmissivity and 
+    ice-albedo feedback.'''
+      
+    # Timestep in seconds (time step is 1 year)
+    dt = 60*60*24*365                  # convert days to seconds
+    
+    # Create result arrays (numpy) filled with zeros
+    # Ts stores the temperature values, Years the years since the beginning of
+    # the simulation, netQ the net radiation flux, and dT the temperature change
+    Ts    = np.zeros(years+1) # Temperature 
+    netQ  = np.zeros(years)   # Net radiation flux at the tropopause
+    dT    = np.zeros(years)   # Temperature change
+    Years = np.zeros(years+1) # Years since simulation start
+    
+    # Initial and boundary conditions
+    Ts[0] = T0
+
+    # Integrate over all years
+    for n in range(years):
+        # Calculate the albedo value
+        alpha_adapt = alpha * (1 - 0.2 * np.tanh(0.5*(Ts[n]-288)))
+        # Generate a random transmissivity
+        tau_rnd = random.normalvariate(tau,tau*0.01)
+        # Store the interation (year)
+        Years[n+1] = n+1
+        # Calculate the new tempeature
+        Ts[n+1] = step_forward(Q, Ts[n], Cw, alpha_adapt, tau, dt)
+        # Store the net radiation flux at the tropopause ASR-OLR
+        netQ[n] = ASR(Q, alpha_adapt) - OLR(Ts[n], tau)
+        # Store the temperature change between the current and previous step
+        dT[n] = Ts[n] - Ts[0]
+        
+    # Return all result arrays
+    return Years, Ts, dT, netQ
 
 
+# In[15]:
+
+
+# Integrate the EBM and store the values
+yrs, Ts289, dT, netQ = ebm_ice_albedo_stochastic_ECS(289, Q=342, Cw=2*10**8,                                                      alpha=0.30, tau=0.608, years=50)
+
+# Create two subplots with ...
 fig, (ax1, ax2) = plt.subplots(1,2,figsize=(20,6))
+# the temperature time series
 ax1.plot(yrs, Ts289)
+# the temperature change vs. net radiation flux
 ax2.scatter(dT[1:],netQ[1:])
 
+# Fit a regression line to the temperature-net radiation flux scatter plot
 m, b = np.polyfit(dT[1:],netQ[1:],1)
+# Add the regression line to the plot
 ax2.plot(np.arange(0,np.max(dT),0.1),m*np.arange(0,np.max(dT),0.1)+b)
+# Draw a horizontal line at y=0
 ax2.axline((0, 0), (1, 0), linewidth=2, color='gray')
+# Plot a marker where the regression line crosses the horizontal line at y=0
 ax2.scatter(-b/m,0,s=50)
 
+# Calculate the ECS from the regression line and print the result
 print('The ECS is {:.2f} ºC'.format(-b/m))
 print('The feedback factor is {:.2f}, which implies a negative feedback'.format(-m/b))
 
@@ -383,61 +510,62 @@ print('The feedback factor is {:.2f}, which implies a negative feedback'.format(
 # 
 # What special feature can now be observed? What conclusions can be inferred regarding the prediction of weather and climate?
 
-# In[15]:
-
-
-import random
-import numpy as np
-import matplotlib.pyplot as plt
-
-
-def ebm_ice_albedo_stochastic(T0, Q=341.3, Cw=10e8, alpha=0.3, tau=0.64, years=100):
-    ''' This is a simple Energy Balance Model with global radiation and outgoing longwave radiation.'''
-      
-    # Timestep
-    dt = 60*60*24*365                  # convert days to seconds
-    integration = int((365/10)*years)
-    
-    # Create result arrays
-    Ts    = np.zeros(years+1)
-    Years = np.zeros(years+1)
-    
-    # Initial and boundary conditions
-    Ts[0] = T0 
-
-    # Calculation
-    for n in range(years):
-        alpha_adapt = alpha * (1 - 0.2 * np.tanh(0.5*(Ts[n]-288)))
-        
-        tau_rnd = random.normalvariate(tau,tau*0.1)
-        Years[n+1] = n+1
-        Ts[n+1] = step_forward( Q, Ts[n], Cw, alpha_adapt, tau_rnd, dt )
-        
-        
-    return Years, Ts
-
-
 # In[16]:
 
 
-yrs, Ts286 = ebm_ice_albedo_stochastic(286, Q=342, Cw=2*10**8, alpha=0.30, tau=0.608, years=1000)
-yrs, Ts287 = ebm_ice_albedo_stochastic(287, Q=342, Cw=2*10**8, alpha=0.30, tau=0.608, years=1000)
-yrs, Ts289 = ebm_ice_albedo_stochastic(289, Q=342, Cw=2*10**8, alpha=0.30, tau=0.608, years=1000)
-yrs, Ts293 = ebm_ice_albedo_stochastic(293, Q=342, Cw=2*10**8, alpha=0.30, tau=0.608, years=1000)
+# Import some modules which are used in the function
+import random         # Module to generate random number
+import numpy as np    # Numpy
 
 
-fig, ax = plt.subplots(1,1,figsize=(15,8))
-ax.plot(yrs, Ts286); ax.plot(yrs, Ts287); ax.plot(yrs, Ts289); ax.plot(yrs, Ts293);
+def ebm_ice_albedo_stochastic(T0, Q=341.3, Cw=10e8, alpha=0.3, tau=0.64, years=100):
+    ''' This is a simple Energy Balance Model including ice-albedo feedback.'''
+  
+    # Create result arrays (numpy) filled with zeros
+    # Ts stores the temperature values, years the years since the beginning of
+    # the simulation
+    Ts    = np.zeros(years+1)
+    Years = np.zeros(years+1)
+    
+    # Timestep in seconds (time step is 1 year)
+    dt = 60*60*24*365                  # convert days to seconds
+
+    # Initial and boundary conditions
+    # Set the first value in the Ts to the initial condition
+    Ts[0] = T0 
+
+    # Integration over all years
+    for n in range(years):
+        # Parametrization of albedo. The albedo is a function of temperature.
+        alpha_adapt = alpha * (1 - 0.2 * np.tanh(0.5*(Ts[n]-288)))
+        # Sample the transmissivity from a normal distribution with a standard deviation of 10%
+        tau_rnd = random.normalvariate(tau,tau*0.1)
+        # Store the number of iterations in the Years array
+        Years[n+1] = n+1
+        # Store the new temperature value in Ts
+        Ts[n+1] = step_forward( Q, Ts[n], Cw, alpha_adapt, tau_rnd, dt )
+        
+    # Return both the temperature and year array
+    return Years, Ts
 
 
 # In[17]:
 
 
+# Run several ice-albedo simulations using different initial conditions
+yrs, Ts286 = ebm_ice_albedo_stochastic(286, Q=342, Cw=2*10**8, alpha=0.30, tau=0.608, years=1000)
+yrs, Ts287 = ebm_ice_albedo_stochastic(287, Q=342, Cw=2*10**8, alpha=0.30, tau=0.608, years=1000)
+yrs, Ts289 = ebm_ice_albedo_stochastic(289, Q=342, Cw=2*10**8, alpha=0.30, tau=0.608, years=1000)
+yrs, Ts293 = ebm_ice_albedo_stochastic(293, Q=342, Cw=2*10**8, alpha=0.30, tau=0.608, years=1000)
+
+# Plot the results
+fig, ax = plt.subplots(1,1,figsize=(15,8))
+ax.plot(yrs, Ts286); ax.plot(yrs, Ts287); ax.plot(yrs, Ts289); ax.plot(yrs, Ts293);
+
+
+# In[18]:
+
+
+# Plot the histogram of one of the previous simulations|
 plt.hist(Ts289,30);
-
-
-# In[ ]:
-
-
-
 
