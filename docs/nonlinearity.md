@@ -1,5 +1,5 @@
 (ebm_header)=
-# Exercise: Nonlinearity, Feedbacks and Predictability 
+# Nonlinearity, Feedbacks and Predictability 
 
 Many processes in nature are non-linear. These non-linearities can lead to
 chaotic behaviour of systems that make deterministic prediction impossible. In
@@ -58,7 +58,7 @@ balance model. However, the transmissivity (clouds etc.) fluctuates with the
 dynamic. In order to include dynamics, we slightly modify the energy
 balance model and generate a new $\tau$ at each time step. To do this, we
 sample the transmission values from a normal distribution with a standard
-deviation of 1 percent. 
+deviation of 10 percent. 
 
 > **Task 4**: Run the energy balance model T(0)=288  K, $C_w$ = 2$\cdot10^8$  J/(m$^2
 > \cdot$ K), $\alpha$ =0.3, and $\tau_{mean}$=0.608 ($\pm$ 10%). Describe the time series.

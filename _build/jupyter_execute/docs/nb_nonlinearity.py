@@ -7,7 +7,7 @@
 # **Task 1**: Write a function which solves the Von-May-Equation.
 # 
 # 
-# #### Problem description:
+# **Problem description:**
 # 
 # <blockquote>The starting point for our analysis is the ‘Von-May-Equation’, which is given by <br>
 # 
@@ -28,7 +28,6 @@ def von_may(y0,r):
     pass
 
 
-
 # **Task 2:** Run the code for several initial and parameter combination. What is particularly striking about increasing r-values?
 # 
 # 
@@ -46,7 +45,8 @@ def von_may(y0,r):
 # Integrate the equation and plot the results
 
 
-# #### Extend the Von-May function
+# **Extend the Von-May function**
+# 
 # **Task 3:** Extend this Von-May function by generating 20 random r-values and run simulations with them. Sample the values from a normal distribution with mean 3.95 and standard deviation 0.015 (limit the r-values between 0 and 4). Then average over all time series. Plot both the time series, the averaged time series and the histogram of the averaged time series. What do you observe?
 
 # In[3]:
@@ -66,9 +66,9 @@ def ensemble_may(n, y0, r):
 # Plot the results
 
 
-# ### Revisit the EBM-Model
+# **Revisit the EBM-Model**
 # 
-# #### Include a dynamic transmissivity in the energy balance model.
+# Include a dynamic transmissivity in the energy balance model.
 # 
 # **Task 4:** Run the energy balance model $T(0)=288 ~ K$, $C_w= 2\cdot10^8 ~ J/(m^2
 #  57 \cdot K)$, $\alpha=0.3$, and $\tau_{mean}=0.608 (\pm 10\%)$
@@ -109,7 +109,7 @@ def ebm_stochastic(T0, Q=341.3, Cw=10e8, alpha=0.3, tau=0.64, years=100):
 # Plot the results
 
 
-# #### Extend the model with a simple ice/land use albedo parameterisation. (sigmoid version)
+# **Extend the model with a simple ice/land use albedo parameterisation. (sigmoid version)**
 # 
 # **Task 5:** In this parameterisation, the albedo is solely a function of mean temperature. As a non-linear function we assume a sigmoid function with
 # 
@@ -146,7 +146,7 @@ def ebm_ice_albedo(T0, Q=341.3, Cw=10e8, alpha=0.3, tau=0.64, years=100):
 # Run the simulations and plot the results
 
 
-# #### Extend the model with a simple ice/land use albedo parameterisation. (linear version) 
+# **Extend the model with a simple ice/land use albedo parameterisation. (linear version)**
 # 
 # **Task 6:** In this parameterisation, the albedo is solely a function of mean temperature. We assume a simple linear relation according to
 # 

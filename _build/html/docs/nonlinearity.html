@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Exercise: Nonlinearity, Feedbacks and Predictability &#8212; Climate Modelling and Data Analysis</title>
+    <title>Nonlinearity, Feedbacks and Predictability &#8212; Climate Modelling and Data Analysis</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet">
   <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -55,6 +55,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Greenhouse Model" href="greenhouse_model.html" />
     <link rel="prev" title="Simplified Energy Balance Model" href="ebm_model.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
@@ -139,7 +140,12 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
-     Exercise: Nonlinearity, Feedbacks and Predictability
+     Nonlinearity, Feedbacks and Predictability
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="greenhouse_model.html">
+     Greenhouse Model
     </a>
    </li>
   </ul>
@@ -261,7 +267,7 @@ const thebe_selector_output = ".output, .cell_output"
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Exercise: Nonlinearity, Feedbacks and Predictability</h1>
+                <h1>Nonlinearity, Feedbacks and Predictability</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -300,8 +306,8 @@ const thebe_selector_output = ".output, .cell_output"
             
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="exercise-nonlinearity-feedbacks-and-predictability">
-<span id="ebm-header"></span><h1>Exercise: Nonlinearity, Feedbacks and Predictability<a class="headerlink" href="#exercise-nonlinearity-feedbacks-and-predictability" title="Permalink to this headline">¶</a></h1>
+  <div class="tex2jax_ignore mathjax_ignore section" id="nonlinearity-feedbacks-and-predictability">
+<span id="ebm-header"></span><h1>Nonlinearity, Feedbacks and Predictability<a class="headerlink" href="#nonlinearity-feedbacks-and-predictability" title="Permalink to this headline">¶</a></h1>
 <p>Many processes in nature are non-linear. These non-linearities can lead to
 chaotic behaviour of systems that make deterministic prediction impossible. In
 this exercise we will look at the non-linearities of processes and investigate
@@ -366,7 +372,7 @@ weather. At this point, the simple model does not account for this
 dynamic. In order to include dynamics, we slightly modify the energy
 balance model and generate a new <span class="math notranslate nohighlight">\(\tau\)</span> at each time step. To do this, we
 sample the transmission values from a normal distribution with a standard
-deviation of 1 percent.</p>
+deviation of 10 percent.</p>
 <blockquote>
 <div><p><strong>Task 4</strong>: Run the energy balance model T(0)=288  K, <span class="math notranslate nohighlight">\(C_w\)</span> = 2<span class="math notranslate nohighlight">\(\cdot10^8\)</span>  J/(m<span class="math notranslate nohighlight">\(^2
 \cdot\)</span> K), <span class="math notranslate nohighlight">\(\alpha\)</span> =0.3, and <span class="math notranslate nohighlight">\(\tau_{mean}\)</span>=0.608 (<span class="math notranslate nohighlight">\(\pm\)</span> 10%). Describe the time series.</p>
@@ -441,6 +447,13 @@ climate?</p>
             <p class="prev-next-subtitle">previous</p>
             <p class="prev-next-title">Simplified Energy Balance Model</p>
         </div>
+    </a>
+    <a class='right-next' id="next-link" href="greenhouse_model.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Greenhouse Model</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
     </a>
 </div>
             
