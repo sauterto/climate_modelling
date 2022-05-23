@@ -58,6 +58,7 @@ def von_may(y0,r):
     return(result)
 
 
+
 # **Task 2:** Run the code for several initial and parameter combination. What is particularly striking about increasing r-values?
 # 
 # 
@@ -135,6 +136,7 @@ def ensemble_may(n, y0, r):
         
     # Return the result
     return(result)
+
 
 
 # In[4]:
@@ -483,7 +485,8 @@ def ebm_ice_albedo_stochastic_ECS(T0, Q=341.3, Cw=10e8, alpha=0.3, tau=0.64, yea
 
 
 # Integrate the EBM and store the values
-yrs, Ts289, dT, netQ = ebm_ice_albedo_stochastic_ECS(289, Q=342, Cw=2*10**8,                                                      alpha=0.30, tau=0.608, years=50)
+yrs, Ts289, dT, netQ = ebm_ice_albedo_stochastic_ECS(289, Q=342, Cw=2*10**8, \
+                                                     alpha=0.30, tau=0.608, years=50)
 
 # Create two subplots with ...
 fig, (ax1, ax2) = plt.subplots(1,2,figsize=(20,6))
@@ -568,4 +571,22 @@ ax.plot(yrs, Ts286); ax.plot(yrs, Ts287); ax.plot(yrs, Ts289); ax.plot(yrs, Ts29
 
 # Plot the histogram of one of the previous simulations|
 plt.hist(Ts289,30);
+
+
+# In[ ]:
+
+
+
+
+
+# In[ ]:
+
+
+
+
+
+# In[ ]:
+
+
+
 
