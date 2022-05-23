@@ -71,7 +71,9 @@ $T_s>T_a$ with $T_s = \sqrt[\leftroot{-2}\uproot{2}4]{2} \cdot T_a \approx 1.2
 > the outgoing longwave radiation to outer space results from the atmosphere,
 > the atmospheric temperture $T_a$ is identical to the emission temperature $T_e$.
 
-> **Task 2**: What is the surface temperature with the single layer model? Why
+> **Task 2**: Where in the atmosphere do we find the calculated $T_e$? (Live-coding, {download}`Download netCDF-file<./files/air.mon.ltm.1981-2010.nc>`)
+
+> **Task 3**: What is the surface temperature with the single layer model? Why
 > does the model overestimate the surface temperature?
 
 
@@ -121,15 +123,15 @@ $$
 U_2=(1-\epsilon)U_1+\epsilon \sigma T_1^4
 $$ (U2)
 
-> **Task 3**: Since there is no more atmosphere above layer 1, this upwelling
+> **Task 4**: Since there is no more atmosphere above layer 1, this upwelling
 > beam is our OLR for this model. Plug $U_1$ into the equation of $U_2$ and
 > solve the equation. What do the terms represent? 
 
-> **Task 4**: Write a Python function for the `OLR` (Task 3). 
+> **Task 5**: Write a Python function for the `OLR` (Task 3). 
 
-> **Task 5**: What happens if $\epsilon$ is zero or one? What does this mean physically?
+> **Task 6**: What happens if $\epsilon$ is zero or one? What does this mean physically?
 
-> **Task 6**: We will tune our model so that it reproduces the observed global mean OLR given observed global mean temperatures. Determine the average temperatures (1000-500 hPa, 500 hPa to tropopause) for the two-layer model from the following sounding.
+> **Task 7**: We will tune our model so that it reproduces the observed global mean OLR given observed global mean temperatures. Determine the average temperatures (1000-500 hPa, 500 hPa to tropopause) for the two-layer model from the following sounding.
 > ```{figure} ./pics/vertical_profile.png
 > :height: 450px
 > :name: one_layer_model
@@ -137,23 +139,23 @@ $$ (U2)
 > Atmospheric sounding from the NCEP-Reanalysis data. (Rose, Brian E. J. (2020, November 9). Insolation, The Climate Laboratory, https://brian-rose.github.io/ClimateLaboratoryBook/courseware/insolation.html).
 >```
 
-> **Task 7**: Find graphically the best fit value of $\epsilon$ using the observed temperatures and OLR.
+> **Task 8**: Find graphically the best fit value of $\epsilon$ using the observed temperatures and OLR.
 
-> **Task 8**: Write a Python function to calculate each term in the OLR.
+> **Task 9**: Write a Python function to calculate each term in the OLR.
 > Plug-in the observed temperatures and the tuned value for epsilon and
 > calculate the terms.
 
-> **Task 9**: Changing the level of emission by adding absorbers $\epsilon=\epsilon+\Delta \epsilon$, e.g. by 10 %.
+> **Task 10**: Changing the level of emission by adding absorbers $\epsilon=\epsilon+\Delta \epsilon$, e.g. by 10 %.
 > Suppose further that this increase happens abruptly so that there is no time
 > for the temperatures to respond to this change. We hold the temperatures
 > fixed in the column and ask how the radiative fluxes change.
 > Do you expect the OLR to increase or decrease? Which terms in the OLR go up and which go down?
 
-> **Task 10**: Calculate the radiative forcing for the previous simulation.
+> **Task 11**: Calculate the radiative forcing for the previous simulation.
 
-> **Task 11**: What is the greenhouse effect for an isothermal atmosphere?
+> **Task 12**: What is the greenhouse effect for an isothermal atmosphere?
 
-> **Task 12**: For a more realistic example of radiative forcing due to an
+> **Task 13**: For a more realistic example of radiative forcing due to an
 > increase in greenhouse absorbers, we use our observed temperatures and the
 > tuned value for epsilon. Assume an increase of epsilon by 2 %. What is the radiative forcing?
 > What does this mean for the OLR? 

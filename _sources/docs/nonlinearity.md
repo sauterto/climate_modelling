@@ -95,7 +95,7 @@ $$
 \end{cases}
 $$ 
 >
-> **Task 7**: Determine the equilibrium climate sensitivity (ECS) and the feedback factor for the simulation from Task 5. 
+> **Task 7**: Determine the equilibrium climate sensitivity (ECS) and the feedback factor for the simulation from Task 5 for both with and without ice-albedo feedback. Is the feedback positive or negative? What can be said about the sign? 
 >
 > **Task 8**: Repeat the simulation from Task 5 (sigmoid function for albedo)
 > with T(0)=289 K, but again sample the transmissivity on a normal distribution
