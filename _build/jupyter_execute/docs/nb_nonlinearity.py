@@ -28,7 +28,6 @@ def von_may(y0,r):
     pass
 
 
-
 # **Task 2:** Run the code for several initial and parameter combination. What is particularly striking about increasing r-values?
 # 
 # 
@@ -82,26 +81,23 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
+# Import some modules which are used in the function
+import random         # Module to generate random number
+import numpy as np    # Numpy
+
 def OLR(T, tau):
     """ Stefan-Boltzmann law """
-    # Write your code here
-    pass
+    sigma = 5.67e-8              # Stefan-Boltzmann constant
+    return tau * sigma * T**4    # Return the OLR calculated by the Stefan-Boltzmann law
 
 def ASR(Q, alpha):
     """ Absorbed shortwave radiation """
-    # Write your code here
-    pass
+    return (1-alpha) * Q         # Return the ASR, with the albedo value alpha
 
 
 def step_forward(Q, T, Cw, alpha, tau, dt):
-    # Write your code here
-    pass
-
-
-def ebm_stochastic(T0, Q=341.3, Cw=10e8, alpha=0.3, tau=0.64, years=100):
-    # Write your code here
-    pass
-        
+    # Return the updated T-value (time-dependent EBM)    
+    return T + dt / Cw * ( ASR(Q, alpha) - OLR(T, tau) ) 
 
 
 # In[6]:
@@ -194,14 +190,72 @@ import matplotlib.pyplot as plt
 
 
 def ebm_ice_albedo_stochastic_ECS(T0, Q=341.3, Cw=10e8, alpha=0.3, tau=0.64, years=100):
-    # Write your code here
-    pass
+    ''' This is a simple Energy Balance Model with a random transmissivity and 
+    ice-albedo feedback.'''
+      
+    # Timestep in seconds (time step is 1 year)
+    dt = 60*60*24*365                  # convert days to seconds
+    
+    # Create result arrays (numpy) filled with zeros
+    # Ts stores the temperature values, Years the years since the beginning of
+    # the simulation, netQ the net radiation flux, and dT the temperature change
+    Ts    = np.zeros(years+1) # Temperature 
+    netQ  = np.zeros(years)   # Net radiation flux at the tropopause
+    dT    = np.zeros(years)   # Temperature change
+    Years = np.zeros(years+1) # Years since simulation start
+    
+    # Initial and boundary conditions
+    Ts[0] = T0
+
+    # Integrate over all years
+    for n in range(years):
+        # Calculate the albedo value
+        alpha_adapt = alpha * (1 - 0.2 * np.tanh(0.5*(Ts[n]-288)))
+        alpha_adapt =0.3
+        # Generate a random transmissivity
+        tau_rnd = random.normalvariate(tau,tau*0.01)
+        # Store the interation (year)
+        Years[n+1] = n+1
+        # Calculate the new tempeature
+        Ts[n+1] = step_forward(Q, Ts[n], Cw, alpha_adapt, tau, dt)
+        
+        # Store the net radiation flux at the tropopause ASR-OLR
+        netQ[n] = ASR(Q, alpha_adapt) - OLR(Ts[n], tau)
+        
+        # Store the temperature change between the current and previous step
+        dT[n] = Ts[n] - Ts[0]
+        
+    # Return all result arrays
+    return Years, Ts, dT, netQ
 
 
 # In[13]:
 
 
 # Run the simulations and plot the results
+yrs, Ts, dT, netQ = ebm_ice_albedo_stochastic_ECS(289, Q=342, Cw=2*10**8,                                                      alpha=0.30, tau=0.608, years=50)
+# Create subplots
+fig, (ax1, ax2) = plt.subplots(1,2,figsize=(20,6))
+
+# Temperature time series
+ax1.plot(yrs, Ts)
+
+# Create a scatter plot: temperature change vs. net radiation flux
+ax2.scatter(dT[1:], netQ[1:])
+
+# Fit a regression line to the scatter plot
+m, b = np.polyfit(dT[1:], netQ[1:],1)
+
+# Add regression line to scatter plot
+x = np.arange(0,np.max(dT),0.1)
+ax2.plot(x, m*x+b)
+ax2.axline((0,0),(1,0), linewidth=2, color='gray')
+ax2.scatter(-b/m,0, s=90)
+
+
+# Calculate the ECS from the regression line and print the result
+print('The ECS is {:.2f} ºC'.format(-b/m))
+print('The feedback factor is {:.2f}, which implies a negative feedback'.format(-m/b))
 
 
 # **Task 8:** Repeat the simulation from Task 5 (sigmoid function for albedo) with T(0)=289 K, but again sample the transmissivity from a normal distribution with a standard deviation of 10%.  
@@ -211,20 +265,64 @@ def ebm_ice_albedo_stochastic_ECS(T0, Q=341.3, Cw=10e8, alpha=0.3, tau=0.64, yea
 # In[14]:
 
 
-import random
-import numpy as np
-import matplotlib.pyplot as plt
+# Import some modules which are used in the function
+import random         # Module to generate random number
+import numpy as np    # Numpy
 
 
 def ebm_ice_albedo_stochastic(T0, Q=341.3, Cw=10e8, alpha=0.3, tau=0.64, years=100):
-    # Write your code here
-    pass
+    ''' This is a simple Energy Balance Model including ice-albedo feedback.'''
+  
+    # Create result arrays (numpy) filled with zeros
+    # Ts stores the temperature values, years the years since the beginning of
+    # the simulation
+    Ts    = np.zeros(years+1)
+    Years = np.zeros(years+1)
+    
+    # Timestep in seconds (time step is 1 year)
+    dt = 60*60*24*365                  # convert days to seconds
+
+    # Initial and boundary conditions
+    # Set the first value in the Ts to the initial condition
+    Ts[0] = T0 
+
+    # Integration over all years
+    for n in range(years):
+        # Parametrization of albedo. The albedo is a function of temperature.
+        alpha_adapt = alpha * (1 - 0.2 * np.tanh(0.5*(Ts[n]-288)))
+
+        # Sample the transmissivity from a normal distribution with a standard deviation of 10%
+        tau_rnd = random.normalvariate(tau, tau*0.1) 
+
+        # Store the number of iterations in the Years array
+        Years[n+1] = n+1
+        # Store the new temperature value in Ts
+        Ts[n+1] = step_forward( Q, Ts[n], Cw, alpha_adapt, tau_rnd, dt )
+        
+    # Return both the temperature and year array
+    return Years, Ts
 
 
 # In[15]:
 
 
 # Plot the results
+yrs, Ts286 = ebm_ice_albedo_stochastic(286, Q=342, 
+                                       Cw=2*10**8, years=1000)
+
+yrs, Ts293 = ebm_ice_albedo_stochastic(293, Q=342, 
+                                       Cw=2*10**8, years=1000)
+
+yrs, Ts289 = ebm_ice_albedo_stochastic(289, Q=342, 
+                                       Cw=2*10**8, years=1000)
+
+fig, ax = plt.subplots(1,1,figsize=(15,8))
+ax.plot(yrs, Ts286)
+ax.plot(yrs, Ts293)
+ax.plot(yrs, Ts289)
+
+fig, ax = plt.subplots(1,1,figsize=(15,8))
+plt.hist(Ts286)
 
 
 # In[16]:

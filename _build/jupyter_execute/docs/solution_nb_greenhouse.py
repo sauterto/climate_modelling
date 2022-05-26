@@ -25,6 +25,7 @@ print('Radiative equilibrium temperature: {:.2f}'.format(Te))
 # In[2]:
 
 
+from IPython.display import display, Markdown, Latex, Math
 import numpy as np
 import matplotlib.pyplot as plt
 import xarray as xr
@@ -34,33 +35,37 @@ import xarray as xr
 
 
 ## The NOAA ESRL server is shutdown! January 2019
-ncep_air = xr.open_dataset('./files/air.mon.ltm.1981-2010.nc',use_cftime=True)
+ncep = xr.open_dataset('./files/air.mon.ltm.1981-2010.nc',use_cftime=True)
 
-ncep_air
+ncep
 
 
 # In[4]:
 
 
-#  Take global, annual average and convert to Kelvin
-coslat = np.cos(np.deg2rad(ncep_air.lat))   # Take the cosinus of the latitude
-weight = coslat / coslat.mean(dim='lat')    # Weigth the latitude (convergence)
-Tglobal = (ncep_air.air * weight).mean(dim=('lat','lon','time')) # Take the weighted meadn
+# calculate the area-weighted temperature over its domain. This dataset has a regular latitude/ longitude grid, 
+# thus the grid cell area decreases towards the pole. For this grid we can use the cosine of the latitude as proxy 
+# for the grid cell area.
+weights = np.cos(np.deg2rad(ncep.lat))
 
-# Show the result
-Tglobal
+# Use the xarray function to weight the air temperature array
+air_weighted = ncep.air.weighted(weights)
+
+# Take the mean over lat/lon/time to get a mean vertical profile
+weighted_mean = air_weighted.mean(("lat","lon", "time"))
 
 
 # In[5]:
 
 
 #  a "quick and dirty" visualization of the data
-Tglobal.plot()
+weighted_mean.plot()
 
 
 # In[6]:
 
 
+# Import the metpy library
 from metpy.plots import SkewT
 
 
@@ -69,13 +74,15 @@ from metpy.plots import SkewT
 
 fig = plt.figure(figsize=(15, 15))
 
-# Create the skew-plot with the metpy module
+# Create the skew-plot with the metpy module (see manual for details)
 skew = SkewT(fig, rotation=30)
-skew.plot(Tglobal.level, Tglobal, color='black', linestyle='-', linewidth=2, label='Observations')
+skew.plot(weighted_mean.level, weighted_mean, color='black', linestyle='-', linewidth=2, label='Observations')
+
+# Scale the x and y axis
 skew.ax.set_ylim(1050, 10)
 skew.ax.set_xlim(-75, 45)
 
-# Add the relevant special lines
+# Add the adiabats to the plot
 skew.plot_dry_adiabats(linewidth=0.5)
 skew.plot_moist_adiabats(linewidth=0.5)
 
@@ -104,6 +111,7 @@ print('Surface temperature: {:.2f}'.format(Ts))
 # In[9]:
 
 
+# The function calculates the OLR of the two-layer model
 def two_layer_model(Ts, T0, T1, epsilon):
     return ((1-epsilon)**2)*sigma*Ts**4 + epsilon*(1-epsilon)*sigma*T0**4 + epsilon*sigma*T1**4
 
@@ -121,24 +129,36 @@ def two_layer_model(Ts, T0, T1, epsilon):
 import numpy as np
 import matplotlib.pyplot as plt
 
+# Assignments
 OLR = []        # initialize array
 epsilons = []   # initialize array
 OLR_obs = 238.5 # observed outgoing long-wave radiation
 
-# Auxiliary function to find index of closest value 
 def find_nearest(array, value):
+    """ 
+    Auxiliary function to find index of closest value in an array 
+    array :: input array
+    value :: the value to find in the array
+    """
+    # This searches the minimum between the values and all values in an array
+    # Basically, we enumerate over the array. The enumerator iterates over the array and returns a 
+    # tuple (index, value) for each element. We take the value (x[1]) from this tuple and substract the value
+    # we are searching for. The element which has the smallest difference is what we are looking for. We finally
+    # return the index of this value.
     idx,val = min(enumerate(array), key=lambda x: abs(x[1]-value))
     return idx
 
 # Optimize epsilon
+# We define a range from 0 to 1 with a 0.01 step and calculate the OLR for each of these epsilon values
 for eps in np.arange(0, 1, 0.01):
     OLR.append(OLR_obs - two_layer_model(288, 275, 230, eps))
+    # Store the results in the epsilon-array
     epsilons.append(eps)
 
-# Find the closest value to the observed OLR
+# Now, find the closest value to the observed OLR using the previously defined function
 idx = find_nearest(OLR, 0)
 
-# Save the optimized epsilon
+# Save the optimized epsilon in the epsilons-array
 epsilon = epsilons[idx]
 
 # Plot the results
@@ -163,14 +183,21 @@ print('The modelled OLR is {:.2f}, while the observed value is 238.5'.format(two
 
 
 def two_layer_terms(Ts, T0, T1, epsilon):
+    """
+    This is the same as the two-layer model but instead of returning the OLR this function return the 
+    individual terms of the two-layer equation
+    """
     return ( ((1-epsilon)**2)*sigma*Ts**4, epsilon*(1-epsilon)*sigma*T0**4, epsilon*sigma*T1**4)
 
 
 # In[13]:
 
 
+# Calculates the individual terms
 term1, term2, term3 = two_layer_terms(288, 275, 230, epsilon)
-print('Term 1: {:.2f} \nTerm 2: {:.2f} \nTerm 3: {:.2f} \nTotal: {:.2f}'.format(term1, term2, term3, term1+term2+term3))
+
+display(Markdown(r"""> **Term 1:** ${:.2f} ~ Wm^2$ <br> **Term 2:** ${:.2f} ~ Wm^2$ <br> **Term 3:** ${:.2f} ~ Wm^2$""".format(term1, term2, term3)))
+display(Markdown(r"""> **Total** (sum of all terms): ${:.2f} ~ Wm^2$""".format(term1+term2+term3)))
 
 
 # **Task 10**: Changing the level of emission by adding absorbers, e.g. by 10 %. 
@@ -181,8 +208,11 @@ print('Term 1: {:.2f} \nTerm 2: {:.2f} \nTerm 3: {:.2f} \nTotal: {:.2f}'.format(
 # In[14]:
 
 
+# Calculates the individual terms
 term1, term2, term3 = two_layer_terms(288, 275, 230, epsilon+0.1)
-print('Term 1: {:.2f} \nTerm 2: {:.2f} \nTerm 3: {:.2f}\nTotal: {:.2f}'.format(term1, term2, term3, term1+term2+term3))
+
+display(Markdown(r"""> **Term 1:** ${:.2f} ~ Wm^2$ <br> **Term 2:** ${:.2f} ~ Wm^2$ <br> **Term 3:** ${:.2f} ~ Wm^2$""".format(term1, term2, term3)))
+display(Markdown(r"""> **Total** (sum of all terms): ${:.2f} ~ Wm^2$""".format(term1+term2+term3)))
 
 
 # **Task 11**: Calculate the radiative forcing for the previous simulation
@@ -190,13 +220,20 @@ print('Term 1: {:.2f} \nTerm 2: {:.2f} \nTerm 3: {:.2f}\nTotal: {:.2f}'.format(t
 # In[15]:
 
 
+# First calculate the unperturbed terms
 term1, term2, term3 = two_layer_terms(288, 275, 230, epsilon)
+# Now, add the perturbation to the epsilon values
 term1p, term2p, term3p = two_layer_terms(288, 275, 230, epsilon+0.1)
 
-print('RS: {:.2f}'.format(-(term1p-term1)))
-print('R0: {:.2f}'.format(-(term2p-term2)))
-print('R1: {:.2f}'.format(-(term3p-term3)))
-print('R: {:.2f}'.format(-(term1p-term1)-(term2p-term2)-(term3p-term3)))
+# Print the results
+display(Markdown(r"""> **RS**: ${:.2f} ~ Wm^2$ <br>
+                       **R0**: ${:.2f} ~ Wm^2$ <br>
+                       **R1**: ${:.2f} ~ Wm^2$
+                    """.format(-(term1p-term1),
+                               -(term2p-term2),
+                               -(term3p-term3))))
+
+display(Markdown(r"""> **Radiative forcing**: ${:.2f} ~ Wm^2$""".format(-(term1p-term1)-(term2p-term2)-(term3p-term3))))
 
 
 # **Task 12**: What is the greenhouse effect for an isothermal atmosphere?
@@ -204,13 +241,20 @@ print('R: {:.2f}'.format(-(term1p-term1)-(term2p-term2)-(term3p-term3)))
 # In[16]:
 
 
+# First calculate the unperturbed terms
 term1, term2, term3 = two_layer_terms(288, 288, 288, epsilon)
+# Now, add the perturbation to the epsilon values
 term1p, term2p, term3p = two_layer_terms(288, 288, 288, epsilon+0.1)
 
-print('RS: {:.2f}'.format(-(term1p-term1)))
-print('R0: {:.2f}'.format(-(term2p-term2)))
-print('R1: {:.2f}'.format(-(term3p-term3)))
-print('R: {:.2f}'.format(-(term1p-term1)-(term2p-term2)-(term3p-term3)))
+# Print the results
+display(Markdown(r"""> **RS**: ${:.2f} ~ Wm^2$ <br>
+                       **R0**: ${:.2f} ~ Wm^2$ <br>
+                       **R1**: ${:.2f} ~ Wm^2$
+                    """.format(-(term1p-term1),
+                               -(term2p-term2),
+                               -(term3p-term3))))
+
+display(Markdown(r"""> **Radiative forcing**: ${:.2f} ~ Wm^2$""".format(-(term1p-term1)-(term2p-term2)-(term3p-term3))))
 
 
 # **Task 13**: For a more realistic example of radiative forcing due to an increase in greenhouse absorbers, we use our observed temperatures and the tuned value for epsilon. Assume an increase of epsilon by 2 %.
@@ -218,14 +262,26 @@ print('R: {:.2f}'.format(-(term1p-term1)-(term2p-term2)-(term3p-term3)))
 # In[17]:
 
 
+# Perturb the epsilon values by 2 %
 depsilon = epsilon * 0.02
-print(depsilon)
+print('The epsilon disturbance: {:.3f} \n'.format(depsilon))
 
 term1, term2, term3 = two_layer_terms(288, 275, 230, epsilon)
 term1p, term2p, term3p = two_layer_terms(288, 275, 230, epsilon+depsilon)
 
-print('RS: {:.2f}'.format(-(term1p-term1)))
-print('R0: {:.2f}'.format(-(term2p-term2)))
-print('R1: {:.2f}'.format(-(term3p-term3)))
-print('R: {:.2f}'.format(-(term1p-term1)-(term2p-term2)-(term3p-term3)))
+# Print the results
+display(Markdown(r"""> **RS**: ${:.2f} ~ Wm^2$ <br>
+                       **R0**: ${:.2f} ~ Wm^2$ <br>
+                       **R1**: ${:.2f} ~ Wm^2$
+                    """.format(-(term1p-term1),
+                               -(term2p-term2),
+                               -(term3p-term3))))
+
+display(Markdown(r"""> **Radiative forcing**: ${:.2f} ~ Wm^2$""".format(-(term1p-term1)-(term2p-term2)-(term3p-term3))))
+
+
+# In[ ]:
+
+
+
 

@@ -58,7 +58,6 @@ def von_may(y0,r):
     return(result)
 
 
-
 # **Task 2:** Run the code for several initial and parameter combination. What is particularly striking about increasing r-values?
 # 
 # 
@@ -136,7 +135,6 @@ def ensemble_may(n, y0, r):
         
     # Return the result
     return(result)
-
 
 
 # In[4]:
@@ -485,8 +483,16 @@ def ebm_ice_albedo_stochastic_ECS(T0, Q=341.3, Cw=10e8, alpha=0.3, tau=0.64, yea
 
 
 # Integrate the EBM and store the values
-yrs, Ts289, dT, netQ = ebm_ice_albedo_stochastic_ECS(289, Q=342, Cw=2*10**8, \
-                                                     alpha=0.30, tau=0.608, years=50)
+yrs, Ts289, dT, netQ = ebm_ice_albedo_stochastic_ECS(289, Q=342, Cw=2*10**8,                                                      alpha=0.30, tau=0.608, years=50)
+
+
+# Calculate the ECS from the regression line and print the result
+print('The ECS is {:.2f} ºC'.format(-b/m))
+print('The feedback factor is {:.2f}, which implies a negative feedback'.format(-m/b))
+
+
+# In[45]:
+
 
 # Create two subplots with ...
 fig, (ax1, ax2) = plt.subplots(1,2,figsize=(20,6))
@@ -503,10 +509,6 @@ ax2.plot(np.arange(0,np.max(dT),0.1),m*np.arange(0,np.max(dT),0.1)+b)
 ax2.axline((0, 0), (1, 0), linewidth=2, color='gray')
 # Plot a marker where the regression line crosses the horizontal line at y=0
 ax2.scatter(-b/m,0,s=50)
-
-# Calculate the ECS from the regression line and print the result
-print('The ECS is {:.2f} ºC'.format(-b/m))
-print('The feedback factor is {:.2f}, which implies a negative feedback'.format(-m/b))
 
 
 # **Task 8:** Repeat the simulation from Task 5 (sigmoid function for albedo) with T(0)=289 K, but again sample the transmissivity from a normal distribution with a standard deviation of 10%.  
@@ -552,7 +554,7 @@ def ebm_ice_albedo_stochastic(T0, Q=341.3, Cw=10e8, alpha=0.3, tau=0.64, years=1
     return Years, Ts
 
 
-# In[17]:
+# In[49]:
 
 
 # Run several ice-albedo simulations using different initial conditions
@@ -563,10 +565,10 @@ yrs, Ts293 = ebm_ice_albedo_stochastic(293, Q=342, Cw=2*10**8, alpha=0.30, tau=0
 
 # Plot the results
 fig, ax = plt.subplots(1,1,figsize=(15,8))
-ax.plot(yrs, Ts286); ax.plot(yrs, Ts287); ax.plot(yrs, Ts289); ax.plot(yrs, Ts293);
+ax.plot(yrs, Ts286); #ax.plot(yrs, Ts287); ax.plot(yrs, Ts289); ax.plot(yrs, Ts293);
 
 
-# In[18]:
+# In[48]:
 
 
 # Plot the histogram of one of the previous simulations|
