@@ -15,6 +15,7 @@
 ### Python Notebooks
 [Greenhouse Model](greenhouse:exercise)
 
+[Solution: Greenhouse Model](greenhouse:solution)
 
 ### Energy balance of the one-layer model
 

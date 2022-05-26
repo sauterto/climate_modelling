@@ -501,9 +501,10 @@ y_{t+1} = r \cdot y_{t} \cdot (1-y_{t}),
 </div>
 <p><strong>Extend the model with a simple ice/land use albedo parameterisation. (sigmoid version)</strong></p>
 <p><strong>Task 5:</strong> In this parameterisation, the albedo is solely a function of mean temperature. As a non-linear function we assume a sigmoid function with</p>
-<p>\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-7f040b7e-c60c-4514-844a-4a36a6e67304">
+<span class="eqno">()<a class="headerlink" href="#equation-7f040b7e-c60c-4514-844a-4a36a6e67304" title="Permalink to this equation">¶</a></span>\[\begin{align}
 \alpha(T_i) = 0.3 \cdot (1-0.2 \cdot \tanh(0.5 \cdot (T_i-288))).
-\end{align}</p>
+\end{align}\]</div>
 <p>Run the energy balance model for 100 years with four different initial conditions for T(0)=286.0, 287.9, 288.0, and 293.0 K, while fixing the other parameters to <span class="math notranslate nohighlight">\(C_w\)</span>= 2<span class="math notranslate nohighlight">\(\cdot10^8\)</span> J/(m<span class="math notranslate nohighlight">\(^2 \cdot\)</span> K) and <span class="math notranslate nohighlight">\(\tau_{mean}\)</span>=0.608.</p>
 <p>What can be said about the state of equilibrium?</p>
 <div class="cell docutils container">
@@ -580,14 +581,15 @@ y_{t+1} = r \cdot y_{t} \cdot (1-y_{t}),
 </div>
 <p><strong>Extend the model with a simple ice/land use albedo parameterisation. (linear version)</strong></p>
 <p><strong>Task 6:</strong> In this parameterisation, the albedo is solely a function of mean temperature. We assume a simple linear relation according to</p>
-<p>\begin{align}
-f(x)=
+<div class="amsmath math notranslate nohighlight" id="equation-f12f0bed-555d-4097-8224-0a5e48b06ee9">
+<span class="eqno">()<a class="headerlink" href="#equation-f12f0bed-555d-4097-8224-0a5e48b06ee9" title="Permalink to this equation">¶</a></span>\[\begin{align}
+    f(x)= 
 \begin{cases}
-\alpha_i,&amp; \text{if } T\leq T_i\
-\alpha_g,&amp; \text{if } T \geq T_g\
-\alpha_g+b(T_g-T) &amp; \text{if } T_i&lt;T&lt;T_g
+    \alpha_i,&amp; \text{if } T\leq T_i\\
+    \alpha_g,&amp; \text{if } T \geq T_g\\
+    \alpha_g+b(T_g-T) &amp; \text{if } T_i&lt;T&lt;T_g
 \end{cases}
-\end{align}</p>
+\end{align}\]</div>
 <p>with <span class="math notranslate nohighlight">\(T_i\)</span>=273 K, and <span class="math notranslate nohighlight">\(T_g\)</span>= 292 K. Run the energy balance model for 100 years with four different initial conditions for T(0)=286.0, 287.9, 288.0, and 293.0 K, while fixing the other parameters to <span class="math notranslate nohighlight">\(C_w\)</span>= 2<span class="math notranslate nohighlight">\(\cdot10^8\)</span> J/(m<span class="math notranslate nohighlight">\(^2 \cdot\)</span> K), and <span class="math notranslate nohighlight">\(\tau_{mean}\)</span>=0.608, <span class="math notranslate nohighlight">\(a_i\)</span>=0.6, and <span class="math notranslate nohighlight">\(a_g\)</span>=0.2.</p>
 <p>What can be said about the state of equilibrium?</p>
 <div class="cell docutils container">

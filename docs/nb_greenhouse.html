@@ -323,7 +323,14 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 </div>
-<p><strong>Task 2</strong>: What is the surface temperature with the single layer model?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create the skew-plot with the metpy module</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Task 3</strong>: What is the surface temperature with the single layer model?</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Solve for the atmospheric surface temperature</span>
@@ -343,7 +350,7 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 <p>Why does the model overestimate the surface temperature?</p>
-<p><strong>Task 4</strong>: Write a Python function for <span class="math notranslate nohighlight">\(OLR = U_2 = (1-\epsilon)^2 \sigma T_s^4 + \epsilon(1-\epsilon)\sigma T_0^4 + \epsilon \sigma T_1^4\)</span></p>
+<p><strong>Task 5</strong>: Write a Python function for <span class="math notranslate nohighlight">\(OLR = U_2 = (1-\epsilon)^2 \sigma T_s^4 + \epsilon(1-\epsilon)\sigma T_0^4 + \epsilon \sigma T_1^4\)</span></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">two_layer_model</span><span class="p">(</span><span class="n">Ts</span><span class="p">,</span> <span class="n">T0</span><span class="p">,</span> <span class="n">T1</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">):</span>
@@ -352,9 +359,9 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 </div>
-<p><strong>Task 6</strong>: We will tune our model so that it reproduces the observed global mean OLR given observed global mean temperatures. Determine the temperatures for the two-layer model from the following sounding</p>
+<p><strong>Task 7</strong>: We will tune our model so that it reproduces the observed global mean OLR given observed global mean temperatures. Determine the temperatures for the two-layer model from the following sounding</p>
 <p><img alt="alt text" src="../_images/vertical_profile.png" /></p>
-<p><strong>Task 7</strong>: Find graphically the best fit value of <span class="math notranslate nohighlight">\(\epsilon\)</span></p>
+<p><strong>Task 8</strong>: Find graphically the best fit value of <span class="math notranslate nohighlight">\(\epsilon\)</span></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -372,7 +379,7 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 </div>
-<p><strong>Task 8</strong>: Write a Python function to calculate each term in the OLR. Plug-in the observed temperatures and the tuned value for epsilon.</p>
+<p><strong>Task 9</strong>: Write a Python function to calculate each term in the OLR. Plug-in the observed temperatures and the tuned value for epsilon.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">two_layer_terms</span><span class="p">(</span><span class="n">Ts</span><span class="p">,</span> <span class="n">T0</span><span class="p">,</span> <span class="n">T1</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">):</span>
@@ -388,7 +395,7 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 </div>
-<p><strong>Task 9</strong>: Changing the level of emission by adding absorbers, e.g. by 10 %.
+<p><strong>Task 10</strong>: Changing the level of emission by adding absorbers, e.g. by 10 %.
 Suppose further that this increase happens abruptly so that there is no time for the temperatures to respond to this change. We hold the temperatures fixed in the column and ask how the radiative fluxes change.</p>
 <p>Which terms in the OLR go up and which go down?</p>
 <div class="cell docutils container">
@@ -398,7 +405,7 @@ Suppose further that this increase happens abruptly so that there is no time for
 </div>
 </div>
 </div>
-<p><strong>Task 10</strong>: Calculate the radiative forcing for the previous simulation</p>
+<p><strong>Task 11</strong>: Calculate the radiative forcing for the previous simulation</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate radiative forcing</span>
@@ -406,7 +413,7 @@ Suppose further that this increase happens abruptly so that there is no time for
 </div>
 </div>
 </div>
-<p><strong>Task 11</strong>: What is the greenhouse effect for an isothermal atmosphere?</p>
+<p><strong>Task 12</strong>: What is the greenhouse effect for an isothermal atmosphere?</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Make simulation here</span>
@@ -414,7 +421,7 @@ Suppose further that this increase happens abruptly so that there is no time for
 </div>
 </div>
 </div>
-<p><strong>Task 12</strong>: For a more realistic example of radiative forcing due to an increase in greenhouse absorbers, we use our observed temperatures and the tuned value for epsilon. Assume an increase of epsilon by 2 %.</p>
+<p><strong>Task 13</strong>: For a more realistic example of radiative forcing due to an increase in greenhouse absorbers, we use our observed temperatures and the tuned value for epsilon. Assume an increase of epsilon by 2 %.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Make simulation here</span>
