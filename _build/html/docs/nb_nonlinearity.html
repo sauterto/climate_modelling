@@ -148,6 +148,23 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
   </ul>
  </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="numerical_models.html">
+   Lesson 2 - Numerical Models
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="fluid_dynamics.html">
+     Fluid dynamics
+    </a>
+   </li>
+  </ul>
+ </li>
 </ul>
 
     </div>
@@ -370,8 +387,8 @@ y_{t+1} = r \cdot y_{t} \cdot (1-y_{t}),
 </div>
 <p><strong>Extend the model with a simple ice/land use albedo parameterisation. (sigmoid version)</strong></p>
 <p><strong>Task 5:</strong> In this parameterisation, the albedo is solely a function of mean temperature. As a non-linear function we assume a sigmoid function with</p>
-<div class="amsmath math notranslate nohighlight" id="equation-5facfb58-4bf0-41aa-8061-4bbed4063e55">
-<span class="eqno">()<a class="headerlink" href="#equation-5facfb58-4bf0-41aa-8061-4bbed4063e55" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-cc2e3a6d-a133-4286-b67d-a176282a9c99">
+<span class="eqno">()<a class="headerlink" href="#equation-cc2e3a6d-a133-4286-b67d-a176282a9c99" title="Permalink to this equation">¶</a></span>\[\begin{align}
 \alpha(T_i) = 0.3 \cdot (1-0.2 \cdot \tanh(0.5 \cdot (T_i-288))).
 \end{align}\]</div>
 <p>Run the energy balance model for 100 years with four different initial conditions for T(0)=286.0, 287.9, 288.0, and 293.0 K, while fixing the other parameters to <span class="math notranslate nohighlight">\(C_w\)</span>= 2<span class="math notranslate nohighlight">\(\cdot10^8\)</span> J/(m<span class="math notranslate nohighlight">\(^2 \cdot\)</span> K) and <span class="math notranslate nohighlight">\(\tau_{mean}\)</span>=0.608.</p>
@@ -406,8 +423,8 @@ y_{t+1} = r \cdot y_{t} \cdot (1-y_{t}),
 </div>
 <p><strong>Extend the model with a simple ice/land use albedo parameterisation. (linear version)</strong></p>
 <p><strong>Task 6:</strong> In this parameterisation, the albedo is solely a function of mean temperature. We assume a simple linear relation according to</p>
-<div class="amsmath math notranslate nohighlight" id="equation-4ecf0cb4-e6b9-4d7d-9341-d299946d4d68">
-<span class="eqno">()<a class="headerlink" href="#equation-4ecf0cb4-e6b9-4d7d-9341-d299946d4d68" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-52494626-49dc-4aa6-8257-2502108b358f">
+<span class="eqno">()<a class="headerlink" href="#equation-52494626-49dc-4aa6-8257-2502108b358f" title="Permalink to this equation">¶</a></span>\[\begin{align}
     f(x)= 
 \begin{cases}
     \alpha_i,&amp; \text{if } T\leq T_i\\
@@ -593,10 +610,10 @@ The feedback factor is -3.08, which implies a negative feedback
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(array([ 11.,  83., 254., 332., 227.,  63.,  18.,  10.,   2.,   1.]),
- array([266.0372641 , 269.83738823, 273.63751237, 277.43763651,
-        281.23776065, 285.03788479, 288.83800893, 292.63813307,
-        296.43825721, 300.23838135, 304.03850549]),
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(array([ 30., 120., 242., 287., 166.,  97.,  38.,  11.,   7.,   3.]),
+ array([268.49496634, 271.68075319, 274.86654003, 278.05232688,
+        281.23811372, 284.42390057, 287.60968742, 290.79547426,
+        293.98126111, 297.16704795, 300.3528348 ]),
  &lt;BarContainer object of 10 artists&gt;)
 </pre></div>
 </div>

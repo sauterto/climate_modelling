@@ -78,7 +78,7 @@ approximation and assuming a hydrostatic equilibrium. Furthermore, we assume
 that friction balances the acceleration by buoyancy forcing. Thus, the first-order momentum and heat budgets can be written as
 
 $$
-\frac{g \cdot sin(\eta)}{T_0} = \frac{\partial F_u}{\partial z}
+\frac{g \cdot sin(\eta)}{T_0}\theta = \frac{\partial F_u}{\partial z}
 $$ (momentum)
 
 $$
