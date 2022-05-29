@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Lesson 2 - Numerical Models &#8212; Climate Modelling and Data Analysis</title>
+    <title>Fluid dynamics &#8212; Climate Modelling and Data Analysis</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet">
   <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -51,10 +51,11 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Fluid dynamics" href="fluid_dynamics.html" />
-    <link rel="prev" title="Greenhouse Model" href="greenhouse_model.html" />
+    <link rel="prev" title="Lesson 2 - Numerical Models" href="numerical_models.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -149,7 +150,7 @@ const thebe_selector_output = ".output, .cell_output"
   </ul>
  </li>
  <li class="toctree-l1 current active has-children">
-  <a class="current reference internal" href="#">
+  <a class="reference internal" href="numerical_models.html">
    Lesson 2 - Numerical Models
   </a>
   <input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
@@ -157,9 +158,9 @@ const thebe_selector_output = ".output, .cell_output"
    <i class="fas fa-chevron-down">
    </i>
   </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="fluid_dynamics.html">
+  <ul class="current">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
      Fluid dynamics
     </a>
    </li>
@@ -206,7 +207,7 @@ const thebe_selector_output = ".output, .cell_output"
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../_sources/docs/numerical_models.md"><button type="button"
+        <a class="dropdown-buttons" href="../_sources/docs/fluid_dynamics.md"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
                 data-placement="left">.md</button></a>
         <!-- Download PDF via print -->
@@ -226,7 +227,7 @@ const thebe_selector_output = ".output, .cell_output"
                 data-toggle="tooltip" data-placement="left" title="Source repository"><i
                     class="fab fa-github"></i>repository</button></a>
         <a class="issues-button"
-            href="https://github.com/sauterto/climate_modelling/issues/new?title=Issue%20on%20page%20%2Fdocs/numerical_models.html&body=Your%20issue%20content%20here."><button
+            href="https://github.com/sauterto/climate_modelling/issues/new?title=Issue%20on%20page%20%2Fdocs/fluid_dynamics.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
         
@@ -247,6 +248,24 @@ const thebe_selector_output = ".output, .cell_output"
         <!-- Table of contents -->
         <div class="d-none d-md-block col-md-2 bd-toc show noprint">
             
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercises">
+   Exercises:
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#homework">
+   Homework:
+  </a>
+ </li>
+</ul>
+
+            </nav>
         </div>
     </div>
 </div>
@@ -254,20 +273,142 @@ const thebe_selector_output = ".output, .cell_output"
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Lesson 2 - Numerical Models</h1>
+                <h1>Fluid dynamics</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
                         
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercises">
+   Exercises:
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#homework">
+   Homework:
+  </a>
+ </li>
+</ul>
+
+                        </nav>
                     </div>
                 </div>
             </div>
             
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="lesson-2-numerical-models">
-<h1>Lesson 2 - Numerical Models<a class="headerlink" href="#lesson-2-numerical-models" title="Permalink to this headline">¶</a></h1>
-<div class="toctree-wrapper compound">
+  <div class="tex2jax_ignore mathjax_ignore section" id="fluid-dynamics">
+<span id="fluid-dynamics-header"></span><h1>Fluid dynamics<a class="headerlink" href="#fluid-dynamics" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="exercises">
+<h2>Exercises:<a class="headerlink" href="#exercises" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><p><strong>Task 1</strong>: Hurricane-force winds of 60 m s<span class="math notranslate nohighlight">\(^{–1}\)</span> blow into an west-facing
+entrance of a 20 m long pedestrian tunnel. The door at the other end of the
+tunnel is closed. The initial air density in the tunnel is 1.2 kg m<span class="math notranslate nohighlight">\(^{–3}\)</span>. Find
+the rate of air density increase in the tunnel.</p>
+</div></blockquote>
+<div class="figure align-default" id="exercise-mass-conservation">
+<a class="reference internal image-reference" href="../_images/exercise_mass_conservation.png"><img alt="../_images/exercise_mass_conservation.png" src="../_images/exercise_mass_conservation.png" style="width: 500px;" /></a>
+</div>
+<blockquote>
+<div><p><strong>Task 2</strong>: In a narrow street canyon, a fine particle matter load of 30
+<span class="math notranslate nohighlight">\(\mu g \cdot  m^{−3}\)</span> is measured. A moderate wind blows from the south, advecting further
+particles from a busy road. The concentration at the road is 130 <span class="math notranslate nohighlight">\(\mu g \cdot m^{-3}\)</span>.
+Turbulent mixing causes 194 <span class="math notranslate nohighlight">\(\mu g \cdot m \cdot s^{-1}\)</span> to be entrained upwards. Does the
+concentration exceed the critical threshold value of 150 <span class="math notranslate nohighlight">\(\mu g \cdot m^{-3}\)</span> after one
+hour?</p>
+</div></blockquote>
+<div class="figure align-default" id="street-canyon">
+<a class="reference internal image-reference" href="../_images/street_canyon.png"><img alt="../_images/street_canyon.png" src="../_images/street_canyon.png" style="width: 500px;" /></a>
+</div>
+<blockquote>
+<div><p><strong>Task 3</strong>: The cube of air below has <span class="math notranslate nohighlight">\(\theta\)</span> = 12°C along its south side, but
+smoothly increases in temperature to 15°C on the north side. This 100 km
+square cube is advecting toward the north at 25 km/hour. What warming rate at
+a fixed thermometer can be attributed to temperature advection?</p>
+</div></blockquote>
+<div class="figure align-default" id="cube">
+<a class="reference internal image-reference" href="../_images/cube.png"><img alt="../_images/cube.png" src="../_images/cube.png" style="width: 500px;" /></a>
+</div>
+<blockquote>
+<div><p><strong>Task 4</strong>:In the figure above (Task 3), suppose that the incoming heat flux from the
+south is 5 W m<span class="math notranslate nohighlight">\(^{–2}, and the outgoing on the north face of the cube is 7 W m\)</span>^{–2}$.</p>
+<ol class="simple">
+<li><p>Convert these fluxes to kinematic units.</p></li>
+<li><p>What is the value of the kinematic flux gradient?</p></li>
+<li><p>Calculate the warming rate of air in the cube, assuming the cube has zero
+humidity and is at a fixed altitude where air density is 1 kg m<span class="math notranslate nohighlight">\(^{–3}\)</span>. The
+cube of air is 10 m on each side.</p></li>
+</ol>
+</div></blockquote>
+<blockquote>
+<div><p><strong>Task 5</strong>: Bremen is about 600 km north of Stuttgart. In Bremen the wind
+components (U, V) are (6, 4) m s<span class="math notranslate nohighlight">\(^{–1}\)</span> , while in Stuttgart they are (2, 10) m
+s<span class="math notranslate nohighlight">\(^{–1}\)</span>. What is the value of the advective force per mass?</p>
+</div></blockquote>
+<div class="figure align-default" id="bremen-stuttgart">
+<a class="reference internal image-reference" href="../_images/bremen_stuttgart.png"><img alt="../_images/bremen_stuttgart.png" src="../_images/bremen_stuttgart.png" style="height: 400px;" /></a>
+</div>
+<blockquote>
+<div><p><strong>Task 6</strong>: Bremen is about 600 km north of Stuttgart. In Bremen the pressure
+is 1010 hPa, while in Stuttgart the pressure is 1000 hPa. Find the pressure
+gradient force? (let <span class="math notranslate nohighlight">\(\rho\)</span> = 1.1 kg m<span class="math notranslate nohighlight">\(^{-3}\)</span>)</p>
+</div></blockquote>
+<div class="figure align-default" id="bremen-stuttgart-2">
+<a class="reference internal image-reference" href="../_images/bremen_stuttgart.png"><img alt="../_images/bremen_stuttgart.png" src="../_images/bremen_stuttgart.png" style="height: 300px;" /></a>
+</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="homework">
+<h2>Homework:<a class="headerlink" href="#homework" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><p><strong>Homework 1</strong>: Given the figure below, assume that higher in the
+figure corresponds to higher in the atmosphere. Suppose that the 5°C air is at
+a relative altitude that is 500 m higher than that of the 10°C air. If the
+updraft is 500 m/(10 hours), what is the temperature at the thermometer
+(yellow circle) after 10 hours?</p>
+</div></blockquote>
+<div class="figure align-default" id="vertical-advection">
+<a class="reference internal image-reference" href="../_images/homework_vertical_advection.png"><img alt="../_images/homework_vertical_advection.png" src="../_images/homework_vertical_advection.png" style="height: 350px;" /></a>
+</div>
+<blockquote>
+<div><p><strong>Homework 2</strong>: The potential temperature of the air increases 5°C per 100 km
+distance east. If an east wind of 20 m s<span class="math notranslate nohighlight">\(^{–1}\)</span> is blowing, find the advective flux
+gradient, and the temperature change associated with this advection.</p>
+</div></blockquote>
+<blockquote>
+<div><p><strong>Homework 3</strong>: Suppose that the turbulent heat flux decreases linearly with
+height according to <span class="math notranslate nohighlight">\(\overline{w'\theta'}=a-b \cdot z\)</span>, where a = 0.3 (K ms<span class="math notranslate nohighlight">\(^{-1}\)</span>) and b = <span class="math notranslate nohighlight">\(3 \cdot 10^{−4}\)</span>
+(K s<span class="math notranslate nohighlight">\(^{-1}\)</span>). If the initial temperature profile is an arbitrary shape, then what
+will be the shape of the final profile on hour later? Neglecting subsidence,
+radiation, latent heating, and assume horizontal heterogeneity.</p>
+</div></blockquote>
+<blockquote>
+<div><p><strong>Homework 4</strong>: If a horizontal wind of 10 m/s is advecting drier
+air into a region, where the horizontal moisture gradient is (5
+g<span class="math notranslate nohighlight">\(_{water}\)</span>/kg<span class="math notranslate nohighlight">\(_{air}\)</span>)/100 km, then what vertical gradient of turbulent moisture flux
+in the boundary layer is required to maintain a steady-state specific
+humidity? Assume there is no body source of moisture.</p>
+</div></blockquote>
+<blockquote>
+<div><p><strong>Homework 5</strong>: : Find the rate of temperature change (°C h<span class="math notranslate nohighlight">\(^{–1}\)</span>) with no
+internal heat source, given the kinematic flux divergence values below. Assume
+<span class="math notranslate nohighlight">\(\Delta x = \Delta y = \Delta z = 1\)</span> km.</p>
+</div></blockquote>
+<div class="figure align-default" id="table-fluid-1">
+<a class="reference internal image-reference" href="../_images/table_fluid_1.png"><img alt="../_images/table_fluid_1.png" src="../_images/table_fluid_1.png" style="width: 600px;" /></a>
+</div>
+<blockquote>
+<div><p><strong>Homework 6</strong>: Given the wind and temperature gradient, find the value of the kinematic advective flux gradient (°C h<span class="math notranslate nohighlight">\(^{–1}\)</span>).</p>
+</div></blockquote>
+<div class="figure align-default" id="table-fluid-2">
+<a class="reference internal image-reference" href="../_images/table_fluid_2.png"><img alt="../_images/table_fluid_2.png" src="../_images/table_fluid_2.png" style="width: 400px;" /></a>
+</div>
 </div>
 </div>
 
@@ -296,19 +437,12 @@ const thebe_selector_output = ".output, .cell_output"
             
                 <!-- Previous / next buttons -->
 <div class='prev-next-area'> 
-    <a class='left-prev' id="prev-link" href="greenhouse_model.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="numerical_models.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Greenhouse Model</p>
+            <p class="prev-next-title">Lesson 2 - Numerical Models</p>
         </div>
-    </a>
-    <a class='right-next' id="next-link" href="fluid_dynamics.html" title="next page">
-    <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Fluid dynamics</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
     </a>
 </div>
             
