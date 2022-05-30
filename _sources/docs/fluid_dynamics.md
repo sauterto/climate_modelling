@@ -57,7 +57,7 @@
 >is 1010 hPa, while in Stuttgart the pressure is 1000 hPa. Find the pressure
 >gradient force? (let $\rho$ = 1.1 kg m$^{-3}$)
  
-```{figure} ./pics/bremen_stuttgart.png
+```{figure} ./pics/bremen_stuttgart_2.png
 :height: 300px
 :name: bremen_stuttgart_2
 ```
