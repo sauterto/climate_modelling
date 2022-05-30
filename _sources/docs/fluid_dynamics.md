@@ -36,7 +36,7 @@
 ```
 
 >**Task 4**:In the figure above (Task 3), suppose that the incoming heat flux from the
->south is 5 W m$^{–2}, and the outgoing on the north face of the cube is 7 W m$^{–2}$. 
+>south is 5 W m$^{–2}$, and the outgoing on the north face of the cube is 7 W m$^{–2}$. 
 >
 > 1. Convert these fluxes to kinematic units.  
 > 2. What is the value of the kinematic flux gradient?  
