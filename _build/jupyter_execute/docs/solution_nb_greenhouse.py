@@ -215,6 +215,7 @@ display(Markdown(r"""> **Term 1:** ${:.2f} ~ Wm^2$ <br> **Term 2:** ${:.2f} ~ Wm
 display(Markdown(r"""> **Total** (sum of all terms): ${:.2f} ~ Wm^2$""".format(term1+term2+term3)))
 
 
+
 # **Task 11**: Calculate the radiative forcing for the previous simulation
 
 # In[15]:

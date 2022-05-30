@@ -51,17 +51,17 @@ weighted_mean = air_weighted.mean(("lat","lon", "time"))
 # In[6]:
 
 
-Tglobal
+weighted_mean
 
 
-# In[27]:
+# In[7]:
 
 
 # Import the metpy library
 from metpy.plots import SkewT
 
 
-# In[40]:
+# In[8]:
 
 
 fig = plt.figure(figsize=(15,15))
@@ -72,23 +72,91 @@ skew.plot_dry_adiabats()
 skew.plot_moist_adiabats()
 
 
-# In[71]:
+# In[9]:
 
 
-array = [1,2,3,0]
-value = 3
-
-idx,val = min(enumerate(array), key=lambda x: abs(x[1]-value))
-print(idx)
+Ts = 2**(1/4) * Te
+Ts
 
 
-# In[70]:
+# In[10]:
 
 
-a = lambda x: abs(x[1]-value)
-for idx in enumerate(array):
-    print(idx[1])
+def two_layer_model(Ts, T0, T1, epsilon):
+    sigma = 5.68e-8
+    return ((1-epsilon)**2)*sigma*Ts**4 + \
+        epsilon*(1-epsilon)*sigma*T0**4 + \
+        epsilon*sigma*T1**4
+
+
+# In[11]:
+
+
+two_layer_model(288, 270, 250, 0.6)
+
+
+# In[12]:
+
+
+OLR = []
+epsilons = []
+OLR_obs = 238.5
+
+def find_nearest(array, value):
+    idx, val = min(enumerate(array), key=lambda x: abs(x[1]-value))
+    return idx
+
+for eps in np.arange(0, 1, 0.01):
+    OLR.append(OLR_obs - two_layer_model(288.0, 275.0, 230, eps))
+    epsilons.append(eps)
     
+# Find the closest value
+idx = find_nearest(OLR, 0)
+
+# Save the optimized epsilon
+epsilon = epsilons[idx]
+
+print('The optimized epsilon is: {:.2f}'.format(epsilons[idx]))
+
+
+# In[13]:
+
+
+plt.figure(figsize=(15,8))
+plt.plot(epsilons, OLR)
+plt.scatter(epsilons[idx], OLR[idx], s=50, color='r')
+plt.hlines(0,0,1,linestyle='dotted',color='gray')
+
+
+# In[14]:
+
+
+two_layer_model(288,275,230,0.59)
+
+
+# In[15]:
+
+
+def two_layer_term(Ts, T0, T1, epsilon):
+    sigma = 5.68e-8
+    return ((1-epsilon)**2)*sigma*Ts**4, \
+        epsilon*(1-epsilon)*sigma*T0**4, \
+        epsilon*sigma*T1**4
+
+
+# In[16]:
+
+
+term1, term2, term3 = two_layer_term(288, 288, 288, 0.59)
+
+
+# In[17]:
+
+
+print('Term 1: {:.2f}'.format(term1))
+print('Term 2: {:.2f}'.format(term2))
+print('Term 3: {:.2f}'.format(term3))
+print('Total: {:.2f}'.format(term1+term2+term3))
 
 
 # In[ ]:
