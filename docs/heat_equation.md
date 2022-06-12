@@ -1,3 +1,0 @@
-# Exercise: Heat Equation 
-
-

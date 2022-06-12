@@ -28,7 +28,6 @@ def von_may(y0,r):
     pass
 
 
-
 # **Task 2:** Run the code for several initial and parameter combination. What is particularly striking about increasing r-values?
 # 
 # 
@@ -99,7 +98,6 @@ def ASR(Q, alpha):
 def step_forward(Q, T, Cw, alpha, tau, dt):
     # Return the updated T-value (time-dependent EBM)    
     return T + dt / Cw * ( ASR(Q, alpha) - OLR(T, tau) ) 
-
 
 
 # In[6]:
@@ -235,8 +233,7 @@ def ebm_ice_albedo_stochastic_ECS(T0, Q=341.3, Cw=10e8, alpha=0.3, tau=0.64, yea
 
 
 # Run the simulations and plot the results
-yrs, Ts, dT, netQ = ebm_ice_albedo_stochastic_ECS(289, Q=342, Cw=2*10**8, \
-                                                     alpha=0.30, tau=0.608, years=50)
+yrs, Ts, dT, netQ = ebm_ice_albedo_stochastic_ECS(289, Q=342, Cw=2*10**8,                                                      alpha=0.30, tau=0.608, years=50)
 # Create subplots
 fig, (ax1, ax2) = plt.subplots(1,2,figsize=(20,6))
 
@@ -304,7 +301,6 @@ def ebm_ice_albedo_stochastic(T0, Q=341.3, Cw=10e8, alpha=0.3, tau=0.64, years=1
         
     # Return both the temperature and year array
     return Years, Ts
-
 
 
 # In[15]:

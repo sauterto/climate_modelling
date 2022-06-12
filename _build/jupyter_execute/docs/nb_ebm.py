@@ -53,7 +53,6 @@ def tau(OLR, T):
 # Calculate the planetary albedo
 
 
-
 # **Task 4:** What additional amount of energy would have to remain in the system for the global temperature to rise by 4 K?
 
 # In[5]:
@@ -165,7 +164,6 @@ def ebm(T0, Q=341.3, Cw=10e8, alpha=0.3, tau=0.64, years=100):
     ''' This is a simple Energy Balance Model with global radiation and outgoing longwave radiation.'''
      # Write your code here
     pass
-
 
 
 

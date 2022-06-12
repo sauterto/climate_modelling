@@ -84,9 +84,7 @@ Ts
 
 def two_layer_model(Ts, T0, T1, epsilon):
     sigma = 5.68e-8
-    return ((1-epsilon)**2)*sigma*Ts**4 + \
-        epsilon*(1-epsilon)*sigma*T0**4 + \
-        epsilon*sigma*T1**4
+    return ((1-epsilon)**2)*sigma*Ts**4 +         epsilon*(1-epsilon)*sigma*T0**4 +         epsilon*sigma*T1**4
 
 
 # In[11]:
@@ -139,9 +137,7 @@ two_layer_model(288,275,230,0.59)
 
 def two_layer_term(Ts, T0, T1, epsilon):
     sigma = 5.68e-8
-    return ((1-epsilon)**2)*sigma*Ts**4, \
-        epsilon*(1-epsilon)*sigma*T0**4, \
-        epsilon*sigma*T1**4
+    return ((1-epsilon)**2)*sigma*Ts**4,         epsilon*(1-epsilon)*sigma*T0**4,         epsilon*sigma*T1**4
 
 
 # In[16]:

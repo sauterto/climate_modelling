@@ -1,0 +1,45 @@
+(finite_differences_header)=
+# Finite differences 
+
+### Python Notebooks
+[Finite Differences - Heat Equation](heat_equation:exercises)
+
+[Finite Differences - Advection-Diffusion equation](advection:exercises)
+
+### Exercises:
+
+>**Task 1**: Integrate the heat equation for several days using a time step of
+>hour and a heat conductivity of  $\nu = 1.2e^{-6}$ [m2 s$^{-1}$]. Plot the result.
+>Once the code works, change the integration time. What happens if you
+>integrate over a very long time?
+
+
+>**Task 2**: Rewrite the 1D heat equation (Task 1) using index arrays.
+
+>**Task 3**: Using the previous code, solve the Heat Equation using a temporal
+>varying surface boundary condition. Use the following discretization: I = [0;
+>20 m], N = 40 grid points, $\nu = 1.2e^{-6}$ [m2 s$^{-1}$], and a daily time step.
+>Integrate the equation for several years, e.g. 5 years. Plot the result as
+>a contour plot. Also plot temperature time series in several depths. Discuss
+>the plot! 
+
+>**Task 4**: Solve the Advection-Diffusion equation, with the following initial
+>and boundary conditions: at t=0, $c_0$=0, for all subsequent times, c=0 at
+>x=0, c=1 at x=L=1, u=1.0, K=0.1, and 40 grid points.  Integrate over 0.05 s
+>with a $\Delta t$ = 0.0028 s. Plot the results and the dimensionless time
+>scales. Increase gradually $\Delta t$ and analyse the results. Once you
+>understand what is happening, set again $\Delta t$ = 0.0028 and gradually
+>increase the wind speed. Discuss the results.
+
+>**Task 5**: Solve the Advection-Diffusion equation form x=0 to L, with the
+>following initial and boundary conditions:
+>\begin{align}
+c(x,0)&=e^{\left(\frac{x-10}{2}\right)^2}\\
+c(0,t)&=0\\
+c(L,t)&=\frac{\partial c}{\partial x}=0
+\end{align}
+> Integrate the equation with K=0.1, u=1.0 over 0.05 s with a Δ𝑡=0.0028. Plot
+> the results and the dimensionless time scales. Increase gradually Δ𝑡 and plot
+> and analyze the results.
+
+ 

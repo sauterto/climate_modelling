@@ -16,6 +16,7 @@ chapters:
 - file: docs/numerical_models 
   sections:
   - file: docs/fluid_dynamics.md
+  - file: docs/finite_differences.md
     #- file: docs/glacier_wind_model
 
     #- file: docs/glacier_wind_model_numerical
