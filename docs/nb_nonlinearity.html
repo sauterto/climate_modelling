@@ -163,6 +163,11 @@ const thebe_selector_output = ".output, .cell_output"
      Fluid dynamics
     </a>
    </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="finite_differences.html">
+     Finite differences
+    </a>
+   </li>
   </ul>
  </li>
 </ul>
@@ -387,8 +392,8 @@ y_{t+1} = r \cdot y_{t} \cdot (1-y_{t}),
 </div>
 <p><strong>Extend the model with a simple ice/land use albedo parameterisation. (sigmoid version)</strong></p>
 <p><strong>Task 5:</strong> In this parameterisation, the albedo is solely a function of mean temperature. As a non-linear function we assume a sigmoid function with</p>
-<div class="amsmath math notranslate nohighlight" id="equation-b454498c-ce33-47d7-bd67-bc61f5873360">
-<span class="eqno">()<a class="headerlink" href="#equation-b454498c-ce33-47d7-bd67-bc61f5873360" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-2a2c3d33-4b24-4a99-8495-4fbdcf0557d8">
+<span class="eqno">()<a class="headerlink" href="#equation-2a2c3d33-4b24-4a99-8495-4fbdcf0557d8" title="Permalink to this equation">¶</a></span>\[\begin{align}
 \alpha(T_i) = 0.3 \cdot (1-0.2 \cdot \tanh(0.5 \cdot (T_i-288))).
 \end{align}\]</div>
 <p>Run the energy balance model for 100 years with four different initial conditions for T(0)=286.0, 287.9, 288.0, and 293.0 K, while fixing the other parameters to <span class="math notranslate nohighlight">\(C_w\)</span>= 2<span class="math notranslate nohighlight">\(\cdot10^8\)</span> J/(m<span class="math notranslate nohighlight">\(^2 \cdot\)</span> K) and <span class="math notranslate nohighlight">\(\tau_{mean}\)</span>=0.608.</p>
@@ -423,8 +428,8 @@ y_{t+1} = r \cdot y_{t} \cdot (1-y_{t}),
 </div>
 <p><strong>Extend the model with a simple ice/land use albedo parameterisation. (linear version)</strong></p>
 <p><strong>Task 6:</strong> In this parameterisation, the albedo is solely a function of mean temperature. We assume a simple linear relation according to</p>
-<div class="amsmath math notranslate nohighlight" id="equation-5af460fc-37a6-4893-91ee-3d4882eae7c0">
-<span class="eqno">()<a class="headerlink" href="#equation-5af460fc-37a6-4893-91ee-3d4882eae7c0" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-6e85f432-9518-47dd-a134-39716d3b9fc6">
+<span class="eqno">()<a class="headerlink" href="#equation-6e85f432-9518-47dd-a134-39716d3b9fc6" title="Permalink to this equation">¶</a></span>\[\begin{align}
     f(x)= 
 \begin{cases}
     \alpha_i,&amp; \text{if } T\leq T_i\\
@@ -610,10 +615,10 @@ The feedback factor is -3.08, which implies a negative feedback
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(array([ 14.,  98., 245., 288., 229.,  81.,  20.,   9.,  10.,   7.]),
- array([267.62375803, 270.83668595, 274.04961387, 277.26254179,
-        280.47546971, 283.68839763, 286.90132556, 290.11425348,
-        293.3271814 , 296.54010932, 299.75303724]),
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(array([  7.,  49., 105., 214., 262., 198., 105.,  44.,  14.,   3.]),
+ array([266.25268908, 268.98143425, 271.71017942, 274.4389246 ,
+        277.16766977, 279.89641494, 282.62516011, 285.35390529,
+        288.08265046, 290.81139563, 293.54014081]),
  &lt;BarContainer object of 10 artists&gt;)
 </pre></div>
 </div>

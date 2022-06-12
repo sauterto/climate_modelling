@@ -163,6 +163,11 @@ const thebe_selector_output = ".output, .cell_output"
      Fluid dynamics
     </a>
    </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="finite_differences.html">
+     Finite differences
+    </a>
+   </li>
   </ul>
  </li>
 </ul>
@@ -518,8 +523,8 @@ y_{t+1} = r \cdot y_{t} \cdot (1-y_{t}),
 </div>
 <p><strong>Extend the model with a simple ice/land use albedo parameterisation. (sigmoid version)</strong></p>
 <p><strong>Task 5:</strong> In this parameterisation, the albedo is solely a function of mean temperature. As a non-linear function we assume a sigmoid function with</p>
-<div class="amsmath math notranslate nohighlight" id="equation-29c35030-accb-45c7-9f4b-aea61298ddb9">
-<span class="eqno">()<a class="headerlink" href="#equation-29c35030-accb-45c7-9f4b-aea61298ddb9" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-dd0ef7c1-a31b-404b-a50b-9febaf346e7d">
+<span class="eqno">()<a class="headerlink" href="#equation-dd0ef7c1-a31b-404b-a50b-9febaf346e7d" title="Permalink to this equation">¶</a></span>\[\begin{align}
 \alpha(T_i) = 0.3 \cdot (1-0.2 \cdot \tanh(0.5 \cdot (T_i-288))).
 \end{align}\]</div>
 <p>Run the energy balance model for 100 years with four different initial conditions for T(0)=286.0, 287.9, 288.0, and 293.0 K, while fixing the other parameters to <span class="math notranslate nohighlight">\(C_w\)</span>= 2<span class="math notranslate nohighlight">\(\cdot10^8\)</span> J/(m<span class="math notranslate nohighlight">\(^2 \cdot\)</span> K) and <span class="math notranslate nohighlight">\(\tau_{mean}\)</span>=0.608.</p>
@@ -598,8 +603,8 @@ y_{t+1} = r \cdot y_{t} \cdot (1-y_{t}),
 </div>
 <p><strong>Extend the model with a simple ice/land use albedo parameterisation. (linear version)</strong></p>
 <p><strong>Task 6:</strong> In this parameterisation, the albedo is solely a function of mean temperature. We assume a simple linear relation according to</p>
-<div class="amsmath math notranslate nohighlight" id="equation-e49f5cfb-dd2e-4db9-8be4-5bc2fee70284">
-<span class="eqno">()<a class="headerlink" href="#equation-e49f5cfb-dd2e-4db9-8be4-5bc2fee70284" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-5adaa9b5-e082-4106-8e3b-e712c7f435fa">
+<span class="eqno">()<a class="headerlink" href="#equation-5adaa9b5-e082-4106-8e3b-e712c7f435fa" title="Permalink to this equation">¶</a></span>\[\begin{align}
     f(x)= 
 \begin{cases}
     \alpha_i,&amp; \text{if } T\leq T_i\\
@@ -794,8 +799,9 @@ y_{t+1} = r \cdot y_{t} \cdot (1-y_{t}),
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">tt</span><span class="o">/</span><span class="n">q4k5594x1tz82j1yrmtkdw080000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_3445</span><span class="o">/</span><span class="mf">1195436669.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span> 
+<span class="nn">Input In [15],</span> in <span class="ni">&lt;cell line: 7&gt;</span><span class="nt">()</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">yrs</span><span class="p">,</span> <span class="n">Ts289</span><span class="p">,</span> <span class="n">dT</span><span class="p">,</span> <span class="n">netQ</span> <span class="o">=</span> <span class="n">ebm_ice_albedo_stochastic_ECS</span><span class="p">(</span><span class="mi">289</span><span class="p">,</span> <span class="n">Q</span><span class="o">=</span><span class="mi">342</span><span class="p">,</span> <span class="n">Cw</span><span class="o">=</span><span class="mi">2</span><span class="o">*</span><span class="mi">10</span><span class="o">**</span><span class="mi">8</span><span class="p">,</span> \
+<span class="g g-Whitespace">      </span><span class="mi">3</span>                                                      <span class="n">alpha</span><span class="o">=</span><span class="mf">0.30</span><span class="p">,</span> <span class="n">tau</span><span class="o">=</span><span class="mf">0.608</span><span class="p">,</span> <span class="n">years</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
 <span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="c1"># Calculate the ECS from the regression line and print the result</span>
 <span class="ne">----&gt; </span><span class="mi">7</span> <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The ECS is </span><span class="si">{:.2f}</span><span class="s1"> ºC&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="o">-</span><span class="n">b</span><span class="o">/</span><span class="n">m</span><span class="p">))</span>
 <span class="g g-Whitespace">      </span><span class="mi">8</span> <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The feedback factor is </span><span class="si">{:.2f}</span><span class="s1">, which implies a negative feedback&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="o">-</span><span class="n">m</span><span class="o">/</span><span class="n">b</span><span class="p">))</span>
