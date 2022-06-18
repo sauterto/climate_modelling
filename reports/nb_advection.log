@@ -17,20 +17,24 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-# Plot results on the mesh
+phi, dx, u, K, c, d = advection_diffusion(u=1.0, K=0.1, integration=0.05, dt=0.0028, Nx=40)
+     
+print('Dimensionless parameter c: {:.4f}'.format(c))
+print('Dimensionless parameter d: {:.4f}'.format(d))
+
 plt.figure(figsize=(12,5))
-plt.contourf(X,Y,cov[:],10,origin='lower',levels=np.linspace(-0.1, 0.1, 21),cmap='RdBu_r');
-plt.colorbar();
+plt.plot(phi)
+plt.show()
 ------------------
 
 [0;31m---------------------------------------------------------------------------[0m
 [0;31mTypeError[0m                                 Traceback (most recent call last)
-Input [0;32mIn [8][0m, in [0;36m<cell line: 3>[0;34m()[0m
-[1;32m      1[0m [38;5;66;03m# Plot results on the mesh[39;00m
-[1;32m      2[0m plt[38;5;241m.[39mfigure(figsize[38;5;241m=[39m([38;5;241m12[39m,[38;5;241m5[39m))
-[0;32m----> 3[0m plt[38;5;241m.[39mcontourf(X,Y,[43mcov[49m[43m[[49m[43m:[49m[43m][49m,[38;5;241m10[39m,origin[38;5;241m=[39m[38;5;124m'[39m[38;5;124mlower[39m[38;5;124m'[39m,levels[38;5;241m=[39mnp[38;5;241m.[39mlinspace([38;5;241m-[39m[38;5;241m0.1[39m, [38;5;241m0.1[39m, [38;5;241m21[39m),cmap[38;5;241m=[39m[38;5;124m'[39m[38;5;124mRdBu_r[39m[38;5;124m'[39m);
-[1;32m      4[0m plt[38;5;241m.[39mcolorbar()
+Input [0;32mIn [2][0m, in [0;36m<cell line: 3>[0;34m()[0m
+[1;32m      1[0m phi, dx, u, K, c, d [38;5;241m=[39m advection_diffusion(u[38;5;241m=[39m[38;5;241m1.0[39m, K[38;5;241m=[39m[38;5;241m0.1[39m, integration[38;5;241m=[39m[38;5;241m0.05[39m, dt[38;5;241m=[39m[38;5;241m0.0028[39m, Nx[38;5;241m=[39m[38;5;241m40[39m)
+[0;32m----> 3[0m [38;5;28mprint[39m([38;5;124;43m'[39;49m[38;5;124;43mDimensionless parameter c: [39;49m[38;5;132;43;01m{:.4f}[39;49;00m[38;5;124;43m'[39;49m[38;5;241;43m.[39;49m[43mformat[49m[43m([49m[43mc[49m[43m)[49m)
+[1;32m      4[0m [38;5;28mprint[39m([38;5;124m'[39m[38;5;124mDimensionless parameter d: [39m[38;5;132;01m{:.4f}[39;00m[38;5;124m'[39m[38;5;241m.[39mformat(d))
+[1;32m      6[0m plt[38;5;241m.[39mfigure(figsize[38;5;241m=[39m([38;5;241m12[39m,[38;5;241m5[39m))
 
-[0;31mTypeError[0m: 'NoneType' object is not subscriptable
-TypeError: 'NoneType' object is not subscriptable
+[0;31mTypeError[0m: unsupported format string passed to NoneType.__format__
+TypeError: unsupported format string passed to NoneType.__format__
 
