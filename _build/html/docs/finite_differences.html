@@ -345,8 +345,8 @@ increase the wind speed. Discuss the results.</p>
 <blockquote>
 <div><p><strong>Task 5</strong>: Solve the Advection-Diffusion equation form x=0 to L, with the
 following initial and boundary conditions:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-cd6128e7-6c8d-44b5-a94e-192f2eee3ef6">
-<span class="eqno">(11)<a class="headerlink" href="#equation-cd6128e7-6c8d-44b5-a94e-192f2eee3ef6" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-531f9585-e1c7-45f3-a18d-5a30b4d666f8">
+<span class="eqno">(11)<a class="headerlink" href="#equation-531f9585-e1c7-45f3-a18d-5a30b4d666f8" title="Permalink to this equation">¶</a></span>\[\begin{align}
 c(x,0)&amp;=e^{\left(\frac{x-10}{2}\right)^2}\\
 c(0,t)&amp;=0\\
 c(L,t)&amp;=\frac{\partial c}{\partial x}=0
@@ -355,6 +355,38 @@ c(L,t)&amp;=\frac{\partial c}{\partial x}=0
 the results and the dimensionless time scales. Increase gradually Δ𝑡 and plot
 and analyze the results.</p>
 </div></blockquote>
+<blockquote>
+<div><p><strong>Task 6</strong>: Starting with the heat equation above simplify the equation to
+model the temperature evolution in the boundary layer from the surface up to
+H=2 km height. Assume a fair-weather condition with a subsidence of -0.001 m
+s<span class="math notranslate nohighlight">\(^{-1}\)</span>. Also assume horizontal homogeneity. Parameterize the heat flux using the
+eddy-diffusivity closure with K=0.25 m s<span class="math notranslate nohighlight">\(^{-2}\)</span>. Solve the simplified equation
+using the following initial and boundary conditions:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-87bd2fac-2c78-4f7b-9b6f-d988917bd0f9">
+<span class="eqno">(12)<a class="headerlink" href="#equation-87bd2fac-2c78-4f7b-9b6f-d988917bd0f9" title="Permalink to this equation">¶</a></span>\[\begin{align}
+\theta(z,0)&amp;=290~K\\
+\overline{w'\theta'}(z,0)&amp;=0~W~m^{-2} \\
+\theta(0,t)&amp;=290+10\cdot sin \left( \frac{2\pi \cdot t}{86400} \right) \\
+\theta(H,t)&amp;=\frac{\partial \theta}{\partial z}=0.01~K~m^{-1}
+\end{align}\]</div>
+<ul class="simple">
+<li><p>What happens when hyou increase the subsidence to -0.01 m s<span class="math notranslate nohighlight">\(^{-1}\)</span>?</p></li>
+<li><p>Plot the kinetic heat flux.</p></li>
+<li><p>What is the maximum heat flux in W m<span class="math notranslate nohighlight">\(^{-2}\)</span>? Is this a realistic value for a fair-weather condition?</p></li>
+<li><p>Calculate the heating rate in K per hour.</p></li>
+</ul>
+</div></blockquote>
+<blockquote>
+<div><p><strong>Task 7</strong>: Intense boundary layer convection may develop when cold air masses
+are advected over relatively warm surfaces. Develop a simple model for this by
+assuming that the time evolution of the boundary layer is determined by the
+vertical turbulent heat transport and the horizontal heat advection. Make the
+following assumptions: [Hint: use the eddy-diffusivity closure and the upwind
+scheme for the advection flux]</p>
+</div></blockquote>
+<div class="figure align-default" id="exercise-erie">
+<a class="reference internal image-reference" href="../_images/lake_erie_exercise.png"><img alt="../_images/lake_erie_exercise.png" src="../_images/lake_erie_exercise.png" style="width: 700px;" /></a>
+</div>
 </div>
 </div>
 

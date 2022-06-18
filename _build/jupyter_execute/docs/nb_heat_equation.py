@@ -14,7 +14,7 @@ import matplotlib.pyplot as plt
 import math
 
 
-def heat_equation(bc_surface, bc_bottom, depth, Nz, integration, dt):
+def heat_equation(bc_surface, bc_bottom, depth, Nz, integration, dt, alpha):
     ''' Solves the heat equation
     bc_surface :: boundary condition at the surface
     bc_bottom  :: boundary condition at the bottom
@@ -26,7 +26,7 @@ def heat_equation(bc_surface, bc_bottom, depth, Nz, integration, dt):
 
     # Definitions
     dz    = depth/Nz  # Distance between grid points
-    alpha = 1.2e-6    # Conductivity
+    #alpha = alpha #1.2e-6    # Conductivity
 
     # Initialize temperature and depth field
     T = np.zeros(Nz)
@@ -41,15 +41,16 @@ def heat_equation(bc_surface, bc_bottom, depth, Nz, integration, dt):
 
     # Loop over all times
     for t in range(integration):
-        pass
+        
         # Loop over all grid points
-        # ADD USER CODE HERE
+        for z in range(1,Nz-1):
+            Tnew[z] = T[z] + ((T[z+1] + T[z-1] - 2*T[z])/dz**2)                 * dt * alpha
 
         # Update old temperature array
-        # ADD USER CODE HERE
+        T = Tnew.copy()
 
         # Neumann boundary condition
-        # ADD USER CODE HERE
+        T[Nz-1] = T[Nz-2]
 
     # return vertical temperature profile and grid spacing
     return T, dz
@@ -64,25 +65,25 @@ def heat_equation(bc_surface, bc_bottom, depth, Nz, integration, dt):
 fig, ax = plt.subplots(2,2,figsize=(12,12))
 
 Nz = 100
-T, dz = heat_equation(20, 0, 5, Nz, 24, 3600)
+T, dz = heat_equation(20, 0, 5, Nz, 60*10, 60, 1.2e-6)
 ax[0,0].plot(T,-dz*np.arange(Nz));
 ax[0,0].set_xlabel('Temperature [ºC]')
 ax[0,0].set_ylabel('Depth [m]')
 
-T, dz = heat_equation(20, 0, 5, Nz, 24*14, 3600)
+T, dz = heat_equation(20, 0, 5, Nz, 60*10, 60., 0.1e-6)
 ax[0,1].plot(T,-dz*np.arange(Nz));
 ax[0,1].set_xlabel('Temperature [ºC]')
 ax[0,1].set_ylabel('Depth [m]')
 
-T, dz = heat_equation(20, 0, 5, Nz, 24*30, 3600)
-ax[1,0].plot(T,-dz*np.arange(Nz));
-ax[1,0].set_xlabel('Temperature [ºC]')
-ax[1,0].set_ylabel('Depth [m]')
+#T, dz = heat_equation(20, 0, 5, Nz, 300, 60)
+#ax[1,0].plot(T,-dz*np.arange(Nz));
+#ax[1,0].set_xlabel('Temperature [ºC]')
+#ax[1,0].set_ylabel('Depth [m]')
 
-T, dz = heat_equation(20, 0, 5, Nz, 24*365, 3600)
-ax[1,1].plot(T,-dz*np.arange(Nz));
-ax[1,1].set_xlabel('Temperature [ºC]')
-ax[1,1].set_ylabel('Depth [m]')
+#T, dz = heat_equation(20, 0, 5, Nz, 500, 60)
+#ax[1,1].plot(T,-dz*np.arange(Nz));
+#ax[1,1].set_xlabel('Temperature [ºC]')
+#ax[1,1].set_ylabel('Depth [m]')
 
 plt.show()
 
@@ -114,7 +115,9 @@ def heat_equation_indices(bc_surface, bc_bottom, depth, Nz, integration, dt):
     alpha = 1.2e-6   # Conductivity
 
     # Define index arrays 
-    # ADD USER CODE HERE
+    k = np.arange(1, Nz-1)
+    kr = np.arange(2,Nz)
+    kl = np.arange(0,Nz-2)
 
 
     # Initialize temperature and depth field
@@ -130,16 +133,15 @@ def heat_equation_indices(bc_surface, bc_bottom, depth, Nz, integration, dt):
 
     # Loop over all times
     for t in range(integration):
-        pass
     
         # ADD USER CODE HERE
-        # Update temperature
+        Tnew[k] = T[k] +((T[kr] + T[kl] - 2*T[k])/dz**2) *dt * alpha
 
         # Update old temperature array
-        # ADD USER CODE HERE
+        T = Tnew.copy()
     
         # Neumann boundary condition
-        # ADD USER CODE HERE
+        T[Nz-1] = T[Nz-2]
 
     # return vertical temperature profile and grid spacing
     return T, dz
@@ -156,22 +158,22 @@ def heat_equation_indices(bc_surface, bc_bottom, depth, Nz, integration, dt):
 fig, ax = plt.subplots(2,2,figsize=(12,12))
 
 Nz = 100
-T, dz = heat_equation_indices(20, 0, 5, Nz, 24, 3600)
+T, dz = heat_equation_indices(20, 0, 5, Nz, 24, 60)
 ax[0,0].plot(T,-dz*np.arange(Nz));
 ax[0,0].set_xlabel('Temperature [ºC]')
 ax[0,0].set_ylabel('Depth [m]')
 
-T, dz = heat_equation_indices(20, 0, 5, Nz, 24*14, 3600)
+T, dz = heat_equation_indices(20, 0, 5, Nz, 24*14, 60)
 ax[0,1].plot(T,-dz*np.arange(Nz));
 ax[0,1].set_xlabel('Temperature [ºC]')
 ax[0,1].set_ylabel('Depth [m]')
 
-T, dz = heat_equation_indices(20, 0, 5, Nz, 24*30, 3600)
+T, dz = heat_equation_indices(20, 0, 5, Nz, 24*30, 60)
 ax[1,0].plot(T,-dz*np.arange(Nz));
 ax[1,0].set_xlabel('Temperature [ºC]')
 ax[1,0].set_ylabel('Depth [m]')
 
-T, dz = heat_equation_indices(20, 0, 5, Nz, 24*365, 3600)
+T, dz = heat_equation_indices(20, 0, 5, Nz, 24*365, 60)
 ax[1,1].plot(T,-dz*np.arange(Nz));
 ax[1,1].set_xlabel('Temperature [ºC]')
 ax[1,1].set_ylabel('Depth [m]')
@@ -223,20 +225,20 @@ def heat_equation_time(depth, Nz, years):
         pass
     
         # Set top BC - Dirlichet condition
-        # ADD USER CODE HERE
+        T[0]= 10 - 20 * np.sin((2*math.pi*t)/365)
 
         # Set lower BC - Neumann condition
-        # ADD USER CODE HERE
+        T[Nz-1] = T[Nz-2]
         
         # Update temperature using indices arrays
-        # ADD USER CODE HERE
+        Tnew[k] = T[k] + ((T[kr] + T[kl] - 2*T[k])/dz**2) * dt * K
         
         # Copy the new temperature als old timestep values (used for the 
         # next time loop step)
-        # ADD USER CODE HERE
+        T = Tnew
 
         # Write result into the final array
-        # ADD USER CODE HERE
+        T_all[:,t] = Tnew
 
 
     # return temperature array, grid spacing, and number of integration steps
@@ -276,4 +278,10 @@ plt.figure(figsize=(12,5))
 plt.plot(T_all[0,:]);
 plt.plot(T_all[10,:]);
 plt.plot(T_all[20,:]);
+
+
+# In[ ]:
+
+
+
 
