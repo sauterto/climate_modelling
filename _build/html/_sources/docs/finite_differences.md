@@ -56,8 +56,8 @@ c(L,t)&=\frac{\partial c}{\partial x}=0
 \theta(H,t)&=\frac{\partial \theta}{\partial z}=0.01~K~m^{-1}
 \end{align}
 >
-> - What happens when hyou increase the subsidence to -0.01 m s$^{-1}$?
-> - Plot the kinetic heat flux.
+> - What happens when you increase the subsidence to -0.01 m s$^{-1}$?
+> - Plot the kinematic heat flux.
 > - What is the maximum heat flux in W m$^{-2}$? Is this a realistic value for a fair-weather condition?
 > - Calculate the heating rate in K per hour.
 
