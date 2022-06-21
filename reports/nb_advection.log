@@ -17,24 +17,37 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-phi, dx, u, K, c, d = advection_diffusion(u=1.0, K=0.1, integration=0.05, dt=0.0028, Nx=40)
-     
-print('Dimensionless parameter c: {:.4f}'.format(c))
-print('Dimensionless parameter d: {:.4f}'.format(d))
+Nz = 200
+H = 500
+integration = 86400*3
+dt = 1
 
-plt.figure(figsize=(12,5))
-plt.plot(phi)
-plt.show()
+phi1, cov, x, z, u, K, c, d = boundary_layer(w=-0.001, K=0.25, integration=integration, dt=dt, Nz=Nz, H=H)
+
+# Create 2D mesh grid
+ax = make_plot(phi1, x=x, z=z, levels=21, title='Theta', unit='K', xlab='Hours', zlab='Height', cmap='RdBu_r')
+
+# Correct the ticks
+ax.set_xticks(x[x%(3600*6)==0]);
+ax.set_xticklabels(list(map(str,(x[x%(3600*6)==0]/3600))), size=10, weight='normal');
 ------------------
 
 [0;31m---------------------------------------------------------------------------[0m
-[0;31mTypeError[0m                                 Traceback (most recent call last)
-Input [0;32mIn [2][0m, in [0;36m<cell line: 3>[0;34m()[0m
-[1;32m      1[0m phi, dx, u, K, c, d [38;5;241m=[39m advection_diffusion(u[38;5;241m=[39m[38;5;241m1.0[39m, K[38;5;241m=[39m[38;5;241m0.1[39m, integration[38;5;241m=[39m[38;5;241m0.05[39m, dt[38;5;241m=[39m[38;5;241m0.0028[39m, Nx[38;5;241m=[39m[38;5;241m40[39m)
-[0;32m----> 3[0m [38;5;28mprint[39m([38;5;124;43m'[39;49m[38;5;124;43mDimensionless parameter c: [39;49m[38;5;132;43;01m{:.4f}[39;49;00m[38;5;124;43m'[39;49m[38;5;241;43m.[39;49m[43mformat[49m[43m([49m[43mc[49m[43m)[49m)
-[1;32m      4[0m [38;5;28mprint[39m([38;5;124m'[39m[38;5;124mDimensionless parameter d: [39m[38;5;132;01m{:.4f}[39;00m[38;5;124m'[39m[38;5;241m.[39mformat(d))
-[1;32m      6[0m plt[38;5;241m.[39mfigure(figsize[38;5;241m=[39m([38;5;241m12[39m,[38;5;241m5[39m))
+[0;31mNameError[0m                                 Traceback (most recent call last)
+Input [0;32mIn [9][0m, in [0;36m<cell line: 6>[0;34m()[0m
+[1;32m      3[0m integration [38;5;241m=[39m [38;5;241m86400[39m[38;5;241m*[39m[38;5;241m3[39m
+[1;32m      4[0m dt [38;5;241m=[39m [38;5;241m1[39m
+[0;32m----> 6[0m phi1, cov, x, z, u, K, c, d [38;5;241m=[39m [43mboundary_layer[49m[43m([49m[43mw[49m[38;5;241;43m=[39;49m[38;5;241;43m-[39;49m[38;5;241;43m0.001[39;49m[43m,[49m[43m [49m[43mK[49m[38;5;241;43m=[39;49m[38;5;241;43m0.25[39;49m[43m,[49m[43m [49m[43mintegration[49m[38;5;241;43m=[39;49m[43mintegration[49m[43m,[49m[43m [49m[43mdt[49m[38;5;241;43m=[39;49m[43mdt[49m[43m,[49m[43m [49m[43mNz[49m[38;5;241;43m=[39;49m[43mNz[49m[43m,[49m[43m [49m[43mH[49m[38;5;241;43m=[39;49m[43mH[49m[43m)[49m
+[1;32m      8[0m [38;5;66;03m# Create 2D mesh grid[39;00m
+[1;32m      9[0m ax [38;5;241m=[39m make_plot(phi1, x[38;5;241m=[39mx, z[38;5;241m=[39mz, levels[38;5;241m=[39m[38;5;241m21[39m, title[38;5;241m=[39m[38;5;124m'[39m[38;5;124mTheta[39m[38;5;124m'[39m, unit[38;5;241m=[39m[38;5;124m'[39m[38;5;124mK[39m[38;5;124m'[39m, xlab[38;5;241m=[39m[38;5;124m'[39m[38;5;124mHours[39m[38;5;124m'[39m, zlab[38;5;241m=[39m[38;5;124m'[39m[38;5;124mHeight[39m[38;5;124m'[39m, cmap[38;5;241m=[39m[38;5;124m'[39m[38;5;124mRdBu_r[39m[38;5;124m'[39m)
 
-[0;31mTypeError[0m: unsupported format string passed to NoneType.__format__
-TypeError: unsupported format string passed to NoneType.__format__
+Input [0;32mIn [7][0m, in [0;36mboundary_layer[0;34m(w, K, integration, dt, Nz, H)[0m
+[1;32m     41[0m theta[Nz[38;5;241m-[39m[38;5;241m1[39m] [38;5;241m=[39m theta[Nz[38;5;241m-[39m[38;5;241m2[39m] [38;5;241m+[39m [38;5;241m0.01[39m [38;5;241m*[39m dz
+[1;32m     43[0m [38;5;66;03m# Set BC surface[39;00m
+[0;32m---> 44[0m theta[[38;5;241m0[39m] [38;5;241m=[39m [38;5;241m290[39m [38;5;241m+[39m [38;5;241m10.0[39m [38;5;241m*[39m np[38;5;241m.[39msin(([38;5;241m2[39m[38;5;241m*[39m[43mpi[49m[38;5;241m*[39mt)[38;5;241m/[39m[38;5;241m86400[39m)
+[1;32m     46[0m [38;5;66;03m# Update flux[39;00m
+[1;32m     47[0m theta[k] [38;5;241m=[39m ([38;5;241m1[39m[38;5;241m-[39m[38;5;241m2[39m[38;5;241m*[39md)[38;5;241m*[39mtheta[k] [38;5;241m+[39m (d[38;5;241m-[39m(c[38;5;241m/[39m[38;5;241m2[39m))[38;5;241m*[39mtheta[kr] [38;5;241m+[39m (d[38;5;241m+[39m(c[38;5;241m/[39m[38;5;241m2[39m))[38;5;241m*[39mtheta[kl]
+
+[0;31mNameError[0m: name 'pi' is not defined
+NameError: name 'pi' is not defined
 

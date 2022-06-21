@@ -277,6 +277,24 @@ const thebe_selector_output = ".output, .cell_output"
         <!-- Table of contents -->
         <div class="d-none d-md-block col-md-2 bd-toc show noprint">
             
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Advection diffusion equation
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#theta-cov-adv-c-d-x-z-boundary-layer-evolution-u-5-k-0-02-dx-500-dz-5-nx-250-nz-20-hours-10-dt-75">
+   theta, cov, adv, c, d, x, z = boundary_layer_evolution(u=5, K=0.02, dx=500, dz=5, Nx=250, Nz=20, hours=10, dt=75)
+  </a>
+ </li>
+</ul>
+
+            </nav>
         </div>
     </div>
 </div>
@@ -289,6 +307,24 @@ const thebe_selector_output = ".output, .cell_output"
                 <div id="print-main-content">
                     <div id="jb-print-toc">
                         
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Advection diffusion equation
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#theta-cov-adv-c-d-x-z-boundary-layer-evolution-u-5-k-0-02-dx-500-dz-5-nx-250-nz-20-hours-10-dt-75">
+   theta, cov, adv, c, d, x, z = boundary_layer_evolution(u=5, K=0.02, dx=500, dz=5, Nx=250, Nz=20, hours=10, dt=75)
+  </a>
+ </li>
+</ul>
+
+                        </nav>
                     </div>
                 </div>
             </div>
@@ -340,15 +376,15 @@ const thebe_selector_output = ".output, .cell_output"
 
     <span class="c1"># Dimensionless parameters</span>
     <span class="c1"># CHANGE THE TWO LINES OF CODE HERE</span>
-    <span class="n">c</span> <span class="o">=</span> <span class="kc">None</span>
-    <span class="n">d</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">c</span> <span class="o">=</span> <span class="p">(</span><span class="n">u</span><span class="o">*</span><span class="n">dt</span><span class="p">)</span><span class="o">/</span><span class="n">dx</span>
+    <span class="n">d</span> <span class="o">=</span> <span class="p">(</span><span class="n">K</span><span class="o">*</span><span class="n">dt</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">dx</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
 
     <span class="c1"># Time loop</span>
     <span class="n">t</span> <span class="o">=</span> <span class="mi">0</span>
 
     <span class="k">while</span> <span class="n">t</span> <span class="o">&lt;=</span> <span class="n">integration</span><span class="p">:</span>
         <span class="c1"># Update flux</span>
-        <span class="c1"># ADD USER CODE HERE</span>
+        <span class="n">phi</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">d</span><span class="p">)</span> <span class="o">*</span> <span class="n">phi</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">+</span> <span class="p">(</span><span class="n">d</span><span class="o">-</span><span class="p">(</span><span class="n">c</span><span class="o">/</span><span class="mi">2</span><span class="p">))</span><span class="o">*</span><span class="n">phi</span><span class="p">[</span><span class="n">kr</span><span class="p">]</span> <span class="o">-</span> <span class="p">(</span><span class="n">d</span><span class="o">+</span><span class="p">(</span><span class="n">c</span><span class="o">/</span><span class="mi">2</span><span class="p">))</span><span class="o">*</span><span class="n">phi</span><span class="p">[</span><span class="n">kl</span><span class="p">]</span>
         
         <span class="c1"># Update time</span>
         <span class="n">t</span> <span class="o">=</span> <span class="n">t</span> <span class="o">+</span> <span class="n">dt</span>     
@@ -372,17 +408,11 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="nn">Input In [2],</span> in <span class="ni">&lt;cell line: 3&gt;</span><span class="nt">()</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">phi</span><span class="p">,</span> <span class="n">dx</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">d</span> <span class="o">=</span> <span class="n">advection_diffusion</span><span class="p">(</span><span class="n">u</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">K</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">integration</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">dt</span><span class="o">=</span><span class="mf">0.0028</span><span class="p">,</span> <span class="n">Nx</span><span class="o">=</span><span class="mi">40</span><span class="p">)</span>
-<span class="ne">----&gt; </span><span class="mi">3</span> <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Dimensionless parameter c: </span><span class="si">{:.4f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">c</span><span class="p">))</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Dimensionless parameter d: </span><span class="si">{:.4f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">d</span><span class="p">))</span>
-<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
-
-<span class="ne">TypeError</span>: unsupported format string passed to NoneType.__format__
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Dimensionless parameter c: 0.1120
+Dimensionless parameter d: 0.4480
 </pre></div>
 </div>
+<img alt="../_images/nb_advection_2_1.png" src="../_images/nb_advection_2_1.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -395,10 +425,16 @@ const thebe_selector_output = ".output, .cell_output"
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>required dt (advection) &lt;= 0.0175 s
+required dt (diffusion) &lt;= 0.0022 s
+</pre></div>
+</div>
+</div>
 </div>
 <p><strong>Task 5</strong>: Solve the Advection-Diffusion equation, with the following initial impulse signal and boundary conditions:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-325c2d85-1f1a-45d3-be5e-21ba5c65e205">
-<span class="eqno">()<a class="headerlink" href="#equation-325c2d85-1f1a-45d3-be5e-21ba5c65e205" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-fa9ff8ee-a5a7-40e1-a742-a0e095e1b8c5">
+<span class="eqno">()<a class="headerlink" href="#equation-fa9ff8ee-a5a7-40e1-a742-a0e095e1b8c5" title="Permalink to this equation">¶</a></span>\[\begin{align}
 c(n,0) &amp;=exp^{\left(-\left(\frac{(x-10)}{2}\right)^2\right)} \\
 c(0,t) &amp;=0 \\
 c(L,t) &amp;=\frac{\partial c}{\partial x}=0
@@ -438,7 +474,7 @@ c(L,t) &amp;=\frac{\partial c}{\partial x}=0
     <span class="n">kl</span>  <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">Nx</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span>
 
     <span class="c1"># Initial temperature field</span>
-    <span class="c1"># ADD USER CODE HERE</span>
+    <span class="n">phi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">Nx</span><span class="p">)</span><span class="o">-</span><span class="mi">10</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
                  
     <span class="c1"># Set boundary condiiton</span>
     <span class="n">phi</span><span class="p">[</span><span class="n">Nx</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">bc_r</span>
@@ -452,16 +488,15 @@ c(L,t) &amp;=\frac{\partial c}{\partial x}=0
     <span class="n">t</span> <span class="o">=</span> <span class="mi">0</span>
   
     <span class="k">while</span> <span class="n">t</span> <span class="o">&lt;=</span> <span class="n">integration</span><span class="p">:</span>
-        <span class="n">t</span> <span class="o">=</span> <span class="mi">999999999999</span>
-    
-        <span class="c1"># Set BC</span>
-        <span class="c1"># ADD USER CODE HERE</span>
+
+        <span class="c1"># Set BC (Neumann condition)</span>
+        <span class="n">phi</span><span class="p">[</span><span class="n">Nx</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">phi</span><span class="p">[</span><span class="n">Nx</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span>
         
         <span class="c1"># Update flux</span>
-        <span class="c1"># ADD USER CODE HERE</span>
+        <span class="n">phi</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">d</span><span class="p">)</span><span class="o">*</span><span class="n">phi</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">+</span> <span class="p">(</span><span class="n">d</span><span class="o">-</span><span class="p">(</span><span class="n">c</span><span class="o">/</span><span class="mi">2</span><span class="p">))</span><span class="o">*</span><span class="n">phi</span><span class="p">[</span><span class="n">kr</span><span class="p">]</span> <span class="o">+</span> <span class="p">(</span><span class="n">d</span><span class="o">+</span><span class="p">(</span><span class="n">c</span><span class="o">/</span><span class="mi">2</span><span class="p">))</span><span class="o">*</span><span class="n">phi</span><span class="p">[</span><span class="n">kl</span><span class="p">]</span>
 
         <span class="c1"># Increate time</span>
-        <span class="c1"># ADD USER CODE HERE  </span>
+        <span class="n">t</span> <span class="o">=</span> <span class="n">t</span> <span class="o">+</span> <span class="n">dt</span>  
         
     <span class="k">return</span><span class="p">(</span><span class="n">phi</span><span class="p">,</span> <span class="n">dx</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">d</span><span class="p">)</span>
 </pre></div>
@@ -484,6 +519,16 @@ c(L,t) &amp;=\frac{\partial c}{\partial x}=0
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>required dt (advection) &lt;= 0.0075 s
+required dt (diffusion) &lt;= 0.0031 s
+
+Courant number (c): 0.1120 (C&lt;1)
+Characteristic diffusion time (d): 0.4480
+</pre></div>
+</div>
+<img alt="../_images/nb_advection_6_1.png" src="../_images/nb_advection_6_1.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -495,8 +540,8 @@ c(L,t) &amp;=\frac{\partial c}{\partial x}=0
 </div>
 </div>
 <p><strong>Task 6</strong>: Starting with the heat equation above simplify the equation to model the temperature evolution in the boundary layer from the surface up to H=2 km height. Assume a fair-weather condition with a subsidence of -0.001 m s-1. Also assume horizontal homogeneity. Parameterize the heat flux using the eddy-diffusivity closure with K=0.25 m s-2. Solve the simplified equation using the following initial and boundary conditions:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-fb06f7a0-4467-46d0-9b10-ae1adc184e24">
-<span class="eqno">()<a class="headerlink" href="#equation-fb06f7a0-4467-46d0-9b10-ae1adc184e24" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-55f3a018-f86a-40f6-9127-2db66e37cb4c">
+<span class="eqno">()<a class="headerlink" href="#equation-55f3a018-f86a-40f6-9127-2db66e37cb4c" title="Permalink to this equation">¶</a></span>\[\begin{align}
 \theta(z,0)=290~K \\
 \overline{w'\theta'}(z,0)=0~W~m^{−2} \\
 \theta(0,t)=290+10 \cdot sin\left(\frac{2\pi \cdot t}{86400}\right)~K \\
@@ -535,8 +580,12 @@ c(L,t) &amp;=\frac{\partial c}{\partial x}=0
     <span class="n">kl</span>  <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">Nz</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span>
 
     <span class="c1"># Initial temperature field</span>
-    <span class="c1"># ADD USER CODE HERE</span>
+    <span class="n">theta</span> <span class="o">=</span> <span class="mi">290</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">Nz</span><span class="p">)</span>
+    <span class="n">theta_all</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">Nz</span><span class="p">,</span><span class="nb">int</span><span class="p">(</span><span class="n">integration</span><span class="o">/</span><span class="n">dt</span><span class="p">)))</span>
 
+    <span class="n">cov</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">Nz</span><span class="p">)</span>
+    <span class="n">cov_all</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">Nz</span><span class="p">,</span><span class="nb">int</span><span class="p">(</span><span class="n">integration</span><span class="o">/</span><span class="n">dt</span><span class="p">)))</span>
+    
     <span class="c1"># Dimensionless parameters</span>
     <span class="n">d</span> <span class="o">=</span> <span class="p">(</span><span class="n">K</span><span class="o">*</span><span class="n">dt</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">dz</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
     <span class="n">c</span> <span class="o">=</span> <span class="p">(</span><span class="n">w</span><span class="o">*</span><span class="n">dt</span><span class="p">)</span><span class="o">/</span><span class="n">dz</span>
@@ -546,16 +595,18 @@ c(L,t) &amp;=\frac{\partial c}{\partial x}=0
     <span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">integration</span><span class="o">/</span><span class="n">dt</span><span class="p">)):</span>
         
         <span class="c1"># Set BC top</span>
-        <span class="c1"># ADD USER CODE HERE</span>
+        <span class="n">theta</span><span class="p">[</span><span class="n">Nz</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">theta</span><span class="p">[</span><span class="n">Nz</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="mf">0.01</span> <span class="o">*</span> <span class="n">dz</span>
         
         <span class="c1"># Set BC surface</span>
-        <span class="c1"># ADD USER CODE HERE</span>
+        <span class="n">theta</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">290</span> <span class="o">+</span> <span class="mf">10.0</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">((</span><span class="mi">2</span><span class="o">*</span><span class="n">pi</span><span class="o">*</span><span class="n">t</span><span class="p">)</span><span class="o">/</span><span class="mi">86400</span><span class="p">)</span>
         
         <span class="c1"># Update flux</span>
-        <span class="c1"># ADD USER CODE HERE</span>
+        <span class="n">theta</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">d</span><span class="p">)</span><span class="o">*</span><span class="n">theta</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">+</span> <span class="p">(</span><span class="n">d</span><span class="o">-</span><span class="p">(</span><span class="n">c</span><span class="o">/</span><span class="mi">2</span><span class="p">))</span><span class="o">*</span><span class="n">theta</span><span class="p">[</span><span class="n">kr</span><span class="p">]</span> <span class="o">+</span> <span class="p">(</span><span class="n">d</span><span class="o">+</span><span class="p">(</span><span class="n">c</span><span class="o">/</span><span class="mi">2</span><span class="p">))</span><span class="o">*</span><span class="n">theta</span><span class="p">[</span><span class="n">kl</span><span class="p">]</span>
+        <span class="n">theta_all</span><span class="p">[:,</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">theta</span><span class="p">[:]</span>
         
         <span class="c1"># Calculate and store the covariance</span>
-        <span class="c1"># ADD USER CODE HERE</span>
+        <span class="n">cov</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="n">K</span> <span class="o">*</span> <span class="p">((</span><span class="n">theta</span><span class="p">[</span><span class="n">kr</span><span class="p">]</span><span class="o">-</span><span class="n">theta</span><span class="p">[</span><span class="n">kl</span><span class="p">])</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">dz</span><span class="p">))</span>
+        <span class="n">cov_all</span><span class="p">[:,</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">cov</span><span class="p">[:]</span>
              
         <span class="c1"># Increase time step</span>
         <span class="n">t</span> <span class="o">=</span> <span class="n">t</span> <span class="o">+</span> <span class="n">dt</span>
@@ -607,6 +658,27 @@ c(L,t) &amp;=\frac{\partial c}{\partial x}=0
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="nn">Input In [9],</span> in <span class="ni">&lt;cell line: 6&gt;</span><span class="nt">()</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">integration</span> <span class="o">=</span> <span class="mi">86400</span><span class="o">*</span><span class="mi">3</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">dt</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">6</span> <span class="n">phi1</span><span class="p">,</span> <span class="n">cov</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">z</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">d</span> <span class="o">=</span> <span class="n">boundary_layer</span><span class="p">(</span><span class="n">w</span><span class="o">=-</span><span class="mf">0.001</span><span class="p">,</span> <span class="n">K</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">integration</span><span class="o">=</span><span class="n">integration</span><span class="p">,</span> <span class="n">dt</span><span class="o">=</span><span class="n">dt</span><span class="p">,</span> <span class="n">Nz</span><span class="o">=</span><span class="n">Nz</span><span class="p">,</span> <span class="n">H</span><span class="o">=</span><span class="n">H</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">8</span> <span class="c1"># Create 2D mesh grid</span>
+<span class="g g-Whitespace">      </span><span class="mi">9</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">make_plot</span><span class="p">(</span><span class="n">phi1</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="n">z</span><span class="p">,</span> <span class="n">levels</span><span class="o">=</span><span class="mi">21</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Theta&#39;</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s1">&#39;K&#39;</span><span class="p">,</span> <span class="n">xlab</span><span class="o">=</span><span class="s1">&#39;Hours&#39;</span><span class="p">,</span> <span class="n">zlab</span><span class="o">=</span><span class="s1">&#39;Height&#39;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;RdBu_r&#39;</span><span class="p">)</span>
+
+<span class="nn">Input In [7],</span> in <span class="ni">boundary_layer</span><span class="nt">(w, K, integration, dt, Nz, H)</span>
+<span class="g g-Whitespace">     </span><span class="mi">41</span> <span class="n">theta</span><span class="p">[</span><span class="n">Nz</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">theta</span><span class="p">[</span><span class="n">Nz</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="mf">0.01</span> <span class="o">*</span> <span class="n">dz</span>
+<span class="g g-Whitespace">     </span><span class="mi">43</span> <span class="c1"># Set BC surface</span>
+<span class="ne">---&gt; </span><span class="mi">44</span> <span class="n">theta</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">290</span> <span class="o">+</span> <span class="mf">10.0</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">((</span><span class="mi">2</span><span class="o">*</span><span class="n">pi</span><span class="o">*</span><span class="n">t</span><span class="p">)</span><span class="o">/</span><span class="mi">86400</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">46</span> <span class="c1"># Update flux</span>
+<span class="g g-Whitespace">     </span><span class="mi">47</span> <span class="n">theta</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">d</span><span class="p">)</span><span class="o">*</span><span class="n">theta</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">+</span> <span class="p">(</span><span class="n">d</span><span class="o">-</span><span class="p">(</span><span class="n">c</span><span class="o">/</span><span class="mi">2</span><span class="p">))</span><span class="o">*</span><span class="n">theta</span><span class="p">[</span><span class="n">kr</span><span class="p">]</span> <span class="o">+</span> <span class="p">(</span><span class="n">d</span><span class="o">+</span><span class="p">(</span><span class="n">c</span><span class="o">/</span><span class="mi">2</span><span class="p">))</span><span class="o">*</span><span class="n">theta</span><span class="p">[</span><span class="n">kl</span><span class="p">]</span>
+
+<span class="ne">NameError</span>: name &#39;pi&#39; is not defined
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -647,22 +719,27 @@ c(L,t) &amp;=\frac{\partial c}{\partial x}=0
     <span class="n">integration</span> <span class="o">=</span> <span class="n">hours</span><span class="o">*</span><span class="mi">3600</span>
     
     <span class="c1"># Define index arrays </span>
-    <span class="c1"># ADD USER CODE HERE</span>
+    <span class="n">k</span>   <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">Nx</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">kr</span>  <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="n">Nx</span><span class="p">)</span>
+    <span class="n">kl</span>  <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">Nx</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span>
     
-    <span class="c1"># Define index arrays </span>
-    <span class="c1"># ADD USER CODE HERE</span>
+    <span class="n">m</span>   <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">Nz</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">mu</span>  <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="n">Nz</span><span class="p">)</span>
+    <span class="n">md</span>  <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">Nz</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span>
 
     <span class="c1"># Initial temperature field</span>
-    <span class="n">theta</span> <span class="o">=</span> <span class="c1"># ADD USER CODE HERE</span>
-    <span class="n">cov</span> <span class="o">=</span>   <span class="c1"># ADD USER CODE HERE</span>
-    <span class="n">adv</span> <span class="o">=</span>   <span class="c1"># ADD USER CODE HERE</span>
+    <span class="n">theta</span> <span class="o">=</span> <span class="mi">273</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="n">Nz</span><span class="p">,</span><span class="n">Nx</span><span class="p">))</span>
+    <span class="n">cov</span> <span class="o">=</span>   <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">Nz</span><span class="p">,</span><span class="n">Nx</span><span class="p">))</span>
+    <span class="n">adv</span> <span class="o">=</span>   <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">Nz</span><span class="p">,</span><span class="n">Nx</span><span class="p">))</span>
     
     <span class="c1"># Define the boundary conditions</span>
     <span class="c1"># Set BC surface</span>
-    <span class="n">theta</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="c1"># ADD USER CODE HERE</span>
+    <span class="n">theta</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="mi">273</span>
     
     <span class="c1"># Initialize lake boudary</span>
-    <span class="c1"># ADD USER CODE HERE</span>
+    <span class="n">lake_from</span> <span class="o">=</span> <span class="mi">50</span>
+    <span class="n">lake_to</span> <span class="o">=</span> <span class="mi">150</span>
+    <span class="n">theta</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">lake_from</span><span class="p">:</span><span class="n">lake_to</span><span class="p">]</span> <span class="o">=</span> <span class="mi">283</span>
     
     <span class="c1"># Dimensionless parameters</span>
     <span class="n">c</span> <span class="o">=</span> <span class="p">(</span><span class="n">u</span><span class="o">*</span><span class="n">dt</span><span class="p">)</span><span class="o">/</span><span class="n">dx</span>
@@ -671,35 +748,40 @@ c(L,t) &amp;=\frac{\partial c}{\partial x}=0
     <span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">integration</span><span class="o">/</span><span class="n">dt</span><span class="p">)):</span>
 
         <span class="c1"># Set BC top</span>
-        <span class="c1"># ADD USER CODE HERE</span>
+        <span class="n">theta</span><span class="p">[</span><span class="n">Nz</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">theta</span><span class="p">[</span><span class="n">Nz</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="p">:]</span> <span class="o">+</span> <span class="mf">0.01</span> <span class="o">*</span> <span class="n">dz</span>
         
         <span class="c1"># Set BC right</span>
-        <span class="c1"># ADD USER CODE HERE</span>
+        <span class="n">theta</span><span class="p">[:,</span><span class="n">Nx</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">theta</span><span class="p">[:,</span><span class="n">Nx</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span>
         
         <span class="c1"># Keep track of old temperature data</span>
         <span class="n">old</span> <span class="o">=</span> <span class="n">theta</span>
             
         <span class="c1"># First update grid cells in x direction (loop over all z values)</span>
         <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">Nx</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
-            <span class="c1"># ADD USER CODE HERE</span>
+            <span class="n">theta</span><span class="p">[</span><span class="n">m</span><span class="p">,</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="n">theta</span><span class="p">[</span><span class="n">m</span><span class="p">,</span><span class="n">x</span><span class="p">]</span> <span class="o">+</span> <span class="p">((</span><span class="n">K</span><span class="o">*</span><span class="n">dt</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">dz</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span><span class="o">*</span>
+                                    <span class="p">(</span><span class="n">old</span><span class="p">[</span><span class="n">mu</span><span class="p">,</span><span class="n">x</span><span class="p">]</span><span class="o">+</span><span class="n">old</span><span class="p">[</span><span class="n">md</span><span class="p">,</span><span class="n">x</span><span class="p">]</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">old</span><span class="p">[</span><span class="n">m</span><span class="p">,</span><span class="n">x</span><span class="p">])</span>
 
         <span class="c1"># Then update grid cells in z direction (loop over all x values)</span>
         <span class="k">for</span> <span class="n">z</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">Nz</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
-            <span class="c1"># ADD USER CODE HERE</span>
+            <span class="n">theta</span><span class="p">[</span><span class="n">z</span><span class="p">,</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">theta</span><span class="p">[</span><span class="n">z</span><span class="p">,</span><span class="n">k</span><span class="p">]</span> <span class="o">-</span> <span class="p">((</span><span class="n">u</span><span class="o">*</span><span class="n">dt</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">dx</span><span class="p">))</span><span class="o">*</span><span class="p">(</span><span class="n">old</span><span class="p">[</span><span class="n">z</span><span class="p">,</span><span class="n">k</span><span class="p">]</span><span class="o">-</span><span class="n">old</span><span class="p">[</span><span class="n">z</span><span class="p">,</span><span class="n">kl</span><span class="p">])</span>
 
         
-    <span class="k">return</span> <span class="c1"># ADD USER CODE HERE</span>
+    <span class="k">return</span> <span class="n">theta</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">Nx</span><span class="o">*</span><span class="n">dx</span><span class="p">,</span> <span class="n">dx</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">Nz</span><span class="o">*</span><span class="n">dz</span><span class="p">,</span> <span class="n">dz</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span>  <span class="n">Input</span> <span class="n">In</span> <span class="p">[</span><span class="mi">6</span><span class="p">]</span>
+    <span class="n">theta</span><span class="p">[</span><span class="n">m</span><span class="p">,</span> <span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="n">theta</span><span class="p">[</span><span class="n">m</span><span class="p">,</span><span class="n">x</span><span class="p">]</span> <span class="o">+</span> <span class="p">((</span><span class="n">K</span><span class="o">*</span><span class="n">dt</span><span class="p">)</span><span class="o">/</span><span class="p">)</span>
+                                       <span class="o">^</span>
+<span class="ne">SyntaxError</span>: invalid syntax
 </pre></div>
 </div>
 </div>
 </div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">theta</span><span class="p">,</span> <span class="n">cov</span><span class="p">,</span> <span class="n">adv</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">z</span> <span class="o">=</span> <span class="n">boundary_layer_evolution</span><span class="p">(</span><span class="n">u</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">K</span><span class="o">=</span><span class="mf">0.02</span><span class="p">,</span> <span class="n">dx</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">dz</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">Nx</span><span class="o">=</span><span class="mi">250</span><span class="p">,</span> <span class="n">Nz</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">hours</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">dt</span><span class="o">=</span><span class="mi">75</span><span class="p">)</span>
-</pre></div>
 </div>
-</div>
-</div>
+<div class="section" id="theta-cov-adv-c-d-x-z-boundary-layer-evolution-u-5-k-0-02-dx-500-dz-5-nx-250-nz-20-hours-10-dt-75">
+<h1>theta, cov, adv, c, d, x, z = boundary_layer_evolution(u=5, K=0.02, dx=500, dz=5, Nx=250, Nz=20, hours=10, dt=75)<a class="headerlink" href="#theta-cov-adv-c-d-x-z-boundary-layer-evolution-u-5-k-0-02-dx-500-dz-5-nx-250-nz-20-hours-10-dt-75" title="Permalink to this headline">¶</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create 2D plot for the covariance</span>

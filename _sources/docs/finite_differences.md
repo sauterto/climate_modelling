@@ -2,9 +2,13 @@
 # Finite differences 
 
 ### Python Notebooks
-[Finite Differences - Heat Equation](heat_equation:exercises)
+* Heat equation
+  * [Exercise: Heat Equation](heat_equation:exercises) 
+  * [Solution: Heat Equation](heat_equation:solution)
 
-[Finite Differences - Advection-Diffusion equation](advection:exercises)
+* Advection
+  * [Exercise: Advection-Diffusion equation](advection:exercises)
+  * [Solution: Advection-Diffusion equation](advection:solution)
 
 ### Exercises:
 
