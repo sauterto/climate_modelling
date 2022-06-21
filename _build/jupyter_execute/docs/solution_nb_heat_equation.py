@@ -25,8 +25,8 @@ def heat_equation(bc_surface, bc_bottom, depth, Nz, integration, dt):
     '''
 
     # Definitions
-    dz    = b/Nz    # Distance between grid points
-    alpha = 1.2e-6  # Conductivity
+    dz    = depth/Nz # Distance between grid points
+    alpha = 1.2e-6   # Conductivity
 
     # Initialize temperature and depth field
     T = np.zeros(Nz)
@@ -64,22 +64,22 @@ def heat_equation(bc_surface, bc_bottom, depth, Nz, integration, dt):
 fig, ax = plt.subplots(2,2,figsize=(12,12))
 
 Nz = 100
-T, dz = heat_equation(20, 0, 5, Nz, 24, 3600)
+T, dz = heat_equation(20, 0, 5, Nz, 24, 60)
 ax[0,0].plot(T,-dz*np.arange(Nz));
 ax[0,0].set_xlabel('Temperature [ºC]')
 ax[0,0].set_ylabel('Depth [m]')
 
-T, dz = heat_equation(20, 0, 5, Nz, 24*14, 3600)
+T, dz = heat_equation(20, 0, 5, Nz, 24*14, 60)
 ax[0,1].plot(T,-dz*np.arange(Nz));
 ax[0,1].set_xlabel('Temperature [ºC]')
 ax[0,1].set_ylabel('Depth [m]')
 
-T, dz = heat_equation(20, 0, 5, Nz, 24*30, 3600)
+T, dz = heat_equation(20, 0, 5, Nz, 24*30, 60)
 ax[1,0].plot(T,-dz*np.arange(Nz));
 ax[1,0].set_xlabel('Temperature [ºC]')
 ax[1,0].set_ylabel('Depth [m]')
 
-T, dz = heat_equation(20, 0, 5, Nz, 24*365, 3600)
+T, dz = heat_equation(20, 0, 5, Nz, 24*365, 60)
 ax[1,1].plot(T,-dz*np.arange(Nz));
 ax[1,1].set_xlabel('Temperature [ºC]')
 ax[1,1].set_ylabel('Depth [m]')
@@ -89,7 +89,7 @@ plt.show()
 
 # ### Heat equation with index arrays
 
-# In[172]:
+# In[3]:
 
 
 get_ipython().run_line_magic('matplotlib', 'inline')
@@ -110,8 +110,8 @@ def heat_equation_indices(bc_surface, bc_bottom, depth, Nz, integration, dt):
     '''
 
     # Definitions
-    dz    = b/Nz    # Distance between grid points
-    alpha = 1.2e-6  # Conductivity
+    dz    = depth/Nz # Distance between grid points
+    alpha = 1.2e-6   # Conductivity
 
     # Define index arrays 
     k  = np.arange(1,Nz-1)  # all indices at location i
@@ -148,7 +148,7 @@ def heat_equation_indices(bc_surface, bc_bottom, depth, Nz, integration, dt):
 
 
 
-# In[173]:
+# In[4]:
 
 
 
@@ -156,22 +156,22 @@ def heat_equation_indices(bc_surface, bc_bottom, depth, Nz, integration, dt):
 fig, ax = plt.subplots(2,2,figsize=(12,12))
 
 Nz = 100
-T, dz = heat_equation_indices(20, 0, 5, Nz, 24, 3600)
+T, dz = heat_equation_indices(20, 0, 5, Nz, 24, 60)
 ax[0,0].plot(T,-dz*np.arange(Nz));
 ax[0,0].set_xlabel('Temperature [ºC]')
 ax[0,0].set_ylabel('Depth [m]')
 
-T, dz = heat_equation_indices(20, 0, 5, Nz, 24*14, 3600)
+T, dz = heat_equation_indices(20, 0, 5, Nz, 24*14, 60)
 ax[0,1].plot(T,-dz*np.arange(Nz));
 ax[0,1].set_xlabel('Temperature [ºC]')
 ax[0,1].set_ylabel('Depth [m]')
 
-T, dz = heat_equation_indices(20, 0, 5, Nz, 24*30, 3600)
+T, dz = heat_equation_indices(20, 0, 5, Nz, 24*30, 60)
 ax[1,0].plot(T,-dz*np.arange(Nz));
 ax[1,0].set_xlabel('Temperature [ºC]')
 ax[1,0].set_ylabel('Depth [m]')
 
-T, dz = heat_equation_indices(20, 0, 5, Nz, 24*365, 3600)
+T, dz = heat_equation_indices(20, 0, 5, Nz, 24*365, 60)
 ax[1,1].plot(T,-dz*np.arange(Nz));
 ax[1,1].set_xlabel('Temperature [ºC]')
 ax[1,1].set_ylabel('Depth [m]')
@@ -184,7 +184,7 @@ plt.show()
 # Using the previous code, solve the Heat Equation using a temporal varying surface boundary condition. Use the following discretization: I = [0; 20 m], N = 40 grid points, 𝜈_𝑔 = 1.2e-6 [m2 s-1 ], and a daily time step. Integrate the equation for several years, e.g. 5 years. Plot the result as a contour plot. Also plot temperature time series in several depths. Discuss the plot!
 # 
 
-# In[174]:
+# In[5]:
 
 
 import numpy as np
@@ -215,7 +215,7 @@ def heat_equation_time(depth, Nz, years):
     Tnew = T
 
     # 2D-Array containing the vertical profiles for all time steps (depth, time)
-    T_all = np.zeros((Nz,int))
+    T_all = np.zeros((Nz,int(integration)))
 
     
     # Time loop
@@ -243,7 +243,7 @@ def heat_equation_time(depth, Nz, years):
 
 
 
-# In[175]:
+# In[6]:
 
 
 # Solve the heat equation
@@ -267,7 +267,7 @@ plt.ylabel('Depth [m]')
 plt.colorbar();
 
 
-# In[176]:
+# In[7]:
 
 
 # Plot temperature in several depths
@@ -275,10 +275,4 @@ plt.figure(figsize=(12,5))
 plt.plot(T_all[0,:]);
 plt.plot(T_all[10,:]);
 plt.plot(T_all[20,:]);
-
-
-# In[ ]:
-
-
-
 

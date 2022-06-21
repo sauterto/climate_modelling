@@ -394,8 +394,8 @@ required dt (diffusion) &lt;= 0.0022 s
 </div>
 </div>
 <p><strong>Task 5</strong>: Solve the Advection-Diffusion equation, with the following initial impulse signal and boundary conditions:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-b7886cf6-72d9-4ebe-b374-fd2d00dc1fec">
-<span class="eqno">()<a class="headerlink" href="#equation-b7886cf6-72d9-4ebe-b374-fd2d00dc1fec" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-d2561495-4797-4ce4-9d41-f13762de1cc6">
+<span class="eqno">()<a class="headerlink" href="#equation-d2561495-4797-4ce4-9d41-f13762de1cc6" title="Permalink to this equation">¶</a></span>\[\begin{align}
 c(n,0) &amp;=exp^{\left(-\left(\frac{(x-10)}{2}\right)^2\right)} \\
 c(0,t) &amp;=0 \\
 c(L,t) &amp;=\frac{\partial c}{\partial x}=0
@@ -512,8 +512,8 @@ Characteristic diffusion time (d): 0.4480
 </div>
 </div>
 <p><strong>Task 6</strong>: Starting with the heat equation above simplify the equation to model the temperature evolution in the boundary layer from the surface up to H=2 km height. Assume a fair-weather condition with a subsidence of -0.001 m s-1. Also assume horizontal homogeneity. Parameterize the heat flux using the eddy-diffusivity closure with K=0.25 m s-2. Solve the simplified equation using the following initial and boundary conditions:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-d8aab444-1609-49c0-9aa9-e29e51795b09">
-<span class="eqno">()<a class="headerlink" href="#equation-d8aab444-1609-49c0-9aa9-e29e51795b09" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-db044fb3-4a51-4e0b-a57f-8bb0bea876e1">
+<span class="eqno">()<a class="headerlink" href="#equation-db044fb3-4a51-4e0b-a57f-8bb0bea876e1" title="Permalink to this equation">¶</a></span>\[\begin{align}
 \theta(z,0)=290~K \\
 \overline{w'\theta'}(z,0)=0~W~m^{−2} \\
 \theta(0,t)=290+10 \cdot sin\left(\frac{2\pi \cdot t}{86400}\right)~K \\
@@ -561,6 +561,7 @@ Characteristic diffusion time (d): 0.4480
     <span class="n">d</span> <span class="o">=</span> <span class="p">(</span><span class="n">K</span><span class="o">*</span><span class="n">dt</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">dz</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
     <span class="n">c</span> <span class="o">=</span> <span class="p">(</span><span class="n">w</span><span class="o">*</span><span class="n">dt</span><span class="p">)</span><span class="o">/</span><span class="n">dz</span>
     
+    <span class="c1"># Init time counter</span>
     <span class="n">t</span> <span class="o">=</span> <span class="mi">0</span>
     
     <span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">integration</span><span class="o">/</span><span class="n">dt</span><span class="p">)):</span>
@@ -607,6 +608,7 @@ Characteristic diffusion time (d): 0.4480
     <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="n">zlab</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
     
+    <span class="c1"># return the handler to the figure axes</span>
     <span class="k">return</span> <span class="n">ax</span>
 </pre></div>
 </div>
@@ -619,6 +621,7 @@ Characteristic diffusion time (d): 0.4480
 <span class="n">integration</span> <span class="o">=</span> <span class="mi">86400</span><span class="o">*</span><span class="mi">3</span>
 <span class="n">dt</span> <span class="o">=</span> <span class="mi">1</span>
 
+<span class="c1"># Run the boundary layer model</span>
 <span class="n">phi1</span><span class="p">,</span> <span class="n">cov</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">z</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">d</span> <span class="o">=</span> <span class="n">boundary_layer</span><span class="p">(</span><span class="n">w</span><span class="o">=-</span><span class="mf">0.001</span><span class="p">,</span> <span class="n">K</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">integration</span><span class="o">=</span><span class="n">integration</span><span class="p">,</span> <span class="n">dt</span><span class="o">=</span><span class="n">dt</span><span class="p">,</span> <span class="n">Nz</span><span class="o">=</span><span class="n">Nz</span><span class="p">,</span> <span class="n">H</span><span class="o">=</span><span class="n">H</span><span class="p">)</span>
 
 <span class="c1"># Create 2D mesh grid</span>
@@ -639,13 +642,13 @@ Characteristic diffusion time (d): 0.4480
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot the heat fluxes</span>
 
 <span class="c1"># Create 2D plot for the covariance</span>
-<span class="n">ax</span> <span class="o">=</span> <span class="n">make_plot</span><span class="p">(</span><span class="n">cov</span><span class="p">[:],</span> <span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="n">z</span><span class="p">,</span> <span class="n">levels</span><span class="o">=</span><span class="mi">21</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Theta&#39;</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s1">&#39;W m$^{-2}$&#39;</span><span class="p">,</span> <span class="n">xlab</span><span class="o">=</span><span class="s1">&#39;Hours&#39;</span><span class="p">,</span> <span class="n">zlab</span><span class="o">=</span><span class="s1">&#39;Height&#39;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;RdBu_r&#39;</span><span class="p">)</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">make_plot</span><span class="p">(</span><span class="n">cov</span><span class="p">[:]</span><span class="o">*</span><span class="mi">1004</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="n">z</span><span class="p">,</span> <span class="n">levels</span><span class="o">=</span><span class="mi">21</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Theta&#39;</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s1">&#39;W m$^{-2}$&#39;</span><span class="p">,</span> <span class="n">xlab</span><span class="o">=</span><span class="s1">&#39;Hours&#39;</span><span class="p">,</span> <span class="n">zlab</span><span class="o">=</span><span class="s1">&#39;Height&#39;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;RdBu_r&#39;</span><span class="p">)</span>
 <span class="c1"># Correct the ticks</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">x</span><span class="o">%</span><span class="p">(</span><span class="mi">3600</span><span class="o">*</span><span class="mi">6</span><span class="p">)</span><span class="o">==</span><span class="mi">0</span><span class="p">]);</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="p">,(</span><span class="n">x</span><span class="p">[</span><span class="n">x</span><span class="o">%</span><span class="p">(</span><span class="mi">3600</span><span class="o">*</span><span class="mi">6</span><span class="p">)</span><span class="o">==</span><span class="mi">0</span><span class="p">]</span><span class="o">/</span><span class="mi">3600</span><span class="p">))),</span> <span class="n">size</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="s1">&#39;normal&#39;</span><span class="p">);</span>
 
 <span class="c1"># Create 2D plot for the kinematic heat flux</span>
-<span class="n">ax</span> <span class="o">=</span> <span class="n">make_plot</span><span class="p">(</span><span class="n">cov</span><span class="p">[:]</span><span class="o">*</span><span class="mi">1004</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="n">z</span><span class="p">,</span> <span class="n">levels</span><span class="o">=</span><span class="mi">21</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Kinematic heat flux&#39;</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s1">&#39;K m$^{-1}$&#39;</span><span class="p">,</span> <span class="n">xlab</span><span class="o">=</span><span class="s1">&#39;Hours&#39;</span><span class="p">,</span> <span class="n">zlab</span><span class="o">=</span><span class="s1">&#39;Height&#39;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;RdBu_r&#39;</span><span class="p">)</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">make_plot</span><span class="p">(</span><span class="n">cov</span><span class="p">[:],</span> <span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="n">z</span><span class="p">,</span> <span class="n">levels</span><span class="o">=</span><span class="mi">21</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Kinematic heat flux&#39;</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s1">&#39;K m s$^{-1}$&#39;</span><span class="p">,</span> <span class="n">xlab</span><span class="o">=</span><span class="s1">&#39;Hours&#39;</span><span class="p">,</span> <span class="n">zlab</span><span class="o">=</span><span class="s1">&#39;Height&#39;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;RdBu_r&#39;</span><span class="p">)</span>
 <span class="c1"># Correct the ticks</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">x</span><span class="o">%</span><span class="p">(</span><span class="mi">3600</span><span class="o">*</span><span class="mi">6</span><span class="p">)</span><span class="o">==</span><span class="mi">0</span><span class="p">]);</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="p">,(</span><span class="n">x</span><span class="p">[</span><span class="n">x</span><span class="o">%</span><span class="p">(</span><span class="mi">3600</span><span class="o">*</span><span class="mi">6</span><span class="p">)</span><span class="o">==</span><span class="mi">0</span><span class="p">]</span><span class="o">/</span><span class="mi">3600</span><span class="p">))),</span> <span class="n">size</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="s1">&#39;normal&#39;</span><span class="p">);</span>
@@ -658,7 +661,7 @@ Characteristic diffusion time (d): 0.4480
 </div>
 </div>
 <p><strong>Task 7</strong>: Intense boundary layer convection may develop when cold air masses are advected over relatively warm surfaces. Develop a simple model for this by assuming that the time evolution of the boundary layer is determined by the vertical turbulent heat transport and the horizontal heat advection. Make the following assumptions: [Hint: use the eddy-diffusivity closure and the upwind scheme for the advection flux]</p>
-<p><img alt="Screenshot%202022-06-18%20at%2018.27.03.png" src="docs/attachment:Screenshot%202022-06-18%20at%2018.27.03.png" /></p>
+<img alt="../_images/lake_erie_exercise.png" src="../_images/lake_erie_exercise.png" />
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">random</span>
@@ -674,27 +677,36 @@ Characteristic diffusion time (d): 0.4480
 <span class="sd">    &quot;&quot;&quot;</span>
        
     <span class="c1"># Some definitions</span>
+    <span class="c1"># Multiply the hours given by the user by 3600 s to </span>
+    <span class="c1"># get the integration time in seconds</span>
     <span class="n">integration</span> <span class="o">=</span> <span class="n">hours</span><span class="o">*</span><span class="mi">3600</span>
     
     <span class="c1"># Define index arrays </span>
-    <span class="n">k</span>   <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">Nx</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
-    <span class="n">kr</span>  <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="n">Nx</span><span class="p">)</span>
-    <span class="n">kl</span>  <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">Nx</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span>
+    <span class="c1"># Since this a 2D problem we need to define two index arrays.</span>
+    <span class="c1"># The first set of index arrays is used for indexing in x-direction. This</span>
+    <span class="c1"># is needed to calculate the derivatives in x-direction (advection)</span>
+    <span class="n">k</span>   <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">Nx</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># center cell</span>
+    <span class="n">kr</span>  <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="n">Nx</span><span class="p">)</span>   <span class="c1"># cells to the right</span>
+    <span class="n">kl</span>  <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">Nx</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span> <span class="c1"># cells to the left</span>
     
-    <span class="c1"># Define index arrays </span>
-    <span class="n">m</span>   <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">Nz</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
-    <span class="n">mu</span>  <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="n">Nz</span><span class="p">)</span>
-    <span class="n">md</span>  <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">Nz</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span>
+    <span class="c1"># The second set of index arrays is used for indexing in z-direction. This</span>
+    <span class="c1"># is needed to calculate the derivates in z-direction (turbulent diffusion)</span>
+    <span class="n">m</span>   <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">Nz</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># center cell</span>
+    <span class="n">mu</span>  <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="n">Nz</span><span class="p">)</span>   <span class="c1"># cells above </span>
+    <span class="n">md</span>  <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">Nz</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span> <span class="c1"># cells below</span>
 
     <span class="c1"># Initial temperature field</span>
-    <span class="n">theta</span> <span class="o">=</span> <span class="mi">268</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="n">Nz</span><span class="p">,</span> <span class="n">Nx</span><span class="p">))</span>
-    <span class="n">cov</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">Nz</span><span class="p">,</span> <span class="n">Nx</span><span class="p">))</span>
-    <span class="n">adv</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">Nz</span><span class="p">,</span> <span class="n">Nx</span><span class="p">))</span>
+    <span class="n">theta</span> <span class="o">=</span> <span class="mi">268</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="n">Nz</span><span class="p">,</span> <span class="n">Nx</span><span class="p">))</span> <span class="c1"># Temperature field is initialized with 268 K</span>
+    <span class="n">cov</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">Nz</span><span class="p">,</span> <span class="n">Nx</span><span class="p">))</span>        <span class="c1"># Empty array for the covariances</span>
+    <span class="n">adv</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">Nz</span><span class="p">,</span> <span class="n">Nx</span><span class="p">))</span>        <span class="c1"># Empty array for the advection term </span>
     
     <span class="c1"># Define the boundary conditions</span>
     <span class="c1"># Set BC surface</span>
     <span class="n">theta</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="mi">268</span>
     
+    <span class="c1"># The lower temperature boundary needs to be updated where there is the lake</span>
+    <span class="c1"># Here, were set the temperature at the lower boundary from the grid cell 50</span>
+    <span class="c1"># to 150 to a temperature of 278 K</span>
     <span class="n">lake_from</span> <span class="o">=</span> <span class="mi">50</span>
     <span class="n">lake_to</span> <span class="o">=</span> <span class="mi">150</span>
     <span class="n">theta</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">lake_from</span><span class="p">:</span><span class="n">lake_to</span><span class="p">]</span> <span class="o">=</span> <span class="mi">278</span>
@@ -703,27 +715,42 @@ Characteristic diffusion time (d): 0.4480
     <span class="n">c</span> <span class="o">=</span> <span class="p">(</span><span class="n">u</span><span class="o">*</span><span class="n">dt</span><span class="p">)</span><span class="o">/</span><span class="n">dx</span>
     <span class="n">d</span> <span class="o">=</span> <span class="p">(</span><span class="n">K</span><span class="o">*</span><span class="n">dt</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">dz</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
 
+    <span class="c1"># Integrate the model</span>
     <span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">integration</span><span class="o">/</span><span class="n">dt</span><span class="p">)):</span>
 
-        <span class="c1"># Set BC top</span>
+        <span class="c1"># Set BC top (Neumann condition)</span>
+        <span class="c1"># The last term accounts for the fixed gradient of 0.01</span>
         <span class="n">theta</span><span class="p">[</span><span class="n">Nz</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">theta</span><span class="p">[</span><span class="n">Nz</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="p">:]</span> <span class="o">+</span> <span class="mf">0.01</span> <span class="o">*</span> <span class="n">dz</span>
         
-        <span class="c1"># Set BC right</span>
+        <span class="c1"># Set BC right (Dirichlet condition)</span>
         <span class="n">theta</span><span class="p">[:,</span> <span class="n">Nx</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">theta</span><span class="p">[:,</span> <span class="n">Nx</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span>
         
+        <span class="c1"># We need to keep track of the old values for calculating the new derivatives.</span>
+        <span class="c1"># That means, the temperature value a grid cell is calculated from its values </span>
+        <span class="c1"># plus the correction term calculated from the old values. This guarantees that</span>
+        <span class="c1"># the gradients for the x an z direction are based on the same old values.</span>
         <span class="n">old</span> <span class="o">=</span> <span class="n">theta</span>
             
-        <span class="c1"># First update grid cells in x direction (loop over all z values)</span>
+        <span class="c1"># First update grid cells in z-direction. Here, we loop over all x grid cells and</span>
+        <span class="c1"># use the index arrays m, mu, md to calculate the gradients for the</span>
+        <span class="c1"># turbulent diffusion (which only depends on z)</span>
         <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">Nx</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+            <span class="c1"># Update the temperature</span>
             <span class="n">theta</span><span class="p">[</span><span class="n">m</span><span class="p">,</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="n">theta</span><span class="p">[</span><span class="n">m</span><span class="p">,</span><span class="n">x</span><span class="p">]</span> <span class="o">+</span> <span class="p">((</span><span class="n">K</span><span class="o">*</span><span class="n">dt</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">dz</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span><span class="o">*</span><span class="p">(</span><span class="n">old</span><span class="p">[</span><span class="n">mu</span><span class="p">,</span><span class="n">x</span><span class="p">]</span><span class="o">+</span><span class="n">old</span><span class="p">[</span><span class="n">md</span><span class="p">,</span><span class="n">x</span><span class="p">]</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">old</span><span class="p">[</span><span class="n">m</span><span class="p">,</span><span class="n">x</span><span class="p">])</span>
-            <span class="n">cov</span><span class="p">[</span><span class="n">m</span><span class="p">,</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="n">K</span><span class="o">*</span><span class="p">((</span><span class="n">old</span><span class="p">[</span><span class="n">mu</span><span class="p">,</span><span class="n">x</span><span class="p">]</span><span class="o">-</span><span class="n">theta</span><span class="p">[</span><span class="n">md</span><span class="p">,</span><span class="n">x</span><span class="p">])</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">dz</span><span class="p">))</span>
+            <span class="c1"># Calculate the warming rate [K/s] by covariance</span>
+            <span class="n">cov</span><span class="p">[</span><span class="n">m</span><span class="p">,</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="p">((</span><span class="n">K</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">dz</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span><span class="o">*</span><span class="p">(</span><span class="n">old</span><span class="p">[</span><span class="n">mu</span><span class="p">,</span><span class="n">x</span><span class="p">]</span><span class="o">+</span><span class="n">old</span><span class="p">[</span><span class="n">md</span><span class="p">,</span><span class="n">x</span><span class="p">]</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">old</span><span class="p">[</span><span class="n">m</span><span class="p">,</span><span class="n">x</span><span class="p">])</span>
 
-        <span class="c1"># Then update grid cells in z direction (loop over all x values)</span>
+        <span class="c1"># Then update grid cells in x-direction. Here, we loop over all z grid cells and</span>
+        <span class="c1"># use the index arrays k, kl, kr to calculate the gradients for the</span>
+        <span class="c1"># advection (which only depends on x)</span>
         <span class="k">for</span> <span class="n">z</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">Nz</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+            <span class="c1"># Update the temperature</span>
             <span class="n">theta</span><span class="p">[</span><span class="n">z</span><span class="p">,</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">theta</span><span class="p">[</span><span class="n">z</span><span class="p">,</span><span class="n">k</span><span class="p">]</span> <span class="o">-</span> <span class="p">((</span><span class="n">u</span><span class="o">*</span><span class="n">dt</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">dx</span><span class="p">))</span><span class="o">*</span><span class="p">(</span><span class="n">old</span><span class="p">[</span><span class="n">z</span><span class="p">,</span><span class="n">k</span><span class="p">]</span><span class="o">-</span><span class="n">old</span><span class="p">[</span><span class="n">z</span><span class="p">,</span><span class="n">kl</span><span class="p">])</span>
+            <span class="c1"># Calculate the warming rate [K/s] by the horizontal advection </span>
+            <span class="c1"># Note: Here, we use a so-called upwind-scheme (backward discretization)</span>
             <span class="n">adv</span><span class="p">[</span><span class="n">z</span><span class="p">,</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span> <span class="p">(</span><span class="n">u</span><span class="o">/</span><span class="n">dx</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">old</span><span class="p">[</span><span class="n">z</span><span class="p">,</span><span class="n">k</span><span class="p">]</span><span class="o">-</span><span class="n">old</span><span class="p">[</span><span class="n">z</span><span class="p">,</span><span class="n">kl</span><span class="p">])</span>
 
-        
+    <span class="c1"># Return results    </span>
     <span class="k">return</span> <span class="n">theta</span><span class="p">,</span> <span class="n">cov</span><span class="p">,</span> <span class="n">adv</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">Nx</span><span class="o">*</span><span class="n">dx</span><span class="p">,</span> <span class="n">dx</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">Nz</span><span class="o">*</span><span class="n">dz</span><span class="p">,</span> <span class="n">dz</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -731,7 +758,8 @@ Characteristic diffusion time (d): 0.4480
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">theta</span><span class="p">,</span> <span class="n">cov</span><span class="p">,</span> <span class="n">adv</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">z</span> <span class="o">=</span> <span class="n">boundary_layer_evolution</span><span class="p">(</span><span class="n">u</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">K</span><span class="o">=</span><span class="mf">0.02</span><span class="p">,</span> <span class="n">dx</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">dz</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">Nx</span><span class="o">=</span><span class="mi">250</span><span class="p">,</span> <span class="n">Nz</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">hours</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">dt</span><span class="o">=</span><span class="mi">75</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run the model</span>
+<span class="n">theta</span><span class="p">,</span> <span class="n">cov</span><span class="p">,</span> <span class="n">adv</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">z</span> <span class="o">=</span> <span class="n">boundary_layer_evolution</span><span class="p">(</span><span class="n">u</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">K</span><span class="o">=</span><span class="mf">0.02</span><span class="p">,</span> <span class="n">dx</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">dz</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">Nx</span><span class="o">=</span><span class="mi">250</span><span class="p">,</span> <span class="n">Nz</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">hours</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">dt</span><span class="o">=</span><span class="mi">75</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -740,7 +768,7 @@ Characteristic diffusion time (d): 0.4480
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create 2D plot for the covariance</span>
 <span class="n">ax</span> <span class="o">=</span> <span class="n">make_plot</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="o">/</span><span class="mi">1000</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="n">z</span><span class="p">,</span> <span class="n">levels</span><span class="o">=</span><span class="mi">21</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Heat flux&#39;</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s1">&#39;W m$^{-2}$&#39;</span><span class="p">,</span> 
-               <span class="n">xlab</span><span class="o">=</span><span class="s1">&#39;Distance&#39;</span><span class="p">,</span> <span class="n">zlab</span><span class="o">=</span><span class="s1">&#39;Height&#39;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;RdBu_r&#39;</span><span class="p">)</span>
+               <span class="n">xlab</span><span class="o">=</span><span class="s1">&#39;Distance [km]&#39;</span><span class="p">,</span> <span class="n">zlab</span><span class="o">=</span><span class="s1">&#39;Height [m]&#39;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;RdBu_r&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -750,40 +778,63 @@ Characteristic diffusion time (d): 0.4480
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create 2D plot for the covariance</span>
-<span class="n">ax</span> <span class="o">=</span> <span class="n">make_plot</span><span class="p">(</span><span class="n">cov</span><span class="o">*</span><span class="mi">1004</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="o">/</span><span class="mi">1000</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="n">z</span><span class="p">,</span> <span class="n">levels</span><span class="o">=</span><span class="mi">21</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Kinematic heat flux&#39;</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s1">&#39;K m s$^{-1}$&#39;</span><span class="p">,</span> 
-               <span class="n">xlab</span><span class="o">=</span><span class="s1">&#39;Distance&#39;</span><span class="p">,</span> <span class="n">zlab</span><span class="o">=</span><span class="s1">&#39;Height&#39;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;RdBu_r&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot the warming rate by turbulent mixing</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">make_plot</span><span class="p">(</span><span class="n">cov</span><span class="o">*</span><span class="mi">3600</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="o">/</span><span class="mi">1000</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="n">z</span><span class="p">,</span> <span class="n">levels</span><span class="o">=</span><span class="mi">21</span><span class="p">,</span> 
+               <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Warming rate by turbulent mixing&#39;</span><span class="p">,</span> 
+               <span class="n">unit</span><span class="o">=</span><span class="s1">&#39;K h$^{-1}$&#39;</span><span class="p">,</span> 
+               <span class="n">xlab</span><span class="o">=</span><span class="s1">&#39;Distance&#39;</span><span class="p">,</span> 
+               <span class="n">zlab</span><span class="o">=</span><span class="s1">&#39;Height&#39;</span><span class="p">,</span> 
+               <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;RdBu_r&#39;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Maximum warming rate by turbulent mixing: </span><span class="si">{:.2f}</span><span class="s1"> K/h&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">cov</span><span class="o">*</span><span class="mi">3600</span><span class="p">)))</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/solution_nb_advection_18_0.png" src="../_images/solution_nb_advection_18_0.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Maximum warming rate by turbulent mixing: 24.41 K/h
+</pre></div>
+</div>
+<img alt="../_images/solution_nb_advection_18_1.png" src="../_images/solution_nb_advection_18_1.png" />
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create 2D plot for the covariance</span>
-<span class="n">ax</span> <span class="o">=</span> <span class="n">make_plot</span><span class="p">((</span><span class="n">cov</span><span class="p">[:,:]</span><span class="o">/</span><span class="mi">5</span><span class="p">)</span><span class="o">*</span><span class="mi">3600</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="o">/</span><span class="mi">1000</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="n">z</span><span class="p">,</span> <span class="n">levels</span><span class="o">=</span><span class="mi">21</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Warming rate per hour due to turbulent mixing&#39;</span><span class="p">,</span> 
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot the warming rate by advection</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">make_plot</span><span class="p">(</span><span class="n">adv</span><span class="o">*</span><span class="mi">3600</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="o">/</span><span class="mi">1000</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="n">z</span><span class="p">,</span> <span class="n">levels</span><span class="o">=</span><span class="mi">21</span><span class="p">,</span> 
+               <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Warming rate due to advection&#39;</span><span class="p">,</span> 
                <span class="n">unit</span><span class="o">=</span><span class="s1">&#39;K h$^{-1}$&#39;</span><span class="p">,</span> 
                <span class="n">xlab</span><span class="o">=</span><span class="s1">&#39;Distance&#39;</span><span class="p">,</span> <span class="n">zlab</span><span class="o">=</span><span class="s1">&#39;Height&#39;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;RdBu_r&#39;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Maximum warming rate by turbulent mixing: </span><span class="si">{:.2f}</span><span class="s1"> K/h&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">adv</span><span class="o">*</span><span class="mi">3600</span><span class="p">)))</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/solution_nb_advection_19_0.png" src="../_images/solution_nb_advection_19_0.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Maximum warming rate by turbulent mixing: 26.31 K/h
+</pre></div>
+</div>
+<img alt="../_images/solution_nb_advection_19_1.png" src="../_images/solution_nb_advection_19_1.png" />
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create 2D plot for the covariance</span>
-<span class="n">ax</span> <span class="o">=</span> <span class="n">make_plot</span><span class="p">(</span><span class="n">adv</span><span class="o">*</span><span class="mi">3600</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="o">/</span><span class="mi">1000</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="n">z</span><span class="p">,</span> <span class="n">levels</span><span class="o">=</span><span class="mi">21</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Warming rate per hour due to advection&#39;</span><span class="p">,</span> 
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot the total warming rate </span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">make_plot</span><span class="p">((</span><span class="n">adv</span><span class="o">*</span><span class="mi">3600</span><span class="p">)</span><span class="o">+</span><span class="p">(</span><span class="n">cov</span><span class="o">*</span><span class="mi">3600</span><span class="p">),</span> <span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="o">/</span><span class="mi">1000</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="n">z</span><span class="p">,</span> <span class="n">levels</span><span class="o">=</span><span class="mi">21</span><span class="p">,</span> 
+               <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Warming rate due to advection&#39;</span><span class="p">,</span> 
                <span class="n">unit</span><span class="o">=</span><span class="s1">&#39;K h$^{-1}$&#39;</span><span class="p">,</span> 
                <span class="n">xlab</span><span class="o">=</span><span class="s1">&#39;Distance&#39;</span><span class="p">,</span> <span class="n">zlab</span><span class="o">=</span><span class="s1">&#39;Height&#39;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;RdBu_r&#39;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Maximum total warming rate : </span><span class="si">{:.2f}</span><span class="s1"> K/h&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">((</span><span class="n">cov</span><span class="o">*</span><span class="mi">3600</span><span class="p">)</span><span class="o">+</span><span class="p">(</span><span class="n">adv</span><span class="o">*</span><span class="mi">3600</span><span class="p">))))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Minimum total warming rate : </span><span class="si">{:.2f}</span><span class="s1"> K/h&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">((</span><span class="n">cov</span><span class="o">*</span><span class="mi">3600</span><span class="p">)</span><span class="o">+</span><span class="p">(</span><span class="n">adv</span><span class="o">*</span><span class="mi">3600</span><span class="p">))))</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/solution_nb_advection_20_0.png" src="../_images/solution_nb_advection_20_0.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Maximum total warming rate : 17.48 K/h
+Minimum total warming rate : -17.49 K/h
+</pre></div>
+</div>
+<img alt="../_images/solution_nb_advection_20_1.png" src="../_images/solution_nb_advection_20_1.png" />
 </div>
 </div>
 </div>

@@ -311,8 +311,20 @@ const thebe_selector_output = ".output, .cell_output"
 <span id="finite-differences-header"></span><h1>Finite differences<a class="headerlink" href="#finite-differences" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="python-notebooks">
 <h2>Python Notebooks<a class="headerlink" href="#python-notebooks" title="Permalink to this headline">¶</a></h2>
-<p><a class="reference internal" href="nb_heat_equation.html#heat-equation-exercises"><span class="std std-ref">Finite Differences - Heat Equation</span></a></p>
-<p><a class="reference internal" href="nb_advection.html#advection-exercises"><span class="std std-ref">Finite Differences - Advection-Diffusion equation</span></a></p>
+<ul class="simple">
+<li><p>Heat equation</p>
+<ul>
+<li><p><a class="reference internal" href="nb_heat_equation.html#heat-equation-exercises"><span class="std std-ref">Exercise: Heat Equation</span></a></p></li>
+<li><p><a class="reference internal" href="solution_nb_heat_equation.html#heat-equation-solution"><span class="std std-ref">Solution: Heat Equation</span></a></p></li>
+</ul>
+</li>
+<li><p>Advection</p>
+<ul>
+<li><p><a class="reference internal" href="nb_advection.html#advection-exercises"><span class="std std-ref">Exercise: Advection-Diffusion equation</span></a></p></li>
+<li><p><a class="reference internal" href="solution_nb_advection.html#advection-solution"><span class="std std-ref">Solution: Advection-Diffusion equation</span></a></p></li>
+</ul>
+</li>
+</ul>
 </div>
 <div class="section" id="exercises">
 <h2>Exercises:<a class="headerlink" href="#exercises" title="Permalink to this headline">¶</a></h2>
@@ -345,8 +357,8 @@ increase the wind speed. Discuss the results.</p>
 <blockquote>
 <div><p><strong>Task 5</strong>: Solve the Advection-Diffusion equation form x=0 to L, with the
 following initial and boundary conditions:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-d945cc6f-984b-4b5f-86aa-7d14ddfd1783">
-<span class="eqno">(11)<a class="headerlink" href="#equation-d945cc6f-984b-4b5f-86aa-7d14ddfd1783" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-30d8013a-6872-4883-8fc4-67cecdff1985">
+<span class="eqno">(11)<a class="headerlink" href="#equation-30d8013a-6872-4883-8fc4-67cecdff1985" title="Permalink to this equation">¶</a></span>\[\begin{align}
 c(x,0)&amp;=e^{\left(\frac{x-10}{2}\right)^2}\\
 c(0,t)&amp;=0\\
 c(L,t)&amp;=\frac{\partial c}{\partial x}=0
@@ -362,8 +374,8 @@ H=2 km height. Assume a fair-weather condition with a subsidence of -0.001 m
 s<span class="math notranslate nohighlight">\(^{-1}\)</span>. Also assume horizontal homogeneity. Parameterize the heat flux using the
 eddy-diffusivity closure with K=0.25 m s<span class="math notranslate nohighlight">\(^{-2}\)</span>. Solve the simplified equation
 using the following initial and boundary conditions:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-15aaf738-3998-48d3-8c8e-1060597a1cb0">
-<span class="eqno">(12)<a class="headerlink" href="#equation-15aaf738-3998-48d3-8c8e-1060597a1cb0" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-55600001-e7cc-48ee-a0cd-69055e91584b">
+<span class="eqno">(12)<a class="headerlink" href="#equation-55600001-e7cc-48ee-a0cd-69055e91584b" title="Permalink to this equation">¶</a></span>\[\begin{align}
 \theta(z,0)&amp;=290~K\\
 \overline{w'\theta'}(z,0)&amp;=0~W~m^{-2} \\
 \theta(0,t)&amp;=290+10\cdot sin \left( \frac{2\pi \cdot t}{86400} \right) \\

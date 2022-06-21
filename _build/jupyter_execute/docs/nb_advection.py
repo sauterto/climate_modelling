@@ -50,15 +50,15 @@ def advection_diffusion(u, K, integration, dt, Nx):
 
     # Dimensionless parameters
     # CHANGE THE TWO LINES OF CODE HERE
-    c = None
-    d = None
+    c = (u*dt)/dx
+    d = (K*dt)/(dx**2)
 
     # Time loop
     t = 0
 
     while t <= integration:
         # Update flux
-        # ADD USER CODE HERE
+        phi[k] = (1-2*d) * phi[k] + (d-(c/2))*phi[kr] - (d+(c/2))*phi[kl]
         
         # Update time
         t = t + dt     
@@ -80,7 +80,7 @@ plt.plot(phi)
 plt.show()
 
 
-# In[ ]:
+# In[3]:
 
 
 # Define the CFL criteria
@@ -100,7 +100,7 @@ print('')
 # 
 # Integrate the equation with K=0.1, u=1.0 over 0.05 s with a Δ𝑡=0.0028. Plot the results and the dimensionless time scales. Increase gradually Δ𝑡 and plot and analyse the results for different integration times.
 
-# In[ ]:
+# In[4]:
 
 
 import numpy as np
@@ -135,7 +135,7 @@ def advection_diffusion(u, K, integration, dt, Nx):
     kl  = np.arange(0,Nx-2)
 
     # Initial temperature field
-    # ADD USER CODE HERE
+    phi = np.exp(-((np.arange(Nx)-10)/2)**2)
                  
     # Set boundary condiiton
     phi[Nx-1] = bc_r
@@ -149,23 +149,22 @@ def advection_diffusion(u, K, integration, dt, Nx):
     t = 0
   
     while t <= integration:
-        t = 999999999999
-    
-        # Set BC
-        # ADD USER CODE HERE
+
+        # Set BC (Neumann condition)
+        phi[Nx-1] = phi[Nx-2]
         
         # Update flux
-        # ADD USER CODE HERE
+        phi[k] = (1-2*d)*phi[k] + (d-(c/2))*phi[kr] + (d+(c/2))*phi[kl]
 
         # Increate time
-        # ADD USER CODE HERE  
+        t = t + dt  
         
     return(phi, dx, u, K, c, d)
 
 
 
 
-# In[ ]:
+# In[5]:
 
 
 phi, dx, u, K, c, d = advection_diffusion(u=1.0, K=0.1, integration=0.05, dt=0.0028, Nx=40)
@@ -181,7 +180,7 @@ plt.plot(phi)
 plt.show()
 
 
-# In[ ]:
+# In[6]:
 
 
 # Simulate evolution for different time steps
@@ -203,7 +202,7 @@ plt.show()
 # - What is the maximum heat flux in W m$^{-2}$? Is this a realistic values for a fair-weather condition?
 # - Calculate the heat rate.
 
-# In[ ]:
+# In[7]:
 
 
 def boundary_layer(w, K, integration, dt, Nz, H):
@@ -231,8 +230,12 @@ def boundary_layer(w, K, integration, dt, Nz, H):
     kl  = np.arange(0,Nz-2)
 
     # Initial temperature field
-    # ADD USER CODE HERE
+    theta = 290 * np.ones(Nz)
+    theta_all = np.zeros((Nz,int(integration/dt)))
 
+    cov = np.zeros(Nz)
+    cov_all = np.zeros((Nz,int(integration/dt)))
+    
     # Dimensionless parameters
     d = (K*dt)/(dz**2)
     c = (w*dt)/dz
@@ -242,16 +245,18 @@ def boundary_layer(w, K, integration, dt, Nz, H):
     for idx in range(int(integration/dt)):
         
         # Set BC top
-        # ADD USER CODE HERE
+        theta[Nz-1] = theta[Nz-2] + 0.01 * dz
         
         # Set BC surface
-        # ADD USER CODE HERE
+        theta[0] = 290 + 10.0 * np.sin((2*pi*t)/86400)
         
         # Update flux
-        # ADD USER CODE HERE
+        theta[k] = (1-2*d)*theta[k] + (d-(c/2))*theta[kr] + (d+(c/2))*theta[kl]
+        theta_all[:,idx] = theta[:]
         
         # Calculate and store the covariance
-        # ADD USER CODE HERE
+        cov[k] = -K * ((theta[kr]-theta[kl]) / (2*dz))
+        cov_all[:,idx] = cov[:]
              
         # Increase time step
         t = t + dt
@@ -259,7 +264,7 @@ def boundary_layer(w, K, integration, dt, Nz, H):
     return(theta_all, cov_all, dz, u, K, c, d)
 
 
-# In[ ]:
+# In[8]:
 
 
 def make_plot(data, x, z, levels, title, unit, xlab, zlab, cmap='RdBu_r'):
@@ -282,7 +287,7 @@ def make_plot(data, x, z, levels, title, unit, xlab, zlab, cmap='RdBu_r'):
     return ax
 
 
-# In[ ]:
+# In[9]:
 
 
 Nz = 200
@@ -322,7 +327,7 @@ ax.set_xticklabels(list(map(str,(x[x%(3600*6)==0]/3600))), size=10, weight='norm
 
 # ![Screenshot%202022-06-18%20at%2018.27.03.png](attachment:Screenshot%202022-06-18%20at%2018.27.03.png)
 
-# In[ ]:
+# In[6]:
 
 
 import random
@@ -341,22 +346,27 @@ def boundary_layer_evolution(u, K, dx, dz, Nx, Nz, hours, dt):
     integration = hours*3600
     
     # Define index arrays 
-    # ADD USER CODE HERE
+    k   = np.arange(1,Nx-1)
+    kr  = np.arange(2,Nx)
+    kl  = np.arange(0,Nx-2)
     
-    # Define index arrays 
-    # ADD USER CODE HERE
+    m   = np.arange(1,Nz-1)
+    mu  = np.arange(2,Nz)
+    md  = np.arange(0,Nz-2)
 
     # Initial temperature field
-    theta = # ADD USER CODE HERE
-    cov =   # ADD USER CODE HERE
-    adv =   # ADD USER CODE HERE
+    theta = 273 * np.ones((Nz,Nx))
+    cov =   np.zeros((Nz,Nx))
+    adv =   np.zeros((Nz,Nx))
     
     # Define the boundary conditions
     # Set BC surface
-    theta[0, :] = # ADD USER CODE HERE
+    theta[0, :] = 273
     
     # Initialize lake boudary
-    # ADD USER CODE HERE
+    lake_from = 50
+    lake_to = 150
+    theta[0, lake_from:lake_to] = 283
     
     # Dimensionless parameters
     c = (u*dt)/dx
@@ -365,32 +375,29 @@ def boundary_layer_evolution(u, K, dx, dz, Nx, Nz, hours, dt):
     for idx in range(int(integration/dt)):
 
         # Set BC top
-        # ADD USER CODE HERE
+        theta[Nz-1, :] = theta[Nz-2, :] + 0.01 * dz
         
         # Set BC right
-        # ADD USER CODE HERE
+        theta[:,Nx-1] = theta[:,Nx-2]
         
         # Keep track of old temperature data
         old = theta
             
         # First update grid cells in x direction (loop over all z values)
         for x in range(1,Nx-1):
-            # ADD USER CODE HERE
+            theta[m,x] = theta[m,x] + ((K*dt)/(dz**2))*
+                                    (old[mu,x]+old[md,x]-2*old[m,x])
 
         # Then update grid cells in z direction (loop over all x values)
         for z in range(1,Nz-1):
-            # ADD USER CODE HERE
+            theta[z,k] = theta[z,k] - ((u*dt)/(dx))*(old[z,k]-old[z,kl])
 
         
-    return # ADD USER CODE HERE
+    return theta, c, d, np.arange(0, Nx*dx, dx), np.arange(0, Nz*dz, dz)
 
 
 
-# In[ ]:
-
-
-theta, cov, adv, c, d, x, z = boundary_layer_evolution(u=5, K=0.02, dx=500, dz=5, Nx=250, Nz=20, hours=10, dt=75)
-
+# ## theta, cov, adv, c, d, x, z = boundary_layer_evolution(u=5, K=0.02, dx=500, dz=5, Nx=250, Nz=20, hours=10, dt=75)
 
 # In[ ]:
 
