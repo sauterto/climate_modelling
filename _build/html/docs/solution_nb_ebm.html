@@ -164,8 +164,18 @@ const thebe_selector_output = ".output, .cell_output"
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="finite_differences.html">
-     Finite differences
+    <a class="reference internal" href="heat_equation.html">
+     Heat Equation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="advection.html">
+     Advection-Diffusion
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="seb.html">
+     Surface Energy Balance model
     </a>
    </li>
   </ul>
@@ -520,8 +530,8 @@ The equilibrium temperature increased by about 2.8 K.
 </div>
 <p><strong>Task 9:</strong> Integrate the equation over a time of 200 years and plot the result. Use the following initial and boundary conditions:</p>
 <p>$</p>
-<div class="amsmath math notranslate nohighlight" id="equation-c5da5109-37ef-4846-bc4c-901facbdbc80">
-<span class="eqno">()<a class="headerlink" href="#equation-c5da5109-37ef-4846-bc4c-901facbdbc80" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-d8c7c6b2-e226-44d5-a2ff-c9fb5c76a69b">
+<span class="eqno">()<a class="headerlink" href="#equation-d8c7c6b2-e226-44d5-a2ff-c9fb5c76a69b" title="Permalink to this equation">¶</a></span>\[\begin{align}
 S_0 &amp;=1360 ~ W m^{-2} \\
 T_0 &amp;= 273 ~ K \\ 
 C_w &amp;= 10^8 ~ J/(m^2 \cdot K) \\
@@ -585,7 +595,7 @@ C_w &amp;= 10^8 ~ J/(m^2 \cdot K) \\
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x1079b9880&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x10ecb78b0&gt;]
 </pre></div>
 </div>
 <img alt="../_images/solution_nb_ebm_23_1.png" src="../_images/solution_nb_ebm_23_1.png" />
@@ -605,7 +615,7 @@ C_w &amp;= 10^8 ~ J/(m^2 \cdot K) \\
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x107b06760&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x10ee07700&gt;]
 </pre></div>
 </div>
 <img alt="../_images/solution_nb_ebm_25_1.png" src="../_images/solution_nb_ebm_25_1.png" />
@@ -626,7 +636,7 @@ C_w &amp;= 10^8 ~ J/(m^2 \cdot K) \\
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x107b8a5e0&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x10ee8b520&gt;]
 </pre></div>
 </div>
 <img alt="../_images/solution_nb_ebm_27_1.png" src="../_images/solution_nb_ebm_27_1.png" />
@@ -650,7 +660,7 @@ C_w &amp;= 10^8 ~ J/(m^2 \cdot K) \\
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x107c05640&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x10ef026a0&gt;
 </pre></div>
 </div>
 <img alt="../_images/solution_nb_ebm_29_1.png" src="../_images/solution_nb_ebm_29_1.png" />
@@ -672,7 +682,7 @@ C_w &amp;= 10^8 ~ J/(m^2 \cdot K) \\
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x107d80370&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x10efc8670&gt;
 </pre></div>
 </div>
 <img alt="../_images/solution_nb_ebm_31_1.png" src="../_images/solution_nb_ebm_31_1.png" />
@@ -694,7 +704,7 @@ C_w &amp;= 10^8 ~ J/(m^2 \cdot K) \\
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x107dde040&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x10f0cdc10&gt;
 </pre></div>
 </div>
 <img alt="../_images/solution_nb_ebm_33_1.png" src="../_images/solution_nb_ebm_33_1.png" />

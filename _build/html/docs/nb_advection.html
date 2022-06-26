@@ -164,8 +164,18 @@ const thebe_selector_output = ".output, .cell_output"
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="finite_differences.html">
-     Finite differences
+    <a class="reference internal" href="heat_equation.html">
+     Heat Equation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="advection.html">
+     Advection-Diffusion
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="seb.html">
+     Surface Energy Balance model
     </a>
    </li>
   </ul>
@@ -433,8 +443,8 @@ required dt (diffusion) &lt;= 0.0022 s
 </div>
 </div>
 <p><strong>Task 5</strong>: Solve the Advection-Diffusion equation, with the following initial impulse signal and boundary conditions:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-fa9ff8ee-a5a7-40e1-a742-a0e095e1b8c5">
-<span class="eqno">()<a class="headerlink" href="#equation-fa9ff8ee-a5a7-40e1-a742-a0e095e1b8c5" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-df9e1d9c-7e9d-42c1-9f1d-750b903c6990">
+<span class="eqno">()<a class="headerlink" href="#equation-df9e1d9c-7e9d-42c1-9f1d-750b903c6990" title="Permalink to this equation">¶</a></span>\[\begin{align}
 c(n,0) &amp;=exp^{\left(-\left(\frac{(x-10)}{2}\right)^2\right)} \\
 c(0,t) &amp;=0 \\
 c(L,t) &amp;=\frac{\partial c}{\partial x}=0
@@ -540,8 +550,8 @@ Characteristic diffusion time (d): 0.4480
 </div>
 </div>
 <p><strong>Task 6</strong>: Starting with the heat equation above simplify the equation to model the temperature evolution in the boundary layer from the surface up to H=2 km height. Assume a fair-weather condition with a subsidence of -0.001 m s-1. Also assume horizontal homogeneity. Parameterize the heat flux using the eddy-diffusivity closure with K=0.25 m s-2. Solve the simplified equation using the following initial and boundary conditions:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-55f3a018-f86a-40f6-9127-2db66e37cb4c">
-<span class="eqno">()<a class="headerlink" href="#equation-55f3a018-f86a-40f6-9127-2db66e37cb4c" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-15c7232c-319a-45e2-8b9d-26630a750f63">
+<span class="eqno">()<a class="headerlink" href="#equation-15c7232c-319a-45e2-8b9d-26630a750f63" title="Permalink to this equation">¶</a></span>\[\begin{align}
 \theta(z,0)=290~K \\
 \overline{w'\theta'}(z,0)=0~W~m^{−2} \\
 \theta(0,t)=290+10 \cdot sin\left(\frac{2\pi \cdot t}{86400}\right)~K \\

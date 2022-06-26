@@ -10,6 +10,8 @@
   * [Exercise: Advection-Diffusion equation](advection:exercises)
   * [Solution: Advection-Diffusion equation](advection:solution)
 
+* Surface Energy Balance model
+  * [Solution: Surface Energy Balance](seb:solution)
 ### Exercises:
 
 >**Task 1**: Integrate the heat equation for several days using a time step of

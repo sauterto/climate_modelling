@@ -55,7 +55,6 @@ const thebe_selector_output = ".output, .cell_output"
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="prev" title="Fluid dynamics" href="fluid_dynamics.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -99,7 +98,7 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
 </ul>
-<ul class="current nav bd-sidenav">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1 has-children">
   <a class="reference internal" href="intro_to_python.html">
    Lesson 0 -Introduction to Python
@@ -149,24 +148,34 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
   </ul>
  </li>
- <li class="toctree-l1 current active has-children">
+ <li class="toctree-l1 has-children">
   <a class="reference internal" href="numerical_models.html">
    Lesson 2 - Numerical Models
   </a>
-  <input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
   <label for="toctree-checkbox-3">
    <i class="fas fa-chevron-down">
    </i>
   </label>
-  <ul class="current">
+  <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="fluid_dynamics.html">
      Fluid dynamics
     </a>
    </li>
-   <li class="toctree-l2 current active">
-    <a class="current reference internal" href="#">
-     Finite differences
+   <li class="toctree-l2">
+    <a class="reference internal" href="heat_equation.html">
+     Heat Equation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="advection.html">
+     Advection-Diffusion
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="seb.html">
+     Surface Energy Balance model
     </a>
    </li>
   </ul>
@@ -324,6 +333,11 @@ const thebe_selector_output = ".output, .cell_output"
 <li><p><a class="reference internal" href="solution_nb_advection.html#advection-solution"><span class="std std-ref">Solution: Advection-Diffusion equation</span></a></p></li>
 </ul>
 </li>
+<li><p>Surface Energy Balance model</p>
+<ul>
+<li><p><a class="reference internal" href="solution_nb_SEB.html#seb-solution"><span class="std std-ref">Solution: Surface Energy Balance</span></a></p></li>
+</ul>
+</li>
 </ul>
 </div>
 <div class="section" id="exercises">
@@ -357,8 +371,8 @@ increase the wind speed. Discuss the results.</p>
 <blockquote>
 <div><p><strong>Task 5</strong>: Solve the Advection-Diffusion equation form x=0 to L, with the
 following initial and boundary conditions:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-30d8013a-6872-4883-8fc4-67cecdff1985">
-<span class="eqno">(11)<a class="headerlink" href="#equation-30d8013a-6872-4883-8fc4-67cecdff1985" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-552174cf-ab15-431f-ae9d-4d1d80817f92">
+<span class="eqno">()<a class="headerlink" href="#equation-552174cf-ab15-431f-ae9d-4d1d80817f92" title="Permalink to this equation">¶</a></span>\[\begin{align}
 c(x,0)&amp;=e^{\left(\frac{x-10}{2}\right)^2}\\
 c(0,t)&amp;=0\\
 c(L,t)&amp;=\frac{\partial c}{\partial x}=0
@@ -374,8 +388,8 @@ H=2 km height. Assume a fair-weather condition with a subsidence of -0.001 m
 s<span class="math notranslate nohighlight">\(^{-1}\)</span>. Also assume horizontal homogeneity. Parameterize the heat flux using the
 eddy-diffusivity closure with K=0.25 m s<span class="math notranslate nohighlight">\(^{-2}\)</span>. Solve the simplified equation
 using the following initial and boundary conditions:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-55600001-e7cc-48ee-a0cd-69055e91584b">
-<span class="eqno">(12)<a class="headerlink" href="#equation-55600001-e7cc-48ee-a0cd-69055e91584b" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-069a0d0c-4837-493f-9900-886df98b398a">
+<span class="eqno">()<a class="headerlink" href="#equation-069a0d0c-4837-493f-9900-886df98b398a" title="Permalink to this equation">¶</a></span>\[\begin{align}
 \theta(z,0)&amp;=290~K\\
 \overline{w'\theta'}(z,0)&amp;=0~W~m^{-2} \\
 \theta(0,t)&amp;=290+10\cdot sin \left( \frac{2\pi \cdot t}{86400} \right) \\
@@ -426,14 +440,7 @@ scheme for the advection flux]</p>
               
             
                 <!-- Previous / next buttons -->
-<div class='prev-next-area'> 
-    <a class='left-prev' id="prev-link" href="fluid_dynamics.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Fluid dynamics</p>
-        </div>
-    </a>
+<div class='prev-next-area'>
 </div>
             
         </div>

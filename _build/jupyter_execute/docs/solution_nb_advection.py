@@ -409,7 +409,7 @@ def boundary_layer_evolution(u, K, dx, dz, Nx, Nz, hours, dt):
         # use the index arrays m, mu, md to calculate the gradients for the
         # turbulent diffusion (which only depends on z)
         for x in range(1,Nx-1):
-            # Update the temperature
+            # temperature - turbulent diffusion
             theta[m,x] = theta[m,x] + ((K*dt)/(dz**2))*(old[mu,x]+old[md,x]-2*old[m,x])
             # Calculate the warming rate [K/s] by covariance
             cov[m,x] = ((K)/(dz**2))*(old[mu,x]+old[md,x]-2*old[m,x])
@@ -418,7 +418,7 @@ def boundary_layer_evolution(u, K, dx, dz, Nx, Nz, hours, dt):
         # use the index arrays k, kl, kr to calculate the gradients for the
         # advection (which only depends on x)
         for z in range(1,Nz-1):
-            # Update the temperature
+            # temperature advection
             theta[z,k] = theta[z,k] - ((u*dt)/(dx))*(old[z,k]-old[z,kl])
             # Calculate the warming rate [K/s] by the horizontal advection 
             # Note: Here, we use a so-called upwind-scheme (backward discretization)
@@ -467,7 +467,7 @@ ax = make_plot(adv*3600, x=x/1000, z=z, levels=21,
                unit='K h$^{-1}$', 
                xlab='Distance', zlab='Height', cmap='RdBu_r')
 
-print('Maximum warming rate by turbulent mixing: {:.2f} K/h'.format(np.max(adv*3600)))
+print('Maximum warming rate by advection: {:.2f} K/h'.format(np.max(adv*3600)))
 
 
 # In[16]:
@@ -483,8 +483,442 @@ print('Maximum total warming rate : {:.2f} K/h'.format(np.max((cov*3600)+(adv*36
 print('Minimum total warming rate : {:.2f} K/h'.format(np.min((cov*3600)+(adv*3600))))
 
 
-# In[ ]:
+# **Task 8**: Extend the Lake-effect model by adding the moisture transport equation. Assume that the top millimetres above the water surface are saturated. Assume that the atmosphere has a relative humidity of 70 %. Calculate the relative humidity at each grid cell. [Note: Convert the potential temperature to normal temperature and calculate the mixing ratio at each cell. Then calculate the relative humidity.]
+# 
+
+# In[17]:
+
+
+import random
+
+    
+# --------------------------
+# Auxiliary functions
+# --------------------------
+def saturation_water_vapor(T):
+    """ Calculates the saturation water vapor pressure [Pa]"""
+    return ( 6.122*np.exp( (17.67*(T-273.16))/(T-29.66) ) )
+
+def hypsometric_eqn(p0, Tv, z):
+    """Hypsometric equation to calculate the pressure [hPa] at a certain height[m]
+       when the surface pressure is given
+       p0 :: surface pressure [hPa]
+       Tv :: mean virtual temperature of atmosphere [K]
+       z  :: height above ground [m]
+    """
+    return(p0/(np.exp((9.81*z)/(287.4*Tv) )))
+
+def mixing_ratio(theta, p0, Tv, z):
+    """ Calculates the mixing ratio from
+        theta :: temperature [K]
+        p0    :: surface pressure [hPa]
+        Tv    :: mean virtual temperature of atmosphere [K]
+        z     :: height [m]
+    """
+    return(622.97 * (saturation_water_vapor(theta)/(hypsometric_eqn(p0,Tv,z)-saturation_water_vapor(theta))))
+           
+    
+    
+    
+def boundary_layer_evolution_moisture(u, K, dx, dz, Nx, Nz, hours, dt):
+    """ Simple advection-diffusion equation.
+    
+    integration :: Integration time in seconds
+    Nz          :: Number of grid points
+    dt          :: time step in seconds
+    K           :: turbulent diffusivity
+    u           :: Speed of fluid
+    """
+       
+    # Some definitions
+    # Multiply the hours given by the user by 3600 s to 
+    # get the integration time in seconds
+    integration = hours*3600
+    
+    # Define index arrays 
+    # Since this a 2D problem we need to define two index arrays.
+    # The first set of index arrays is used for indexing in x-direction. This
+    # is needed to calculate the derivatives in x-direction (advection)
+    k   = np.arange(1,Nx-1) # center cell
+    kr  = np.arange(2,Nx)   # cells to the right
+    kl  = np.arange(0,Nx-2) # cells to the left
+    
+    # The second set of index arrays is used for indexing in z-direction. This
+    # is needed to calculate the derivates in z-direction (turbulent diffusion)
+    m   = np.arange(1,Nz-1) # center cell
+    mu  = np.arange(2,Nz)   # cells above 
+    md  = np.arange(0,Nz-2) # cells below
+
+    # Make height grid
+    height = np.array([np.arange(0,Nz*dz,dz),] * Nx).transpose()
+    
+    # Lake definition (grid points)
+    lake_from = 50
+    lake_to = 150
+    
+    # --------------------------
+    # Initial temperature field
+    # --------------------------
+    # Neutral stratification with lapse rate of 0.01 K/m
+    # Create a 1D-array with the vertical temperature distribution
+    # Surface = 268 K, decreasing according to the dry-adiabative lapse rate 0.01 K/m
+    lapse_rate = -0.01
+    theta_vec = np.array([268 + lapse_rate * (dz * z) for z in range(Nz)])
+    theta = np.array([theta_vec,] * Nx).transpose() 
+    
+    # The lower temperature boundary needs to be updated where there is the lake
+    # Here, were set the temperature at the lower boundary from the grid cell 50
+    # to 150 to a temperature of 278 K
+    theta[0, lake_from:lake_to] = 278
+    
+    # --------------------------
+    # Initialize moisture fields 
+    # --------------------------
+    # Init saturation mixing ratio array
+    qsat = mixing_ratio(theta, 1013, 270, height)
+    
+    # Use qsat to derive mixing ratio at each grid cell assuming a 
+    # decreasing relative humidity from 70 % at the surfacee to 20 % at the top
+    q = (qsat.T * np.linspace(0.7, 0.2, Nz)).T
+    
+    # The lower moisture boundary needs to be updated where there is the lake
+    # Here, were set the moisture at the lower boundary from the grid cell 50
+    # to 150 to a mixing ratio of 0.9 times the saturation mixing ratio
+    q[0, lake_from:lake_to] = 0.9 * qsat[0, lake_from:lake_to] 
+
+    # --------------------------
+    # Init other arrays
+    # --------------------------
+    cov = np.zeros((Nz, Nx))        # Empty array for the covariances
+    adv = np.zeros((Nz, Nx))        # Empty array for the advection term 
+    
+    # --------------------------
+    # Dimensionless parameters
+    # --------------------------
+    c = (u*dt)/dx
+    d = (K*dt)/(dz**2)
+
+    # --------------------------
+    # Integrate the model
+    # --------------------------
+    for idx in range(int(integration/dt)):
+
+        # Set BC top (Neumann condition)
+        # The last term accounts for the fixed gradient of 0.01
+        theta[Nz-1, :] = theta[Nz-2, :]# - 0.005 * dz
+        
+        # Set top BC for moisture
+        q[Nz-1, :] = q[Nz-2, :] 
+        
+        # Set BC right (Dirichlet condition)
+        theta[:, Nx-1] = theta[:, Nx-2]
+        
+        # Set right BC for moisture
+        q[:, Nx-1] = q[:, Nx-2]
+        
+        # We need to keep track of the old values for calculating the new derivatives.
+        # That means, the temperature value a grid cell is calculated from its values 
+        # plus the correction term calculated from the old values. This guarantees that
+        # the gradients for the x an z direction are based on the same old values.
+        old = theta
+        old_q = q
+            
+        # First update grid cells in z-direction. Here, we loop over all x grid cells and
+        # use the index arrays m, mu, md to calculate the gradients for the
+        # turbulent diffusion (which only depends on z)
+        for x in range(1,Nx-1):
+            # Update temperature including lapse rate 
+            theta[m,x] = theta[m,x] + ((K*dt)/(dz**2))*(old[mu,x]+old[md,x]-2*old[m,x]) + lapse_rate
+            # Moisture transport (turbulent diffusion)
+            q[m,x] = q[m,x] + ((K*dt)/(dz**2))*(old_q[mu,x]+old_q[md,x]-2*old_q[m,x])
+            # Calculate the warming rate [K/s] by covariance
+            cov[m,x] = ((K)/(dz**2))*(old[mu,x]+old[md,x]-2*old[m,x])
+
+        # Then update grid cells in x-direction. Here, we loop over all z grid cells and
+        # use the index arrays k, kl, kr to calculate the gradients for the
+        # advection (which only depends on x)
+        for z in range(1,Nz-1):
+            # temperature advection
+            theta[z,k] = theta[z,k] - ((u*dt)/(dx))*(old[z,k]-old[z,kl])
+            # moisture advection
+            q[z,k] = q[z,k] - ((u*dt)/(dx))*(old_q[z,k]-old_q[z,kl])
+            # Calculate the warming rate [K/s] by the horizontal advection 
+            # Note: Here, we use a so-called upwind-scheme (backward discretization)
+            adv[z,k] = - (u/dx)*(old[z,k]-old[z,kl])
+            
+        # Calculate new saturation mixing ratio
+        qsat = mixing_ratio(theta, 1013, 270, height)
+        
+        # Then the relative humidity using qsat
+        # Limit the relative humidity to 100 %
+        rH = np.minimum(q/qsat, 1)
+        
+    # Return results    
+    return theta, q, qsat, rH, cov, adv, c, d, np.arange(0, Nx*dx, dx), np.arange(0, Nz*dz, dz)
+
+
+# In[18]:
+
+
+# Run the model
+theta, q, qsat, rH, cov, adv, c, d, x, z = boundary_layer_evolution_moisture(u=5, K=0.2, dx=500, dz=10, 
+                                                                       Nx=250, Nz=40, hours=24, dt=60)
+
+
+# In[19]:
+
+
+# Create 2D plot for the covariance
+ax = make_plot(theta, x=x/1000, z=z, levels=11, title='Temperature', unit='K', 
+               xlab='Distance [km]', zlab='Height [m]', cmap='RdBu_r')
+
+# Create 2D plot for the covariance
+ax = make_plot(q, x=x/1000, z=z, levels=11, title='Mixing ratio', unit='g kg$^{-1}$', 
+               xlab='Distance [km]', zlab='Height [m]', cmap='YlGnBu')
+
+# Create 2D plot for the covariance
+ax = make_plot(qsat, x=x/1000, z=z, levels=11, title='Saturation mixing ratio', unit='g kg$^{-1}$', 
+               xlab='Distance [km]', zlab='Height [m]', cmap='YlGnBu')
+
+# Create 2D plot for the covariance
+ax = make_plot(rH*100, x=x/1000, z=z, levels=11, title='Relative humidity', unit='%', 
+               xlab='Distance [km]', zlab='Height [m]', cmap='YlGnBu')
+ax.contour(x/1000, z,rH,levels=[0.95,1.0],colors='red')
+
+
+# In[20]:
+
+
+# Base run
+theta0, q0, qsat0, rH0, cov0, adv0, c0, d0, x0, z0 = boundary_layer_evolution_moisture(u=5, K=0.2, dx=500, dz=10, 
+                                                                       Nx=250, Nz=40, hours=0.1, dt=60)
+
+
+# In[21]:
+
+
+# Create 2D plot for the covariance
+ax = make_plot(theta-theta0, x=x/1000, z=z, levels=11, title='Temperature difference', unit='K', 
+               xlab='Distance [km]', zlab='Height [m]', cmap='RdBu_r')
+
+# Create 2D plot for the covariance
+ax = make_plot(q-q0, x=x/1000, z=z, levels=11, title='Mixing ratio difference', unit='g kg$^{-1}$', 
+               xlab='Distance [km]', zlab='Height [m]', cmap='RdBu_r')
+
+# Create 2D plot for the covariance
+ax = make_plot(qsat-qsat0, x=x/1000, z=z, levels=11, title='Saturation mixing ratio difference', unit='g kg$^{-1}$', 
+               xlab='Distance [km]', zlab='Height [m]', cmap='RdBu_r')
+
+# Create 2D plot for the covariance
+ax = make_plot((rH-rH0)*100, x=x/1000, z=z, levels=11, title='Relative humidity difference', unit='%', 
+               xlab='Distance [km]', zlab='Height [m]', cmap='RdBu_r')
+ax.contour(x/1000, z,rH,levels=[0.95,1.0],colors='lightgreen')
+
+
+# In[22]:
+
+
+import random
+
+    
+# --------------------------
+# Auxiliary functions
+# --------------------------
+def saturation_water_vapor(T):
+    """ Calculates the saturation water vapor pressure [Pa]"""
+    return ( 6.122*np.exp( (17.67*(T-273.16))/(T-29.66) ) )
+
+def hypsometric_eqn(p0, Tv, z):
+    """Hypsometric equation to calculate the pressure at a certain height 
+       when the surface pressure is given
+       p0 :: surface pressure [hPa]
+       Tv :: mean virtual temperature of atmosphere [K]
+       z  :: height above ground [m]
+    """
+    return(p0/(np.exp((9.81*z)/(287.4*Tv) )))
+
+def mixing_ratio(theta, p0, Tv, z):
+    """ Calculates the mixing ratio from
+        theta :: temperature [K]
+        p0    :: surface pressure [hPa]
+        Tv    :: mean virtual temperature of atmosphere [K]
+        z     :: height [m]
+    """
+    return(622.97 * (saturation_water_vapor(theta)/(hypsometric_eqn(p0,Tv,z)-saturation_water_vapor(theta))))
+           
+    
+    
+    
+def boundary_layer_evolution_moisture_gamma(u, K, dx, dz, Nx, Nz, hours, dt):
+    """ Simple advection-diffusion equation.
+    
+    integration :: Integration time in seconds
+    Nz          :: Number of grid points
+    dt          :: time step in seconds
+    K           :: turbulent diffusivity
+    u           :: Speed of fluid
+    """
+       
+    # Some definitions
+    # Multiply the hours given by the user by 3600 s to 
+    # get the integration time in seconds
+    integration = hours*3600
+    
+    # Define index arrays 
+    # Since this a 2D problem we need to define two index arrays.
+    # The first set of index arrays is used for indexing in x-direction. This
+    # is needed to calculate the derivatives in x-direction (advection)
+    k   = np.arange(1,Nx-1) # center cell
+    kr  = np.arange(2,Nx)   # cells to the right
+    kl  = np.arange(0,Nx-2) # cells to the left
+    
+    # The second set of index arrays is used for indexing in z-direction. This
+    # is needed to calculate the derivates in z-direction (turbulent diffusion)
+    m   = np.arange(1,Nz-1) # center cell
+    mu  = np.arange(2,Nz)   # cells above 
+    md  = np.arange(0,Nz-2) # cells below
+
+    # Make height grid
+    height = np.array([np.arange(0,Nz*dz,dz),] * Nx).transpose()
+    
+    # Make lapse rate array
+    Gamma = -0.01 * np.ones((Nz, Nx))
+    
+    # Lake definition (grid points)
+    lake_from = 50
+    lake_to = 150
+    
+    # --------------------------
+    # Initial temperature field
+    # --------------------------
+    # Neutral stratification with lapse rate of 0.01 K/m
+    # Create a 1D-array with the vertical temperature distribution
+    # Surface = 268 K, decreasing according to the dry-adiabative lapse rate 0.01 K/m
+    lapse_rate = -0.01
+    theta_vec = np.array([268 + lapse_rate * (dz * z) for z in range(Nz)])
+    theta = np.array([theta_vec,] * Nx).transpose() 
+    
+    # The lower temperature boundary needs to be updated where there is the lake
+    # Here, were set the temperature at the lower boundary from the grid cell 50
+    # to 150 to a temperature of 278 K
+    theta[0, lake_from:lake_to] = 278
+    
+    # --------------------------
+    # Initialize moisture fields 
+    # --------------------------
+    # Init moisture array with a relative humidity of 70 %
+    qsat = mixing_ratio(theta, 1013, 270, height)
+    
+    # Multiply with relative humidity (80 %)
+    q = (qsat.T * np.linspace(0.7, 0.2, Nz)).T
+    
+    
+    # The lower moisture boundary needs to be updated where there is the lake
+    # Here, were set the moisture at the lower boundary from the grid cell 50
+    # to 150 to a mixing ratio of 0.9 times the saturation mixing ratio
+    q[0, lake_from:lake_to] = 0.9 * qsat[0, lake_from:lake_to] 
+
+    # --------------------------
+    # Init other arrays
+    # --------------------------
+    cov = np.zeros((Nz, Nx))        # Empty array for the covariances
+    adv = np.zeros((Nz, Nx))        # Empty array for the advection term 
+    
+    # --------------------------
+    # Dimensionless parameters
+    # --------------------------
+    c = (u*dt)/dx
+    d = (K*dt)/(dz**2)
+
+    # --------------------------
+    # Integrate the model
+    # --------------------------
+    for idx in range(int(integration/dt)):
+
+        # Set BC top (Neumann condition)
+        # The last term accounts for the fixed gradient of 0.01
+        theta[Nz-1, :] = theta[Nz-2, :]# - 0.005 * dz
+        
+        # Set top BC for moisture
+        q[Nz-1, :] = q[Nz-2, :] 
+        
+        # Set BC right (Dirichlet condition)
+        theta[:, Nx-1] = theta[:, Nx-2]
+        
+        # Set right BC for moisture
+        q[:, Nx-1] = q[:, Nx-2]
+        
+        # We need to keep track of the old values for calculating the new derivatives.
+        # That means, the temperature value a grid cell is calculated from its values 
+        # plus the correction term calculated from the old values. This guarantees that
+        # the gradients for the x an z direction are based on the same old values.
+        old = theta
+        old_q = q
+            
+        # First update grid cells in z-direction. Here, we loop over all x grid cells and
+        # use the index arrays m, mu, md to calculate the gradients for the
+        # turbulent diffusion (which only depends on z)
+        for x in range(1,Nx-1):
+            # Temperature diffusion + lapse rate 
+            theta[m,x] = theta[m,x] + ((K*dt)/(dz**2))*(old[mu,x]+old[md,x]-2*old[m,x]) + Gamma[m,x]
+            # Turbulent diffusion of moisture
+            q[m,x] = q[m,x] + ((K*dt)/(dz**2))*(old_q[mu,x]+old_q[md,x]-2*old_q[m,x])
+            # Calculate the warming rate [K/s] by covariance
+            cov[m,x] = ((K)/(dz**2))*(old[mu,x]+old[md,x]-2*old[m,x])
+
+        # Then update grid cells in x-direction. Here, we loop over all z grid cells and
+        # use the index arrays k, kl, kr to calculate the gradients for the
+        # advection (which only depends on x)
+        for z in range(1,Nz-1):
+            # temperature advection
+            theta[z,k] = theta[z,k] - ((u*dt)/(dx))*(old[z,k]-old[z,kl])
+            # moisture advection
+            q[z,k] = q[z,k] - ((u*dt)/(dx))*(old_q[z,k]-old_q[z,kl])
+            # Calculate the warming rate [K/s] by the horizontal advection 
+            # Note: Here, we use a so-called upwind-scheme (backward discretization)
+            adv[z,k] = - (u/dx)*(old[z,k]-old[z,kl])
+            
+        # Calculate new saturation mixing ratio
+        qsat = mixing_ratio(theta, 1013, 270, height)
+        
+        # Then the relative humidity using qsat
+        rH = np.minimum(q/qsat, 1)
+        
+        # Correct lapse rates where rH==100% (moist adiabatic lapse rate)
+        Gamma[rH==1] = -0.006
+        
+    # Return results    
+    return theta, q, qsat, rH, cov, adv, c, d, np.arange(0, Nx*dx, dx), np.arange(0, Nz*dz, dz)
 
 
 
+
+# In[23]:
+
+
+# Base run
+theta0, q0, qsat0, rH0, cov0, adv0, c0, d0, x0, z0 = boundary_layer_evolution_moisture_gamma(u=5, K=0.2, 
+                                                                    dx=500, dz=10, 
+                                                                    Nx=250, Nz=40, hours=24, dt=60)
+
+
+# In[24]:
+
+
+# Create 2D plot for the covariance
+ax = make_plot(theta, x=x/1000, z=z, levels=11, title='Temperature', unit='K', 
+               xlab='Distance [km]', zlab='Height [m]', cmap='RdBu_r')
+
+# Create 2D plot for the covariance
+ax = make_plot(q, x=x/1000, z=z, levels=11, title='Mixing ratio', unit='g kg$^{-1}$', 
+               xlab='Distance [km]', zlab='Height [m]', cmap='YlGnBu')
+
+# Create 2D plot for the covariance
+ax = make_plot(qsat, x=x/1000, z=z, levels=11, title='Saturation mixing ratio', unit='g kg$^{-1}$', 
+               xlab='Distance [km]', zlab='Height [m]', cmap='YlGnBu')
+
+# Create 2D plot for the covariance
+ax = make_plot(rH*100, x=x/1000, z=z, levels=11, title='Relative humidity', unit='%', 
+               xlab='Distance [km]', zlab='Height [m]', cmap='YlGnBu')
+ax.contour(x/1000, z,rH,levels=[0.95,1.0],colors='red')
 
