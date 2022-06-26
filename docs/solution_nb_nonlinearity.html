@@ -164,8 +164,18 @@ const thebe_selector_output = ".output, .cell_output"
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="finite_differences.html">
-     Finite differences
+    <a class="reference internal" href="heat_equation.html">
+     Heat Equation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="advection.html">
+     Advection-Diffusion
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="seb.html">
+     Surface Energy Balance model
     </a>
    </li>
   </ul>
@@ -523,8 +533,8 @@ y_{t+1} = r \cdot y_{t} \cdot (1-y_{t}),
 </div>
 <p><strong>Extend the model with a simple ice/land use albedo parameterisation. (sigmoid version)</strong></p>
 <p><strong>Task 5:</strong> In this parameterisation, the albedo is solely a function of mean temperature. As a non-linear function we assume a sigmoid function with</p>
-<div class="amsmath math notranslate nohighlight" id="equation-692dadaf-f31b-467e-ba10-ffefc0463b90">
-<span class="eqno">()<a class="headerlink" href="#equation-692dadaf-f31b-467e-ba10-ffefc0463b90" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-aa7c2c8b-c7a1-4ce9-a251-e62c86e13a17">
+<span class="eqno">()<a class="headerlink" href="#equation-aa7c2c8b-c7a1-4ce9-a251-e62c86e13a17" title="Permalink to this equation">¶</a></span>\[\begin{align}
 \alpha(T_i) = 0.3 \cdot (1-0.2 \cdot \tanh(0.5 \cdot (T_i-288))).
 \end{align}\]</div>
 <p>Run the energy balance model for 100 years with four different initial conditions for T(0)=286.0, 287.9, 288.0, and 293.0 K, while fixing the other parameters to <span class="math notranslate nohighlight">\(C_w\)</span>= 2<span class="math notranslate nohighlight">\(\cdot10^8\)</span> J/(m<span class="math notranslate nohighlight">\(^2 \cdot\)</span> K) and <span class="math notranslate nohighlight">\(\tau_{mean}\)</span>=0.608.</p>
@@ -603,8 +613,8 @@ y_{t+1} = r \cdot y_{t} \cdot (1-y_{t}),
 </div>
 <p><strong>Extend the model with a simple ice/land use albedo parameterisation. (linear version)</strong></p>
 <p><strong>Task 6:</strong> In this parameterisation, the albedo is solely a function of mean temperature. We assume a simple linear relation according to</p>
-<div class="amsmath math notranslate nohighlight" id="equation-7f23402c-7838-425f-8610-674f93f6f55c">
-<span class="eqno">()<a class="headerlink" href="#equation-7f23402c-7838-425f-8610-674f93f6f55c" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-9041665e-b291-483d-ac7a-0f3f6e1f04c1">
+<span class="eqno">()<a class="headerlink" href="#equation-9041665e-b291-483d-ac7a-0f3f6e1f04c1" title="Permalink to this equation">¶</a></span>\[\begin{align}
     f(x)= 
 \begin{cases}
     \alpha_i,&amp; \text{if } T\leq T_i\\
