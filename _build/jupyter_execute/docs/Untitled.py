@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[1]:
+# In[59]:
 
 
 import numpy as np
@@ -40,7 +40,7 @@ plt.plot(np.array(t_meas),np.array(z_meas))
 #plt.plot(np.array(u2)/(mu*C),np.arange(0,zmax,0.5))
 
 
-# In[2]:
+# In[ ]:
 
 
 np.arange(0,10,0.1)

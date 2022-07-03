@@ -67,7 +67,7 @@ def advection_diffusion(u, K, integration, dt, Nx):
 
 
 
-# In[2]:
+# In[3]:
 
 
 phi, dx, u, K, c, d = advection_diffusion(u=1.0, K=0.1, integration=0.05, dt=0.0028, Nx=40)
@@ -80,7 +80,7 @@ plt.plot(phi)
 plt.show()
 
 
-# In[3]:
+# In[ ]:
 
 
 # Define the CFL criteria
@@ -100,7 +100,7 @@ print('')
 # 
 # Integrate the equation with K=0.1, u=1.0 over 0.05 s with a Δ𝑡=0.0028. Plot the results and the dimensionless time scales. Increase gradually Δ𝑡 and plot and analyse the results for different integration times.
 
-# In[4]:
+# In[ ]:
 
 
 import numpy as np
@@ -164,7 +164,7 @@ def advection_diffusion(u, K, integration, dt, Nx):
 
 
 
-# In[5]:
+# In[ ]:
 
 
 phi, dx, u, K, c, d = advection_diffusion(u=1.0, K=0.1, integration=0.05, dt=0.0028, Nx=40)
@@ -180,7 +180,7 @@ plt.plot(phi)
 plt.show()
 
 
-# In[6]:
+# In[ ]:
 
 
 # Simulate evolution for different time steps
@@ -202,7 +202,7 @@ plt.show()
 # - What is the maximum heat flux in W m$^{-2}$? Is this a realistic values for a fair-weather condition?
 # - Calculate the heat rate.
 
-# In[7]:
+# In[5]:
 
 
 def boundary_layer(w, K, integration, dt, Nz, H):
@@ -264,7 +264,7 @@ def boundary_layer(w, K, integration, dt, Nz, H):
     return(theta_all, cov_all, dz, u, K, c, d)
 
 
-# In[8]:
+# In[ ]:
 
 
 def make_plot(data, x, z, levels, title, unit, xlab, zlab, cmap='RdBu_r'):
@@ -287,7 +287,7 @@ def make_plot(data, x, z, levels, title, unit, xlab, zlab, cmap='RdBu_r'):
     return ax
 
 
-# In[9]:
+# In[ ]:
 
 
 Nz = 200

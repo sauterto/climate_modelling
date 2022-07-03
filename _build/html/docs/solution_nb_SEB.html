@@ -178,6 +178,11 @@ const thebe_selector_output = ".output, .cell_output"
      Surface Energy Balance model
     </a>
    </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="coupled_model.html">
+     Coupled boundary layer model
+    </a>
+   </li>
   </ul>
  </li>
 </ul>
@@ -348,10 +353,7 @@ const thebe_selector_output = ".output, .cell_output"
     <span class="n">eps_cs</span> <span class="o">=</span> <span class="mf">0.23</span> <span class="o">+</span> <span class="mf">0.433</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="mi">100</span><span class="o">*</span><span class="p">(</span><span class="n">f</span><span class="o">*</span><span class="n">E_sat</span><span class="p">(</span><span class="n">T_a</span><span class="p">))</span><span class="o">/</span><span class="n">T_a</span><span class="p">,</span><span class="mf">1.0</span><span class="o">/</span><span class="mf">8.0</span><span class="p">)</span>
     
     <span class="c1"># Select the appropriate latent heat constant</span>
-    <span class="k">if</span> <span class="n">T_0</span><span class="o">&lt;=</span><span class="mf">273.16</span><span class="p">:</span>
-        <span class="n">L</span> <span class="o">=</span> <span class="mf">2.83e6</span> <span class="c1"># latent heat for sublimation</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="n">L</span> <span class="o">=</span> <span class="mf">2.50e6</span> <span class="c1"># latent heat for vaporization</span>
+    <span class="n">L</span> <span class="o">=</span> <span class="mf">2.83e6</span> <span class="c1"># latent heat for sublimation</span>
 
     <span class="c1"># Calculate turbulent fluxes</span>
     <span class="n">H_0</span> <span class="o">=</span> <span class="n">rho</span> <span class="o">*</span> <span class="n">c_p</span>  <span class="o">*</span> <span class="n">Cs_t</span> <span class="o">*</span> <span class="n">U_L</span> <span class="o">*</span> <span class="p">(</span><span class="n">T_0</span><span class="o">-</span><span class="n">T_a</span><span class="p">)</span>
@@ -360,18 +362,13 @@ const thebe_selector_output = ".output, .cell_output"
     <span class="c1"># Calculate radiation budget</span>
     <span class="n">L_d</span> <span class="o">=</span> <span class="n">eps_cs</span> <span class="o">*</span> <span class="n">sigma</span> <span class="o">*</span> <span class="p">(</span><span class="n">T_a</span><span class="p">)</span><span class="o">**</span><span class="mi">4</span>
     <span class="n">L_u</span> <span class="o">=</span> <span class="n">sigma</span> <span class="o">*</span> <span class="p">(</span><span class="n">T_0</span><span class="p">)</span><span class="o">**</span><span class="mi">4</span> 
-    <span class="n">Q_0</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">albedo</span><span class="p">)</span><span class="o">*</span><span class="n">G</span> <span class="o">+</span> <span class="n">L_d</span> <span class="o">-</span> <span class="n">L_u</span>
+    <span class="n">Q_0</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">albedo</span><span class="p">)</span><span class="o">*</span><span class="n">G</span> <span class="c1">#+ L_d - L_u</span>
 
-    <span class="k">return</span> <span class="p">(</span><span class="n">Q_0</span><span class="p">,</span><span class="n">H_0</span><span class="p">,</span><span class="n">E_0</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">Q_0</span><span class="p">,</span> <span class="n">L_d</span><span class="p">,</span> <span class="n">L_u</span><span class="p">,</span> <span class="n">H_0</span><span class="p">,</span> <span class="n">E_0</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">E_sat</span><span class="p">(</span><span class="n">T</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot; Saturation water vapor equation &quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="n">T</span><span class="o">&gt;=</span><span class="mf">273.16</span><span class="p">:</span>
-        <span class="c1"># over water</span>
-        <span class="n">Ew</span> <span class="o">=</span> <span class="mf">6.112</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">((</span><span class="mf">17.67</span><span class="o">*</span><span class="p">(</span><span class="n">T</span><span class="o">-</span><span class="mf">273.16</span><span class="p">))</span> <span class="o">/</span> <span class="p">((</span><span class="n">T</span><span class="o">-</span><span class="mf">29.66</span><span class="p">)))</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="c1"># over ice</span>
-        <span class="n">Ew</span> <span class="o">=</span> <span class="mf">6.112</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">((</span><span class="mf">22.46</span><span class="o">*</span><span class="p">(</span><span class="n">T</span><span class="o">-</span><span class="mf">273.16</span><span class="p">))</span> <span class="o">/</span> <span class="p">((</span><span class="n">T</span><span class="o">-</span><span class="mf">0.55</span><span class="p">)))</span>
+    <span class="n">Ew</span> <span class="o">=</span> <span class="mf">6.112</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">((</span><span class="mf">17.67</span><span class="o">*</span><span class="p">(</span><span class="n">T</span><span class="o">-</span><span class="mf">273.16</span><span class="p">))</span> <span class="o">/</span> <span class="p">((</span><span class="n">T</span><span class="o">-</span><span class="mf">29.66</span><span class="p">)))</span>
     <span class="k">return</span> <span class="n">Ew</span>
 </pre></div>
 </div>
@@ -393,11 +390,13 @@ const thebe_selector_output = ".output, .cell_output"
 <span class="n">p</span> <span class="o">=</span> <span class="mi">1013</span>      <span class="c1"># Pressure</span>
 
 <span class="c1"># Run the function</span>
-<span class="n">Q_0</span><span class="p">,</span> <span class="n">H_0</span><span class="p">,</span> <span class="n">E_0</span> <span class="o">=</span> <span class="n">EB_fluxes</span><span class="p">(</span><span class="n">T_0</span><span class="p">,</span><span class="n">T_a</span><span class="p">,</span><span class="n">f</span><span class="p">,</span><span class="n">albedo</span><span class="p">,</span><span class="n">G</span><span class="p">,</span><span class="n">p</span><span class="p">,</span><span class="n">rho</span><span class="p">,</span><span class="n">U</span><span class="p">,</span><span class="n">z</span><span class="p">,</span><span class="n">z0</span><span class="p">)</span>
+<span class="n">Q_0</span><span class="p">,</span> <span class="n">L_d</span><span class="p">,</span> <span class="n">L_u</span><span class="p">,</span> <span class="n">H_0</span><span class="p">,</span> <span class="n">E_0</span> <span class="o">=</span> <span class="n">EB_fluxes</span><span class="p">(</span><span class="n">T_0</span><span class="p">,</span><span class="n">T_a</span><span class="p">,</span><span class="n">f</span><span class="p">,</span><span class="n">albedo</span><span class="p">,</span><span class="n">G</span><span class="p">,</span><span class="n">p</span><span class="p">,</span><span class="n">rho</span><span class="p">,</span><span class="n">U</span><span class="p">,</span><span class="n">z</span><span class="p">,</span><span class="n">z0</span><span class="p">)</span>
 
 <span class="c1"># Print results</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Surface temperature: </span><span class="si">{:.2f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">T_0</span><span class="p">))</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Global radiation: </span><span class="si">{:.2f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">Q_0</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Longwave down: </span><span class="si">{:.2f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">L_d</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Longwave up: </span><span class="si">{:.2f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">L_u</span><span class="p">))</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Surface heat flux: </span><span class="si">{:.2f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">H_0</span><span class="p">))</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Latent heat flux: </span><span class="si">{:.2f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">E_0</span><span class="p">))</span>
 </pre></div>
@@ -405,7 +404,9 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Surface temperature: 283.00
-Global radiation: 375.49
+Global radiation: 490.00
+Longwave down: 249.17
+Longwave up: 363.69
 Surface heat flux: 18.35
 Latent heat flux: 48.70
 </pre></div>
@@ -430,10 +431,10 @@ Latent heat flux: 48.70
 <span class="sd">    </span>
 <span class="sd">    &quot;&quot;&quot;</span>
     
-    <span class="n">Q_0</span><span class="p">,</span> <span class="n">H_0</span><span class="p">,</span> <span class="n">E_0</span> <span class="o">=</span> <span class="n">EB_fluxes</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">T_a</span><span class="p">,</span><span class="n">f</span><span class="p">,</span><span class="n">albedo</span><span class="p">,</span><span class="n">G</span><span class="p">,</span><span class="n">p</span><span class="p">,</span><span class="n">rho</span><span class="p">,</span><span class="n">U_L</span><span class="p">,</span><span class="n">z</span><span class="p">,</span><span class="n">z0</span><span class="p">)</span>
+    <span class="n">Q_0</span><span class="p">,</span> <span class="n">L_d</span><span class="p">,</span> <span class="n">L_u</span><span class="p">,</span> <span class="n">H_0</span><span class="p">,</span> <span class="n">E_0</span> <span class="o">=</span> <span class="n">EB_fluxes</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">T_a</span><span class="p">,</span><span class="n">f</span><span class="p">,</span><span class="n">albedo</span><span class="p">,</span><span class="n">G</span><span class="p">,</span><span class="n">p</span><span class="p">,</span><span class="n">rho</span><span class="p">,</span><span class="n">U_L</span><span class="p">,</span><span class="n">z</span><span class="p">,</span><span class="n">z0</span><span class="p">)</span>
     
     <span class="c1"># Get residual for optimization</span>
-    <span class="n">res</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">Q_0</span><span class="o">-</span><span class="n">H_0</span><span class="o">-</span><span class="n">E_0</span><span class="p">)</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">Q_0</span><span class="o">+</span><span class="n">L_d</span><span class="o">-</span><span class="n">L_u</span><span class="o">-</span><span class="n">H_0</span><span class="o">-</span><span class="n">E_0</span><span class="p">)</span>
 
     <span class="c1"># return the residuals</span>
     <span class="k">return</span> <span class="n">res</span>
@@ -484,22 +485,26 @@ Latent heat flux: 48.70
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Assign optimization result to variable T_0</span>
-<span class="n">T_0</span> <span class="o">=</span> <span class="n">res</span><span class="o">.</span><span class="n">x</span>
+<span class="n">T_0</span> <span class="o">=</span> <span class="n">res</span><span class="o">.</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 
-<span class="c1"># Get the melt and sublimation rates</span>
-<span class="n">Q_0</span><span class="p">,</span> <span class="n">H_0</span><span class="p">,</span> <span class="n">E_0</span> <span class="o">=</span> <span class="n">EB_fluxes</span><span class="p">(</span><span class="n">T_0</span><span class="p">,</span><span class="n">T_a</span><span class="p">,</span><span class="n">f</span><span class="p">,</span><span class="n">albedo</span><span class="p">,</span><span class="n">G</span><span class="p">,</span><span class="n">p</span><span class="p">,</span><span class="n">rho</span><span class="p">,</span><span class="n">U</span><span class="p">,</span><span class="n">z</span><span class="p">,</span><span class="n">z0</span><span class="p">)</span>
+<span class="c1"># Run the function</span>
+<span class="n">Q_0</span><span class="p">,</span> <span class="n">L_d</span><span class="p">,</span> <span class="n">L_u</span><span class="p">,</span> <span class="n">H_0</span><span class="p">,</span> <span class="n">E_0</span> <span class="o">=</span> <span class="n">EB_fluxes</span><span class="p">(</span><span class="n">T_0</span><span class="p">,</span><span class="n">T_a</span><span class="p">,</span><span class="n">f</span><span class="p">,</span><span class="n">albedo</span><span class="p">,</span><span class="n">G</span><span class="p">,</span><span class="n">p</span><span class="p">,</span><span class="n">rho</span><span class="p">,</span><span class="n">U</span><span class="p">,</span><span class="n">z</span><span class="p">,</span><span class="n">z0</span><span class="p">)</span>
 
 <span class="c1"># Print results</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Surface temperature: </span><span class="si">{:.2f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">T_0</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Global radiation: </span><span class="si">{:.2f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">Q_0</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Surface heat flux: </span><span class="si">{:.2f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">H_0</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Latent heat flux: </span><span class="si">{:.2f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">E_0</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Surface temperature: </span><span class="si">{:.2f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">T_0</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Global radiation: </span><span class="si">{:.2f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">Q_0</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Longwave down: </span><span class="si">{:.2f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">L_d</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Longwave up: </span><span class="si">{:.2f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">L_u</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Surface heat flux: </span><span class="si">{:.2f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">H_0</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Latent heat flux: </span><span class="si">{:.2f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">E_0</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Surface temperature: 296.38
-Global radiation: 301.65
+Global radiation: 490.00
+Longwave down: 249.17
+Longwave up: 437.53
 Surface heat flux: 100.23
 Latent heat flux: 201.42
 </pre></div>

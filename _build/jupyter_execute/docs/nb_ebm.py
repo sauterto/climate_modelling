@@ -106,7 +106,7 @@ def step_forward(Q, T, Cw, alpha, tau, dt):
     pass
 
 
-# In[11]:
+# In[14]:
 
 
 # Do first step forward
@@ -136,7 +136,7 @@ def step_forward(Q, T, Cw, alpha, tau, dt):
 # \end{align}
 # $
 
-# In[14]:
+# In[16]:
 
 
 import numpy as np
@@ -167,7 +167,7 @@ def ebm(T0, Q=341.3, Cw=10e8, alpha=0.3, tau=0.64, years=100):
 
 
 
-# In[15]:
+# In[17]:
 
 
 # Experiment 1
@@ -175,7 +175,7 @@ def ebm(T0, Q=341.3, Cw=10e8, alpha=0.3, tau=0.64, years=100):
 
 # **Task 10:** What happens if the intial temperature is set to 293 K ?
 
-# In[16]:
+# In[18]:
 
 
 # Experiment 2
@@ -184,7 +184,7 @@ def ebm(T0, Q=341.3, Cw=10e8, alpha=0.3, tau=0.64, years=100):
 # **Task 11:** What changes do you observe with a higher $C_w$ value (e.g. $C_w=10\cdot10^8 ~ J/(m^2 \cdot K)$)?
 # 
 
-# In[17]:
+# In[19]:
 
 
 # Experiment 3
@@ -192,7 +192,7 @@ def ebm(T0, Q=341.3, Cw=10e8, alpha=0.3, tau=0.64, years=100):
 
 # **Task 12:** How does the result change when $\tau=1$?
 
-# In[18]:
+# In[20]:
 
 
 # Experiment 4
@@ -202,7 +202,7 @@ def ebm(T0, Q=341.3, Cw=10e8, alpha=0.3, tau=0.64, years=100):
 # 
 # Calculate the mean surface temperature on Venus. Due to its proximity to the Sun, Venus has a very high irradiance of $S_{0}=2619 ~ Wm^{-2}$. Due to the high cloud cover, the albedo is about 0.7. What surface temperature can be expected? (Use the previous values for $C_w$ and $\tau$).
 
-# In[19]:
+# In[21]:
 
 
 # Experiment 5
@@ -212,7 +212,7 @@ def ebm(T0, Q=341.3, Cw=10e8, alpha=0.3, tau=0.64, years=100):
 # 
 # Is there a difference? If so, why does this difference exist? (Use the model to prove your hypothesis)
 
-# In[20]:
+# In[22]:
 
 
 # Experiment 6

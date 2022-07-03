@@ -18,7 +18,7 @@
 # 
 # with  $r$ an pre-defined parameter and $y$ the function value at time $t$ and $t+1$.</blockquote>
 
-# In[1]:
+# In[28]:
 
 
 import matplotlib.pyplot as plt
@@ -69,7 +69,7 @@ def von_may(y0,r):
 # 
 # ```
 
-# In[2]:
+# In[29]:
 
 
 # Run the von_may function and store the result in the variable res
@@ -87,7 +87,7 @@ plt.plot(res);
 # 
 # **Task 3:** Extend this Von-May function by generating 20 random r-values and run simulations with them. Sample the values from a normal distribution with mean 3.95 and standard deviation 0.015 (limit the r-values between 0 and 4). Then average over all time series. Plot both the time series, the averaged time series and the histogram of the averaged time series. What do you observe?
 
-# In[3]:
+# In[30]:
 
 
 # Import some modules which are used in the function
@@ -137,7 +137,7 @@ def ensemble_may(n, y0, r):
     return(result)
 
 
-# In[4]:
+# In[31]:
 
 
 # Execute the ensemble_may function and store the result in ens
@@ -160,7 +160,7 @@ ax[1].plot(ens_mean);
 # 
 # **Task 4:** Run the energy balance model $T(0)=288 ~ K$, $C_w= 2\cdot10^8 ~ J/(m^2 \cdot K)$, $\alpha=0.3$, and $\tau_{mean}=0.608 (\pm 10\%)$
 
-# In[5]:
+# In[32]:
 
 
 # Import some modules which are used in the function
@@ -182,7 +182,7 @@ def step_forward(Q, T, Cw, alpha, tau, dt):
     return T + dt / Cw * ( ASR(Q, alpha) - OLR(T, tau) ) 
 
 
-# In[6]:
+# In[33]:
 
 
 def ebm_stochastic(T0, Q=341.3, Cw=10e8, alpha=0.3, tau=0.64, years=100):
@@ -216,7 +216,7 @@ def ebm_stochastic(T0, Q=341.3, Cw=10e8, alpha=0.3, tau=0.64, years=100):
         
 
 
-# In[7]:
+# In[34]:
 
 
 # Execute the ebm_stochastic function for 1000 years
@@ -239,7 +239,7 @@ ax.plot(yrs,Ts);
 # 
 # What can be said about the state of equilibrium?
 
-# In[8]:
+# In[35]:
 
 
 # Import some modules which are used in the function
@@ -276,7 +276,7 @@ def ebm_ice_albedo(T0, Q=341.3, Cw=10e8, alpha=0.3, tau=0.64, years=100):
     return Years, Ts
 
 
-# In[9]:
+# In[36]:
 
 
 # Plot the albedo function
@@ -288,7 +288,7 @@ plt.figure(figsize=(15,8))
 plt.plot(T_range, 0.3 * (1 - 0.2 * np.tanh(0.5*(T_range-288))));
 
 
-# In[10]:
+# In[37]:
 
 
 # Run several ice-albedo feedback simulations with different initial conditions
@@ -319,7 +319,7 @@ ax.plot(yrs, Ts286); ax.plot(yrs, Ts287); ax.plot(yrs, Ts288); ax.plot(yrs, Ts29
 # 
 # What can be said about the state of equilibrium?
 
-# In[11]:
+# In[38]:
 
 
 # Import some modules which are used in the function
@@ -374,7 +374,7 @@ def ebm_ice_albedo_2(T0, Q=341.3, Cw=10e8, alpha=0.3, tau=0.608, years=100):
     return Years, Ts
 
 
-# In[12]:
+# In[39]:
 
 
 # Run several ice-albedo simulations using different initial conditions
@@ -388,7 +388,7 @@ fig, ax = plt.subplots(1,1,figsize=(15,8))
 ax.plot(yrs, Ts286); ax.plot(yrs, Ts287); ax.plot(yrs, Ts288); ax.plot(yrs, Ts293);
 
 
-# In[13]:
+# In[40]:
 
 
 # Here we check the albedo parametrisation
@@ -435,7 +435,7 @@ plt.plot(T_range,res);
 
 # **Task 7:** Determine the equilibrium climate sensitivity (ECS) and the feedback factor for the simulation from Task 5 using T(0)=289 K.  (sigmoid albedo parametrisation)
 
-# In[14]:
+# In[41]:
 
 
 # Import some modules which are used in the function
@@ -479,7 +479,7 @@ def ebm_ice_albedo_stochastic_ECS(T0, Q=341.3, Cw=10e8, alpha=0.3, tau=0.64, yea
     return Years, Ts, dT, netQ
 
 
-# In[15]:
+# In[44]:
 
 
 # Integrate the EBM and store the values

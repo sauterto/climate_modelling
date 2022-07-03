@@ -10,7 +10,7 @@
 
 # **Task 1**: Develop a simple SEB model. The turbulent flows are to be parameterised using a simple bulk approach. Write a function that takes the following arguments: surface temperature, air temperature, relative humidity, albedo, global radiation, atmospheric pressure, air density, wind speed, altitude measured and roughness length. The function should return the short-wave radiation balance and the two turbulent energy fluxes.
 
-# In[1]:
+# In[40]:
 
 
 import math
@@ -49,10 +49,7 @@ def EB_fluxes(T_0,T_a,f,albedo,G,p,rho,U_L,z,z_0):
     eps_cs = 0.23 + 0.433 * np.power(100*(f*E_sat(T_a))/T_a,1.0/8.0)
     
     # Select the appropriate latent heat constant
-    if T_0<=273.16:
-        L = 2.83e6 # latent heat for sublimation
-    else:
-        L = 2.50e6 # latent heat for vaporization
+    L = 2.83e6 # latent heat for sublimation
 
     # Calculate turbulent fluxes
     H_0 = rho * c_p  * Cs_t * U_L * (T_0-T_a)
@@ -61,18 +58,13 @@ def EB_fluxes(T_0,T_a,f,albedo,G,p,rho,U_L,z,z_0):
     # Calculate radiation budget
     L_d = eps_cs * sigma * (T_a)**4
     L_u = sigma * (T_0)**4 
-    Q_0 = (1-albedo)*G + L_d - L_u
+    Q_0 = (1-albedo)*G #+ L_d - L_u
 
-    return (Q_0,H_0,E_0)
+    return (Q_0, L_d, L_u, H_0, E_0)
 
 def E_sat(T):
     """ Saturation water vapor equation """
-    if T>=273.16:
-        # over water
-        Ew = 6.112 * np.exp((17.67*(T-273.16)) / ((T-29.66)))
-    else:
-        # over ice
-        Ew = 6.112 * np.exp((22.46*(T-273.16)) / ((T-0.55)))
+    Ew = 6.112 * np.exp((17.67*(T-273.16)) / ((T-29.66)))
     return Ew
 
 
@@ -93,11 +85,13 @@ z0 = 1e-3     # Roughness length
 p = 1013      # Pressure
 
 # Run the function
-Q_0, H_0, E_0 = EB_fluxes(T_0,T_a,f,albedo,G,p,rho,U,z,z0)
+Q_0, L_d, L_u, H_0, E_0 = EB_fluxes(T_0,T_a,f,albedo,G,p,rho,U,z,z0)
 
 # Print results
 print('Surface temperature: {:.2f}'.format(T_0))
 print('Global radiation: {:.2f}'.format(Q_0))
+print('Longwave down: {:.2f}'.format(L_d))
+print('Longwave up: {:.2f}'.format(L_u))
 print('Surface heat flux: {:.2f}'.format(H_0))
 print('Latent heat flux: {:.2f}'.format(E_0))
 
@@ -122,10 +116,10 @@ def optim_T0(x,T_a,f,albedo,G,p,rho,U_L,z,z0):
     
     """
     
-    Q_0, H_0, E_0 = EB_fluxes(x,T_a,f,albedo,G,p,rho,U_L,z,z0)
+    Q_0, L_d, L_u, H_0, E_0 = EB_fluxes(x,T_a,f,albedo,G,p,rho,U_L,z,z0)
     
     # Get residual for optimization
-    res = np.abs(Q_0-H_0-E_0)
+    res = np.abs(Q_0+L_d-L_u-H_0-E_0)
 
     # return the residuals
     return res
@@ -161,20 +155,16 @@ res
 
 
 # Assign optimization result to variable T_0
-T_0 = res.x
+T_0 = res.x[0]
 
-# Get the melt and sublimation rates
-Q_0, H_0, E_0 = EB_fluxes(T_0,T_a,f,albedo,G,p,rho,U,z,z0)
+# Run the function
+Q_0, L_d, L_u, H_0, E_0 = EB_fluxes(T_0,T_a,f,albedo,G,p,rho,U,z,z0)
 
 # Print results
-print('Surface temperature: {:.2f}'.format(T_0[0]))
-print('Global radiation: {:.2f}'.format(Q_0[0]))
-print('Surface heat flux: {:.2f}'.format(H_0[0]))
-print('Latent heat flux: {:.2f}'.format(E_0[0]))
-
-
-# In[ ]:
-
-
-
+print('Surface temperature: {:.2f}'.format(T_0))
+print('Global radiation: {:.2f}'.format(Q_0))
+print('Longwave down: {:.2f}'.format(L_d))
+print('Longwave up: {:.2f}'.format(L_u))
+print('Surface heat flux: {:.2f}'.format(H_0))
+print('Latent heat flux: {:.2f}'.format(E_0))
 

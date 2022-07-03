@@ -8,7 +8,7 @@
 
 # Exercise 01: Create a function that takes an integer as an argument and returns "Even" for even numbers or "Odd" for odd numbers.
 
-# In[1]:
+# In[2]:
 
 
 def even_or_odd(number):
@@ -17,7 +17,7 @@ def even_or_odd(number):
 
 # Test the function with the following examples:
 
-# In[2]:
+# In[4]:
 
 
 try:
@@ -41,14 +41,14 @@ except AssertionError:
 
 # Exercise 02: This code does not execute properly. Try to figure out why.
 
-# In[3]:
+# In[5]:
 
 
 def multiply(a, b):
     return a * b
 
 
-# In[4]:
+# In[6]:
 
 
 try:
@@ -64,14 +64,14 @@ except AssertionError:
 # 
 # Note: if there is nothing to sum, the sum is default to 0.
 
-# In[5]:
+# In[7]:
 
 
 def positive_sum(arr):
     return sum(x for x in arr if x > 0)
 
 
-# In[6]:
+# In[8]:
 
 
 try:
@@ -95,14 +95,14 @@ except AssertionError:
 # 
 # You can assume, for the purpose of this exercise, that the supplied array will not be empty.
 
-# In[7]:
+# In[9]:
 
 
 def find_smallest_int(arr):
     return min(arr)
 
 
-# In[8]:
+# In[10]:
 
 
 try:
@@ -129,7 +129,7 @@ except AssertionError:
 # ('/', 49, 7) --> 7
 # ```
 
-# In[9]:
+# In[13]:
 
 
 def basic_op(operator, value1, value2):
@@ -143,7 +143,7 @@ def basic_op(operator, value1, value2):
        return value1*value2
 
 
-# In[10]:
+# In[14]:
 
 
 try:
@@ -167,14 +167,14 @@ except AssertionError:
 # * [9, 2, 0, 7]  -> [7, 0, 2, 9]
 # ```
 
-# In[11]:
+# In[15]:
 
 
 def reverse_list(l):
     return l[::-1]
 
 
-# In[12]:
+# In[16]:
 
 
 try:
@@ -191,14 +191,14 @@ except AssertionError:
 
 # Exercise 07: Write a function that computes the volume of a sphere given its radius.
 
-# In[13]:
+# In[17]:
 
 
 def vol(rad):
     return (4/3)*(3.14)*(rad**3)
 
 
-# In[14]:
+# In[18]:
 
 
 try:
@@ -210,7 +210,7 @@ except AssertionError:
 
 # Exercise 08: Write a function that checks whether a number is in a given range (inclusive of high and low)
 
-# In[15]:
+# In[19]:
 
 
 def ran_bool(num,low,high):
@@ -218,7 +218,7 @@ def ran_bool(num,low,high):
     return num in range(low,high+1)
 
 
-# In[16]:
+# In[20]:
 
 
 try:
@@ -235,7 +235,7 @@ except AssertionError:
 # Unique List : [1, 2, 3, 4, 5]
 # ```
 
-# In[17]:
+# In[21]:
 
 
 def unique_list(lst):
@@ -247,7 +247,7 @@ def unique_list(lst):
     return x
 
 
-# In[18]:
+# In[22]:
 
 
 try:
@@ -264,7 +264,7 @@ except AssertionError:
 # Expected Output : -24
 # ```
 
-# In[19]:
+# In[23]:
 
 
 def multiply(numbers):
@@ -274,7 +274,7 @@ def multiply(numbers):
     return total
 
 
-# In[20]:
+# In[24]:
 
 
 try:
@@ -293,7 +293,7 @@ except AssertionError:
 # 
 # You can either use simple list functions or numpy arrays ... It's up to you!
 
-# In[21]:
+# In[25]:
 
 
 import numpy as np
@@ -303,7 +303,7 @@ def diff_list(lst):
     return list(np.subtract(lst[1:],lst[:-1]))
 
 
-# In[22]:
+# In[26]:
 
 
 try:
@@ -321,7 +321,7 @@ except AssertionError:
 # Example: a=12, b=17 --> [12,13,14,15,16,17]
 # ```
 
-# In[23]:
+# In[27]:
 
 
 import numpy as np
@@ -330,7 +330,7 @@ def rng(a, b):
     return np.arange(a, b)
 
 
-# In[24]:
+# In[28]:
 
 
 try:
@@ -354,7 +354,7 @@ except AssertionError:
 # Values in Centigrade degrees [-17.78, -11.11, 7.34, 1.11, 37.73, 0. ]
 # ```
 
-# In[25]:
+# In[29]:
 
 
 import numpy as np
@@ -377,7 +377,7 @@ def celsius2fahr(lst):
     return (np.round((9*C+(32*5))/5,2))
 
 
-# In[26]:
+# In[30]:
 
 
 try:

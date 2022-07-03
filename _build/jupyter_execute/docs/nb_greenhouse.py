@@ -6,7 +6,7 @@
 
 # **Task 1**: Plug Eq. (7) into Eq. (6) and solve for the radiative equilibrium suface temperature $T_e$ 
 
-# In[1]:
+# In[5]:
 
 
 # Solve for the radiative equilibrium temperature Te
@@ -25,7 +25,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
-# In[3]:
+# In[5]:
 
 
 ## NCAR data
@@ -38,13 +38,13 @@ url = 'air.mon.ltm.1981-2010.nc'
 #  Take global, annual average and convert to Kelvin
 
 
-# In[5]:
+# In[6]:
 
 
 #  a "quick and dirty" visualization of the data
 
 
-# In[6]:
+# In[7]:
 
 
 # Create the skew-plot with the metpy module
@@ -52,7 +52,7 @@ url = 'air.mon.ltm.1981-2010.nc'
 
 # **Task 3**: What is the surface temperature with the single layer model? 
 
-# In[7]:
+# In[6]:
 
 
 # Solve for the atmospheric surface temperature
@@ -68,7 +68,7 @@ print('Surface temperature: {:.2f}'.format(Ts))
 
 # **Task 5**: Write a Python function for $OLR = U_2 = (1-\epsilon)^2 \sigma T_s^4 + \epsilon(1-\epsilon)\sigma T_0^4 + \epsilon \sigma T_1^4$
 
-# In[8]:
+# In[7]:
 
 
 def two_layer_model(Ts, T0, T1, epsilon):
@@ -82,7 +82,7 @@ def two_layer_model(Ts, T0, T1, epsilon):
 # **Task 8**: Find graphically the best fit value of $\epsilon$
 # 
 
-# In[9]:
+# In[11]:
 
 
 import numpy as np
@@ -91,7 +91,7 @@ import matplotlib.pyplot as plt
 # Write your code here
 
 
-# In[10]:
+# In[9]:
 
 
 # Validate the result
@@ -99,14 +99,14 @@ import matplotlib.pyplot as plt
 
 # **Task 9**: Write a Python function to calculate each term in the OLR. Plug-in the observed temperatures and the tuned value for epsilon.
 
-# In[11]:
+# In[12]:
 
 
 def two_layer_terms(Ts, T0, T1, epsilon):
     pass
 
 
-# In[12]:
+# In[13]:
 
 
 # Calculate terms
@@ -117,7 +117,7 @@ def two_layer_terms(Ts, T0, T1, epsilon):
 # 
 # Which terms in the OLR go up and which go down?
 
-# In[13]:
+# In[14]:
 
 
 # Make simulation here
@@ -125,7 +125,7 @@ def two_layer_terms(Ts, T0, T1, epsilon):
 
 # **Task 11**: Calculate the radiative forcing for the previous simulation
 
-# In[14]:
+# In[15]:
 
 
 # Calculate radiative forcing
@@ -133,7 +133,7 @@ def two_layer_terms(Ts, T0, T1, epsilon):
 
 # **Task 12**: What is the greenhouse effect for an isothermal atmosphere?
 
-# In[15]:
+# In[16]:
 
 
 # Make simulation here
@@ -141,7 +141,7 @@ def two_layer_terms(Ts, T0, T1, epsilon):
 
 # **Task 13**: For a more realistic example of radiative forcing due to an increase in greenhouse absorbers, we use our observed temperatures and the tuned value for epsilon. Assume an increase of epsilon by 2 %.
 
-# In[16]:
+# In[17]:
 
 
 # Make simulation here

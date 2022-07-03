@@ -207,8 +207,12 @@ plt.show()
 # - What is the maximum heat flux in W m$^{-2}$? Is this a realistic values for a fair-weather condition?
 # - Calculate the heating rate in K per hour.
 
-# In[7]:
+# In[1]:
 
+
+import numpy as np
+import matplotlib.pyplot as plt
+import math
 
 def boundary_layer(w, K, integration, dt, Nz, H):
     """ Simple advection-diffusion equation.
@@ -267,10 +271,10 @@ def boundary_layer(w, K, integration, dt, Nz, H):
         # Increase time step
         t = t + dt
         
-    return(theta_all, cov_all, np.arange(0, integration, dt), np.arange(0, Nz*dz, dz), u, K, c, d)
+    return(theta_all, cov_all, np.arange(0, integration, dt), np.arange(0, Nz*dz, dz), K, c, d)
 
 
-# In[8]:
+# In[2]:
 
 
 def make_plot(data, x, z, levels, title, unit, xlab, zlab, cmap='RdBu_r'):
@@ -294,7 +298,7 @@ def make_plot(data, x, z, levels, title, unit, xlab, zlab, cmap='RdBu_r'):
     return ax
 
 
-# In[9]:
+# In[6]:
 
 
 Nz = 200
@@ -303,7 +307,7 @@ integration = 86400*3
 dt = 1
 
 # Run the boundary layer model
-phi1, cov, x, z, u, K, c, d = boundary_layer(w=-0.001, K=0.25, integration=integration, dt=dt, Nz=Nz, H=H)
+phi1, cov, x, z, K, c, d = boundary_layer(w=-0.001, K=0.5, integration=integration, dt=dt, Nz=Nz, H=H)
 
 # Create 2D mesh grid
 ax = make_plot(phi1, x=x, z=z, levels=21, title='Theta', unit='K', xlab='Hours', zlab='Height', cmap='RdBu_r')
@@ -313,13 +317,13 @@ ax.set_xticks(x[x%(3600*6)==0]);
 ax.set_xticklabels(list(map(str,(x[x%(3600*6)==0]/3600))), size=10, weight='normal');
 
 
-# In[10]:
+# In[7]:
 
 
 # Plot the heat fluxes
 
 # Create 2D plot for the covariance
-ax = make_plot(cov[:]*1004, x=x, z=z, levels=21, title='Theta', unit='W m$^{-2}$', xlab='Hours', zlab='Height', cmap='RdBu_r')
+ax = make_plot(cov[:]*1004*1.0, x=x, z=z, levels=21, title='Theta', unit='W m$^{-2}$', xlab='Hours', zlab='Height', cmap='RdBu_r')
 # Correct the ticks
 ax.set_xticks(x[x%(3600*6)==0]);
 ax.set_xticklabels(list(map(str,(x[x%(3600*6)==0]/3600))), size=10, weight='normal');
@@ -335,10 +339,12 @@ ax.set_xticklabels(list(map(str,(x[x%(3600*6)==0]/3600))), size=10, weight='norm
 
 # <img src="pics/lake_erie_exercise.png">
 
-# In[11]:
+# In[10]:
 
 
-import random
+import numpy as np
+import matplotlib.pyplot as plt
+import math
 
 def boundary_layer_evolution(u, K, dx, dz, Nx, Nz, hours, dt):
     """ Simple advection-diffusion equation.
@@ -429,22 +435,22 @@ def boundary_layer_evolution(u, K, dx, dz, Nx, Nz, hours, dt):
 
 
 
-# In[12]:
+# In[23]:
 
 
 # Run the model
-theta, cov, adv, c, d, x, z = boundary_layer_evolution(u=5, K=0.02, dx=500, dz=5, Nx=250, Nz=20, hours=20, dt=75)
+theta, cov, adv, c, d, x, z = boundary_layer_evolution(u=1, K=0.01, dx=500, dz=5, Nx=250, Nz=20, hours=5, dt=75)
 
 
-# In[13]:
+# In[24]:
 
 
 # Create 2D plot for the covariance
-ax = make_plot(theta, x=x/1000, z=z, levels=21, title='Heat flux', unit='W m$^{-2}$', 
+ax = make_plot(theta, x=x/500, z=z, levels=21, title='Heat flux', unit='W m$^{-2}$', 
                xlab='Distance [km]', zlab='Height [m]', cmap='RdBu_r')
 
 
-# In[14]:
+# In[25]:
 
 
 # Plot the warming rate by turbulent mixing
@@ -458,7 +464,7 @@ ax = make_plot(cov*3600, x=x/1000, z=z, levels=21,
 print('Maximum warming rate by turbulent mixing: {:.2f} K/h'.format(np.max(cov*3600)))
 
 
-# In[15]:
+# In[18]:
 
 
 # Plot the warming rate by advection
@@ -470,7 +476,7 @@ ax = make_plot(adv*3600, x=x/1000, z=z, levels=21,
 print('Maximum warming rate by advection: {:.2f} K/h'.format(np.max(adv*3600)))
 
 
-# In[16]:
+# In[19]:
 
 
 # Plot the total warming rate 
@@ -486,11 +492,12 @@ print('Minimum total warming rate : {:.2f} K/h'.format(np.min((cov*3600)+(adv*36
 # **Task 8**: Extend the Lake-effect model by adding the moisture transport equation. Assume that the top millimetres above the water surface are saturated. Assume that the atmosphere has a relative humidity of 70 %. Calculate the relative humidity at each grid cell. [Note: Convert the potential temperature to normal temperature and calculate the mixing ratio at each cell. Then calculate the relative humidity.]
 # 
 
-# In[17]:
+# In[20]:
 
 
-import random
-
+import numpy as np
+import matplotlib.pyplot as plt
+import math
     
 # --------------------------
 # Auxiliary functions
@@ -657,7 +664,14 @@ def boundary_layer_evolution_moisture(u, K, dx, dz, Nx, Nz, hours, dt):
     return theta, q, qsat, rH, cov, adv, c, d, np.arange(0, Nx*dx, dx), np.arange(0, Nz*dz, dz)
 
 
-# In[18]:
+# In[35]:
+
+
+height = np.array([np.arange(0,10*5,5),] * 10).transpose()
+print(height)
+
+
+# In[21]:
 
 
 # Run the model
@@ -665,7 +679,7 @@ theta, q, qsat, rH, cov, adv, c, d, x, z = boundary_layer_evolution_moisture(u=5
                                                                        Nx=250, Nz=40, hours=24, dt=60)
 
 
-# In[19]:
+# In[25]:
 
 
 # Create 2D plot for the covariance
@@ -683,10 +697,11 @@ ax = make_plot(qsat, x=x/1000, z=z, levels=11, title='Saturation mixing ratio', 
 # Create 2D plot for the covariance
 ax = make_plot(rH*100, x=x/1000, z=z, levels=11, title='Relative humidity', unit='%', 
                xlab='Distance [km]', zlab='Height [m]', cmap='YlGnBu')
-ax.contour(x/1000, z,rH,levels=[0.95,1.0],colors='red')
+
+ax.contour(x/1000, z,rH,levels=[0.95,1.0],colors='red');
 
 
-# In[20]:
+# In[23]:
 
 
 # Base run
@@ -694,7 +709,7 @@ theta0, q0, qsat0, rH0, cov0, adv0, c0, d0, x0, z0 = boundary_layer_evolution_mo
                                                                        Nx=250, Nz=40, hours=0.1, dt=60)
 
 
-# In[21]:
+# In[26]:
 
 
 # Create 2D plot for the covariance
@@ -712,14 +727,16 @@ ax = make_plot(qsat-qsat0, x=x/1000, z=z, levels=11, title='Saturation mixing ra
 # Create 2D plot for the covariance
 ax = make_plot((rH-rH0)*100, x=x/1000, z=z, levels=11, title='Relative humidity difference', unit='%', 
                xlab='Distance [km]', zlab='Height [m]', cmap='RdBu_r')
-ax.contour(x/1000, z,rH,levels=[0.95,1.0],colors='lightgreen')
+
+ax.contour(x/1000, z,rH,levels=[0.95,1.0],colors='lightgreen');
 
 
-# In[22]:
+# In[27]:
 
 
-import random
-
+import numpy as np
+import matplotlib.pyplot as plt
+import math
     
 # --------------------------
 # Auxiliary functions
@@ -893,7 +910,7 @@ def boundary_layer_evolution_moisture_gamma(u, K, dx, dz, Nx, Nz, hours, dt):
 
 
 
-# In[23]:
+# In[28]:
 
 
 # Base run
@@ -902,7 +919,7 @@ theta0, q0, qsat0, rH0, cov0, adv0, c0, d0, x0, z0 = boundary_layer_evolution_mo
                                                                     Nx=250, Nz=40, hours=24, dt=60)
 
 
-# In[24]:
+# In[29]:
 
 
 # Create 2D plot for the covariance
@@ -920,5 +937,6 @@ ax = make_plot(qsat, x=x/1000, z=z, levels=11, title='Saturation mixing ratio', 
 # Create 2D plot for the covariance
 ax = make_plot(rH*100, x=x/1000, z=z, levels=11, title='Relative humidity', unit='%', 
                xlab='Distance [km]', zlab='Height [m]', cmap='YlGnBu')
+
 ax.contour(x/1000, z,rH,levels=[0.95,1.0],colors='red')
 

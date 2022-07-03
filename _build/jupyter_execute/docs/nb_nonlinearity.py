@@ -49,7 +49,7 @@ def von_may(y0,r):
 # 
 # **Task 3:** Extend this Von-May function by generating 20 random r-values and run simulations with them. Sample the values from a normal distribution with mean 3.95 and standard deviation 0.015 (limit the r-values between 0 and 4). Then average over all time series. Plot both the time series, the averaged time series and the histogram of the averaged time series. What do you observe?
 
-# In[3]:
+# In[4]:
 
 
 import random
@@ -60,7 +60,7 @@ def ensemble_may(n, y0, r):
     pass
 
 
-# In[4]:
+# In[5]:
 
 
 # Plot the results
@@ -73,7 +73,7 @@ def ensemble_may(n, y0, r):
 # **Task 4:** Run the energy balance model $T(0)=288 ~ K$, $C_w= 2\cdot10^8 ~ J/(m^2
 #  57 \cdot K)$, $\alpha=0.3$, and $\tau_{mean}=0.608 (\pm 10\%)$
 
-# In[5]:
+# In[4]:
 
 
 import random
@@ -100,7 +100,7 @@ def step_forward(Q, T, Cw, alpha, tau, dt):
     return T + dt / Cw * ( ASR(Q, alpha) - OLR(T, tau) ) 
 
 
-# In[6]:
+# In[7]:
 
 
 # Plot the results
@@ -118,7 +118,7 @@ def step_forward(Q, T, Cw, alpha, tau, dt):
 # 
 # What can be said about the state of equilibrium?
 
-# In[7]:
+# In[8]:
 
 
 import random
@@ -131,13 +131,13 @@ def ebm_ice_albedo(T0, Q=341.3, Cw=10e8, alpha=0.3, tau=0.64, years=100):
     pass
 
 
-# In[8]:
+# In[9]:
 
 
 # Plot the albedo function
 
 
-# In[9]:
+# In[10]:
 
 
 # Run the simulations and plot the results
@@ -160,7 +160,7 @@ def ebm_ice_albedo(T0, Q=341.3, Cw=10e8, alpha=0.3, tau=0.64, years=100):
 # 
 # What can be said about the state of equilibrium?
 
-# In[10]:
+# In[11]:
 
 
 import random
@@ -173,7 +173,7 @@ def ebm_ice_albedo_2(T0, Q=341.3, Cw=10e8, alpha=0.3, tau=0.608, years=100):
     pass
 
 
-# In[11]:
+# In[12]:
 
 
 # Run the simulations and plot the results
@@ -181,7 +181,7 @@ def ebm_ice_albedo_2(T0, Q=341.3, Cw=10e8, alpha=0.3, tau=0.608, years=100):
 
 # **Task 7:** Determine the equilibrium climate sensitivity (ECS) and the feedback factor for the simulation from Task 5 using T(0)=289 K.  (sigmoid albedo parametrisation)
 
-# In[12]:
+# In[28]:
 
 
 import random
@@ -229,7 +229,7 @@ def ebm_ice_albedo_stochastic_ECS(T0, Q=341.3, Cw=10e8, alpha=0.3, tau=0.64, yea
     return Years, Ts, dT, netQ
 
 
-# In[13]:
+# In[29]:
 
 
 # Run the simulations and plot the results
@@ -262,7 +262,7 @@ print('The feedback factor is {:.2f}, which implies a negative feedback'.format(
 # 
 # What special feature can now be observed? What conclusions can be inferred regarding the prediction of weather and climate?
 
-# In[14]:
+# In[30]:
 
 
 # Import some modules which are used in the function
@@ -303,7 +303,7 @@ def ebm_ice_albedo_stochastic(T0, Q=341.3, Cw=10e8, alpha=0.3, tau=0.64, years=1
     return Years, Ts
 
 
-# In[15]:
+# In[36]:
 
 
 # Plot the results
@@ -325,7 +325,7 @@ fig, ax = plt.subplots(1,1,figsize=(15,8))
 plt.hist(Ts286)
 
 
-# In[16]:
+# In[18]:
 
 
 # Make more plots to illustrate the characteristics of the time series

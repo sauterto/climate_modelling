@@ -54,14 +54,14 @@ weighted_mean = air_weighted.mean(("lat","lon", "time"))
 weighted_mean
 
 
-# In[7]:
+# In[8]:
 
 
 # Import the metpy library
 from metpy.plots import SkewT
 
 
-# In[8]:
+# In[9]:
 
 
 fig = plt.figure(figsize=(15,15))
@@ -79,7 +79,7 @@ Ts = 2**(1/4) * Te
 Ts
 
 
-# In[10]:
+# In[11]:
 
 
 def two_layer_model(Ts, T0, T1, epsilon):
@@ -87,13 +87,13 @@ def two_layer_model(Ts, T0, T1, epsilon):
     return ((1-epsilon)**2)*sigma*Ts**4 +         epsilon*(1-epsilon)*sigma*T0**4 +         epsilon*sigma*T1**4
 
 
-# In[11]:
+# In[12]:
 
 
 two_layer_model(288, 270, 250, 0.6)
 
 
-# In[12]:
+# In[13]:
 
 
 OLR = []
@@ -117,7 +117,7 @@ epsilon = epsilons[idx]
 print('The optimized epsilon is: {:.2f}'.format(epsilons[idx]))
 
 
-# In[13]:
+# In[14]:
 
 
 plt.figure(figsize=(15,8))
@@ -126,13 +126,13 @@ plt.scatter(epsilons[idx], OLR[idx], s=50, color='r')
 plt.hlines(0,0,1,linestyle='dotted',color='gray')
 
 
-# In[14]:
+# In[15]:
 
 
 two_layer_model(288,275,230,0.59)
 
 
-# In[15]:
+# In[16]:
 
 
 def two_layer_term(Ts, T0, T1, epsilon):
@@ -140,13 +140,13 @@ def two_layer_term(Ts, T0, T1, epsilon):
     return ((1-epsilon)**2)*sigma*Ts**4,         epsilon*(1-epsilon)*sigma*T0**4,         epsilon*sigma*T1**4
 
 
-# In[16]:
+# In[32]:
 
 
 term1, term2, term3 = two_layer_term(288, 288, 288, 0.59)
 
 
-# In[17]:
+# In[33]:
 
 
 print('Term 1: {:.2f}'.format(term1))

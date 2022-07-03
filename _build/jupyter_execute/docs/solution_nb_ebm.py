@@ -6,7 +6,7 @@
 
 # **Task 1:** Write a Python function for the OLR and effective temperature for later use.
 
-# In[1]:
+# In[2]:
 
 
 # Stefan-Boltzmann constant
@@ -23,7 +23,7 @@ def OLR(T):
 
 # **Task 2:** Extend the OLR function by another **transmissivity** constant $\tau$ which takes this effect into account. Determine the transmissivity for a global mean temperature of 288 K.
 
-# In[2]:
+# In[3]:
 
 
 def OLR(T, tau):
@@ -35,7 +35,7 @@ def tau(OLR, T):
     return OLR / (sigma*T**4)
 
 
-# In[3]:
+# In[4]:
 
 
 print("Transmissivity assuming a global mean temperature of 288 K: {:.2f}".format(tau(238.5, 288)))
@@ -43,7 +43,7 @@ print("Transmissivity assuming a global mean temperature of 288 K: {:.2f}".forma
 
 # **Task 3:** Determine the planetary albedo from the observations and write a function for the absorbed shortwave radiation, the part of the incoming sunlight that is not reflected back to space
 
-# In[4]:
+# In[5]:
 
 
 Q = 341.3           # area-averaged insolation 
@@ -53,7 +53,7 @@ alpha = Freflected/Q
 print("Planetary Albedo: {0}".format(alpha))
 
 
-# In[5]:
+# In[7]:
 
 
 def ASR(Q, albedo):
@@ -61,7 +61,7 @@ def ASR(Q, albedo):
     return (1-albedo) * Q
 
 
-# In[6]:
+# In[8]:
 
 
 print("Absorbed shortwave radiation: {}".format(ASR(Q, alpha)))
@@ -69,7 +69,7 @@ print("Absorbed shortwave radiation: {}".format(ASR(Q, alpha)))
 
 # **Task 4:** What additional amount of energy would have to remain in the system for the global temperature to rise by 4 K?
 
-# In[7]:
+# In[9]:
 
 
 print("Additionaly energy to increase global mean temperature by 4 K: {:.2f} W m^-2".format(OLR(292, 0.61)-OLR(288, 0.61)))
@@ -77,7 +77,7 @@ print("Additionaly energy to increase global mean temperature by 4 K: {:.2f} W m
 
 # **Task 5:** Rearrange the equation according to the temperature denoting our equilibrium temperature. Substitute the observed values for insolation, transmissivity and planetary albedo and calculate the equlibrium temperature.
 
-# In[8]:
+# In[10]:
 
 
 def equilibrium_temperature(alpha,Q,tau):
@@ -90,7 +90,7 @@ print(Teq_observed)
 
 # **Task 6:** With simple approaches such as equlibrium temperature, conceptual scenarios can be calculated. For example, the connection between the increase in albedo due to more cloud cover and the associated decrease in transmissivity can be investigated. For example, assume that the planetary albedo increases to 0.32 due to more cloud cover and that the transmissivity decreases to 0.57. What is the equilibrium temperature?
 
-# In[9]:
+# In[11]:
 
 
 Teq_new = equilibrium_temperature(0.32, Q, 0.57)
@@ -102,14 +102,14 @@ print('The equilibrium temperature increased by about {:.1f} K.'.format(Teq_new-
 
 # **Task 8:** Write a function called *step_forward(T, dt)* that returns the new temperature given the old temeprature T and timestep dt. Assume an initial temperature of 288 K and integrate the function for a few timestep and observe how the temperature changes.
 
-# In[10]:
+# In[12]:
 
 
 def step_forward(Q, T, Cw, alpha, tau, dt):
     return T + dt / Cw * ( ASR(Q, alpha) - OLR(T, tau) )
 
 
-# In[11]:
+# In[16]:
 
 
 T0 = 288
@@ -119,14 +119,14 @@ T = step_forward(341.3, T0, Cw, 0.32, 0.57, dt)
 print('New equlibrium emperature {:.2f} after 1 year'.format(T))
 
 
-# In[12]:
+# In[17]:
 
 
 T = step_forward(Q, T, Cw, 0.32, 0.57, dt)
 print('New equlibrium temperature {:.2f} after 2 years'.format(T))
 
 
-# In[13]:
+# In[18]:
 
 
 T = step_forward(Q, T, Cw, 0.32, 0.57, dt)
@@ -145,7 +145,7 @@ print('New equlibrium temperature {:.2f} after 3 years'.format(T))
 # \end{align}
 # $
 
-# In[14]:
+# In[19]:
 
 
 import numpy as np
@@ -189,7 +189,7 @@ def ebm(T0, Q=341.3, Cw=10e8, alpha=0.3, tau=0.64, years=100):
 
 
 
-# In[15]:
+# In[20]:
 
 
 # Integrate the model
@@ -202,7 +202,7 @@ plt.plot(T_273)
 
 # **Task 10:** What happens if the intial temperature is set to 293 K ?
 
-# In[16]:
+# In[21]:
 
 
 # Integrate the model
@@ -217,7 +217,7 @@ plt.plot(T_273)
 # **Task 11:** What changes do you observe with a higher $C_w$ value (e.g. $C_w=10\cdot10^8 ~ J/(m^2 \cdot K)$)?
 # 
 
-# In[17]:
+# In[22]:
 
 
 # Integrate the model
@@ -232,7 +232,7 @@ plt.plot(T_293_Cw)
 
 # **Task 12:** How does the result change when $\tau=1$?
 
-# In[18]:
+# In[23]:
 
 
 # Integrate the model
@@ -252,7 +252,7 @@ plt.legend()
 # 
 # Calculate the mean surface temperature on Venus. Due to its proximity to the Sun, Venus has a very high irradiance of $S_{0}=2619 ~ Wm^{-2}$. Due to the high cloud cover, the albedo is about 0.7. What surface temperature can be expected? (Use the previous values for $C_w$ and $\tau$).
 
-# In[19]:
+# In[24]:
 
 
 # Integrate the model
@@ -268,7 +268,7 @@ plt.legend()
 # 
 # Is there a difference? If so, why does this difference exist? (Use the model to prove your hypothesis)
 
-# In[20]:
+# In[25]:
 
 
 # Integrate the model

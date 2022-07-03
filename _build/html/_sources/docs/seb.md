@@ -3,7 +3,8 @@
 
 ### Python Notebooks
 * Surface Energy Balance model
-  * [Solution: Surface Energy Balance](seb:solution)
+  * [Exercises: Surface Energy Balance](seb:exercise)
+  * [Solutions: Surface Energy Balance](seb:solution)
 
 
 ### Exercises:
@@ -27,14 +28,3 @@
 >temperature. So we have to find the surface temperature which fulfils the
 >condition SEB(T0)=Q0+H0+E0=0. Once the optimization function is written, we
 >use the minimize function from the scipy module to find the temperature values.
- 
->**Task 3**: Take the heat equation from the previous chapters and
->extend it to 2 dimensions (depth x width). As a boundary condition at the
->earth's surface, couple the SEB model via the ground heat flux. Assume a
->suitable diurnal cycle for the shortwave radiation and the 2 m temperature. At
->the lower boundary we use a Neumann condition with a gradient of zero.
-
->**Task 4**: As a last step, we couple the soil module (SEB + Heat transport in
->soil) with the boundary layer model (Advection-diffusion equation). Consider
->different land use classes (water, land) in the soil module. Repeat the
->land-sea effect experiment with this model. 
