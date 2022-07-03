@@ -178,6 +178,11 @@ const thebe_selector_output = ".output, .cell_output"
      Surface Energy Balance model
     </a>
    </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="coupled_model.html">
+     Coupled boundary layer model
+    </a>
+   </li>
   </ul>
  </li>
 </ul>
@@ -371,8 +376,8 @@ increase the wind speed. Discuss the results.</p>
 <blockquote>
 <div><p><strong>Task 5</strong>: Solve the Advection-Diffusion equation form x=0 to L, with the
 following initial and boundary conditions:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-552174cf-ab15-431f-ae9d-4d1d80817f92">
-<span class="eqno">()<a class="headerlink" href="#equation-552174cf-ab15-431f-ae9d-4d1d80817f92" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-8cf8e77f-7da8-4bce-a4a4-a3e32cc80d2d">
+<span class="eqno">()<a class="headerlink" href="#equation-8cf8e77f-7da8-4bce-a4a4-a3e32cc80d2d" title="Permalink to this equation">¶</a></span>\[\begin{align}
 c(x,0)&amp;=e^{\left(\frac{x-10}{2}\right)^2}\\
 c(0,t)&amp;=0\\
 c(L,t)&amp;=\frac{\partial c}{\partial x}=0
@@ -388,8 +393,8 @@ H=2 km height. Assume a fair-weather condition with a subsidence of -0.001 m
 s<span class="math notranslate nohighlight">\(^{-1}\)</span>. Also assume horizontal homogeneity. Parameterize the heat flux using the
 eddy-diffusivity closure with K=0.25 m s<span class="math notranslate nohighlight">\(^{-2}\)</span>. Solve the simplified equation
 using the following initial and boundary conditions:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-069a0d0c-4837-493f-9900-886df98b398a">
-<span class="eqno">()<a class="headerlink" href="#equation-069a0d0c-4837-493f-9900-886df98b398a" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-4e162177-0205-4162-846d-30176b9bbe26">
+<span class="eqno">()<a class="headerlink" href="#equation-4e162177-0205-4162-846d-30176b9bbe26" title="Permalink to this equation">¶</a></span>\[\begin{align}
 \theta(z,0)&amp;=290~K\\
 \overline{w'\theta'}(z,0)&amp;=0~W~m^{-2} \\
 \theta(0,t)&amp;=290+10\cdot sin \left( \frac{2\pi \cdot t}{86400} \right) \\
