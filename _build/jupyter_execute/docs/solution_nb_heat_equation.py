@@ -57,6 +57,7 @@ def heat_equation(bc_surface, bc_bottom, depth, Nz, integration, dt):
 
 
 
+
 # In[5]:
 
 
@@ -148,8 +149,8 @@ def heat_equation_indices(bc_surface, bc_bottom, depth, Nz, integration, dt):
 
 
 
-# In[10]:
 
+# In[10]:
 
 
 # Plot results
@@ -240,6 +241,7 @@ def heat_equation_time(depth, Nz, years):
 
     # return temperature array, grid spacing, and number of integration steps
     return T_all, dz, integration
+
 
 
 

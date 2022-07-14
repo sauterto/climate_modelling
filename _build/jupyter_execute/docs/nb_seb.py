@@ -10,7 +10,7 @@
 
 # **Task 1**: Develop a simple SEB model. The turbulent flows are to be parameterised using a simple bulk approach. Write a function that takes the following arguments: surface temperature, air temperature, relative humidity, albedo, global radiation, atmospheric pressure, air density, wind speed, altitude measured and roughness length. The function should return the short-wave radiation balance and the two turbulent energy fluxes.
 
-# In[ ]:
+# In[3]:
 
 
 import math
@@ -37,13 +37,13 @@ def EB_fluxes(T_0,T_a,f,albedo,G,p,rho,U_L,z,z_0):
     """
     
     # Some constants
-    c_p =             # specific heat [J kg^-1 K^-1]
-    kappa =           # Von Karman constant [-]
-    sigma =           # Stefan-Bolzmann constant
+    c_p = 1004            # specific heat [J kg^-1 K^-1]
+    kappa = 0.41          # Von Karman constant [-]
+    sigma = 5.67e-8       # Stefan-Bolzmann constant
     
     # Bulk coefficients 
-    Cs_t = 
-    Cs_q =   
+    Cs_t = np.power(kappa, 2.0) / (np.log(z/z_0)*np.log(z/z_0))
+    Cs_q = np.power(kappa, 2.0) / (np.log(z/z_0)*np.log(z/z_0))  
     
     # Correction factor for incoming longwave radiation
     eps_cs = 0.23 + 0.433 * np.power(100*(f*E_sat(T_a))/T_a,1.0/8.0)
@@ -52,13 +52,13 @@ def EB_fluxes(T_0,T_a,f,albedo,G,p,rho,U_L,z,z_0):
     L = 2.83e6 # latent heat for sublimation
 
     # Calculate turbulent fluxes
-    H_0 = 
-    E_0 = 
+    H_0 = rho * c_p * Cs_t * U_L * (T_0 - T_a)
+    E_0 = rho * ((L*0.622)/p) * Cs_q * U_L * (E_sat(T_0) - f*E_sat(T_0))
     
     # Calculate radiation budget
-    L_d = 
-    L_u = 
-    Q_0 = 
+    L_d = eps_cs * sigma * (T_a)**4
+    L_u = 1.0 * sigma * (T_0)**4
+    Q_0 = (1-albedo) * G
 
     return (Q_0, L_d, L_u, H_0, E_0)
 
@@ -68,7 +68,7 @@ def E_sat(T):
     return Ew
 
 
-# In[ ]:
+# In[6]:
 
 
 # Test the SEB function
@@ -81,7 +81,7 @@ G = 700.0     # Incoming shortwave radiation
 rho = 1.1     # Air density
 U = 2.0       # Wind velocity
 z =  2.0      # Measurement height
-z0 = 1e-3     # Roughness length
+z0 = 1e-2     # Roughness length
 p = 1013      # Pressure
 
 # Run the function
@@ -94,11 +94,12 @@ print('Longwave down: {:.2f}'.format(L_d))
 print('Longwave up: {:.2f}'.format(L_u))
 print('Surface heat flux: {:.2f}'.format(H_0))
 print('Latent heat flux: {:.2f}'.format(E_0))
+print(Q_0+L_d-L_u-H_0-E_0)
 
 
-# **Task 2**: Now we need to optimize for the surface temperature. Therefore, we need to write a so-called optimization function. In our case the sum of all fluxes should be zero. The SEB depends on the surface temperature. So we have to find the surface temperature which fulfills the condition $SEB(T_0)=Q_0+H_0+E_0=0$. 
+# **Task 2**: Now we need to optimize for the surface temperature. Therefore, we need to write a so-called optimization function. In our case the sum of all fluxes should be zero. The SEB depends on the surface temperature. So we have to find the surface temperature which fulfills the condition $SEB(T_0)=Q_0+L_d-L_u-H_0-E_0=0$. 
 
-# In[ ]:
+# In[8]:
 
 
 def optim_T0(x,T_a,f,albedo,G,p,rho,U_L,z,z0):
@@ -119,7 +120,7 @@ def optim_T0(x,T_a,f,albedo,G,p,rho,U_L,z,z0):
     Q_0, L_d, L_u, H_0, E_0 = EB_fluxes(x,T_a,f,albedo,G,p,rho,U_L,z,z0)
     
     # Get residual for optimization
-    res = np.abs()
+    res = np.abs(Q_0+L_d-L_u-H_0-E_0)
 
     # return the residuals
     return res
@@ -127,7 +128,13 @@ def optim_T0(x,T_a,f,albedo,G,p,rho,U_L,z,z0):
 
 # We use the **minimize function** from the scipy module to find the temperature values. 
 
-# In[ ]:
+# In[13]:
+
+
+optim_T0(293.5,T_a,f,albedo,G,p,rho,U,z,z0)
+
+
+# In[14]:
 
 
 # Test the SEB function
@@ -144,14 +151,15 @@ z0 = 1e-3     # Roughness length
 p = 1013      # Pressure
 
 # Run the function
-res = minimize(optim_T0,x0=T_0,args=(T_a,f,albedo,G,p,rho,U,z,z0),bounds=((None,400),),                          method='L-BFGS-B',options={'eps':1e-8})
+res = minimize(optim_T0,x0=T_0,args=(T_a,f,albedo,G,p,rho,U,z,z0),bounds=((None,400),), \
+                         method='L-BFGS-B',options={'eps':1e-8})
 
 res
 
 
 # The temperature value is stored in the x value of the result dictionary
 
-# In[ ]:
+# In[15]:
 
 
 # Assign optimization result to variable T_0
@@ -167,4 +175,10 @@ print('Longwave down: {:.2f}'.format(L_d))
 print('Longwave up: {:.2f}'.format(L_u))
 print('Surface heat flux: {:.2f}'.format(H_0))
 print('Latent heat flux: {:.2f}'.format(E_0))
+
+
+# In[ ]:
+
+
+
 

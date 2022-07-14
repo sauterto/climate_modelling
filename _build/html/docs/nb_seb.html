@@ -341,13 +341,13 @@ const thebe_selector_output = ".output, .cell_output"
 <span class="sd">    &quot;&quot;&quot;</span>
     
     <span class="c1"># Some constants</span>
-    <span class="n">c_p</span> <span class="o">=</span>             <span class="c1"># specific heat [J kg^-1 K^-1]</span>
-    <span class="n">kappa</span> <span class="o">=</span>           <span class="c1"># Von Karman constant [-]</span>
-    <span class="n">sigma</span> <span class="o">=</span>           <span class="c1"># Stefan-Bolzmann constant</span>
+    <span class="n">c_p</span> <span class="o">=</span> <span class="mi">1004</span>            <span class="c1"># specific heat [J kg^-1 K^-1]</span>
+    <span class="n">kappa</span> <span class="o">=</span> <span class="mf">0.41</span>          <span class="c1"># Von Karman constant [-]</span>
+    <span class="n">sigma</span> <span class="o">=</span> <span class="mf">5.67e-8</span>       <span class="c1"># Stefan-Bolzmann constant</span>
     
     <span class="c1"># Bulk coefficients </span>
-    <span class="n">Cs_t</span> <span class="o">=</span> 
-    <span class="n">Cs_q</span> <span class="o">=</span>   
+    <span class="n">Cs_t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="n">kappa</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">z</span><span class="o">/</span><span class="n">z_0</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">z</span><span class="o">/</span><span class="n">z_0</span><span class="p">))</span>
+    <span class="n">Cs_q</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="n">kappa</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">z</span><span class="o">/</span><span class="n">z_0</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">z</span><span class="o">/</span><span class="n">z_0</span><span class="p">))</span>  
     
     <span class="c1"># Correction factor for incoming longwave radiation</span>
     <span class="n">eps_cs</span> <span class="o">=</span> <span class="mf">0.23</span> <span class="o">+</span> <span class="mf">0.433</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="mi">100</span><span class="o">*</span><span class="p">(</span><span class="n">f</span><span class="o">*</span><span class="n">E_sat</span><span class="p">(</span><span class="n">T_a</span><span class="p">))</span><span class="o">/</span><span class="n">T_a</span><span class="p">,</span><span class="mf">1.0</span><span class="o">/</span><span class="mf">8.0</span><span class="p">)</span>
@@ -356,13 +356,13 @@ const thebe_selector_output = ".output, .cell_output"
     <span class="n">L</span> <span class="o">=</span> <span class="mf">2.83e6</span> <span class="c1"># latent heat for sublimation</span>
 
     <span class="c1"># Calculate turbulent fluxes</span>
-    <span class="n">H_0</span> <span class="o">=</span> 
-    <span class="n">E_0</span> <span class="o">=</span> 
+    <span class="n">H_0</span> <span class="o">=</span> <span class="n">rho</span> <span class="o">*</span> <span class="n">c_p</span> <span class="o">*</span> <span class="n">Cs_t</span> <span class="o">*</span> <span class="n">U_L</span> <span class="o">*</span> <span class="p">(</span><span class="n">T_0</span> <span class="o">-</span> <span class="n">T_a</span><span class="p">)</span>
+    <span class="n">E_0</span> <span class="o">=</span> <span class="n">rho</span> <span class="o">*</span> <span class="p">((</span><span class="n">L</span><span class="o">*</span><span class="mf">0.622</span><span class="p">)</span><span class="o">/</span><span class="n">p</span><span class="p">)</span> <span class="o">*</span> <span class="n">Cs_q</span> <span class="o">*</span> <span class="n">U_L</span> <span class="o">*</span> <span class="p">(</span><span class="n">E_sat</span><span class="p">(</span><span class="n">T_0</span><span class="p">)</span> <span class="o">-</span> <span class="n">f</span><span class="o">*</span><span class="n">E_sat</span><span class="p">(</span><span class="n">T_0</span><span class="p">))</span>
     
     <span class="c1"># Calculate radiation budget</span>
-    <span class="n">L_d</span> <span class="o">=</span> 
-    <span class="n">L_u</span> <span class="o">=</span> 
-    <span class="n">Q_0</span> <span class="o">=</span> 
+    <span class="n">L_d</span> <span class="o">=</span> <span class="n">eps_cs</span> <span class="o">*</span> <span class="n">sigma</span> <span class="o">*</span> <span class="p">(</span><span class="n">T_a</span><span class="p">)</span><span class="o">**</span><span class="mi">4</span>
+    <span class="n">L_u</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">*</span> <span class="n">sigma</span> <span class="o">*</span> <span class="p">(</span><span class="n">T_0</span><span class="p">)</span><span class="o">**</span><span class="mi">4</span>
+    <span class="n">Q_0</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">albedo</span><span class="p">)</span> <span class="o">*</span> <span class="n">G</span>
 
     <span class="k">return</span> <span class="p">(</span><span class="n">Q_0</span><span class="p">,</span> <span class="n">L_d</span><span class="p">,</span> <span class="n">L_u</span><span class="p">,</span> <span class="n">H_0</span><span class="p">,</span> <span class="n">E_0</span><span class="p">)</span>
 
@@ -386,7 +386,7 @@ const thebe_selector_output = ".output, .cell_output"
 <span class="n">rho</span> <span class="o">=</span> <span class="mf">1.1</span>     <span class="c1"># Air density</span>
 <span class="n">U</span> <span class="o">=</span> <span class="mf">2.0</span>       <span class="c1"># Wind velocity</span>
 <span class="n">z</span> <span class="o">=</span>  <span class="mf">2.0</span>      <span class="c1"># Measurement height</span>
-<span class="n">z0</span> <span class="o">=</span> <span class="mf">1e-3</span>     <span class="c1"># Roughness length</span>
+<span class="n">z0</span> <span class="o">=</span> <span class="mf">1e-2</span>     <span class="c1"># Roughness length</span>
 <span class="n">p</span> <span class="o">=</span> <span class="mi">1013</span>      <span class="c1"># Pressure</span>
 
 <span class="c1"># Run the function</span>
@@ -399,11 +399,23 @@ const thebe_selector_output = ".output, .cell_output"
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Longwave up: </span><span class="si">{:.2f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">L_u</span><span class="p">))</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Surface heat flux: </span><span class="si">{:.2f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">H_0</span><span class="p">))</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Latent heat flux: </span><span class="si">{:.2f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">E_0</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">Q_0</span><span class="o">+</span><span class="n">L_d</span><span class="o">-</span><span class="n">L_u</span><span class="o">-</span><span class="n">H_0</span><span class="o">-</span><span class="n">E_0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Surface temperature: 283.00
+Global radiation: 490.00
+Longwave down: 249.17
+Longwave up: 363.69
+Surface heat flux: 39.68
+Latent heat flux: 83.38
+252.4275080028804
 </pre></div>
 </div>
 </div>
 </div>
-<p><strong>Task 2</strong>: Now we need to optimize for the surface temperature. Therefore, we need to write a so-called optimization function. In our case the sum of all fluxes should be zero. The SEB depends on the surface temperature. So we have to find the surface temperature which fulfills the condition <span class="math notranslate nohighlight">\(SEB(T_0)=Q_0+H_0+E_0=0\)</span>.</p>
+<p><strong>Task 2</strong>: Now we need to optimize for the surface temperature. Therefore, we need to write a so-called optimization function. In our case the sum of all fluxes should be zero. The SEB depends on the surface temperature. So we have to find the surface temperature which fulfills the condition <span class="math notranslate nohighlight">\(SEB(T_0)=Q_0+L_d-L_u-H_0-E_0=0\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">optim_T0</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">T_a</span><span class="p">,</span><span class="n">f</span><span class="p">,</span><span class="n">albedo</span><span class="p">,</span><span class="n">G</span><span class="p">,</span><span class="n">p</span><span class="p">,</span><span class="n">rho</span><span class="p">,</span><span class="n">U_L</span><span class="p">,</span><span class="n">z</span><span class="p">,</span><span class="n">z0</span><span class="p">):</span>
@@ -424,7 +436,7 @@ const thebe_selector_output = ".output, .cell_output"
     <span class="n">Q_0</span><span class="p">,</span> <span class="n">L_d</span><span class="p">,</span> <span class="n">L_u</span><span class="p">,</span> <span class="n">H_0</span><span class="p">,</span> <span class="n">E_0</span> <span class="o">=</span> <span class="n">EB_fluxes</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">T_a</span><span class="p">,</span><span class="n">f</span><span class="p">,</span><span class="n">albedo</span><span class="p">,</span><span class="n">G</span><span class="p">,</span><span class="n">p</span><span class="p">,</span><span class="n">rho</span><span class="p">,</span><span class="n">U_L</span><span class="p">,</span><span class="n">z</span><span class="p">,</span><span class="n">z0</span><span class="p">)</span>
     
     <span class="c1"># Get residual for optimization</span>
-    <span class="n">res</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">()</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">Q_0</span><span class="o">+</span><span class="n">L_d</span><span class="o">-</span><span class="n">L_u</span><span class="o">-</span><span class="n">H_0</span><span class="o">-</span><span class="n">E_0</span><span class="p">)</span>
 
     <span class="c1"># return the residuals</span>
     <span class="k">return</span> <span class="n">res</span>
@@ -433,6 +445,18 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 <p>We use the <strong>minimize function</strong> from the scipy module to find the temperature values.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">optim_T0</span><span class="p">(</span><span class="mf">293.5</span><span class="p">,</span><span class="n">T_a</span><span class="p">,</span><span class="n">f</span><span class="p">,</span><span class="n">albedo</span><span class="p">,</span><span class="n">G</span><span class="p">,</span><span class="n">p</span><span class="p">,</span><span class="n">rho</span><span class="p">,</span><span class="n">U</span><span class="p">,</span><span class="n">z</span><span class="p">,</span><span class="n">z0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>24.031761069423567
+</pre></div>
+</div>
+</div>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Test the SEB function</span>
@@ -456,6 +480,20 @@ const thebe_selector_output = ".output, .cell_output"
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>      fun: 1.0085150847771729e-07
+ hess_inv: &lt;1x1 LbfgsInvHessProduct with dtype=float64&gt;
+      jac: array([0.04892793])
+  message: &#39;CONVERGENCE: REL_REDUCTION_OF_F_&lt;=_FACTR*EPSMCH&#39;
+     nfev: 138
+      nit: 8
+     njev: 69
+   status: 0
+  success: True
+        x: array([301.68719865])
+</pre></div>
+</div>
+</div>
 </div>
 <p>The temperature value is stored in the x value of the result dictionary</p>
 <div class="cell docutils container">
@@ -473,6 +511,16 @@ const thebe_selector_output = ".output, .cell_output"
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Longwave up: </span><span class="si">{:.2f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">L_u</span><span class="p">))</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Surface heat flux: </span><span class="si">{:.2f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">H_0</span><span class="p">))</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Latent heat flux: </span><span class="si">{:.2f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">E_0</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Surface temperature: 301.69
+Global radiation: 490.00
+Longwave down: 249.17
+Longwave up: 469.69
+Surface heat flux: 139.38
+Latent heat flux: 130.11
 </pre></div>
 </div>
 </div>

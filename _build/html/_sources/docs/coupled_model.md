@@ -3,7 +3,7 @@
 
 ### Python Notebooks
 * Coupled boundary layer model
-  * [Solution: Coupled boundary layer model]()
+  * [Solution: Coupled boundary layer model](coupled:solution)
 
 
 ### Exercises:

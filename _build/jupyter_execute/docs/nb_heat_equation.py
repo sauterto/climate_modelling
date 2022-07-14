@@ -44,7 +44,8 @@ def heat_equation(bc_surface, bc_bottom, depth, Nz, integration, dt, alpha):
         
         # Loop over all grid points
         for z in range(1,Nz-1):
-            Tnew[z] = T[z] + ((T[z+1] + T[z-1] - 2*T[z])/dz**2)                 * dt * alpha
+            Tnew[z] = T[z] + ((T[z+1] + T[z-1] - 2*T[z])/dz**2) \
+                * dt * alpha
 
         # Update old temperature array
         T = Tnew.copy()
@@ -54,6 +55,7 @@ def heat_equation(bc_surface, bc_bottom, depth, Nz, integration, dt, alpha):
 
     # return vertical temperature profile and grid spacing
     return T, dz
+
 
 
 
@@ -150,8 +152,8 @@ def heat_equation_indices(bc_surface, bc_bottom, depth, Nz, integration, dt):
 
 
 
-# In[17]:
 
+# In[17]:
 
 
 # Plot results
@@ -243,6 +245,7 @@ def heat_equation_time(depth, Nz, years):
 
     # return temperature array, grid spacing, and number of integration steps
     return T_all, dz, integration
+
 
 
 

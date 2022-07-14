@@ -64,6 +64,7 @@ def advection_diffusion(u, K, integration, dt, Nx):
 
 
 
+
 # In[2]:
 
 
@@ -157,6 +158,7 @@ def advection_diffusion(u, K, integration, dt, Nx):
         t = t + dt    
         
     return(phi, dx, u, K, c, d)
+
 
 
 
@@ -274,6 +276,7 @@ def boundary_layer(w, K, integration, dt, Nz, H):
     return(theta_all, cov_all, np.arange(0, integration, dt), np.arange(0, Nz*dz, dz), K, c, d)
 
 
+
 # In[2]:
 
 
@@ -296,6 +299,7 @@ def make_plot(data, x, z, levels, title, unit, xlab, zlab, cmap='RdBu_r'):
     
     # return the handler to the figure axes
     return ax
+
 
 
 # In[6]:
@@ -432,6 +436,7 @@ def boundary_layer_evolution(u, K, dx, dz, Nx, Nz, hours, dt):
 
     # Return results    
     return theta, cov, adv, c, d, np.arange(0, Nx*dx, dx), np.arange(0, Nz*dz, dz)
+
 
 
 
@@ -662,6 +667,7 @@ def boundary_layer_evolution_moisture(u, K, dx, dz, Nx, Nz, hours, dt):
         
     # Return results    
     return theta, q, qsat, rH, cov, adv, c, d, np.arange(0, Nx*dx, dx), np.arange(0, Nz*dz, dz)
+
 
 
 # In[35]:
@@ -906,6 +912,7 @@ def boundary_layer_evolution_moisture_gamma(u, K, dx, dz, Nx, Nz, hours, dt):
         
     # Return results    
     return theta, q, qsat, rH, cov, adv, c, d, np.arange(0, Nx*dx, dx), np.arange(0, Nz*dz, dz)
+
 
 
 

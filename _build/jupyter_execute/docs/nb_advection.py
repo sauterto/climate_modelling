@@ -67,6 +67,7 @@ def advection_diffusion(u, K, integration, dt, Nx):
 
 
 
+
 # In[3]:
 
 
@@ -160,6 +161,7 @@ def advection_diffusion(u, K, integration, dt, Nx):
         t = t + dt  
         
     return(phi, dx, u, K, c, d)
+
 
 
 
@@ -262,6 +264,7 @@ def boundary_layer(w, K, integration, dt, Nz, H):
         t = t + dt
         
     return(theta_all, cov_all, dz, u, K, c, d)
+
 
 
 # In[ ]:
@@ -394,6 +397,7 @@ def boundary_layer_evolution(u, K, dx, dz, Nx, Nz, hours, dt):
 
         
     return theta, c, d, np.arange(0, Nx*dx, dx), np.arange(0, Nz*dz, dz)
+
 
 
 
