@@ -399,7 +399,6 @@ q = (qsat.T * np.linspace(0.8, 0.2, Nza)).T
 # to 150 to a mixing ratio of 0.9 times the saturation mixing ratio
 q[0, lake_from:lake_to] = 0.95 * qsat[0, lake_from:lake_to] 
 
-
 # Iterate over time
 for t in range(integration):
         

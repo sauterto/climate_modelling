@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[59]:
+# In[1]:
 
 
 import numpy as np
@@ -34,8 +34,8 @@ u2 = [C*np.exp(-z*lam2)*np.sin(z*lam2) for z in np.arange(0,zmax,0.5)]
 plt.plot(np.array(theta1)+11,np.arange(0,zmax,0.5))
 plt.plot(np.array(u1),np.arange(0,zmax,0.5))
 
-plt.plot(np.array(u_meas),np.array(z_meas))
-plt.plot(np.array(t_meas),np.array(z_meas))
+#plt.plot(np.array(u_meas),np.array(z_meas))
+#plt.plot(np.array(t_meas),np.array(z_meas))
 #plt.plot(np.array(theta2)/-C,np.arange(0,zmax,0.5))
 #plt.plot(np.array(u2)/(mu*C),np.arange(0,zmax,0.5))
 
