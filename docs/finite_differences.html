@@ -110,8 +110,30 @@ const thebe_selector_output = ".output, .cell_output"
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="analytical_models.html">
-     Lesson 1 - Global Energy Balance Model
+    <a class="reference internal" href="nb_python_exercises.html">
+     Python exercises
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="solution_nb_python_exercises.html">
+     Python exercises
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="analytical_models.html">
+   Lesson 1 - Global Energy Balance Model
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="ebm_model.html">
+     Simplified Energy Balance Model
     </a>
    </li>
   </ul>
@@ -259,19 +281,19 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="simple">
 <li><p>Heat equation</p>
 <ul>
-<li><p><span class="xref myst">Exercise: Heat Equation</span></p></li>
+<li><p><a class="reference internal" href="nb_heat_equation.html#heat-equation-exercises"><span class="std std-ref">Exercise: Heat Equation</span></a></p></li>
 <li><p><a class="reference internal" href="solution_nb_heat_equation.html#heat-equation-solution"><span class="std std-ref">Solution: Heat Equation</span></a></p></li>
 </ul>
 </li>
 <li><p>Advection</p>
 <ul>
-<li><p><span class="xref myst">Exercise: Advection-Diffusion equation</span></p></li>
-<li><p><span class="xref myst">Solution: Advection-Diffusion equation</span></p></li>
+<li><p><a class="reference internal" href="nb_advection.html#advection-exercises"><span class="std std-ref">Exercise: Advection-Diffusion equation</span></a></p></li>
+<li><p><a class="reference internal" href="solution_nb_advection.html#advection-solution"><span class="std std-ref">Solution: Advection-Diffusion equation</span></a></p></li>
 </ul>
 </li>
 <li><p>Surface Energy Balance model</p>
 <ul>
-<li><p><span class="xref myst">Solution: Surface Energy Balance</span></p></li>
+<li><p><a class="reference internal" href="solution_nb_SEB.html#seb-solution"><span class="std std-ref">Solution: Surface Energy Balance</span></a></p></li>
 </ul>
 </li>
 </ul>
@@ -307,8 +329,8 @@ increase the wind speed. Discuss the results.</p>
 <blockquote>
 <div><p><strong>Task 5</strong>: Solve the Advection-Diffusion equation form x=0 to L, with the
 following initial and boundary conditions:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-0bd3f449-bf5d-45be-bb3e-931d85505e8b">
-<span class="eqno">()<a class="headerlink" href="#equation-0bd3f449-bf5d-45be-bb3e-931d85505e8b" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-74bda1e1-f414-4579-83b8-5ccd2ca02f8b">
+<span class="eqno">()<a class="headerlink" href="#equation-74bda1e1-f414-4579-83b8-5ccd2ca02f8b" title="Permalink to this equation">¶</a></span>\[\begin{align}
 c(x,0)&amp;=e^{\left(\frac{x-10}{2}\right)^2}\\
 c(0,t)&amp;=0\\
 c(L,t)&amp;=\frac{\partial c}{\partial x}=0
@@ -324,8 +346,8 @@ H=2 km height. Assume a fair-weather condition with a subsidence of -0.001 m
 s<span class="math notranslate nohighlight">\(^{-1}\)</span>. Also assume horizontal homogeneity. Parameterize the heat flux using the
 eddy-diffusivity closure with K=0.25 m s<span class="math notranslate nohighlight">\(^{-2}\)</span>. Solve the simplified equation
 using the following initial and boundary conditions:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-2c0e3fee-96ae-427f-8bba-72dd93ad8e01">
-<span class="eqno">()<a class="headerlink" href="#equation-2c0e3fee-96ae-427f-8bba-72dd93ad8e01" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-3726c388-40aa-4e21-8e12-1f7a447231a4">
+<span class="eqno">()<a class="headerlink" href="#equation-3726c388-40aa-4e21-8e12-1f7a447231a4" title="Permalink to this equation">¶</a></span>\[\begin{align}
 \theta(z,0)&amp;=290~K\\
 \overline{w'\theta'}(z,0)&amp;=0~W~m^{-2} \\
 \theta(0,t)&amp;=290+10\cdot sin \left( \frac{2\pi \cdot t}{86400} \right) \\
