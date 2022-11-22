@@ -7,8 +7,8 @@ chapters:
 - file: docs/intro_to_python  
   sections:
   - file: docs/nb_python_exercises
-    #- file: docs/solution_nb_python_exercises
-    #- file: docs/analytical_models.md
+  - file: docs/solution_nb_python_exercises
+  - file: docs/analytical_models.md
   #sections:
     #- file: docs/ebm_model
     #- file: docs/nonlinearity

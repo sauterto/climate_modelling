@@ -10,6 +10,6 @@ the further units. Those with experience in Python can safely skip the lessons.
 ```{admonition} Notebooks 
 [Python Exercise](python:exercise)
 
-[Solution: Python Exercise](python:solution)
+%[Solution: Python Exercise](python:solution)
 ```
 
