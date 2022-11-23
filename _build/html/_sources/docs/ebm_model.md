@@ -26,7 +26,7 @@ variability.
 [Energy Balance Model](ebm:exercise)
 
 %[Solution: Energy Balance Model](ebm:solution)
-[Solution: Energy Balance Model](ebm:solutioni_tmp)
+[Solution: Energy Balance Model](ebm:solution_tmp)
 
 ### Preliminary considerations: The global energy budget
 ```{figure} ./pics/GlobalEnergyBudget.png
