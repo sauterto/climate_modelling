@@ -114,11 +114,6 @@ const thebe_selector_output = ".output, .cell_output"
      Python exercises
     </a>
    </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="solution_nb_python_exercises.html">
-     Python exercises
-    </a>
-   </li>
   </ul>
  </li>
  <li class="toctree-l1 has-children">
@@ -450,12 +445,12 @@ The equilibrium temperature increased by about 2.8 K.
 <span class="n">dt</span> <span class="o">=</span> <span class="mi">60</span><span class="o">*</span><span class="mi">60</span><span class="o">*</span><span class="mi">24</span><span class="o">*</span><span class="mi">365</span>
 <span class="n">Cw</span> <span class="o">=</span> <span class="mi">10</span><span class="o">**</span><span class="mi">10</span>
 <span class="n">T</span> <span class="o">=</span> <span class="n">step_forward</span><span class="p">(</span><span class="mf">341.3</span><span class="p">,</span> <span class="n">T0</span><span class="p">,</span> <span class="n">Cw</span><span class="p">,</span> <span class="mf">0.32</span><span class="p">,</span> <span class="mf">0.57</span><span class="p">,</span> <span class="n">dt</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;New equlibrium emperature </span><span class="si">{:.2f}</span><span class="s1"> after 1 year&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">T</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;New equlibrium temperature </span><span class="si">{:.2f}</span><span class="s1"> after 1 year&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">T</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>New equlibrium emperature 288.03 after 1 year
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>New equlibrium temperature 288.03 after 1 year
 </pre></div>
 </div>
 </div>
@@ -488,8 +483,8 @@ The equilibrium temperature increased by about 2.8 K.
 </div>
 <p><strong>Task 9:</strong> Integrate the equation over a time of 200 years and plot the result. Use the following initial and boundary conditions:</p>
 <p>$</p>
-<div class="amsmath math notranslate nohighlight" id="equation-82287d67-4872-45d5-a4ba-b905a9439183">
-<span class="eqno">()<a class="headerlink" href="#equation-82287d67-4872-45d5-a4ba-b905a9439183" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-f4ec3456-6123-4e54-aadd-dfc0d0694da6">
+<span class="eqno">()<a class="headerlink" href="#equation-f4ec3456-6123-4e54-aadd-dfc0d0694da6" title="Permalink to this equation">¶</a></span>\[\begin{align}
 S_0 &amp;=1360 ~ W m^{-2} \\
 T_0 &amp;= 273 ~ K \\ 
 C_w &amp;= 10^8 ~ J/(m^2 \cdot K) \\
@@ -525,7 +520,7 @@ C_w &amp;= 10^8 ~ J/(m^2 \cdot K) \\
     <span class="n">Years</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">years</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
     
     <span class="c1"># Timestep</span>
-    <span class="n">dt</span> <span class="o">=</span> <span class="mi">60</span><span class="o">*</span><span class="mi">60</span><span class="o">*</span><span class="mi">24</span><span class="o">*</span><span class="n">years</span><span class="p">;</span>                  <span class="c1"># convert days to seconds</span>
+    <span class="n">dt</span> <span class="o">=</span> <span class="mi">60</span><span class="o">*</span><span class="mi">60</span><span class="o">*</span><span class="mi">24</span><span class="o">*</span><span class="mi">365</span>                  <span class="c1"># convert days to seconds</span>
 
     <span class="c1"># Initial and boundary conditions</span>
     <span class="n">Ts</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">T0</span> 
@@ -553,7 +548,7 @@ C_w &amp;= 10^8 ~ J/(m^2 \cdot K) \\
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7ffbc80a0a20&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x10e355120&gt;]
 </pre></div>
 </div>
 <img alt="../_images/solution_nb_ebm_23_1.png" src="../_images/solution_nb_ebm_23_1.png" />
@@ -572,12 +567,6 @@ C_w &amp;= 10^8 ~ J/(m^2 \cdot K) \\
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7ffbe03775c0&gt;]
-</pre></div>
-</div>
-<img alt="../_images/solution_nb_ebm_25_1.png" src="../_images/solution_nb_ebm_25_1.png" />
-</div>
 </div>
 <p><strong>Task 11:</strong> What changes do you observe with a higher <span class="math notranslate nohighlight">\(C_w\)</span> value (e.g. <span class="math notranslate nohighlight">\(C_w=10\cdot10^8 ~ J/(m^2 \cdot K)\)</span>)?</p>
 <div class="cell docutils container">
@@ -592,12 +581,6 @@ C_w &amp;= 10^8 ~ J/(m^2 \cdot K) \\
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">T_293_Cw</span><span class="p">)</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7ffbe9175c18&gt;]
-</pre></div>
-</div>
-<img alt="../_images/solution_nb_ebm_27_1.png" src="../_images/solution_nb_ebm_27_1.png" />
 </div>
 </div>
 <p><strong>Task 12:</strong> How does the result change when <span class="math notranslate nohighlight">\(\tau=1\)</span>?</p>
@@ -617,12 +600,6 @@ C_w &amp;= 10^8 ~ J/(m^2 \cdot K) \\
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7ffbf888d208&gt;
-</pre></div>
-</div>
-<img alt="../_images/solution_nb_ebm_29_1.png" src="../_images/solution_nb_ebm_29_1.png" />
-</div>
 </div>
 <div class="section" id="case-study-venus">
 <h2>Case Study: Venus.<a class="headerlink" href="#case-study-venus" title="Permalink to this headline">¶</a></h2>
@@ -638,12 +615,6 @@ C_w &amp;= 10^8 ~ J/(m^2 \cdot K) \\
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7ffbd8e72908&gt;
-</pre></div>
-</div>
-<img alt="../_images/solution_nb_ebm_31_1.png" src="../_images/solution_nb_ebm_31_1.png" />
 </div>
 </div>
 <div class="section" id="compare-the-measurements-with-your-simulation">
@@ -661,12 +632,6 @@ C_w &amp;= 10^8 ~ J/(m^2 \cdot K) \\
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7ffbf8ab6128&gt;
-</pre></div>
-</div>
-<img alt="../_images/solution_nb_ebm_33_1.png" src="../_images/solution_nb_ebm_33_1.png" />
-</div>
 </div>
 </div>
 </div>
@@ -681,16 +646,16 @@ C_w &amp;= 10^8 ~ J/(m^2 \cdot K) \\
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "python"
+            mode: "env"
         },
         kernelOptions: {
-            kernelName: "python3",
+            kernelName: "env",
             path: "./docs"
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'python3'</script>
+    <script>kernelName = 'env'</script>
 
               </div>
               
