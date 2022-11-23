@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# (ebm:solution)=
+# (ebm:solution_tmp)=
 # # Simplified Energy Balance Model
 
 # **Task 1:** Write a Python function for the OLR and effective temperature for later use.
@@ -199,90 +199,4 @@ yrs, T_273 = ebm(273, Q=1360/4, alpha=0.30, tau=0.61, years=200)
 # Plot results
 fig = plt.figure(figsize=(20,5))
 plt.plot(T_273)
-
-
-# **Task 10:** What happens if the intial temperature is set to 293 K ?
-
-# In[ ]:
-
-
-# Integrate the model
-yrs, T_293 = ebm(293, Q=1360/4, alpha=0.30, tau=0.61, years=200)
-
-# Plot results
-fig = plt.figure(figsize=(20,5))
-plt.plot(T_293)
-plt.plot(T_273)
-
-
-# **Task 11:** What changes do you observe with a higher $C_w$ value (e.g. $C_w=10\cdot10^8 ~ J/(m^2 \cdot K)$)?
-# 
-
-# In[ ]:
-
-
-# Integrate the model
-yrs, T_293_Cw = ebm(293, Q=1360/4, alpha=0.30, Cw=10*10e8, tau=0.61, years=200)
-
-# Plot results
-fig = plt.figure(figsize=(20,5))
-plt.plot(T_293)
-plt.plot(T_273)
-plt.plot(T_293_Cw)
-
-
-# **Task 12:** How does the result change when $\tau=1$?
-
-# In[ ]:
-
-
-# Integrate the model
-yrs, T_293_tau = ebm(293, Q=1360/4, alpha=0.30, Cw=10*10e8, tau=1., years=200)
-
-# Plot results
-fig = plt.figure(figsize=(20,5))
-plt.plot(T_293, label='$T_{293}$')
-plt.plot(T_273, label='$T_{273}$')
-plt.plot(T_293_Cw, label='$T_{293 C_w}$')
-plt.plot(T_293_tau, label='$T_{293 \tau}$')
-
-plt.legend()
-
-
-# ### Case Study: Venus. 
-# 
-# Calculate the mean surface temperature on Venus. Due to its proximity to the Sun, Venus has a very high irradiance of $S_{0}=2619 ~ Wm^{-2}$. Due to the high cloud cover, the albedo is about 0.7. What surface temperature can be expected? (Use the previous values for $C_w$ and $\tau$).
-
-# In[ ]:
-
-
-# Integrate the model
-yrs, T_venus = ebm(300, Q=2619/4, alpha=0.70, Cw=10e8, tau=0.61, years=500)
-
-# Plot results
-fig = plt.figure(figsize=(20,5))
-plt.plot(T_venus, label='$T_{venus}$')
-plt.legend()
-
-
-# #### Compare the measurements with your simulation. 
-# 
-# Is there a difference? If so, why does this difference exist? (Use the model to prove your hypothesis)
-
-# In[ ]:
-
-
-# Integrate the model
-yrs, T_venus = ebm(300, Q=2619/4, alpha=0.70, Cw=10e8, tau=0.015, years=500)
-
-# Plot results
-fig = plt.figure(figsize=(20,5))
-plt.plot(T_venus, label='$T_{venus}$')
-plt.legend()
-
-
-# In[ ]:
-
-
-
 

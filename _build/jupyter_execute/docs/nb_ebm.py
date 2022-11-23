@@ -6,81 +6,109 @@
 
 # **Task 1:** Write a Python function for the OLR and effective temperature for later use.
 
-# In[1]:
+# In[3]:
 
-
-# Stefan-Boltzmann constant
-sigma = 5.67e-8
 
 def T_eff(OLR):
     """ Effective global mean emission temperature """
+    # Stefan-Boltzmann constant
+    sigma = 5.67e-8
+    
     # Write your code here
-    pass
+    return (OLR/sigma)**0.25
+    
      
 def OLR(T):
     """ Stefan-Boltzmann law """
+    # Stefan-Boltzmann constant
+    sigma = 5.67e-8
+    
     # Write your code here
-    pass
+    return sigma * T**4
+    
+
+
+# In[11]:
+
+
+print("Effective temperature: {:.2f} K".format(T_eff(239)))
 
 
 # **Task 2:** Extend the OLR function by another **transmissivity** constant $\tau$ which takes this effect into account. Determine the transmissivity for a global mean temperature of 288 K.
 
-# In[2]:
+# In[13]:
 
-
-def OLR(T, tau):
-    """ Stefan-Boltzmann law """
-    # Write your code here
-    pass
 
 def tau(OLR, T):
-    """ Calculate transmissivity """
+    """ transmissivity """
+    # Stefan-Boltzmann constant
+    sigma = 5.67e-8
+    
     # Write your code here
-    pass
+    return OLR / (sigma*T**4)
+    
+     
+def OLR(T, tau):
+    """ Stefan-Boltzmann law """
+    # Stefan-Boltzmann constant
+    sigma = 5.67e-8
+    
+    # Write your code here
+    return tau * sigma * T**4
+    
 
 
-# In[3]:
+# In[14]:
 
 
 # Print the results
+print("Transmissivity assuming a global mean temperature of 288 K: {:.2f}".format(tau(239,288)))
 
 
 # **Task 3:** Determine the planetary albedo from the observations and write a function for the absorbed shortwave radiation, the part of the incoming sunlight that is not reflected back to space
 
-# In[4]:
+# In[18]:
 
 
 # Calculate the planetary albedo
+Q = 341.2
+Qref = 101.9
+alpha = Qref/Q
 
+print("Planetary Albedo: {:0.4f}".format(alpha))
 
 
 # **Task 4:** What additional amount of energy would have to remain in the system for the global temperature to rise by 4 K?
 
-# In[5]:
+# In[19]:
 
 
 def ASR(Q, albedo):
     """ Absorbed shortwave radiation """
     # Write your code here
-    pass    # Write your code here
-    pass
+    return Q * (1-alpha)
 
 
-# In[6]:
+# In[20]:
 
 
 # Print the results
+print("Absorbed shortwave radiation: {:0.4f}".format(ASR(Q, alpha)))
 
 
 # **Task 5:** Rearrange the equation according to the temperature denoting our equilibrium temperature. Substitute the observed values for insolation, transmissivity and planetary albedo and calculate the equlibrium temperature.
 
-# In[7]:
+# In[22]:
 
 
 def equilibrium_temperature(alpha,Q,tau):
     """ Equilibrium temperature """
-    # Write your code here
-    pass
+    # Stefan-Boltzmann constant
+    sigma = 5.67e-8
+    return ((1-alpha)*Q/(tau*sigma))**(1/4)
+
+Teq_observed = equilibrium_temperature(alpha,Q,tau(238.5, 288))
+print(Teq_observed)
 
 
 # In[8]:
