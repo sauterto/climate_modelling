@@ -486,8 +486,8 @@ y_{t+1} = r \cdot y_{t} \cdot (1-y_{t}),
 </div>
 <p><strong>Extend the model with a simple ice/land use albedo parameterisation. (sigmoid version)</strong></p>
 <p><strong>Task 5:</strong> In this parameterisation, the albedo is solely a function of mean temperature. As a non-linear function we assume a sigmoid function with</p>
-<div class="amsmath math notranslate nohighlight" id="equation-d57412f9-c43c-42fb-9573-d586867b550b">
-<span class="eqno">()<a class="headerlink" href="#equation-d57412f9-c43c-42fb-9573-d586867b550b" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-10f83799-c869-48b4-932d-721259f3431b">
+<span class="eqno">()<a class="headerlink" href="#equation-10f83799-c869-48b4-932d-721259f3431b" title="Permalink to this equation">¶</a></span>\[\begin{align}
 \alpha(T_i) = 0.3 \cdot (1-0.2 \cdot \tanh(0.5 \cdot (T_i-288))).
 \end{align}\]</div>
 <p>Run the energy balance model for 100 years with four different initial conditions for T(0)=286.0, 287.9, 288.0, and 293.0 K, while fixing the other parameters to <span class="math notranslate nohighlight">\(C_w\)</span>= 2<span class="math notranslate nohighlight">\(\cdot10^8\)</span> J/(m<span class="math notranslate nohighlight">\(^2 \cdot\)</span> K) and <span class="math notranslate nohighlight">\(\tau_{mean}\)</span>=0.608.</p>
@@ -566,8 +566,8 @@ y_{t+1} = r \cdot y_{t} \cdot (1-y_{t}),
 </div>
 <p><strong>Extend the model with a simple ice/land use albedo parameterisation. (linear version)</strong></p>
 <p><strong>Task 6:</strong> In this parameterisation, the albedo is solely a function of mean temperature. We assume a simple linear relation according to</p>
-<div class="amsmath math notranslate nohighlight" id="equation-aecd424b-5a72-451e-83bd-12fca50015dc">
-<span class="eqno">()<a class="headerlink" href="#equation-aecd424b-5a72-451e-83bd-12fca50015dc" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-0dbd5d19-a265-47e8-9afa-43a2ab201abf">
+<span class="eqno">()<a class="headerlink" href="#equation-0dbd5d19-a265-47e8-9afa-43a2ab201abf" title="Permalink to this equation">¶</a></span>\[\begin{align}
     f(x)= 
 \begin{cases}
     \alpha_i,&amp; \text{if } T\leq T_i\\

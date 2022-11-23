@@ -102,14 +102,14 @@ print('The equilibrium temperature increased by about {:.1f} K.'.format(Teq_new-
 
 # **Task 8:** Write a function called *step_forward(T, dt)* that returns the new temperature given the old temeprature T and timestep dt. Assume an initial temperature of 288 K and integrate the function for a few timestep and observe how the temperature changes.
 
-# In[11]:
+# In[10]:
 
 
 def step_forward(Q, T, Cw, alpha, tau, dt):
     return T + dt / Cw * ( ASR(Q, alpha) - OLR(T, tau) )
 
 
-# In[13]:
+# In[11]:
 
 
 T0 = 288
@@ -119,14 +119,14 @@ T = step_forward(341.3, T0, Cw, 0.32, 0.57, dt)
 print('New equlibrium temperature {:.2f} after 1 year'.format(T))
 
 
-# In[14]:
+# In[12]:
 
 
 T = step_forward(Q, T, Cw, 0.32, 0.57, dt)
 print('New equlibrium temperature {:.2f} after 2 years'.format(T))
 
 
-# In[15]:
+# In[13]:
 
 
 T = step_forward(Q, T, Cw, 0.32, 0.57, dt)
@@ -145,7 +145,7 @@ print('New equlibrium temperature {:.2f} after 3 years'.format(T))
 # \end{align}
 # $
 
-# In[1]:
+# In[14]:
 
 
 import numpy as np
@@ -190,7 +190,7 @@ def ebm(T0, Q=341.3, Cw=10e8, alpha=0.3, tau=0.64, years=100):
 
 
 
-# In[2]:
+# In[15]:
 
 
 # Integrate the model
