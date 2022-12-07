@@ -72,7 +72,9 @@ $T_s>T_a$ with $T_s = \sqrt[\leftroot{-2}\uproot{2}4]{2} \cdot T_a \approx 1.2
 > the outgoing longwave radiation to outer space results from the atmosphere,
 > the atmospheric temperture $T_a$ is identical to the emission temperature $T_e$.
 
-> **Task 2**: Where in the atmosphere do we find the calculated $T_e$? (Live-coding, {download}`Download netCDF-file<./files/air.mon.ltm.1981-2010.nc>`)
+> **Task 2**: Where in the atmosphere do we find the calculated $T_e$?
+> (Live-coding, {download}`Download
+> netCDF-file<./files/air.mon.ltm.1981-2010.nc> Plot the mean temperature profile.
 
 > **Task 3**: What is the surface temperature with the single layer model? Why
 > does the model overestimate the surface temperature?
