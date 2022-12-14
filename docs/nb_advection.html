@@ -158,6 +158,28 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
   </ul>
  </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="numerical_models.html">
+   Lesson 2 - Numerical Models
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="fluid_dynamics.html">
+     Fluid dynamics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="heat_equation.html">
+     Heat Equation
+    </a>
+   </li>
+  </ul>
+ </li>
 </ul>
 
     </div>
@@ -545,8 +567,8 @@ Dimensionless parameter d: 0.0448
 </div>
 </div>
 <p><strong>Task 5</strong>: Solve the Advection-Diffusion equation, with the following initial impulse signal and boundary conditions:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-70955d57-eabb-4145-becd-58d4b6fb7901">
-<span class="eqno">()<a class="headerlink" href="#equation-70955d57-eabb-4145-becd-58d4b6fb7901" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-b4a7e570-b455-4a1f-bc5b-eec672ab3269">
+<span class="eqno">()<a class="headerlink" href="#equation-b4a7e570-b455-4a1f-bc5b-eec672ab3269" title="Permalink to this equation">#</a></span>\[\begin{align}
 c(n,0) &amp;=exp^{\left(-\left(\frac{(x-10)}{2}\right)^2\right)} \\
 c(0,t) &amp;=0 \\
 c(L,t) &amp;=\frac{\partial c}{\partial x}=0
@@ -642,8 +664,8 @@ c(L,t) &amp;=\frac{\partial c}{\partial x}=0
 </div>
 </div>
 <p><strong>Task 6</strong>: Starting with the heat equation above simplify the equation to model the temperature evolution in the boundary layer from the surface up to H=2 km height. Assume a fair-weather condition with a subsidence of -0.001 m s-1. Also assume horizontal homogeneity. Parameterize the heat flux using the eddy-diffusivity closure with K=0.25 m s-2. Solve the simplified equation using the following initial and boundary conditions:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-1a5e9e71-99fe-4554-b6b7-4d452d47b883">
-<span class="eqno">()<a class="headerlink" href="#equation-1a5e9e71-99fe-4554-b6b7-4d452d47b883" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-1a76486c-3dd3-4aaf-87ec-968facc22289">
+<span class="eqno">()<a class="headerlink" href="#equation-1a76486c-3dd3-4aaf-87ec-968facc22289" title="Permalink to this equation">#</a></span>\[\begin{align}
 \theta(z,0)=290~K \\
 \overline{w'\theta'}(z,0)=0~W~m^{−2} \\
 \theta(0,t)=290+10 \cdot sin\left(\frac{2\pi \cdot t}{86400}\right)~K \\
