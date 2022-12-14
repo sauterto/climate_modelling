@@ -281,6 +281,115 @@ display(Markdown(r"""> **RS**: ${:.2f} ~ Wm^2$ <br>
 display(Markdown(r"""> **Radiative forcing**: ${:.2f} ~ Wm^2$""".format(-(term1p-term1)-(term2p-term2)-(term3p-term3))))
 
 
+# In[52]:
+
+
+import numpy as np
+
+def warming_per_year(ASR=0.2):
+    '''ASR = absorbed shortwave radiation'''
+    # Surface of the earth
+    area_earth = 4*np.pi*6371000**2
+
+    # Pressure level
+    p = 5e4
+
+    # Total mass above 500 hPa [kg]
+    m_atmos = (area_earth*p)/9.81
+
+
+    # J
+    J_per_m2 = ASR*60*60*24
+    J = J_per_m2*area_earth
+
+    # J/kg
+    cp = 1004
+
+    # warming per day
+    warming = (J / m_atmos) / cp
+
+    #display(Markdown(r"""> Warming per year: ${:.2f} ~ K$ <br>
+    #                """.format(warming*365)))
+    
+    return warming*365
+
+
+# In[104]:
+
+
+sigma = 5.67e-8
+epsilon = 0.59
+
+# The function calculates the OLR of the two-layer model
+def two_layer_model_aerosols(Ts, T0, T1, epsilon, asr):
+    T1 = T1 + warming_per_year(asr)
+    T0 = T0 + + warming_per_year(asr/10)
+    return ((1-epsilon)**2)*sigma*Ts**4 + epsilon*(1-epsilon)*sigma*T0**4 + epsilon*sigma*T1**4
+
+def two_layer_terms(Ts, T0, T1, epsilon, asr, lvl):
+    """
+    This is the same as the two-layer model but instead of returning the OLR this function return the 
+    individual terms of the two-layer equation
+    """
+    if lvl == 1:
+        T1 = T1 + warming_per_year(asr)
+    elif lvl == 0:
+        T0 = T0 + warming_per_year(asr)
+    cp_soil = 1900
+    Ts = (((1-0.32)*(342-asr))/(0.59*sigma))**(1/4)
+    print(Ts,T0,T1)
+    return ( ((1-epsilon)**2)*sigma*Ts**4, epsilon*(1-epsilon)*sigma*T0**4, epsilon*sigma*T1**4)
+
+
+
+# In[105]:
+
+
+from IPython.display import display, Markdown, Latex, Math
+
+term1, term2, term3 = two_layer_terms(288, 275, 230, epsilon, asr=0.0, lvl=0)
+term1p, term2p, term3p = two_layer_terms(288, 275, 230, epsilon+0.0, asr=3.0, lvl=0)
+
+# Print the results
+print('Term1 {:.2f} Term2 {:.2f} Term3: {:.2f}'.format(term1, term2, term3))
+
+display(Markdown(r"""> **RS**: ${:.2f} ~ Wm^2$ <br>
+                       **R0**: ${:.2f} ~ Wm^2$ <br>
+                       **R1**: ${:.2f} ~ Wm^2$
+                    """.format(-(term1p-term1),
+                               -(term2p-term2),
+                               -(term3p-term3))))
+
+display(Markdown(r"""> **Radiative forcing**: ${:.2f} ~ Wm^2$""".format(-(term1p-term1)-(term2p-term2)-(term3p-term3))))
+
+
+# In[94]:
+
+
+from IPython.display import display, Markdown, Latex, Math
+
+term1, term2, term3 = two_layer_terms(288, 275, 230, epsilon, asr=0.0, lvl=1)
+term1p, term2p, term3p = two_layer_terms(288, 275, 230, epsilon+0.0, asr=1.0, lvl=1)
+
+# Print the results
+print('Term1 {:.2f} Term2 {:.2f} Term3: {:.2f}'.format(term1, term2, term3))
+
+display(Markdown(r"""> **RS**: ${:.2f} ~ Wm^2$ <br>
+                       **R0**: ${:.2f} ~ Wm^2$ <br>
+                       **R1**: ${:.2f} ~ Wm^2$
+                    """.format(-(term1p-term1),
+                               -(term2p-term2),
+                               -(term3p-term3))))
+
+display(Markdown(r"""> **Radiative forcing**: ${:.2f} ~ Wm^2$""".format(-(term1p-term1)-(term2p-term2)-(term3p-term3))))
+
+
+# In[103]:
+
+
+(((1-0.32)*342)/(epsilon*sigma))**(1/4)
+
+
 # In[ ]:
 
 

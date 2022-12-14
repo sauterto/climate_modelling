@@ -4,14 +4,16 @@
 ### Python Notebooks
 * Heat equation
   * [Exercise: Heat Equation](heat_equation:exercises) 
-  * [Solution: Heat Equation](heat_equation:solution)
 
-* Advection
-  * [Exercise: Advection-Diffusion equation](advection:exercises)
-  * [Solution: Advection-Diffusion equation](advection:solution)
+%  * [Solution: Heat Equation](heat_equation:solution)
 
-* Surface Energy Balance model
-  * [Solution: Surface Energy Balance](seb:solution)
+%* Advection
+%  * [Exercise: Advection-Diffusion equation](advection:exercises)
+%  * [Solution: Advection-Diffusion equation](advection:solution)
+
+%* Surface Energy Balance model
+%  * [Solution: Surface Energy Balance](seb:solution)
+
 ### Exercises:
 
 >**Task 1**: Integrate the heat equation for several days using a time step of
