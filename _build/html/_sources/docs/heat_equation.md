@@ -4,7 +4,8 @@
 ### Python Notebooks
 * Heat equation
   * [Exercise: Heat Equation](heat_equation:exercises) 
-  * [Solution: Heat Equation](heat_equation:solution)
+
+%  * [Solution: Heat Equation](heat_equation:solution)
 
 >**Task 1**: Integrate the heat equation for several days using a time step of
 >hour and a heat conductivity of  $\nu = 1.2e^{-6}$ [m2 s$^{-1}$]. Plot the result.

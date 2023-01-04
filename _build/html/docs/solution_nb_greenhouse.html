@@ -174,8 +174,18 @@ const thebe_selector_output = ".output, .cell_output"
     </a>
    </li>
    <li class="toctree-l2">
+    <a class="reference internal" href="finite_differences.html">
+     Finite differences
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="heat_equation.html">
      Heat Equation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="advection.html">
+     Advection-Diffusion
     </a>
    </li>
   </ul>
@@ -1363,6 +1373,28 @@ Term1 65.97 Term2 78.44 Term3: 93.62
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>288.5394385194108
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">area_earth</span> <span class="o">=</span> <span class="mi">4</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="mi">6371000</span><span class="o">**</span><span class="mi">2</span>
+
+
+<span class="c1"># Pressure level</span>
+<span class="n">p</span> <span class="o">=</span> <span class="mf">5e4</span>
+
+<span class="c1"># Total mass above 500 hPa [kg]</span>
+<span class="n">m_atmos</span> <span class="o">=</span> <span class="p">(</span><span class="n">area_earth</span><span class="o">*</span><span class="n">p</span><span class="p">)</span><span class="o">/</span><span class="mf">9.81</span>
+<span class="n">m_atmos</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2.599716982210949e+18
 </pre></div>
 </div>
 </div>

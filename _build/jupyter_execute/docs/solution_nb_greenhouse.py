@@ -390,6 +390,22 @@ display(Markdown(r"""> **Radiative forcing**: ${:.2f} ~ Wm^2$""".format(-(term1p
 (((1-0.32)*342)/(epsilon*sigma))**(1/4)
 
 
+# In[5]:
+
+
+import numpy as np
+
+area_earth = 4*np.pi*6371000**2
+
+
+# Pressure level
+p = 5e4
+
+# Total mass above 500 hPa [kg]
+m_atmos = (area_earth*p)/9.81
+m_atmos
+
+
 # In[ ]:
 
 
