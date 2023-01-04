@@ -497,36 +497,35 @@ title="Print to PDF"
 <span class="sd">    Nz         :: number of grid points</span>
 <span class="sd">    integration:: number of iterations</span>
 <span class="sd">    dt         :: time step [s]</span>
+<span class="sd">    alpha      :: conductivity</span>
 <span class="sd">    &#39;&#39;&#39;</span>
 
     <span class="c1"># Definitions</span>
-    <span class="n">dz</span>    <span class="o">=</span> <span class="n">depth</span><span class="o">/</span><span class="n">Nz</span>  <span class="c1"># Distance between grid points</span>
-    <span class="c1">#alpha = alpha #1.2e-6    # Conductivity</span>
+    <span class="n">dz</span>    <span class="o">=</span> <span class="n">XXXXXX</span>  <span class="c1"># Distance between grid points</span>
 
     <span class="c1"># Initialize temperature and depth field</span>
-    <span class="n">T</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">Nz</span><span class="p">)</span>
+    <span class="n">T</span> <span class="o">=</span> <span class="n">XXXXXX</span>
 
-    <span class="n">T</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">bc_surface</span>  <span class="c1"># Set pen-ultima array to bc value (because the last grid cell</span>
-                          <span class="c1"># is required to calculate the second order derivative)</span>
-    <span class="n">T</span><span class="p">[</span><span class="n">Nz</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">bc_bottom</span>      <span class="c1"># Set the first elemnt to the bottom value</span>
+    <span class="n">T</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">XXXXXX</span>      <span class="c1"># Set pen-ultima array to bc value (because the last grid cell</span>
+                       <span class="c1"># is required to calculate the second order derivative)</span>
+    <span class="n">T</span><span class="p">[</span><span class="n">Nz</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">XXXXXX</span>   <span class="c1"># Set the first elemnt to the bottom value</span>
 
     <span class="c1"># Create the solution vector for new timestep (we need to store the temperature values</span>
     <span class="c1"># at the old time step)    </span>
     <span class="n">Tnew</span> <span class="o">=</span> <span class="n">T</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
 
     <span class="c1"># Loop over all times</span>
-    <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">integration</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">XXXXXX</span><span class="p">):</span>
         
         <span class="c1"># Loop over all grid points</span>
-        <span class="k">for</span> <span class="n">z</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">Nz</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
-            <span class="n">Tnew</span><span class="p">[</span><span class="n">z</span><span class="p">]</span> <span class="o">=</span> <span class="n">T</span><span class="p">[</span><span class="n">z</span><span class="p">]</span> <span class="o">+</span> <span class="p">((</span><span class="n">T</span><span class="p">[</span><span class="n">z</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">T</span><span class="p">[</span><span class="n">z</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="n">T</span><span class="p">[</span><span class="n">z</span><span class="p">])</span><span class="o">/</span><span class="n">dz</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> \
-                <span class="o">*</span> <span class="n">dt</span> <span class="o">*</span> <span class="n">alpha</span>
+        <span class="k">for</span> <span class="n">z</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">XXXXXX</span><span class="p">):</span>
+            <span class="n">Tnew</span><span class="p">[</span><span class="n">z</span><span class="p">]</span> <span class="o">=</span> <span class="n">XXXXXX</span>
 
         <span class="c1"># Update old temperature array</span>
         <span class="n">T</span> <span class="o">=</span> <span class="n">Tnew</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
 
         <span class="c1"># Neumann boundary condition</span>
-        <span class="n">T</span><span class="p">[</span><span class="n">Nz</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">T</span><span class="p">[</span><span class="n">Nz</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span>
+        <span class="n">T</span><span class="p">[</span><span class="n">Nz</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">XXXXXX</span>
 
     <span class="c1"># return vertical temperature profile and grid spacing</span>
     <span class="k">return</span> <span class="n">T</span><span class="p">,</span> <span class="n">dz</span>
@@ -564,9 +563,6 @@ title="Print to PDF"
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="../_images/nb_heat_equation_2_0.png" src="../_images/nb_heat_equation_2_0.png" />
-</div>
 </div>
 </section>
 <section id="heat-equation-with-index-arrays">
@@ -591,13 +587,13 @@ title="Print to PDF"
 <span class="sd">    &#39;&#39;&#39;</span>
 
     <span class="c1"># Definitions</span>
-    <span class="n">dz</span>    <span class="o">=</span> <span class="n">depth</span><span class="o">/</span><span class="n">Nz</span> <span class="c1"># Distance between grid points</span>
+    <span class="n">dz</span>    <span class="o">=</span> <span class="n">XXXXXX</span>   <span class="c1"># Distance between grid points</span>
     <span class="n">alpha</span> <span class="o">=</span> <span class="mf">1.2e-6</span>   <span class="c1"># Conductivity</span>
 
     <span class="c1"># Define index arrays </span>
-    <span class="n">k</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">Nz</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
-    <span class="n">kr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="n">Nz</span><span class="p">)</span>
-    <span class="n">kl</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">Nz</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">k</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">XXXXXX</span><span class="p">,</span> <span class="n">XXXXXX</span><span class="p">)</span>
+    <span class="n">kr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">XXXXXX</span><span class="p">,</span> <span class="n">XXXXXX</span><span class="p">)</span>
+    <span class="n">kl</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">XXXXXX</span><span class="p">,</span> <span class="n">XXXXXX</span><span class="p">)</span>
 
 
     <span class="c1"># Initialize temperature and depth field</span>
@@ -615,7 +611,7 @@ title="Print to PDF"
     <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">integration</span><span class="p">):</span>
     
         <span class="c1"># ADD USER CODE HERE</span>
-        <span class="n">Tnew</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">T</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">+</span><span class="p">((</span><span class="n">T</span><span class="p">[</span><span class="n">kr</span><span class="p">]</span> <span class="o">+</span> <span class="n">T</span><span class="p">[</span><span class="n">kl</span><span class="p">]</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="n">T</span><span class="p">[</span><span class="n">k</span><span class="p">])</span><span class="o">/</span><span class="n">dz</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">*</span><span class="n">dt</span> <span class="o">*</span> <span class="n">alpha</span>
+        <span class="n">Tnew</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">XXXXXX</span>
 
         <span class="c1"># Update old temperature array</span>
         <span class="n">T</span> <span class="o">=</span> <span class="n">Tnew</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
@@ -659,9 +655,6 @@ title="Print to PDF"
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="../_images/nb_heat_equation_5_0.png" src="../_images/nb_heat_equation_5_0.png" />
-</div>
 </div>
 </section>
 <section id="time-dependent-heat-equation">
@@ -686,9 +679,9 @@ title="Print to PDF"
     <span class="n">K</span>   <span class="o">=</span> <span class="mf">1.2e-6</span>               <span class="c1"># Conductivity</span>
  
     <span class="c1"># Define index arrays </span>
-    <span class="n">k</span>  <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">Nz</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># all indices at location i</span>
-    <span class="n">kr</span>  <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="n">Nz</span><span class="p">)</span>   <span class="c1"># all indices at location i+1</span>
-    <span class="n">kl</span>  <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">Nz</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span> <span class="c1"># all indices at location i-1</span>
+    <span class="n">k</span>  <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">XXXXXX</span><span class="p">,</span> <span class="n">XXXXXX</span><span class="p">)</span>  <span class="c1"># all indices at location i</span>
+    <span class="n">kr</span>  <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">XXXXXX</span><span class="p">,</span> <span class="n">XXXXXX</span><span class="p">)</span> <span class="c1"># all indices at location i+1</span>
+    <span class="n">kl</span>  <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">XXXXXX</span><span class="p">,</span> <span class="n">XXXXXX</span><span class="p">)</span> <span class="c1"># all indices at location i-1</span>
 
     <span class="c1"># Initial temperature field</span>
     <span class="n">T</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">Nz</span><span class="p">)</span>
@@ -702,23 +695,22 @@ title="Print to PDF"
     
     <span class="c1"># Time loop</span>
     <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">integration</span><span class="p">):</span>
-        <span class="k">pass</span>
     
         <span class="c1"># Set top BC - Dirlichet condition</span>
-        <span class="n">T</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span> <span class="mi">10</span> <span class="o">-</span> <span class="mi">20</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">((</span><span class="mi">2</span><span class="o">*</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">t</span><span class="p">)</span><span class="o">/</span><span class="mi">365</span><span class="p">)</span>
+        <span class="n">T</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span> <span class="n">XXXXXX</span>
 
         <span class="c1"># Set lower BC - Neumann condition</span>
-        <span class="n">T</span><span class="p">[</span><span class="n">Nz</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">T</span><span class="p">[</span><span class="n">Nz</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span>
+        <span class="n">T</span><span class="p">[</span><span class="n">Nz</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">XXXXXX</span>
         
         <span class="c1"># Update temperature using indices arrays</span>
         <span class="n">Tnew</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">T</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">+</span> <span class="p">((</span><span class="n">T</span><span class="p">[</span><span class="n">kr</span><span class="p">]</span> <span class="o">+</span> <span class="n">T</span><span class="p">[</span><span class="n">kl</span><span class="p">]</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="n">T</span><span class="p">[</span><span class="n">k</span><span class="p">])</span><span class="o">/</span><span class="n">dz</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="n">dt</span> <span class="o">*</span> <span class="n">K</span>
         
         <span class="c1"># Copy the new temperature als old timestep values (used for the </span>
         <span class="c1"># next time loop step)</span>
-        <span class="n">T</span> <span class="o">=</span> <span class="n">Tnew</span>
+        <span class="n">T</span> <span class="o">=</span> <span class="n">XXXXXX</span>
 
         <span class="c1"># Write result into the final array</span>
-        <span class="n">T_all</span><span class="p">[:,</span><span class="n">t</span><span class="p">]</span> <span class="o">=</span> <span class="n">Tnew</span>
+        <span class="n">T_all</span><span class="p">[</span><span class="n">XXXXXX</span><span class="p">,</span> <span class="n">XXXXXX</span><span class="p">]</span> <span class="o">=</span> <span class="n">Tnew</span>
 
 
     <span class="c1"># return temperature array, grid spacing, and number of integration steps</span>
@@ -751,9 +743,6 @@ title="Print to PDF"
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="../_images/nb_heat_equation_8_0.png" src="../_images/nb_heat_equation_8_0.png" />
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -764,9 +753,6 @@ title="Print to PDF"
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">T_all</span><span class="p">[</span><span class="mi">20</span><span class="p">,:]);</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../_images/nb_heat_equation_9_0.png" src="../_images/nb_heat_equation_9_0.png" />
 </div>
 </div>
 </section>

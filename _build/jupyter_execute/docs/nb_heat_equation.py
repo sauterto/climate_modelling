@@ -6,7 +6,7 @@
 # 
 # Integrate the heat equation for several days using a time step of 1 hour and a heat conductivity of  𝜈_𝑔 = 1.2e-6 [m2 s-1 ]. Plot the result. Once the code works, change the integration time. What happens if you integrate over a very long time?
 
-# In[12]:
+# In[ ]:
 
 
 import numpy as np
@@ -22,36 +22,35 @@ def heat_equation(bc_surface, bc_bottom, depth, Nz, integration, dt, alpha):
     Nz         :: number of grid points
     integration:: number of iterations
     dt         :: time step [s]
+    alpha      :: conductivity
     '''
 
     # Definitions
-    dz    = depth/Nz  # Distance between grid points
-    #alpha = alpha #1.2e-6    # Conductivity
+    dz    = XXXXXX  # Distance between grid points
 
     # Initialize temperature and depth field
-    T = np.zeros(Nz)
+    T = XXXXXX
 
-    T[0] = bc_surface  # Set pen-ultima array to bc value (because the last grid cell
-                          # is required to calculate the second order derivative)
-    T[Nz-1] = bc_bottom      # Set the first elemnt to the bottom value
+    T[0] = XXXXXX      # Set pen-ultima array to bc value (because the last grid cell
+                       # is required to calculate the second order derivative)
+    T[Nz-1] = XXXXXX   # Set the first elemnt to the bottom value
 
     # Create the solution vector for new timestep (we need to store the temperature values
     # at the old time step)    
     Tnew = T.copy()
 
     # Loop over all times
-    for t in range(integration):
+    for t in range(XXXXXX):
         
         # Loop over all grid points
-        for z in range(1,Nz-1):
-            Tnew[z] = T[z] + ((T[z+1] + T[z-1] - 2*T[z])/dz**2) \
-                * dt * alpha
+        for z in range(1,XXXXXX):
+            Tnew[z] = XXXXXX
 
         # Update old temperature array
         T = Tnew.copy()
 
         # Neumann boundary condition
-        T[Nz-1] = T[Nz-2]
+        T[Nz-1] = XXXXXX
 
     # return vertical temperature profile and grid spacing
     return T, dz
@@ -60,7 +59,7 @@ def heat_equation(bc_surface, bc_bottom, depth, Nz, integration, dt, alpha):
 
 
 
-# In[14]:
+# In[ ]:
 
 
 # Plot results
@@ -92,7 +91,7 @@ plt.show()
 
 # ### Heat equation with index arrays
 
-# In[15]:
+# In[ ]:
 
 
 get_ipython().run_line_magic('matplotlib', 'inline')
@@ -113,13 +112,13 @@ def heat_equation_indices(bc_surface, bc_bottom, depth, Nz, integration, dt):
     '''
 
     # Definitions
-    dz    = depth/Nz # Distance between grid points
+    dz    = XXXXXX   # Distance between grid points
     alpha = 1.2e-6   # Conductivity
 
     # Define index arrays 
-    k = np.arange(1, Nz-1)
-    kr = np.arange(2,Nz)
-    kl = np.arange(0,Nz-2)
+    k = np.arange(XXXXXX, XXXXXX)
+    kr = np.arange(XXXXXX, XXXXXX)
+    kl = np.arange(XXXXXX, XXXXXX)
 
 
     # Initialize temperature and depth field
@@ -137,7 +136,7 @@ def heat_equation_indices(bc_surface, bc_bottom, depth, Nz, integration, dt):
     for t in range(integration):
     
         # ADD USER CODE HERE
-        Tnew[k] = T[k] +((T[kr] + T[kl] - 2*T[k])/dz**2) *dt * alpha
+        Tnew[k] = XXXXXX
 
         # Update old temperature array
         T = Tnew.copy()
@@ -153,7 +152,7 @@ def heat_equation_indices(bc_surface, bc_bottom, depth, Nz, integration, dt):
 
 
 
-# In[17]:
+# In[ ]:
 
 
 # Plot results
@@ -188,7 +187,7 @@ plt.show()
 # Using the previous code, solve the Heat Equation using a temporal varying surface boundary condition. Use the following discretization: I = [0; 20 m], N = 40 grid points, 𝜈_𝑔 = 1.2e-6 [m2 s-1 ], and a daily time step. Integrate the equation for several years, e.g. 5 years. Plot the result as a contour plot. Also plot temperature time series in several depths. Discuss the plot!
 # 
 
-# In[18]:
+# In[ ]:
 
 
 import numpy as np
@@ -208,9 +207,9 @@ def heat_equation_time(depth, Nz, years):
     K   = 1.2e-6               # Conductivity
  
     # Define index arrays 
-    k  = np.arange(1,Nz-1)  # all indices at location i
-    kr  = np.arange(2,Nz)   # all indices at location i+1
-    kl  = np.arange(0,Nz-2) # all indices at location i-1
+    k  = np.arange(XXXXXX, XXXXXX)  # all indices at location i
+    kr  = np.arange(XXXXXX, XXXXXX) # all indices at location i+1
+    kl  = np.arange(XXXXXX, XXXXXX) # all indices at location i-1
 
     # Initial temperature field
     T = np.zeros(Nz)
@@ -224,23 +223,22 @@ def heat_equation_time(depth, Nz, years):
     
     # Time loop
     for t in range(integration):
-        pass
     
         # Set top BC - Dirlichet condition
-        T[0]= 10 - 20 * np.sin((2*math.pi*t)/365)
+        T[0]= XXXXXX
 
         # Set lower BC - Neumann condition
-        T[Nz-1] = T[Nz-2]
+        T[Nz-1] = XXXXXX
         
         # Update temperature using indices arrays
         Tnew[k] = T[k] + ((T[kr] + T[kl] - 2*T[k])/dz**2) * dt * K
         
         # Copy the new temperature als old timestep values (used for the 
         # next time loop step)
-        T = Tnew
+        T = XXXXXX
 
         # Write result into the final array
-        T_all[:,t] = Tnew
+        T_all[XXXXXX, XXXXXX] = Tnew
 
 
     # return temperature array, grid spacing, and number of integration steps
@@ -249,7 +247,7 @@ def heat_equation_time(depth, Nz, years):
 
 
 
-# In[19]:
+# In[ ]:
 
 
 # Solve the heat equation
@@ -273,7 +271,7 @@ plt.ylabel('Depth [m]')
 plt.colorbar();
 
 
-# In[20]:
+# In[ ]:
 
 
 # Plot temperature in several depths

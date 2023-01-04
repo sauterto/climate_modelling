@@ -223,7 +223,7 @@ def heat_equation_time(depth, Nz, years):
     for t in range(integration):
 
         # Set top BC - Dirlichet condition
-        T[0] = 0 - 10 * np.sin((2*math.pi*t)/365)
+        T[0] = 10 - 20 * np.sin((2*math.pi*t)/365)
 
         # Set lower BC - Neumann condition
         T[Nz-1] = T[Nz-2]

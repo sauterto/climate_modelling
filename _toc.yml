@@ -18,7 +18,7 @@ chapters:
     - file: docs/fluid_dynamics.md
       #- file: docs/finite_differences.md
     - file: docs/heat_equation.md
-    - file: docs/advection.md
+      #- file: docs/advection.md
       #- file: docs/seb.md
       #- file: docs/coupled_model.md
 
