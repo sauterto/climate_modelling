@@ -54,6 +54,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Heat Equation" href="heat_equation.html" />
+    <link rel="prev" title="Fluid dynamics" href="fluid_dynamics.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -113,7 +115,7 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <ul class="nav bd-sidenav">
+        <ul class="current nav bd-sidenav">
  <li class="toctree-l1 has-children">
   <a class="reference internal" href="intro_to_python.html">
    Lesson 0 -Introduction to Python
@@ -158,24 +160,34 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
   </ul>
  </li>
- <li class="toctree-l1 has-children">
+ <li class="toctree-l1 current active has-children">
   <a class="reference internal" href="numerical_models.html">
    Lesson 2 - Numerical Models
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
   <label for="toctree-checkbox-3">
    <i class="fas fa-chevron-down">
    </i>
   </label>
-  <ul>
+  <ul class="current">
    <li class="toctree-l2">
     <a class="reference internal" href="fluid_dynamics.html">
      Fluid dynamics
     </a>
    </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Finite differences
+    </a>
+   </li>
    <li class="toctree-l2">
     <a class="reference internal" href="heat_equation.html">
      Heat Equation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="advection.html">
+     Advection-Diffusion
     </a>
    </li>
   </ul>
@@ -449,8 +461,8 @@ increase the wind speed. Discuss the results.</p>
 <blockquote>
 <div><p><strong>Task 5</strong>: Solve the Advection-Diffusion equation form x=0 to L, with the
 following initial and boundary conditions:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-3d8798d8-3cf9-42cb-92de-1e58aab63094">
-<span class="eqno">()<a class="headerlink" href="#equation-3d8798d8-3cf9-42cb-92de-1e58aab63094" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-da1b1afd-e552-4607-92fe-fd6291d1156c">
+<span class="eqno">(11)<a class="headerlink" href="#equation-da1b1afd-e552-4607-92fe-fd6291d1156c" title="Permalink to this equation">#</a></span>\[\begin{align}
 c(x,0)&amp;=e^{\left(\frac{x-10}{2}\right)^2}\\
 c(0,t)&amp;=0\\
 c(L,t)&amp;=\frac{\partial c}{\partial x}=0
@@ -466,8 +478,8 @@ H=2 km height. Assume a fair-weather condition with a subsidence of -0.001 m
 s<span class="math notranslate nohighlight">\(^{-1}\)</span>. Also assume horizontal homogeneity. Parameterize the heat flux using the
 eddy-diffusivity closure with K=0.25 m s<span class="math notranslate nohighlight">\(^{-2}\)</span>. Solve the simplified equation
 using the following initial and boundary conditions:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-0840501a-edbd-4060-a572-642f8ea5885a">
-<span class="eqno">()<a class="headerlink" href="#equation-0840501a-edbd-4060-a572-642f8ea5885a" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-cdd844dd-281c-4da6-93af-2777516b16ab">
+<span class="eqno">(12)<a class="headerlink" href="#equation-cdd844dd-281c-4da6-93af-2777516b16ab" title="Permalink to this equation">#</a></span>\[\begin{align}
 \theta(z,0)&amp;=290~K\\
 \overline{w'\theta'}(z,0)&amp;=0~W~m^{-2} \\
 \theta(0,t)&amp;=290+10\cdot sin \left( \frac{2\pi \cdot t}{86400} \right) \\
@@ -521,6 +533,20 @@ scheme for the advection flux]</p>
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="fluid_dynamics.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Fluid dynamics</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="heat_equation.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Heat Equation</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
 </div>
             </footer>
         </div>
