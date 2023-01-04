@@ -426,7 +426,7 @@ title="Print to PDF"
                 
   <section id="advection-diffusion-equation">
 <h1>Advection diffusion equation<a class="headerlink" href="#advection-diffusion-equation" title="Permalink to this headline">#</a></h1>
-<p><strong>Task 4</strong>: Solve the Advection-Diffusion equation, with the following initial and boundary conditions: at t=0 , 𝑐<span class="math notranslate nohighlight">\(_0\)</span>=0; for all subsequent times, 𝑐=0 at x=0, 𝑐=1 at 𝑥=𝐿=1, 𝑢=1.0 and K=0.1. Integrate over 0.05 s with a Δ𝑡=0.0028. Plot the results and the dimensionless time scales. Increase gradually Δ𝑡 and analyse the results. Once you understand what is happening, set again Δ𝑡=0.0028 and gradually increase the wind speed. Discuss the results.</p>
+<p><strong>Task 4</strong>: Solve the Advection-Diffusion equation, with the following initial and boundary conditions: at t=0 , 𝑐<span class="math notranslate nohighlight">\(_0\)</span>=0; for all subsequent times, 𝑐=0 at x=0, 𝑐=1 at 𝑥=𝐿=1, 𝑢=1.0 and K=0.1. Integrate over 0.05 s with a Δ𝑡=0.0028, and 40 grid points. Plot the results and the dimensionless time scales. Increase gradually Δ𝑡 and analyse the results. Once you understand what is happening, set again Δ𝑡=0.0028 and gradually increase the wind speed. Discuss the results.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -523,8 +523,8 @@ required dt (diffusion) &lt;= 0.0022 s
 </div>
 </div>
 <p><strong>Task 5</strong>: Solve the Advection-Diffusion equation, with the following initial impulse signal and boundary conditions:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-65f72fbc-d8dd-4275-97c6-91b9e4510a6b">
-<span class="eqno">()<a class="headerlink" href="#equation-65f72fbc-d8dd-4275-97c6-91b9e4510a6b" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-f7b45728-c960-401a-9b0e-fdbff1b0510c">
+<span class="eqno">()<a class="headerlink" href="#equation-f7b45728-c960-401a-9b0e-fdbff1b0510c" title="Permalink to this equation">#</a></span>\[\begin{align}
 c(n,0) &amp;=exp^{\left(-\left(\frac{(x-10)}{2}\right)^2\right)} \\
 c(0,t) &amp;=0 \\
 c(L,t) &amp;=\frac{\partial c}{\partial x}=0
@@ -641,8 +641,8 @@ Characteristic diffusion time (d): 0.4480
 </div>
 </div>
 <p><strong>Task 6</strong>: Starting with the heat equation above simplify the equation to model the temperature evolution in the boundary layer from the surface up to H=2 km height. Assume a fair-weather condition with a subsidence of -0.001 m s-1. Also assume horizontal homogeneity. Parameterize the heat flux using the eddy-diffusivity closure with K=0.25 m s-2. Solve the simplified equation using the following initial and boundary conditions:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-f2c0416f-68e9-4dd3-b64b-83e4f4a8493a">
-<span class="eqno">()<a class="headerlink" href="#equation-f2c0416f-68e9-4dd3-b64b-83e4f4a8493a" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-fae10792-c4ba-4d73-8685-509401e81009">
+<span class="eqno">()<a class="headerlink" href="#equation-fae10792-c4ba-4d73-8685-509401e81009" title="Permalink to this equation">#</a></span>\[\begin{align}
 \theta(z,0)=290~K \\
 \overline{w'\theta'}(z,0)=0~W~m^{−2} \\
 \theta(0,t)=290+10 \cdot sin\left(\frac{2\pi \cdot t}{86400}\right)~K \\
@@ -945,7 +945,7 @@ Characteristic diffusion time (d): 0.4480
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Maximum warming rate by advection: 26.31 K/h
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Maximum warming rate by advection: 9.29 K/h
 </pre></div>
 </div>
 <img alt="../_images/solution_nb_advection_19_1.png" src="../_images/solution_nb_advection_19_1.png" />
@@ -965,8 +965,8 @@ Characteristic diffusion time (d): 0.4480
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Maximum total warming rate : 17.48 K/h
-Minimum total warming rate : -17.49 K/h
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Maximum total warming rate : 1.05 K/h
+Minimum total warming rate : -0.85 K/h
 </pre></div>
 </div>
 <img alt="../_images/solution_nb_advection_20_1.png" src="../_images/solution_nb_advection_20_1.png" />
@@ -1475,16 +1475,16 @@ Minimum total warming rate : -17.49 K/h
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "python"
+            mode: "env"
         },
         kernelOptions: {
-            kernelName: "python3",
+            kernelName: "env",
             path: "./docs"
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'python3'</script>
+    <script>kernelName = 'env'</script>
 
               </div>
               
