@@ -499,13 +499,6 @@ title="Print to PDF"
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Dimensionless parameter c: 0.1120
-Dimensionless parameter d: 0.4480
-</pre></div>
-</div>
-<img alt="../_images/nb_advection_2_1.png" src="../_images/nb_advection_2_1.png" />
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -517,16 +510,10 @@ Dimensionless parameter d: 0.4480
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>required dt (advection) &lt;= 0.0175 s
-required dt (diffusion) &lt;= 0.0022 s
-</pre></div>
-</div>
-</div>
 </div>
 <p><strong>Task 5</strong>: Solve the Advection-Diffusion equation, with the following initial impulse signal and boundary conditions:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-1ab75bfc-f3e0-42c9-becd-0275f4077f8d">
-<span class="eqno">()<a class="headerlink" href="#equation-1ab75bfc-f3e0-42c9-becd-0275f4077f8d" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-39f380af-dcf2-4e7c-a1e3-3eafe04bb091">
+<span class="eqno">()<a class="headerlink" href="#equation-39f380af-dcf2-4e7c-a1e3-3eafe04bb091" title="Permalink to this equation">#</a></span>\[\begin{align}
 c(n,0) &amp;=exp^{\left(-\left(\frac{(x-10)}{2}\right)^2\right)} \\
 c(0,t) &amp;=0 \\
 c(L,t) &amp;=\frac{\partial c}{\partial x}=0
@@ -611,16 +598,6 @@ c(L,t) &amp;=\frac{\partial c}{\partial x}=0
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>required dt (advection) &lt;= 0.0075 s
-required dt (diffusion) &lt;= 0.0031 s
-
-Courant number (c): 0.1120 (C&lt;1)
-Characteristic diffusion time (d): 0.4480
-</pre></div>
-</div>
-<img alt="../_images/nb_advection_6_1.png" src="../_images/nb_advection_6_1.png" />
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -635,13 +612,10 @@ Characteristic diffusion time (d): 0.4480
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="../_images/nb_advection_7_0.png" src="../_images/nb_advection_7_0.png" />
-</div>
 </div>
 <p><strong>Task 6</strong>: Starting with the heat equation above simplify the equation to model the temperature evolution in the boundary layer from the surface up to H=2 km height. Assume a fair-weather condition with a subsidence of -0.001 m s-1. Also assume horizontal homogeneity. Parameterize the heat flux using the eddy-diffusivity closure with K=0.25 m s-2. Solve the simplified equation using the following initial and boundary conditions:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-8510bb4e-3bcd-4290-9acf-880195d57f93">
-<span class="eqno">()<a class="headerlink" href="#equation-8510bb4e-3bcd-4290-9acf-880195d57f93" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-ca17f777-35f0-4fa3-a351-0b353b58cf39">
+<span class="eqno">()<a class="headerlink" href="#equation-ca17f777-35f0-4fa3-a351-0b353b58cf39" title="Permalink to this equation">#</a></span>\[\begin{align}
 \theta(z,0)=290~K \\
 \overline{w'\theta'}(z,0)=0~W~m^{−2} \\
 \theta(0,t)=290+10 \cdot sin\left(\frac{2\pi \cdot t}{86400}\right)~K \\
@@ -770,9 +744,6 @@ Characteristic diffusion time (d): 0.4480
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="../_images/nb_advection_11_0.png" src="../_images/nb_advection_11_0.png" />
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -791,10 +762,6 @@ Characteristic diffusion time (d): 0.4480
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="p">,(</span><span class="n">x</span><span class="p">[</span><span class="n">x</span><span class="o">%</span><span class="p">(</span><span class="mi">3600</span><span class="o">*</span><span class="mi">6</span><span class="p">)</span><span class="o">==</span><span class="mi">0</span><span class="p">]</span><span class="o">/</span><span class="mi">3600</span><span class="p">))),</span> <span class="n">size</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="s1">&#39;normal&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../_images/nb_advection_12_0.png" src="../_images/nb_advection_12_0.png" />
-<img alt="../_images/nb_advection_12_1.png" src="../_images/nb_advection_12_1.png" />
 </div>
 </div>
 <p><strong>Task 7</strong>: Intense boundary layer convection may develop when cold air masses are advected over relatively warm surfaces. Develop a simple model for this by assuming that the time evolution of the boundary layer is determined by the vertical turbulent heat transport and the horizontal heat advection. Make the following assumptions: [Hint: use the eddy-diffusivity closure and the upwind scheme for the advection flux]</p>
@@ -919,9 +886,6 @@ Characteristic diffusion time (d): 0.4480
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="../_images/nb_advection_17_0.png" src="../_images/nb_advection_17_0.png" />
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -937,12 +901,6 @@ Characteristic diffusion time (d): 0.4480
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Maximum warming rate by turbulent mixing: 10.31 K/h
-</pre></div>
-</div>
-<img alt="../_images/nb_advection_18_1.png" src="../_images/nb_advection_18_1.png" />
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -955,12 +913,6 @@ Characteristic diffusion time (d): 0.4480
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Maximum warming rate by advection: </span><span class="si">{:.2f}</span><span class="s1"> K/h&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">adv</span><span class="o">*</span><span class="mi">3600</span><span class="p">)))</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Maximum warming rate by advection: 9.29 K/h
-</pre></div>
-</div>
-<img alt="../_images/nb_advection_19_1.png" src="../_images/nb_advection_19_1.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -975,13 +927,6 @@ Characteristic diffusion time (d): 0.4480
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Minimum total warming rate : </span><span class="si">{:.2f}</span><span class="s1"> K/h&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">((</span><span class="n">cov</span><span class="o">*</span><span class="mi">3600</span><span class="p">)</span><span class="o">+</span><span class="p">(</span><span class="n">adv</span><span class="o">*</span><span class="mi">3600</span><span class="p">))))</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Maximum total warming rate : 1.05 K/h
-Minimum total warming rate : -0.85 K/h
-</pre></div>
-</div>
-<img alt="../_images/nb_advection_20_1.png" src="../_images/nb_advection_20_1.png" />
 </div>
 </div>
 <p><strong>Task 8</strong>: Extend the Lake-effect model by adding the moisture transport equation. Assume that the top millimetres above the water surface are saturated. Assume that the atmosphere has a relative humidity of 70 %. Calculate the relative humidity at each grid cell. [Note: Convert the potential temperature to normal temperature and calculate the mixing ratio at each cell. Then calculate the relative humidity.]</p>
@@ -1172,20 +1117,6 @@ Minimum total warming rate : -0.85 K/h
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[ 0  0  0  0  0  0  0  0  0  0]
- [ 5  5  5  5  5  5  5  5  5  5]
- [10 10 10 10 10 10 10 10 10 10]
- [15 15 15 15 15 15 15 15 15 15]
- [20 20 20 20 20 20 20 20 20 20]
- [25 25 25 25 25 25 25 25 25 25]
- [30 30 30 30 30 30 30 30 30 30]
- [35 35 35 35 35 35 35 35 35 35]
- [40 40 40 40 40 40 40 40 40 40]
- [45 45 45 45 45 45 45 45 45 45]]
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1218,12 +1149,6 @@ Minimum total warming rate : -0.85 K/h
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="../_images/nb_advection_25_0.png" src="../_images/nb_advection_25_0.png" />
-<img alt="../_images/nb_advection_25_1.png" src="../_images/nb_advection_25_1.png" />
-<img alt="../_images/nb_advection_25_2.png" src="../_images/nb_advection_25_2.png" />
-<img alt="../_images/nb_advection_25_3.png" src="../_images/nb_advection_25_3.png" />
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1255,12 +1180,6 @@ Minimum total warming rate : -0.85 K/h
 <span class="n">ax</span><span class="o">.</span><span class="n">contour</span><span class="p">(</span><span class="n">x</span><span class="o">/</span><span class="mi">1000</span><span class="p">,</span> <span class="n">z</span><span class="p">,</span><span class="n">rH</span><span class="p">,</span><span class="n">levels</span><span class="o">=</span><span class="p">[</span><span class="mf">0.95</span><span class="p">,</span><span class="mf">1.0</span><span class="p">],</span><span class="n">colors</span><span class="o">=</span><span class="s1">&#39;lightgreen&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../_images/nb_advection_27_0.png" src="../_images/nb_advection_27_0.png" />
-<img alt="../_images/nb_advection_27_1.png" src="../_images/nb_advection_27_1.png" />
-<img alt="../_images/nb_advection_27_2.png" src="../_images/nb_advection_27_2.png" />
-<img alt="../_images/nb_advection_27_3.png" src="../_images/nb_advection_27_3.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1472,15 +1391,6 @@ Minimum total warming rate : -0.85 K/h
 <span class="n">ax</span><span class="o">.</span><span class="n">contour</span><span class="p">(</span><span class="n">x</span><span class="o">/</span><span class="mi">1000</span><span class="p">,</span> <span class="n">z</span><span class="p">,</span><span class="n">rH</span><span class="p">,</span><span class="n">levels</span><span class="o">=</span><span class="p">[</span><span class="mf">0.95</span><span class="p">,</span><span class="mf">1.0</span><span class="p">],</span><span class="n">colors</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.contour.QuadContourSet at 0x11f9b7f70&gt;
-</pre></div>
-</div>
-<img alt="../_images/nb_advection_30_1.png" src="../_images/nb_advection_30_1.png" />
-<img alt="../_images/nb_advection_30_2.png" src="../_images/nb_advection_30_2.png" />
-<img alt="../_images/nb_advection_30_3.png" src="../_images/nb_advection_30_3.png" />
-<img alt="../_images/nb_advection_30_4.png" src="../_images/nb_advection_30_4.png" />
 </div>
 </div>
 </section>

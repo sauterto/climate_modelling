@@ -7,7 +7,7 @@
 # **Task 4**: Solve the Advection-Diffusion equation, with the following initial and boundary conditions: at t=0 , 𝑐$_0$=0; for all subsequent times, 𝑐=0 at x=0, 𝑐=1 at 𝑥=𝐿=1, 𝑢=1.0 and K=0.1. Integrate over 0.05 s with a Δ𝑡=0.0028, and 40 grid points. Plot the results and the dimensionless time scales. Increase gradually Δ𝑡 and analyse the results. Once you understand what is happening, set again Δ𝑡=0.0028 and gradually increase the wind speed. Discuss the results.
 # 
 
-# In[1]:
+# In[ ]:
 
 
 import numpy as np
@@ -67,7 +67,7 @@ def advection_diffusion(u, K, integration, dt, Nx):
 
 
 
-# In[2]:
+# In[ ]:
 
 
 phi, dx, u, K, c, d = advection_diffusion(u=1.0, K=0.1, integration=0.05, dt=0.0028, Nx=40)
@@ -75,7 +75,7 @@ phi, dx, u, K, c, d = advection_diffusion(u=1.0, K=0.1, integration=0.05, dt=0.0
 # Plot dimensionless parameters and plot data
 
 
-# In[3]:
+# In[ ]:
 
 
 # Define the CFL criteria
@@ -95,7 +95,7 @@ CFL = 0.7
 # 
 # Integrate the equation with K=0.1, u=1.0 over 0.05 s with a Δ𝑡=0.0028. Plot the results and the dimensionless time scales. Increase gradually Δ𝑡 and plot and analyse the results for different integration times.
 
-# In[6]:
+# In[ ]:
 
 
 import numpy as np
@@ -160,7 +160,7 @@ def advection_diffusion(u, K, integration, dt, Nx):
 
 
 
-# In[7]:
+# In[ ]:
 
 
 phi, dx, u, K, c, d = advection_diffusion(u=1.0, K=0.1, integration=0.05, dt=0.0028, Nx=40)
@@ -176,7 +176,7 @@ plt.plot(phi)
 plt.show()
 
 
-# In[8]:
+# In[ ]:
 
 
 # Simulate evolution for different time steps, e.g. 0.05, 0.1, 0.25
@@ -203,7 +203,7 @@ plt.show()
 # - What is the maximum heat flux in W m$^{-2}$? Is this a realistic values for a fair-weather condition?
 # - Calculate the heating rate in K per hour.
 
-# In[9]:
+# In[ ]:
 
 
 import numpy as np
@@ -276,7 +276,7 @@ def boundary_layer(w, K, integration, dt, Nz, H):
 
 
 
-# In[10]:
+# In[ ]:
 
 
 def make_plot(data, x, z, levels, title, unit, xlab, zlab, cmap='RdBu_r'):
@@ -301,7 +301,7 @@ def make_plot(data, x, z, levels, title, unit, xlab, zlab, cmap='RdBu_r'):
 
 
 
-# In[12]:
+# In[ ]:
 
 
 Nz = 200
@@ -320,7 +320,7 @@ ax.set_xticks(x[x%(3600*6)==0]);
 ax.set_xticklabels(list(map(str,(x[x%(3600*6)==0]/3600))), size=10, weight='normal');
 
 
-# In[13]:
+# In[ ]:
 
 
 # Plot the heat fluxes
@@ -342,7 +342,7 @@ ax.set_xticklabels(list(map(str,(x[x%(3600*6)==0]/3600))), size=10, weight='norm
 
 # <img src="pics/lake_erie_exercise.png">
 
-# In[14]:
+# In[ ]:
 
 
 import numpy as np
@@ -447,14 +447,14 @@ def boundary_layer_evolution(u, K, dx, dz, Nx, Nz, hours, dt):
 
 
 
-# In[15]:
+# In[ ]:
 
 
 # Run the model
 theta, cov, adv, c, d, x, z = boundary_layer_evolution(u=1, K=0.01, dx=500, dz=5, Nx=250, Nz=20, hours=5, dt=75)
 
 
-# In[16]:
+# In[ ]:
 
 
 # Create 2D plot for the covariance
@@ -462,7 +462,7 @@ ax = make_plot(theta, x=x/500, z=z, levels=21, title='Heat flux', unit='W m$^{-2
                xlab='Distance [km]', zlab='Height [m]', cmap='RdBu_r')
 
 
-# In[17]:
+# In[ ]:
 
 
 # Plot the warming rate by turbulent mixing
@@ -476,7 +476,7 @@ ax = make_plot(XXXXXX, x=x/1000, z=z, levels=21,
 print('Maximum warming rate by turbulent mixing: {:.2f} K/h'.format(np.max(cov*3600)))
 
 
-# In[18]:
+# In[ ]:
 
 
 # Plot the warming rate by advection
@@ -488,7 +488,7 @@ ax = make_plot(XXXXXX, x=x/1000, z=z, levels=21,
 print('Maximum warming rate by advection: {:.2f} K/h'.format(np.max(adv*3600)))
 
 
-# In[19]:
+# In[ ]:
 
 
 # Plot the total warming rate 
@@ -504,7 +504,7 @@ print('Minimum total warming rate : {:.2f} K/h'.format(np.min((cov*3600)+(adv*36
 # **Task 8**: Extend the Lake-effect model by adding the moisture transport equation. Assume that the top millimetres above the water surface are saturated. Assume that the atmosphere has a relative humidity of 70 %. Calculate the relative humidity at each grid cell. [Note: Convert the potential temperature to normal temperature and calculate the mixing ratio at each cell. Then calculate the relative humidity.]
 # 
 
-# In[20]:
+# In[ ]:
 
 
 import numpy as np
@@ -684,14 +684,14 @@ def boundary_layer_evolution_moisture(u, K, dx, dz, Nx, Nz, hours, dt):
 
 
 
-# In[21]:
+# In[ ]:
 
 
 height = np.array([np.arange(0,10*5,5),] * 10).transpose()
 print(height)
 
 
-# In[21]:
+# In[ ]:
 
 
 # Run the model
@@ -699,7 +699,7 @@ theta, q, qsat, rH, cov, adv, c, d, x, z = boundary_layer_evolution_moisture(u=5
                                                                        Nx=250, Nz=40, hours=24, dt=60)
 
 
-# In[25]:
+# In[ ]:
 
 
 # Create 2D plot for the covariance
@@ -721,7 +721,7 @@ ax = make_plot(rH*100, x=x/1000, z=z, levels=11, title='Relative humidity', unit
 ax.contour(x/1000, z,rH,levels=[0.95,1.0],colors='red');
 
 
-# In[23]:
+# In[ ]:
 
 
 # Base run
@@ -729,7 +729,7 @@ theta0, q0, qsat0, rH0, cov0, adv0, c0, d0, x0, z0 = boundary_layer_evolution_mo
                                                                        Nx=250, Nz=40, hours=0.1, dt=60)
 
 
-# In[26]:
+# In[ ]:
 
 
 # Create 2D plot for the covariance
@@ -751,7 +751,7 @@ ax = make_plot((rH-rH0)*100, x=x/1000, z=z, levels=11, title='Relative humidity 
 ax.contour(x/1000, z,rH,levels=[0.95,1.0],colors='lightgreen');
 
 
-# In[27]:
+# In[ ]:
 
 
 import numpy as np
@@ -931,7 +931,7 @@ def boundary_layer_evolution_moisture_gamma(u, K, dx, dz, Nx, Nz, hours, dt):
 
 
 
-# In[28]:
+# In[ ]:
 
 
 # Base run
@@ -940,7 +940,7 @@ theta0, q0, qsat0, rH0, cov0, adv0, c0, d0, x0, z0 = boundary_layer_evolution_mo
                                                                     Nx=250, Nz=40, hours=24, dt=60)
 
 
-# In[29]:
+# In[ ]:
 
 
 # Create 2D plot for the covariance
