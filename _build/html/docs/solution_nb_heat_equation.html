@@ -176,6 +176,11 @@ const thebe_selector_output = ".output, .cell_output"
      Heat Equation
     </a>
    </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="advection.html">
+     Advection-Diffusion
+    </a>
+   </li>
   </ul>
  </li>
 </ul>
@@ -726,11 +731,11 @@ title="Print to PDF"
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Solve the heat equation</span>
-<span class="n">T_all</span><span class="p">,</span> <span class="n">dz</span><span class="p">,</span> <span class="n">integration</span> <span class="o">=</span> <span class="n">heat_equation_time</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">T_all</span><span class="p">,</span> <span class="n">dz</span><span class="p">,</span> <span class="n">integration</span> <span class="o">=</span> <span class="n">heat_equation_time</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">80</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
 
 <span class="c1"># Create 2D mesh grid</span>
 <span class="c1"># First create the y-axis values</span>
-<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">20</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="n">dz</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">50</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="n">dz</span><span class="p">)</span>
 <span class="c1"># then the x-axis values</span>
 <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">integration</span><span class="p">)</span>
 <span class="c1"># use the arrays to create a 2D-mesh</span>
@@ -757,7 +762,7 @@ title="Print to PDF"
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">T_all</span><span class="p">[</span><span class="mi">0</span><span class="p">,:]);</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">T_all</span><span class="p">[</span><span class="mi">10</span><span class="p">,:]);</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">T_all</span><span class="p">[</span><span class="mi">20</span><span class="p">,:]);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">T_all</span><span class="p">[</span><span class="mi">40</span><span class="p">,:]);</span>
 </pre></div>
 </div>
 </div>
@@ -776,16 +781,16 @@ title="Print to PDF"
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "python"
+            mode: "env"
         },
         kernelOptions: {
-            kernelName: "python3",
+            kernelName: "env",
             path: "./docs"
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'python3'</script>
+    <script>kernelName = 'env'</script>
 
               </div>
               

@@ -281,7 +281,7 @@ display(Markdown(r"""> **RS**: ${:.2f} ~ Wm^2$ <br>
 display(Markdown(r"""> **Radiative forcing**: ${:.2f} ~ Wm^2$""".format(-(term1p-term1)-(term2p-term2)-(term3p-term3))))
 
 
-# In[52]:
+# In[18]:
 
 
 import numpy as np
@@ -314,7 +314,7 @@ def warming_per_year(ASR=0.2):
     return warming*365
 
 
-# In[104]:
+# In[19]:
 
 
 sigma = 5.67e-8
@@ -342,7 +342,7 @@ def two_layer_terms(Ts, T0, T1, epsilon, asr, lvl):
 
 
 
-# In[105]:
+# In[20]:
 
 
 from IPython.display import display, Markdown, Latex, Math
@@ -363,7 +363,7 @@ display(Markdown(r"""> **RS**: ${:.2f} ~ Wm^2$ <br>
 display(Markdown(r"""> **Radiative forcing**: ${:.2f} ~ Wm^2$""".format(-(term1p-term1)-(term2p-term2)-(term3p-term3))))
 
 
-# In[94]:
+# In[21]:
 
 
 from IPython.display import display, Markdown, Latex, Math
@@ -384,13 +384,13 @@ display(Markdown(r"""> **RS**: ${:.2f} ~ Wm^2$ <br>
 display(Markdown(r"""> **Radiative forcing**: ${:.2f} ~ Wm^2$""".format(-(term1p-term1)-(term2p-term2)-(term3p-term3))))
 
 
-# In[103]:
+# In[22]:
 
 
 (((1-0.32)*342)/(epsilon*sigma))**(1/4)
 
 
-# In[5]:
+# In[23]:
 
 
 import numpy as np

@@ -28,13 +28,13 @@ def advection_diffusion(u, K, integration, dt, Nx):
     """
     
     # Definitions and assignments
-    a   = 0.                # Left border
-    b   = 1.                # Right border
-    dx  = (b-a)/Nx          # Distance between grid points
+    a   = XXXXX                # Left border
+    b   = XXXXX                # Right border
+    dx  = XXXXX                # Distance between grid points
 
     # Define the boundary conditions
-    bc_l  = 1       # Left BC
-    bc_r  = 0       # Right BC
+    bc_l  = XXXXX       # Left BC
+    bc_r  = XXXXX       # Right BC
 
     # Define index arrays 
     k   = np.arange(1,Nx-1)
@@ -71,13 +71,8 @@ def advection_diffusion(u, K, integration, dt, Nx):
 
 
 phi, dx, u, K, c, d = advection_diffusion(u=1.0, K=0.1, integration=0.05, dt=0.0028, Nx=40)
-     
-print('Dimensionless parameter c: {:.4f}'.format(c))
-print('Dimensionless parameter d: {:.4f}'.format(d))
 
-plt.figure(figsize=(12,5))
-plt.plot(phi)
-plt.show()
+# Plot dimensionless parameters and plot data
 
 
 # In[3]:
@@ -85,9 +80,9 @@ plt.show()
 
 # Define the CFL criteria
 CFL = 0.7
-print("required dt (advection) <= {:.4f} s".format((CFL * dx)/u))
-print("required dt (diffusion) <= {:.4f} s".format(((CFL * dx**2))/(2*K)))
-print('')   
+
+# Print required time steps according to the CFL criteria
+  
 
 
 # **Task 5**: Solve the Advection-Diffusion equation, with the following initial impulse signal and boundary conditions: 
@@ -151,7 +146,7 @@ def advection_diffusion(u, K, integration, dt, Nx):
   
     while t <= integration:
         # Set BC
-        phi[Nx-1] = phi[Nx-2]
+        phi[Nx-1] = XXXXX
         
         # Update flux
         phi[k] = (1-2*d)*phi[k] + (d-(c/2))*phi[kr] + (d+(c/2))*phi[kl]
@@ -184,10 +179,7 @@ plt.show()
 # In[8]:
 
 
-# Simulate evolution for different time steps
-phi1, dx, u, K, c, d = advection_diffusion(u=1.0, K=0.1, integration=0.05, dt=0.0028, Nx=40)
-phi2, dx, u, K, c, d = advection_diffusion(u=1.0, K=0.1, integration=0.1, dt=0.0028, Nx=40)
-phi3, dx, u, K, c, d = advection_diffusion(u=1.0, K=0.1, integration=0.25, dt=0.0028, Nx=40)
+# Simulate evolution for different time steps, e.g. 0.05, 0.1, 0.25
 
 # Plot the results
 plt.figure(figsize=(12,5))
@@ -256,7 +248,7 @@ def boundary_layer(w, K, integration, dt, Nz, H):
     # Init time counter
     t = 0
     
-    for idx in range(int(integration/dt)):
+    for idx in range(XXXXXX):
         
         # Set BC top
         # CHANGE LINES HERE
@@ -415,10 +407,10 @@ def boundary_layer_evolution(u, K, dx, dz, Nx, Nz, hours, dt):
 
         # Set BC top (Neumann condition)
         # The last term accounts for the fixed gradient of 0.01
-        theta[Nz-1, :] = theta[Nz-2, :] + 0.01 * dz
+        theta[Nz-1, :] = XXXXXX
         
-        # Set BC right (Dirichlet condition)
-        theta[:, Nx-1] = theta[:, Nx-2]
+        # Set BC right (Neumann condition)
+        theta[:, Nx-1] = XXXXXX
         
         # We need to keep track of the old values for calculating the new derivatives.
         # That means, the temperature value a grid cell is calculated from its values 
@@ -429,7 +421,7 @@ def boundary_layer_evolution(u, K, dx, dz, Nx, Nz, hours, dt):
         # First update grid cells in z-direction. Here, we loop over all x grid cells and
         # use the index arrays m, mu, md to calculate the gradients for the
         # turbulent diffusion (which only depends on z)
-        for x in range(1,Nx-1):
+        for x in range(XXXXXX):
             # temperature - turbulent diffusion
             # CHANGE LINES HERE
             theta[m,x] = XXXXXX
@@ -440,7 +432,7 @@ def boundary_layer_evolution(u, K, dx, dz, Nx, Nz, hours, dt):
         # Then update grid cells in x-direction. Here, we loop over all z grid cells and
         # use the index arrays k, kl, kr to calculate the gradients for the
         # advection (which only depends on x)
-        for z in range(1,Nz-1):
+        for z in range(XXXXXX):
             # temperature advection
             # CHANGE LINES HERE
             theta[z,k] = XXXXXX
@@ -474,7 +466,7 @@ ax = make_plot(theta, x=x/500, z=z, levels=21, title='Heat flux', unit='W m$^{-2
 
 
 # Plot the warming rate by turbulent mixing
-ax = make_plot(cov*3600, x=x/1000, z=z, levels=21, 
+ax = make_plot(XXXXXX, x=x/1000, z=z, levels=21, 
                title='Warming rate by turbulent mixing', 
                unit='K h$^{-1}$', 
                xlab='Distance', 
@@ -488,7 +480,7 @@ print('Maximum warming rate by turbulent mixing: {:.2f} K/h'.format(np.max(cov*3
 
 
 # Plot the warming rate by advection
-ax = make_plot(adv*3600, x=x/1000, z=z, levels=21, 
+ax = make_plot(XXXXXX, x=x/1000, z=z, levels=21, 
                title='Warming rate due to advection', 
                unit='K h$^{-1}$', 
                xlab='Distance', zlab='Height', cmap='RdBu_r')
@@ -500,7 +492,7 @@ print('Maximum warming rate by advection: {:.2f} K/h'.format(np.max(adv*3600)))
 
 
 # Plot the total warming rate 
-ax = make_plot((adv*3600)+(cov*3600), x=x/1000, z=z, levels=21, 
+ax = make_plot(XXXXXX, x=x/1000, z=z, levels=21, 
                title='Warming rate due to advection', 
                unit='K h$^{-1}$', 
                xlab='Distance', zlab='Height', cmap='RdBu_r')
@@ -592,9 +584,9 @@ def boundary_layer_evolution_moisture(u, K, dx, dz, Nx, Nz, hours, dt):
     # Neutral stratification with lapse rate of 0.01 K/m
     # Create a 1D-array with the vertical temperature distribution
     # Surface = 268 K, decreasing according to the dry-adiabative lapse rate 0.01 K/m
-    lapse_rate = -0.01
-    theta_vec = np.array([268 + lapse_rate * (dz * z) for z in range(Nz)])
-    theta = np.array([theta_vec,] * Nx).transpose() 
+    lapse_rate = XXXXXX
+    theta_vec = XXXXXX
+    theta = XXXXXX
     
     # The lower temperature boundary needs to be updated where there is the lake
     # Here, were set the temperature at the lower boundary from the grid cell 50
@@ -635,16 +627,16 @@ def boundary_layer_evolution_moisture(u, K, dx, dz, Nx, Nz, hours, dt):
 
         # Set BC top (Neumann condition)
         # The last term accounts for the fixed gradient of 0.01
-        theta[Nz-1, :] = theta[Nz-2, :]# - 0.005 * dz
+        theta[Nz-1, :] = XXXXXX
         
         # Set top BC for moisture
         q[Nz-1, :] = q[Nz-2, :] 
         
-        # Set BC right (Dirichlet condition)
-        theta[:, Nx-1] = theta[:, Nx-2]
+        # Set BC right (Neumann condition)
+        theta[:, Nx-1] = tXXXXXX
         
         # Set right BC for moisture
-        q[:, Nx-1] = q[:, Nx-2]
+        q[:, Nx-1] = XXXXXX
         
         # We need to keep track of the old values for calculating the new derivatives.
         # That means, the temperature value a grid cell is calculated from its values 

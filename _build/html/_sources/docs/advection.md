@@ -5,7 +5,7 @@
 * Advection
   * [Exercise: Advection-Diffusion equation](advection:exercises)
 
-%  * [Solution: Advection-Diffusion equation](advection:solution)
+  * [Solution: Advection-Diffusion equation](advection:solution)
 
 ### Exercises:
 

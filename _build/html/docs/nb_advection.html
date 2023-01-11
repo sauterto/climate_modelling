@@ -178,6 +178,11 @@ const thebe_selector_output = ".output, .cell_output"
      Heat Equation
     </a>
    </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="advection.html">
+     Advection-Diffusion
+    </a>
+   </li>
   </ul>
  </li>
 </ul>
@@ -447,13 +452,13 @@ title="Print to PDF"
 <span class="sd">    &quot;&quot;&quot;</span>
     
     <span class="c1"># Definitions and assignments</span>
-    <span class="n">a</span>   <span class="o">=</span> <span class="mf">0.</span>                <span class="c1"># Left border</span>
-    <span class="n">b</span>   <span class="o">=</span> <span class="mf">1.</span>                <span class="c1"># Right border</span>
-    <span class="n">dx</span>  <span class="o">=</span> <span class="p">(</span><span class="n">b</span><span class="o">-</span><span class="n">a</span><span class="p">)</span><span class="o">/</span><span class="n">Nx</span>          <span class="c1"># Distance between grid points</span>
+    <span class="n">a</span>   <span class="o">=</span> <span class="n">XXXXX</span>                <span class="c1"># Left border</span>
+    <span class="n">b</span>   <span class="o">=</span> <span class="n">XXXXX</span>                <span class="c1"># Right border</span>
+    <span class="n">dx</span>  <span class="o">=</span> <span class="n">XXXXX</span>                <span class="c1"># Distance between grid points</span>
 
     <span class="c1"># Define the boundary conditions</span>
-    <span class="n">bc_l</span>  <span class="o">=</span> <span class="mi">1</span>       <span class="c1"># Left BC</span>
-    <span class="n">bc_r</span>  <span class="o">=</span> <span class="mi">0</span>       <span class="c1"># Right BC</span>
+    <span class="n">bc_l</span>  <span class="o">=</span> <span class="n">XXXXX</span>       <span class="c1"># Left BC</span>
+    <span class="n">bc_r</span>  <span class="o">=</span> <span class="n">XXXXX</span>       <span class="c1"># Right BC</span>
 
     <span class="c1"># Define index arrays </span>
     <span class="n">k</span>   <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">Nx</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
@@ -489,13 +494,8 @@ title="Print to PDF"
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">phi</span><span class="p">,</span> <span class="n">dx</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">d</span> <span class="o">=</span> <span class="n">advection_diffusion</span><span class="p">(</span><span class="n">u</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">K</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">integration</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">dt</span><span class="o">=</span><span class="mf">0.0028</span><span class="p">,</span> <span class="n">Nx</span><span class="o">=</span><span class="mi">40</span><span class="p">)</span>
-     
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Dimensionless parameter c: </span><span class="si">{:.4f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">c</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Dimensionless parameter d: </span><span class="si">{:.4f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">d</span><span class="p">))</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">phi</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="c1"># Plot dimensionless parameters and plot data</span>
 </pre></div>
 </div>
 </div>
@@ -511,9 +511,9 @@ Dimensionless parameter d: 0.4480
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define the CFL criteria</span>
 <span class="n">CFL</span> <span class="o">=</span> <span class="mf">0.7</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;required dt (advection) &lt;= </span><span class="si">{:.4f}</span><span class="s2"> s&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">((</span><span class="n">CFL</span> <span class="o">*</span> <span class="n">dx</span><span class="p">)</span><span class="o">/</span><span class="n">u</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;required dt (diffusion) &lt;= </span><span class="si">{:.4f}</span><span class="s2"> s&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(((</span><span class="n">CFL</span> <span class="o">*</span> <span class="n">dx</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">K</span><span class="p">)))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>   
+
+<span class="c1"># Print required time steps according to the CFL criteria</span>
+  
 </pre></div>
 </div>
 </div>
@@ -525,8 +525,8 @@ required dt (diffusion) &lt;= 0.0022 s
 </div>
 </div>
 <p><strong>Task 5</strong>: Solve the Advection-Diffusion equation, with the following initial impulse signal and boundary conditions:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-ac2dcf2f-f346-40b8-a252-dfb4a936672d">
-<span class="eqno">()<a class="headerlink" href="#equation-ac2dcf2f-f346-40b8-a252-dfb4a936672d" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-1ab75bfc-f3e0-42c9-becd-0275f4077f8d">
+<span class="eqno">()<a class="headerlink" href="#equation-1ab75bfc-f3e0-42c9-becd-0275f4077f8d" title="Permalink to this equation">#</a></span>\[\begin{align}
 c(n,0) &amp;=exp^{\left(-\left(\frac{(x-10)}{2}\right)^2\right)} \\
 c(0,t) &amp;=0 \\
 c(L,t) &amp;=\frac{\partial c}{\partial x}=0
@@ -582,7 +582,7 @@ c(L,t) &amp;=\frac{\partial c}{\partial x}=0
   
     <span class="k">while</span> <span class="n">t</span> <span class="o">&lt;=</span> <span class="n">integration</span><span class="p">:</span>
         <span class="c1"># Set BC</span>
-        <span class="n">phi</span><span class="p">[</span><span class="n">Nx</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">phi</span><span class="p">[</span><span class="n">Nx</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span>
+        <span class="n">phi</span><span class="p">[</span><span class="n">Nx</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">XXXXX</span>
         
         <span class="c1"># Update flux</span>
         <span class="n">phi</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">d</span><span class="p">)</span><span class="o">*</span><span class="n">phi</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">+</span> <span class="p">(</span><span class="n">d</span><span class="o">-</span><span class="p">(</span><span class="n">c</span><span class="o">/</span><span class="mi">2</span><span class="p">))</span><span class="o">*</span><span class="n">phi</span><span class="p">[</span><span class="n">kr</span><span class="p">]</span> <span class="o">+</span> <span class="p">(</span><span class="n">d</span><span class="o">+</span><span class="p">(</span><span class="n">c</span><span class="o">/</span><span class="mi">2</span><span class="p">))</span><span class="o">*</span><span class="n">phi</span><span class="p">[</span><span class="n">kl</span><span class="p">]</span>
@@ -624,10 +624,7 @@ Characteristic diffusion time (d): 0.4480
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Simulate evolution for different time steps</span>
-<span class="n">phi1</span><span class="p">,</span> <span class="n">dx</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">d</span> <span class="o">=</span> <span class="n">advection_diffusion</span><span class="p">(</span><span class="n">u</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">K</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">integration</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">dt</span><span class="o">=</span><span class="mf">0.0028</span><span class="p">,</span> <span class="n">Nx</span><span class="o">=</span><span class="mi">40</span><span class="p">)</span>
-<span class="n">phi2</span><span class="p">,</span> <span class="n">dx</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">d</span> <span class="o">=</span> <span class="n">advection_diffusion</span><span class="p">(</span><span class="n">u</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">K</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">integration</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">dt</span><span class="o">=</span><span class="mf">0.0028</span><span class="p">,</span> <span class="n">Nx</span><span class="o">=</span><span class="mi">40</span><span class="p">)</span>
-<span class="n">phi3</span><span class="p">,</span> <span class="n">dx</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">d</span> <span class="o">=</span> <span class="n">advection_diffusion</span><span class="p">(</span><span class="n">u</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">K</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">integration</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">dt</span><span class="o">=</span><span class="mf">0.0028</span><span class="p">,</span> <span class="n">Nx</span><span class="o">=</span><span class="mi">40</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Simulate evolution for different time steps, e.g. 0.05, 0.1, 0.25</span>
 
 <span class="c1"># Plot the results</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
@@ -643,8 +640,8 @@ Characteristic diffusion time (d): 0.4480
 </div>
 </div>
 <p><strong>Task 6</strong>: Starting with the heat equation above simplify the equation to model the temperature evolution in the boundary layer from the surface up to H=2 km height. Assume a fair-weather condition with a subsidence of -0.001 m s-1. Also assume horizontal homogeneity. Parameterize the heat flux using the eddy-diffusivity closure with K=0.25 m s-2. Solve the simplified equation using the following initial and boundary conditions:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-ee62a0f8-c63e-4127-a138-3cec8319c081">
-<span class="eqno">()<a class="headerlink" href="#equation-ee62a0f8-c63e-4127-a138-3cec8319c081" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-8510bb4e-3bcd-4290-9acf-880195d57f93">
+<span class="eqno">()<a class="headerlink" href="#equation-8510bb4e-3bcd-4290-9acf-880195d57f93" title="Permalink to this equation">#</a></span>\[\begin{align}
 \theta(z,0)=290~K \\
 \overline{w'\theta'}(z,0)=0~W~m^{−2} \\
 \theta(0,t)=290+10 \cdot sin\left(\frac{2\pi \cdot t}{86400}\right)~K \\
@@ -700,7 +697,7 @@ Characteristic diffusion time (d): 0.4480
     <span class="c1"># Init time counter</span>
     <span class="n">t</span> <span class="o">=</span> <span class="mi">0</span>
     
-    <span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">integration</span><span class="o">/</span><span class="n">dt</span><span class="p">)):</span>
+    <span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">XXXXXX</span><span class="p">):</span>
         
         <span class="c1"># Set BC top</span>
         <span class="c1"># CHANGE LINES HERE</span>
@@ -866,10 +863,10 @@ Characteristic diffusion time (d): 0.4480
 
         <span class="c1"># Set BC top (Neumann condition)</span>
         <span class="c1"># The last term accounts for the fixed gradient of 0.01</span>
-        <span class="n">theta</span><span class="p">[</span><span class="n">Nz</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">theta</span><span class="p">[</span><span class="n">Nz</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="p">:]</span> <span class="o">+</span> <span class="mf">0.01</span> <span class="o">*</span> <span class="n">dz</span>
+        <span class="n">theta</span><span class="p">[</span><span class="n">Nz</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">XXXXXX</span>
         
-        <span class="c1"># Set BC right (Dirichlet condition)</span>
-        <span class="n">theta</span><span class="p">[:,</span> <span class="n">Nx</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">theta</span><span class="p">[:,</span> <span class="n">Nx</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span>
+        <span class="c1"># Set BC right (Neumann condition)</span>
+        <span class="n">theta</span><span class="p">[:,</span> <span class="n">Nx</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">XXXXXX</span>
         
         <span class="c1"># We need to keep track of the old values for calculating the new derivatives.</span>
         <span class="c1"># That means, the temperature value a grid cell is calculated from its values </span>
@@ -880,7 +877,7 @@ Characteristic diffusion time (d): 0.4480
         <span class="c1"># First update grid cells in z-direction. Here, we loop over all x grid cells and</span>
         <span class="c1"># use the index arrays m, mu, md to calculate the gradients for the</span>
         <span class="c1"># turbulent diffusion (which only depends on z)</span>
-        <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">Nx</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">XXXXXX</span><span class="p">):</span>
             <span class="c1"># temperature - turbulent diffusion</span>
             <span class="c1"># CHANGE LINES HERE</span>
             <span class="n">theta</span><span class="p">[</span><span class="n">m</span><span class="p">,</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="n">XXXXXX</span>
@@ -891,7 +888,7 @@ Characteristic diffusion time (d): 0.4480
         <span class="c1"># Then update grid cells in x-direction. Here, we loop over all z grid cells and</span>
         <span class="c1"># use the index arrays k, kl, kr to calculate the gradients for the</span>
         <span class="c1"># advection (which only depends on x)</span>
-        <span class="k">for</span> <span class="n">z</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">Nz</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">z</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">XXXXXX</span><span class="p">):</span>
             <span class="c1"># temperature advection</span>
             <span class="c1"># CHANGE LINES HERE</span>
             <span class="n">theta</span><span class="p">[</span><span class="n">z</span><span class="p">,</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">XXXXXX</span>
@@ -929,7 +926,7 @@ Characteristic diffusion time (d): 0.4480
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot the warming rate by turbulent mixing</span>
-<span class="n">ax</span> <span class="o">=</span> <span class="n">make_plot</span><span class="p">(</span><span class="n">cov</span><span class="o">*</span><span class="mi">3600</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="o">/</span><span class="mi">1000</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="n">z</span><span class="p">,</span> <span class="n">levels</span><span class="o">=</span><span class="mi">21</span><span class="p">,</span> 
+<span class="n">ax</span> <span class="o">=</span> <span class="n">make_plot</span><span class="p">(</span><span class="n">XXXXXX</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="o">/</span><span class="mi">1000</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="n">z</span><span class="p">,</span> <span class="n">levels</span><span class="o">=</span><span class="mi">21</span><span class="p">,</span> 
                <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Warming rate by turbulent mixing&#39;</span><span class="p">,</span> 
                <span class="n">unit</span><span class="o">=</span><span class="s1">&#39;K h$^{-1}$&#39;</span><span class="p">,</span> 
                <span class="n">xlab</span><span class="o">=</span><span class="s1">&#39;Distance&#39;</span><span class="p">,</span> 
@@ -950,7 +947,7 @@ Characteristic diffusion time (d): 0.4480
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot the warming rate by advection</span>
-<span class="n">ax</span> <span class="o">=</span> <span class="n">make_plot</span><span class="p">(</span><span class="n">adv</span><span class="o">*</span><span class="mi">3600</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="o">/</span><span class="mi">1000</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="n">z</span><span class="p">,</span> <span class="n">levels</span><span class="o">=</span><span class="mi">21</span><span class="p">,</span> 
+<span class="n">ax</span> <span class="o">=</span> <span class="n">make_plot</span><span class="p">(</span><span class="n">XXXXXX</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="o">/</span><span class="mi">1000</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="n">z</span><span class="p">,</span> <span class="n">levels</span><span class="o">=</span><span class="mi">21</span><span class="p">,</span> 
                <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Warming rate due to advection&#39;</span><span class="p">,</span> 
                <span class="n">unit</span><span class="o">=</span><span class="s1">&#39;K h$^{-1}$&#39;</span><span class="p">,</span> 
                <span class="n">xlab</span><span class="o">=</span><span class="s1">&#39;Distance&#39;</span><span class="p">,</span> <span class="n">zlab</span><span class="o">=</span><span class="s1">&#39;Height&#39;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;RdBu_r&#39;</span><span class="p">)</span>
@@ -969,7 +966,7 @@ Characteristic diffusion time (d): 0.4480
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot the total warming rate </span>
-<span class="n">ax</span> <span class="o">=</span> <span class="n">make_plot</span><span class="p">((</span><span class="n">adv</span><span class="o">*</span><span class="mi">3600</span><span class="p">)</span><span class="o">+</span><span class="p">(</span><span class="n">cov</span><span class="o">*</span><span class="mi">3600</span><span class="p">),</span> <span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="o">/</span><span class="mi">1000</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="n">z</span><span class="p">,</span> <span class="n">levels</span><span class="o">=</span><span class="mi">21</span><span class="p">,</span> 
+<span class="n">ax</span> <span class="o">=</span> <span class="n">make_plot</span><span class="p">(</span><span class="n">XXXXXX</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="o">/</span><span class="mi">1000</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="n">z</span><span class="p">,</span> <span class="n">levels</span><span class="o">=</span><span class="mi">21</span><span class="p">,</span> 
                <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Warming rate due to advection&#39;</span><span class="p">,</span> 
                <span class="n">unit</span><span class="o">=</span><span class="s1">&#39;K h$^{-1}$&#39;</span><span class="p">,</span> 
                <span class="n">xlab</span><span class="o">=</span><span class="s1">&#39;Distance&#39;</span><span class="p">,</span> <span class="n">zlab</span><span class="o">=</span><span class="s1">&#39;Height&#39;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;RdBu_r&#39;</span><span class="p">)</span>
@@ -1067,9 +1064,9 @@ Minimum total warming rate : -0.85 K/h
     <span class="c1"># Neutral stratification with lapse rate of 0.01 K/m</span>
     <span class="c1"># Create a 1D-array with the vertical temperature distribution</span>
     <span class="c1"># Surface = 268 K, decreasing according to the dry-adiabative lapse rate 0.01 K/m</span>
-    <span class="n">lapse_rate</span> <span class="o">=</span> <span class="o">-</span><span class="mf">0.01</span>
-    <span class="n">theta_vec</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">268</span> <span class="o">+</span> <span class="n">lapse_rate</span> <span class="o">*</span> <span class="p">(</span><span class="n">dz</span> <span class="o">*</span> <span class="n">z</span><span class="p">)</span> <span class="k">for</span> <span class="n">z</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">Nz</span><span class="p">)])</span>
-    <span class="n">theta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">theta_vec</span><span class="p">,]</span> <span class="o">*</span> <span class="n">Nx</span><span class="p">)</span><span class="o">.</span><span class="n">transpose</span><span class="p">()</span> 
+    <span class="n">lapse_rate</span> <span class="o">=</span> <span class="n">XXXXXX</span>
+    <span class="n">theta_vec</span> <span class="o">=</span> <span class="n">XXXXXX</span>
+    <span class="n">theta</span> <span class="o">=</span> <span class="n">XXXXXX</span>
     
     <span class="c1"># The lower temperature boundary needs to be updated where there is the lake</span>
     <span class="c1"># Here, were set the temperature at the lower boundary from the grid cell 50</span>
@@ -1110,16 +1107,16 @@ Minimum total warming rate : -0.85 K/h
 
         <span class="c1"># Set BC top (Neumann condition)</span>
         <span class="c1"># The last term accounts for the fixed gradient of 0.01</span>
-        <span class="n">theta</span><span class="p">[</span><span class="n">Nz</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">theta</span><span class="p">[</span><span class="n">Nz</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="p">:]</span><span class="c1"># - 0.005 * dz</span>
+        <span class="n">theta</span><span class="p">[</span><span class="n">Nz</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">XXXXXX</span>
         
         <span class="c1"># Set top BC for moisture</span>
         <span class="n">q</span><span class="p">[</span><span class="n">Nz</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">q</span><span class="p">[</span><span class="n">Nz</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="p">:]</span> 
         
-        <span class="c1"># Set BC right (Dirichlet condition)</span>
-        <span class="n">theta</span><span class="p">[:,</span> <span class="n">Nx</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">theta</span><span class="p">[:,</span> <span class="n">Nx</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span>
+        <span class="c1"># Set BC right (Neumann condition)</span>
+        <span class="n">theta</span><span class="p">[:,</span> <span class="n">Nx</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">tXXXXXX</span>
         
         <span class="c1"># Set right BC for moisture</span>
-        <span class="n">q</span><span class="p">[:,</span> <span class="n">Nx</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">q</span><span class="p">[:,</span> <span class="n">Nx</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span>
+        <span class="n">q</span><span class="p">[:,</span> <span class="n">Nx</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">XXXXXX</span>
         
         <span class="c1"># We need to keep track of the old values for calculating the new derivatives.</span>
         <span class="c1"># That means, the temperature value a grid cell is calculated from its values </span>

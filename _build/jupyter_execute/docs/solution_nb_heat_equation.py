@@ -6,7 +6,7 @@
 # 
 # Integrate the heat equation for several days using a time step of 1 hour and a heat conductivity of  𝜈_𝑔 = 1.2e-6 [m2 s-1 ]. Plot the result. Once the code works, change the integration time. What happens if you integrate over a very long time?
 
-# In[3]:
+# In[1]:
 
 
 import numpy as np
@@ -58,7 +58,7 @@ def heat_equation(bc_surface, bc_bottom, depth, Nz, integration, dt):
 
 
 
-# In[5]:
+# In[2]:
 
 
 # Plot results
@@ -90,7 +90,7 @@ plt.show()
 
 # ### Heat equation with index arrays
 
-# In[8]:
+# In[3]:
 
 
 get_ipython().run_line_magic('matplotlib', 'inline')
@@ -150,7 +150,7 @@ def heat_equation_indices(bc_surface, bc_bottom, depth, Nz, integration, dt):
 
 
 
-# In[10]:
+# In[4]:
 
 
 # Plot results
@@ -185,7 +185,7 @@ plt.show()
 # Using the previous code, solve the Heat Equation using a temporal varying surface boundary condition. Use the following discretization: I = [0; 20 m], N = 40 grid points, 𝜈_𝑔 = 1.2e-6 [m2 s-1 ], and a daily time step. Integrate the equation for several years, e.g. 5 years. Plot the result as a contour plot. Also plot temperature time series in several depths. Discuss the plot!
 # 
 
-# In[13]:
+# In[10]:
 
 
 import numpy as np
@@ -245,15 +245,15 @@ def heat_equation_time(depth, Nz, years):
 
 
 
-# In[14]:
+# In[12]:
 
 
 # Solve the heat equation
-T_all, dz, integration = heat_equation_time(20, 40, 5)
+T_all, dz, integration = heat_equation_time(50, 80, 5)
 
 # Create 2D mesh grid
 # First create the y-axis values
-y = np.arange(-20,0,dz)
+y = np.arange(-50,0,dz)
 # then the x-axis values
 x = np.arange(integration)
 # use the arrays to create a 2D-mesh
@@ -269,12 +269,18 @@ plt.ylabel('Depth [m]')
 plt.colorbar();
 
 
-# In[15]:
+# In[13]:
 
 
 # Plot temperature in several depths
 plt.figure(figsize=(12,5))
 plt.plot(T_all[0,:]);
 plt.plot(T_all[10,:]);
-plt.plot(T_all[20,:]);
+plt.plot(T_all[40,:]);
+
+
+# In[ ]:
+
+
+
 

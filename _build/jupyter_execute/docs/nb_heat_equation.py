@@ -6,7 +6,7 @@
 # 
 # Integrate the heat equation for several days using a time step of 1 hour and a heat conductivity of  𝜈_𝑔 = 1.2e-6 [m2 s-1 ]. Plot the result. Once the code works, change the integration time. What happens if you integrate over a very long time?
 
-# In[ ]:
+# In[1]:
 
 
 import numpy as np
@@ -26,31 +26,32 @@ def heat_equation(bc_surface, bc_bottom, depth, Nz, integration, dt, alpha):
     '''
 
     # Definitions
-    dz    = XXXXXX  # Distance between grid points
+    dz    = depth/Nz  # Distance between grid points [m]
 
     # Initialize temperature and depth field
-    T = XXXXXX
+    T = np.zeros(Nz)
 
-    T[0] = XXXXXX      # Set pen-ultima array to bc value (because the last grid cell
+    T[0] = bc_surface      # Set pen-ultima array to bc value (because the last grid cell
                        # is required to calculate the second order derivative)
-    T[Nz-1] = XXXXXX   # Set the first elemnt to the bottom value
+    T[Nz-1] = bc_bottom   # Set the first elemnt to the bottom value
 
     # Create the solution vector for new timestep (we need to store the temperature values
     # at the old time step)    
     Tnew = T.copy()
 
     # Loop over all times
-    for t in range(XXXXXX):
+    for t in range(integration):
         
         # Loop over all grid points
-        for z in range(1,XXXXXX):
-            Tnew[z] = XXXXXX
+        for z in range(1,Nz-1):
+            
+            Tnew[z] = T[z] + (alpha*dt/dz**2) * (T[z+1] - 2*T[z] + T[z-1])
 
         # Update old temperature array
         T = Tnew.copy()
 
         # Neumann boundary condition
-        T[Nz-1] = XXXXXX
+        T[Nz-1] = T[Nz-2]
 
     # return vertical temperature profile and grid spacing
     return T, dz
@@ -59,7 +60,7 @@ def heat_equation(bc_surface, bc_bottom, depth, Nz, integration, dt, alpha):
 
 
 
-# In[ ]:
+# In[13]:
 
 
 # Plot results
@@ -76,22 +77,22 @@ ax[0,1].plot(T,-dz*np.arange(Nz));
 ax[0,1].set_xlabel('Temperature [ºC]')
 ax[0,1].set_ylabel('Depth [m]')
 
-#T, dz = heat_equation(20, 0, 5, Nz, 300, 60)
-#ax[1,0].plot(T,-dz*np.arange(Nz));
-#ax[1,0].set_xlabel('Temperature [ºC]')
-#ax[1,0].set_ylabel('Depth [m]')
+T, dz = heat_equation(20, 0, 5, Nz, 60*24, 60, 1.2e-6)
+ax[1,0].plot(T,-dz*np.arange(Nz));
+ax[1,0].set_xlabel('Temperature [ºC]')
+ax[1,0].set_ylabel('Depth [m]')
 
-#T, dz = heat_equation(20, 0, 5, Nz, 500, 60)
-#ax[1,1].plot(T,-dz*np.arange(Nz));
-#ax[1,1].set_xlabel('Temperature [ºC]')
-#ax[1,1].set_ylabel('Depth [m]')
+T, dz = heat_equation(20, 0, 5, Nz, 60*10000, 60, 1.2e-6)
+ax[1,1].plot(T,-dz*np.arange(Nz));
+ax[1,1].set_xlabel('Temperature [ºC]')
+ax[1,1].set_ylabel('Depth [m]')
 
 plt.show()
 
 
 # ### Heat equation with index arrays
 
-# In[ ]:
+# In[15]:
 
 
 get_ipython().run_line_magic('matplotlib', 'inline')
@@ -112,13 +113,13 @@ def heat_equation_indices(bc_surface, bc_bottom, depth, Nz, integration, dt):
     '''
 
     # Definitions
-    dz    = XXXXXX   # Distance between grid points
+    dz    = depth/Nz   # Distance between grid points
     alpha = 1.2e-6   # Conductivity
 
     # Define index arrays 
-    k = np.arange(XXXXXX, XXXXXX)
-    kr = np.arange(XXXXXX, XXXXXX)
-    kl = np.arange(XXXXXX, XXXXXX)
+    k = np.arange(1, Nz-1)
+    kr = np.arange(2, Nz)
+    kl = np.arange(0, Nz-2)
 
 
     # Initialize temperature and depth field
@@ -136,7 +137,7 @@ def heat_equation_indices(bc_surface, bc_bottom, depth, Nz, integration, dt):
     for t in range(integration):
     
         # ADD USER CODE HERE
-        Tnew[k] = XXXXXX
+        Tnew[k] = T[k] + (alpha*dt/dz**2) * (T[kr] - 2*T[k] + T[kl])
 
         # Update old temperature array
         T = Tnew.copy()
@@ -152,7 +153,7 @@ def heat_equation_indices(bc_surface, bc_bottom, depth, Nz, integration, dt):
 
 
 
-# In[ ]:
+# In[17]:
 
 
 # Plot results
@@ -174,7 +175,7 @@ ax[1,0].plot(T,-dz*np.arange(Nz));
 ax[1,0].set_xlabel('Temperature [ºC]')
 ax[1,0].set_ylabel('Depth [m]')
 
-T, dz = heat_equation_indices(20, 0, 5, Nz, 24*365, 60)
+T, dz = heat_equation_indices(20, 0, 5, Nz, 24*10000, 60)
 ax[1,1].plot(T,-dz*np.arange(Nz));
 ax[1,1].set_xlabel('Temperature [ºC]')
 ax[1,1].set_ylabel('Depth [m]')
@@ -187,7 +188,7 @@ plt.show()
 # Using the previous code, solve the Heat Equation using a temporal varying surface boundary condition. Use the following discretization: I = [0; 20 m], N = 40 grid points, 𝜈_𝑔 = 1.2e-6 [m2 s-1 ], and a daily time step. Integrate the equation for several years, e.g. 5 years. Plot the result as a contour plot. Also plot temperature time series in several depths. Discuss the plot!
 # 
 
-# In[ ]:
+# In[18]:
 
 
 import numpy as np
@@ -207,9 +208,9 @@ def heat_equation_time(depth, Nz, years):
     K   = 1.2e-6               # Conductivity
  
     # Define index arrays 
-    k  = np.arange(XXXXXX, XXXXXX)  # all indices at location i
-    kr  = np.arange(XXXXXX, XXXXXX) # all indices at location i+1
-    kl  = np.arange(XXXXXX, XXXXXX) # all indices at location i-1
+    k  = np.arange(1, Nz-1)  # all indices at location i
+    kr  = np.arange(2, Nz) # all indices at location i+1
+    kl  = np.arange(0, Nz-2) # all indices at location i-1
 
     # Initial temperature field
     T = np.zeros(Nz)
@@ -225,20 +226,20 @@ def heat_equation_time(depth, Nz, years):
     for t in range(integration):
     
         # Set top BC - Dirlichet condition
-        T[0]= XXXXXX
+        T[0]= 10 - 10 * (np.sin(2*math.pi*t)/365)
 
         # Set lower BC - Neumann condition
-        T[Nz-1] = XXXXXX
+        T[Nz-1] = T[Nz-2]
         
         # Update temperature using indices arrays
         Tnew[k] = T[k] + ((T[kr] + T[kl] - 2*T[k])/dz**2) * dt * K
         
         # Copy the new temperature als old timestep values (used for the 
         # next time loop step)
-        T = XXXXXX
+        T = Tnew
 
         # Write result into the final array
-        T_all[XXXXXX, XXXXXX] = Tnew
+        T_all[:, t] = Tnew
 
 
     # return temperature array, grid spacing, and number of integration steps
@@ -247,7 +248,7 @@ def heat_equation_time(depth, Nz, years):
 
 
 
-# In[ ]:
+# In[19]:
 
 
 # Solve the heat equation
