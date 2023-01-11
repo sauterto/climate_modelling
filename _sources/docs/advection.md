@@ -3,9 +3,9 @@
 
 ### Python Notebooks
 * Advection
-  * [Exercise: Advection-Diffusion equation](advection:exercises)
+  * [Exercise: Advection-Diffusion equation](advection:exercise)
 
-%  * [Solution: Advection-Diffusion equation](advection:solution)
+  * [Solution: Advection-Diffusion equation](advection:solution)
 
 ### Exercises:
 
