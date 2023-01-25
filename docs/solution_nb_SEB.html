@@ -178,6 +178,16 @@ const thebe_selector_output = ".output, .cell_output"
      Heat Equation
     </a>
    </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="advection.html">
+     Advection-Diffusion
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="seb.html">
+     Surface Energy Balance model
+    </a>
+   </li>
   </ul>
  </li>
 </ul>
@@ -513,6 +523,7 @@ title="Print to PDF"
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Longwave up: </span><span class="si">{:.2f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">L_u</span><span class="p">))</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Surface heat flux: </span><span class="si">{:.2f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">H_0</span><span class="p">))</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Latent heat flux: </span><span class="si">{:.2f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">E_0</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Energy Balance: </span><span class="si">{:.2f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">Q_0</span><span class="o">+</span><span class="n">L_d</span><span class="o">-</span><span class="n">L_u</span><span class="o">-</span><span class="n">H_0</span><span class="o">-</span><span class="n">E_0</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -522,7 +533,8 @@ Global radiation: 490.00
 Longwave down: 249.17
 Longwave up: 363.69
 Surface heat flux: 18.35
-Latent heat flux: 48.70
+Latent heat flux: 55.13
+Energy Balance: 302.00
 </pre></div>
 </div>
 </div>
@@ -576,21 +588,22 @@ Latent heat flux: 48.70
 <span class="n">res</span> <span class="o">=</span> <span class="n">minimize</span><span class="p">(</span><span class="n">optim_T0</span><span class="p">,</span><span class="n">x0</span><span class="o">=</span><span class="n">T_0</span><span class="p">,</span><span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">T_a</span><span class="p">,</span><span class="n">f</span><span class="p">,</span><span class="n">albedo</span><span class="p">,</span><span class="n">G</span><span class="p">,</span><span class="n">p</span><span class="p">,</span><span class="n">rho</span><span class="p">,</span><span class="n">U</span><span class="p">,</span><span class="n">z</span><span class="p">,</span><span class="n">z0</span><span class="p">),</span><span class="n">bounds</span><span class="o">=</span><span class="p">((</span><span class="kc">None</span><span class="p">,</span><span class="mi">400</span><span class="p">),),</span> \
                          <span class="n">method</span><span class="o">=</span><span class="s1">&#39;L-BFGS-B&#39;</span><span class="p">,</span><span class="n">options</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;eps&#39;</span><span class="p">:</span><span class="mf">1e-8</span><span class="p">})</span>
 
-<span class="n">res</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="o">+</span><span class="n">res</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Optimizes T0: </span><span class="si">{:.2f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>      fun: 6.211666914168745e-08
- hess_inv: &lt;1x1 LbfgsInvHessProduct with dtype=float64&gt;
-      jac: array([15.70233399])
-  message: &#39;ABNORMAL_TERMINATION_IN_LNSRCH&#39;
-     nfev: 134
-      nit: 5
-     njev: 67
-   status: 2
-  success: False
-        x: array([296.38460158])
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="nn">Input In [10],</span> in <span class="ni">&lt;cell line: 18&gt;</span><span class="nt">()</span>
+<span class="g g-Whitespace">     </span><span class="mi">14</span> <span class="c1"># Run the function</span>
+<span class="g g-Whitespace">     </span><span class="mi">15</span> <span class="n">res</span> <span class="o">=</span> <span class="n">minimize</span><span class="p">(</span><span class="n">optim_T0</span><span class="p">,</span><span class="n">x0</span><span class="o">=</span><span class="n">T_0</span><span class="p">,</span><span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">T_a</span><span class="p">,</span><span class="n">f</span><span class="p">,</span><span class="n">albedo</span><span class="p">,</span><span class="n">G</span><span class="p">,</span><span class="n">p</span><span class="p">,</span><span class="n">rho</span><span class="p">,</span><span class="n">U</span><span class="p">,</span><span class="n">z</span><span class="p">,</span><span class="n">z0</span><span class="p">),</span><span class="n">bounds</span><span class="o">=</span><span class="p">((</span><span class="kc">None</span><span class="p">,</span><span class="mi">400</span><span class="p">),),</span> \
+<span class="g g-Whitespace">     </span><span class="mi">16</span>                          <span class="n">method</span><span class="o">=</span><span class="s1">&#39;L-BFGS-B&#39;</span><span class="p">,</span><span class="n">options</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;eps&#39;</span><span class="p">:</span><span class="mf">1e-8</span><span class="p">})</span>
+<span class="ne">---&gt; </span><span class="mi">18</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="o">+</span><span class="n">res</span><span class="o">++</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">19</span> <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Optimizes T0: </span><span class="si">{:.2f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+
+<span class="ne">TypeError</span>: can only concatenate str (not &quot;OptimizeResult&quot;) to str
 </pre></div>
 </div>
 </div>
@@ -611,16 +624,18 @@ Latent heat flux: 48.70
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Longwave up: </span><span class="si">{:.2f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">L_u</span><span class="p">))</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Surface heat flux: </span><span class="si">{:.2f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">H_0</span><span class="p">))</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Latent heat flux: </span><span class="si">{:.2f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">E_0</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Energy Balance: </span><span class="si">{:.2f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">Q_0</span><span class="o">+</span><span class="n">L_d</span><span class="o">-</span><span class="n">L_u</span><span class="o">-</span><span class="n">H_0</span><span class="o">-</span><span class="n">E_0</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Surface temperature: 296.38
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Surface temperature: 295.49
 Global radiation: 490.00
 Longwave down: 249.17
-Longwave up: 437.53
-Surface heat flux: 100.23
-Latent heat flux: 201.42
+Longwave up: 432.28
+Surface heat flux: 94.77
+Latent heat flux: 212.12
+Energy Balance: 0.00
 </pre></div>
 </div>
 </div>
@@ -636,16 +651,16 @@ Latent heat flux: 201.42
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "python"
+            mode: "env"
         },
         kernelOptions: {
-            kernelName: "python3",
+            kernelName: "env",
             path: "./docs"
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'python3'</script>
+    <script>kernelName = 'env'</script>
 
               </div>
               
