@@ -54,6 +54,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Surface Energy Balance model" href="seb.html" />
     <link rel="prev" title="Heat Equation" href="heat_equation.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
@@ -182,6 +183,11 @@ const thebe_selector_output = ".output, .cell_output"
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
      Advection-Diffusion
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="seb.html">
+     Surface Energy Balance model
     </a>
    </li>
   </ul>
@@ -439,8 +445,8 @@ increase the wind speed. Discuss the results.</p>
 <blockquote>
 <div><p><strong>Task 5</strong>: Solve the Advection-Diffusion equation form x=0 to L, with the
 following initial and boundary conditions:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-85ab6f55-f1b4-44c9-a2f1-97f5b8300708">
-<span class="eqno">(11)<a class="headerlink" href="#equation-85ab6f55-f1b4-44c9-a2f1-97f5b8300708" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-abddc556-66f6-4f03-bea3-0fbbca439b0f">
+<span class="eqno">(11)<a class="headerlink" href="#equation-abddc556-66f6-4f03-bea3-0fbbca439b0f" title="Permalink to this equation">#</a></span>\[\begin{align}
 c(x,0)&amp;=e^{\left(\frac{x-10}{2}\right)^2}\\
 c(0,t)&amp;=0\\
 c(L,t)&amp;=\frac{\partial c}{\partial x}=0
@@ -456,8 +462,8 @@ H=2 km height. Assume a fair-weather condition with a subsidence of -0.001 m
 s<span class="math notranslate nohighlight">\(^{-1}\)</span>. Also assume horizontal homogeneity. Parameterize the heat flux using the
 eddy-diffusivity closure with K=0.25 m s<span class="math notranslate nohighlight">\(^{-2}\)</span>. Solve the simplified equation
 using the following initial and boundary conditions:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-700a59ca-0d13-4ef4-a296-380365abe1d2">
-<span class="eqno">(12)<a class="headerlink" href="#equation-700a59ca-0d13-4ef4-a296-380365abe1d2" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-4ef8a19b-07fe-4aef-9c22-2810d4867d7e">
+<span class="eqno">(12)<a class="headerlink" href="#equation-4ef8a19b-07fe-4aef-9c22-2810d4867d7e" title="Permalink to this equation">#</a></span>\[\begin{align}
 \theta(z,0)&amp;=290~K\\
 \overline{w'\theta'}(z,0)&amp;=0~W~m^{-2} \\
 \theta(0,t)&amp;=290+10\cdot sin \left( \frac{2\pi \cdot t}{86400} \right) \\
@@ -529,6 +535,13 @@ mixing ratio at each cell. Then calculate the relative humidity.]</p>
             <p class="prev-next-subtitle">previous</p>
             <p class="prev-next-title">Heat Equation</p>
         </div>
+    </a>
+    <a class='right-next' id="next-link" href="seb.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Surface Energy Balance model</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
     </a>
 </div>
             </footer>

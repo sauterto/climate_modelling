@@ -37,13 +37,13 @@ def EB_fluxes(T_0,T_a,f,albedo,G,p,rho,U_L,z,z_0):
     """
     
     # Some constants
-    c_p = 1004            # specific heat [J kg^-1 K^-1]
-    kappa = 0.41          # Von Karman constant [-]
-    sigma = 5.67e-8       # Stefan-Bolzmann constant
+    c_p = XXXXXX            # specific heat [J kg^-1 K^-1]
+    kappa = XXXXXX          # Von Karman constant [-]
+    sigma = XXXXXX       # Stefan-Bolzmann constant
     
     # Bulk coefficients 
-    Cs_t = np.power(kappa, 2.0) / (np.log(z/z_0)*np.log(z/z_0))
-    Cs_q = np.power(kappa, 2.0) / (np.log(z/z_0)*np.log(z/z_0))  
+    Cs_t = XXXXXX 
+    Cs_q = XXXXXX  
     
     # Correction factor for incoming longwave radiation
     eps_cs = 0.23 + 0.433 * np.power(100*(f*E_sat(T_a))/T_a,1.0/8.0)
@@ -52,13 +52,13 @@ def EB_fluxes(T_0,T_a,f,albedo,G,p,rho,U_L,z,z_0):
     L = 2.83e6 # latent heat for sublimation
 
     # Calculate turbulent fluxes
-    H_0 = rho * c_p * Cs_t * U_L * (T_0 - T_a)
-    E_0 = rho * ((L*0.622)/p) * Cs_q * U_L * (E_sat(T_0) - f*E_sat(T_0))
+    H_0 = XXXXXX
+    E_0 = XXXXXX
     
     # Calculate radiation budget
-    L_d = eps_cs * sigma * (T_a)**4
-    L_u = 1.0 * sigma * (T_0)**4
-    Q_0 = (1-albedo) * G
+    L_d = XXXXXX
+    L_u = XXXXXX
+    Q_0 = XXXXXX
 
     return (Q_0, L_d, L_u, H_0, E_0)
 
@@ -94,7 +94,7 @@ print('Longwave down: {:.2f}'.format(L_d))
 print('Longwave up: {:.2f}'.format(L_u))
 print('Surface heat flux: {:.2f}'.format(H_0))
 print('Latent heat flux: {:.2f}'.format(E_0))
-print(Q_0+L_d-L_u-H_0-E_0)
+print('Energy Balance: {:.2f}'.format(Q_0+L_d-L_u-H_0-E_0))
 
 
 # **Task 2**: Now we need to optimize for the surface temperature. Therefore, we need to write a so-called optimization function. In our case the sum of all fluxes should be zero. The SEB depends on the surface temperature. So we have to find the surface temperature which fulfills the condition $SEB(T_0)=Q_0+L_d-L_u-H_0-E_0=0$. 
@@ -151,10 +151,11 @@ z0 = 1e-3     # Roughness length
 p = 1013      # Pressure
 
 # Run the function
-res = minimize(optim_T0,x0=T_0,args=(T_a,f,albedo,G,p,rho,U,z,z0),bounds=((None,400),), \
+res = minimize(optim_T0,x0=XXXXXX,args=(XXXXXX),bounds=((XXXXXX,XXXXXX),), \
                          method='L-BFGS-B',options={'eps':1e-8})
 
 res
+print('Optimizes T0: {:.2f}'.format(res.x[0]))
 
 
 # The temperature value is stored in the x value of the result dictionary
@@ -163,7 +164,7 @@ res
 
 
 # Assign optimization result to variable T_0
-T_0 = res.x[0]
+T_0 = XXXXXX
 
 # Run the function
 Q_0, L_d, L_u, H_0, E_0 = EB_fluxes(T_0,T_a,f,albedo,G,p,rho,U,z,z0)
@@ -175,6 +176,7 @@ print('Longwave down: {:.2f}'.format(L_d))
 print('Longwave up: {:.2f}'.format(L_u))
 print('Surface heat flux: {:.2f}'.format(H_0))
 print('Latent heat flux: {:.2f}'.format(E_0))
+print('Energy Balance: {:.2f}'.format(Q_0+L_d-L_u-H_0-E_0))
 
 
 # In[ ]:
