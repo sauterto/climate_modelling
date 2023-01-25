@@ -7,7 +7,7 @@
 # **Task 4**: Solve the Advection-Diffusion equation, with the following initial and boundary conditions: at t=0 , 𝑐$_0$=0; for all subsequent times, 𝑐=0 at x=0, 𝑐=1 at 𝑥=𝐿=1, 𝑢=1.0 and K=0.1. Integrate over 0.05 s with a Δ𝑡=0.0028, and 40 grid points. Plot the results and the dimensionless time scales. Increase gradually Δ𝑡 and analyse the results. Once you understand what is happening, set again Δ𝑡=0.0028 and gradually increase the wind speed. Discuss the results.
 # 
 
-# In[ ]:
+# In[1]:
 
 
 import numpy as np
@@ -28,13 +28,13 @@ def advection_diffusion(u, K, integration, dt, Nx):
     """
     
     # Definitions and assignments
-    a   = XXXXX                # Left border
-    b   = XXXXX                # Right border
-    dx  = XXXXX                # Distance between grid points
+    a   = 0.                # Left border
+    b   = 1.                # Right border
+    dx  = (b-a)/Nx          # Distance between grid points
 
     # Define the boundary conditions
-    bc_l  = XXXXX       # Left BC
-    bc_r  = XXXXX       # Right BC
+    bc_l  = 1       # Left BC
+    bc_r  = 0       # Right BC
 
     # Define index arrays 
     k   = np.arange(1,Nx-1)
@@ -49,17 +49,15 @@ def advection_diffusion(u, K, integration, dt, Nx):
     phi[0] = bc_l
 
     # Dimensionless parameters
-    # CHANGE LINES HERE
-    d = XXXXXX
-    c = XXXXXX
+    d = (K*dt)/(dx**2)
+    c = (u*dt)/dx
 
     # Time loop
     t = 0
 
     while t <= integration:
         # Update flux
-        # CHANGE LINES HERE
-        phi[k] = XXXXXX
+        phi[k] = (1-2*d)*phi[k] + (d-(c/2))*phi[kr] + (d+(c/2))*phi[kl]
         t = t + dt    
         
     return(phi, dx, u, K, c, d)
@@ -67,22 +65,29 @@ def advection_diffusion(u, K, integration, dt, Nx):
 
 
 
-# In[ ]:
+# In[2]:
 
 
-phi, dx, u, K, c, d = advection_diffusion(u=1.0, K=0.1, integration=0.05, dt=0.0028, Nx=40)
+phi, dx, u, K, c, d = advection_diffusion(u=10.0, K=0.1, integration=0.05, dt=0.000028, Nx=40)
 
 # Plot dimensionless parameters and plot data
+print('Dimensionless parameter c: {:.4f}'.format(c))
+print('Dimensionless parameter d: {:.4f}'.format(d))
+
+plt.figure(figsize=(12,5))
+plt.plot(phi)
 
 
-# In[ ]:
+# In[3]:
 
 
 # Define the CFL criteria
-CFL = 0.7
+CFL = 1.0
 
 # Print required time steps according to the CFL criteria
-  
+print("required dt (advection) <= {:.4f} s".format((CFL * dx)/u))
+print("required dt (diffusion) <= {:.4f} s".format(((CFL * dx**2))/(2*K)))
+print('') 
 
 
 # **Task 5**: Solve the Advection-Diffusion equation, with the following initial impulse signal and boundary conditions: 
@@ -95,7 +100,7 @@ CFL = 0.7
 # 
 # Integrate the equation with K=0.1, u=1.0 over 0.05 s with a Δ𝑡=0.0028. Plot the results and the dimensionless time scales. Increase gradually Δ𝑡 and plot and analyse the results for different integration times.
 
-# In[ ]:
+# In[4]:
 
 
 import numpy as np
@@ -130,8 +135,7 @@ def advection_diffusion(u, K, integration, dt, Nx):
     kl  = np.arange(0,Nx-2)
 
     # Initial temperature field
-    # CHANGE LINES HERE
-    phi = XXXXXX
+    phi = np.exp(-(((np.arange(Nx))-10)/2)**2)
                  
     # Set boundary condiiton
     phi[Nx-1] = bc_r
@@ -146,7 +150,7 @@ def advection_diffusion(u, K, integration, dt, Nx):
   
     while t <= integration:
         # Set BC
-        phi[Nx-1] = XXXXX
+        phi[Nx-1] = phi[Nx-2]
         
         # Update flux
         phi[k] = (1-2*d)*phi[k] + (d-(c/2))*phi[kr] + (d+(c/2))*phi[kl]
@@ -160,7 +164,7 @@ def advection_diffusion(u, K, integration, dt, Nx):
 
 
 
-# In[ ]:
+# In[5]:
 
 
 phi, dx, u, K, c, d = advection_diffusion(u=1.0, K=0.1, integration=0.05, dt=0.0028, Nx=40)
@@ -176,10 +180,14 @@ plt.plot(phi)
 plt.show()
 
 
-# In[ ]:
+# In[6]:
 
 
-# Simulate evolution for different time steps, e.g. 0.05, 0.1, 0.25
+# Simulate evolution for different integration, e.g. 0.05, 0.1, 0.25
+phi1, dx, u, K, c, d = advection_diffusion(u=1.0, K=0.01, integration=0.05, dt=0.0028, Nx=40)
+phi2, dx, u, K, c, d = advection_diffusion(u=1.0, K=0.01, integration=0.1, dt=0.0028, Nx=40)
+phi3, dx, u, K, c, d = advection_diffusion(u=1.0, K=0.01, integration=0.25, dt=0.0028, Nx=40)
+
 
 # Plot the results
 plt.figure(figsize=(12,5))
@@ -203,7 +211,7 @@ plt.show()
 # - What is the maximum heat flux in W m$^{-2}$? Is this a realistic values for a fair-weather condition?
 # - Calculate the heating rate in K per hour.
 
-# In[ ]:
+# In[29]:
 
 
 import numpy as np
@@ -236,10 +244,12 @@ def boundary_layer(w, K, integration, dt, Nz, H):
 
     # Initial temperature field
     # CHANGE LINES HERE
-    theta = XXXXXX
-    cov = XXXXXX
-    theta_all = XXXXXX
-    cov_all = XXXXXX
+    theta = 290 * np.ones(Nz)
+    cov = np.zeros(Nz)
+    adv = np.zeros(Nz)
+    theta_all = np.zeros((Nz, int(integration/dt)))
+    cov_all = np.zeros((Nz, int(integration/dt)))
+    adv_all = np.zeros((Nz, int(integration/dt)))
 
     # Dimensionless parameters
     d = (K*dt)/(dz**2)
@@ -248,35 +258,38 @@ def boundary_layer(w, K, integration, dt, Nz, H):
     # Init time counter
     t = 0
     
-    for idx in range(XXXXXX):
+    for idx in range(int(integration/dt)):
         
         # Set BC top
         # CHANGE LINES HERE
-        theta[Nz-1] = theta[Nz-2] + XXXXXX
+        theta[Nz-1] = theta[Nz-2] + 0.01*dz
         
         # Set BC surface
         # CHANGE LINES HERE
-        theta[0] = XXXXXX
+        theta[0] = 290 + 10.0 * np.sin((2*math.pi*t)/86400)
         
         # Update flux
         # CHANGE LINES HERE
-        theta[k] = XXXXXX
+        theta[k] = (1-2*d)*theta[k] + (d-(c/2))*theta[kr] + (d+(c/2))*theta[kl]
         theta_all[:,idx] = theta[:]
+        adv[k] = -w * (theta[kr]-theta[kl])/(2*dz)
+        adv_all[:,idx] = adv[:]
         
         # Calculate and store the covariance
         # CHANGE LINES HERE
-        cov[k] = XXXXXX
+        cov[k] = - K * (theta[kr]-theta[kl])/(2*dz)
         cov[0] = cov[1]
         cov_all[:,idx] = cov[:]
              
         # Increase time step
         t = t + dt
         
-    return(theta_all, cov_all, np.arange(0, integration, dt), np.arange(0, Nz*dz, dz), K, c, d)
+    return(adv_all, theta_all, cov_all, np.arange(0, integration, dt), np.arange(0, Nz*dz, dz), K, c, d)
+
+phi, dx, u, K, c, d = advection_diffusion(u=1.0, K=0.1, integration=0.05, dt=0.0028, Nx=40)
 
 
-
-# In[ ]:
+# In[8]:
 
 
 def make_plot(data, x, z, levels, title, unit, xlab, zlab, cmap='RdBu_r'):
@@ -301,7 +314,7 @@ def make_plot(data, x, z, levels, title, unit, xlab, zlab, cmap='RdBu_r'):
 
 
 
-# In[ ]:
+# In[30]:
 
 
 Nz = 200
@@ -310,17 +323,17 @@ integration = 86400*3
 dt = 1
 
 # Run the boundary layer model
-phi1, cov, x, z, K, c, d = boundary_layer(w=-0.001, K=0.5, integration=integration, dt=dt, Nz=Nz, H=H)
+adv, phi1, cov, x, z, K, c, d = boundary_layer(w=-0.001, K=0.5, integration=integration, dt=dt, Nz=Nz, H=H)
 
 # Create 2D mesh grid
-ax = make_plot(phi1, x=x, z=z, levels=21, title='Theta', unit='K', xlab='Hours', zlab='Height', cmap='RdBu_r')
+ax = make_plot(adv+cov, x=x, z=z, levels=21, title='Theta', unit='K', xlab='Hours', zlab='Height', cmap='RdBu_r')
 
 # Correct the ticks
-ax.set_xticks(x[x%(3600*6)==0]);
-ax.set_xticklabels(list(map(str,(x[x%(3600*6)==0]/3600))), size=10, weight='normal');
+#ax.set_xticks(x[x%(3600*6)==0]);
+#ax.set_xticklabels(list(map(str,(x[x%(3600*6)==0]/3600))), size=10, weight='normal');
 
 
-# In[ ]:
+# In[10]:
 
 
 # Plot the heat fluxes
@@ -342,7 +355,7 @@ ax.set_xticklabels(list(map(str,(x[x%(3600*6)==0]/3600))), size=10, weight='norm
 
 # <img src="pics/lake_erie_exercise.png">
 
-# In[ ]:
+# In[38]:
 
 
 import numpy as np
@@ -379,38 +392,34 @@ def boundary_layer_evolution(u, K, dx, dz, Nx, Nz, hours, dt):
     md  = np.arange(0,Nz-2) # cells below
 
     # Initial temperature field
-    # CHANGE LINES HERE
-    theta = XXXXXX       # Temperature field is initialized with 268 K
-    cov = XXXXXXX        # Empty array for the covariances
-    adv = XXXXXXX        # Empty array for the advection term 
+    theta = 268 * np.ones((Nz, Nx)) # Temperature field is initialized with 268 K
+    cov = np.zeros((Nz, Nx))        # Empty array for the covariances
+    adv = np.zeros((Nz, Nx))        # Empty array for the advection term 
     
     # Define the boundary conditions
     # Set BC surface
-    # CHANGE LINES HERE
-    theta[0, :] = XXXXXX
+    theta[0, :] = 268
     
     # The lower temperature boundary needs to be updated where there is the lake
     # Here, were set the temperature at the lower boundary from the grid cell 50
     # to 150 to a temperature of 278 K
-    # CHANGE LINES HERE
-    lake_from = XXXXXX
-    lake_to = XXXXXX
-    theta[0, lake_from:lake_to] = XXXXXX
+    lake_from = 50
+    lake_to = 150
+    theta[0, lake_from:lake_to] = 278
     
     # Dimensionless parameters
     c = (u*dt)/dx
     d = (K*dt)/(dz**2)
 
     # Integrate the model
-    # CHANGE LINES HERE
-    for idx in range(XXXXXX):
+    for idx in range(int(integration/dt)):
 
         # Set BC top (Neumann condition)
         # The last term accounts for the fixed gradient of 0.01
-        theta[Nz-1, :] = XXXXXX
+        theta[Nz-1, :] = theta[Nz-2, :] + 0.01 * dz
         
-        # Set BC right (Neumann condition)
-        theta[:, Nx-1] = XXXXXX
+        # Set BC right (Dirichlet condition)
+        theta[:, Nx-1] = theta[:, Nx-2]
         
         # We need to keep track of the old values for calculating the new derivatives.
         # That means, the temperature value a grid cell is calculated from its values 
@@ -421,25 +430,21 @@ def boundary_layer_evolution(u, K, dx, dz, Nx, Nz, hours, dt):
         # First update grid cells in z-direction. Here, we loop over all x grid cells and
         # use the index arrays m, mu, md to calculate the gradients for the
         # turbulent diffusion (which only depends on z)
-        for x in range(XXXXXX):
+        for x in range(1,Nx-1):
             # temperature - turbulent diffusion
-            # CHANGE LINES HERE
-            theta[m,x] = XXXXXX
+            theta[m,x] = theta[m,x] + ((K*dt)/(dz**2))*(old[mu,x]+old[md,x]-2*old[m,x])
             # Calculate the warming rate [K/s] by covariance
-            # CHANGE LINES HERE
-            cov[m,x] = XXXXXX
+            cov[m,x] = ((K)/(dz**2))*(old[mu,x]+old[md,x]-2*old[m,x])
 
         # Then update grid cells in x-direction. Here, we loop over all z grid cells and
         # use the index arrays k, kl, kr to calculate the gradients for the
         # advection (which only depends on x)
-        for z in range(XXXXXX):
+        for z in range(1,Nz-1):
             # temperature advection
-            # CHANGE LINES HERE
-            theta[z,k] = XXXXXX
+            theta[z,k] = theta[z,k] - ((u*dt)/(dx))*(old[z,k]-old[z,kl])
             # Calculate the warming rate [K/s] by the horizontal advection 
             # Note: Here, we use a so-called upwind-scheme (backward discretization)
-            # CHANGE LINES HERE
-            adv[z,k] = XXXXXX
+            adv[z,k] = - (u/dx)*(old[z,k]-old[z,kl])
 
     # Return results    
     return theta, cov, adv, c, d, np.arange(0, Nx*dx, dx), np.arange(0, Nz*dz, dz)
@@ -447,14 +452,14 @@ def boundary_layer_evolution(u, K, dx, dz, Nx, Nz, hours, dt):
 
 
 
-# In[ ]:
+# In[51]:
 
 
 # Run the model
-theta, cov, adv, c, d, x, z = boundary_layer_evolution(u=1, K=0.01, dx=500, dz=5, Nx=250, Nz=20, hours=5, dt=75)
+theta, cov, adv, c, d, x, z = boundary_layer_evolution(u=5, K=0.02, dx=500, dz=5, Nx=250, Nz=20, hours=5, dt=75)
 
 
-# In[ ]:
+# In[50]:
 
 
 # Create 2D plot for the covariance
@@ -462,11 +467,11 @@ ax = make_plot(theta, x=x/500, z=z, levels=21, title='Heat flux', unit='W m$^{-2
                xlab='Distance [km]', zlab='Height [m]', cmap='RdBu_r')
 
 
-# In[ ]:
+# In[57]:
 
 
 # Plot the warming rate by turbulent mixing
-ax = make_plot(XXXXXX, x=x/1000, z=z, levels=21, 
+ax = make_plot(cov*3600, x=x/1000, z=z, levels=21, 
                title='Warming rate by turbulent mixing', 
                unit='K h$^{-1}$', 
                xlab='Distance', 
@@ -476,11 +481,11 @@ ax = make_plot(XXXXXX, x=x/1000, z=z, levels=21,
 print('Maximum warming rate by turbulent mixing: {:.2f} K/h'.format(np.max(cov*3600)))
 
 
-# In[ ]:
+# In[56]:
 
 
 # Plot the warming rate by advection
-ax = make_plot(XXXXXX, x=x/1000, z=z, levels=21, 
+ax = make_plot(adv*3600, x=x/1000, z=z, levels=21, 
                title='Warming rate due to advection', 
                unit='K h$^{-1}$', 
                xlab='Distance', zlab='Height', cmap='RdBu_r')
@@ -488,11 +493,11 @@ ax = make_plot(XXXXXX, x=x/1000, z=z, levels=21,
 print('Maximum warming rate by advection: {:.2f} K/h'.format(np.max(adv*3600)))
 
 
-# In[ ]:
+# In[59]:
 
 
 # Plot the total warming rate 
-ax = make_plot(XXXXXX, x=x/1000, z=z, levels=21, 
+ax = make_plot((adv*3600)+(cov*3600), x=x/1000, z=z, levels=21, 
                title='Warming rate due to advection', 
                unit='K h$^{-1}$', 
                xlab='Distance', zlab='Height', cmap='RdBu_r')
