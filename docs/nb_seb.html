@@ -188,6 +188,11 @@ const thebe_selector_output = ".output, .cell_output"
      Surface Energy Balance model
     </a>
    </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="coupled_model.html">
+     Coupled boundary layer model
+    </a>
+   </li>
   </ul>
  </li>
 </ul>
@@ -527,17 +532,6 @@ title="Print to PDF"
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Surface temperature: 283.00
-Global radiation: 490.00
-Longwave down: 249.17
-Longwave up: 363.69
-Surface heat flux: 39.68
-Latent heat flux: 83.38
-252.4275080028804
-</pre></div>
-</div>
-</div>
 </div>
 <p><strong>Task 2</strong>: Now we need to optimize for the surface temperature. Therefore, we need to write a so-called optimization function. In our case the sum of all fluxes should be zero. The SEB depends on the surface temperature. So we have to find the surface temperature which fulfills the condition <span class="math notranslate nohighlight">\(SEB(T_0)=Q_0+L_d-L_u-H_0-E_0=0\)</span>.</p>
 <div class="cell docutils container">
@@ -575,11 +569,6 @@ Latent heat flux: 83.38
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>24.031761069423567
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -600,22 +589,8 @@ Latent heat flux: 83.38
 <span class="n">res</span> <span class="o">=</span> <span class="n">minimize</span><span class="p">(</span><span class="n">optim_T0</span><span class="p">,</span><span class="n">x0</span><span class="o">=</span><span class="n">XXXXXX</span><span class="p">,</span><span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">XXXXXX</span><span class="p">),</span><span class="n">bounds</span><span class="o">=</span><span class="p">((</span><span class="n">XXXXXX</span><span class="p">,</span><span class="n">XXXXXX</span><span class="p">),),</span> \
                          <span class="n">method</span><span class="o">=</span><span class="s1">&#39;L-BFGS-B&#39;</span><span class="p">,</span><span class="n">options</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;eps&#39;</span><span class="p">:</span><span class="mf">1e-8</span><span class="p">})</span>
 
-<span class="n">res</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Result: </span><span class="si">{:}</span><span class="s1"> </span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">res</span><span class="p">))</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Optimizes T0: </span><span class="si">{:.2f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>      fun: 1.0085150847771729e-07
- hess_inv: &lt;1x1 LbfgsInvHessProduct with dtype=float64&gt;
-      jac: array([0.04892793])
-  message: &#39;CONVERGENCE: REL_REDUCTION_OF_F_&lt;=_FACTR*EPSMCH&#39;
-     nfev: 138
-      nit: 8
-     njev: 69
-   status: 0
-  success: True
-        x: array([301.68719865])
 </pre></div>
 </div>
 </div>
@@ -637,16 +612,6 @@ Latent heat flux: 83.38
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Surface heat flux: </span><span class="si">{:.2f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">H_0</span><span class="p">))</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Latent heat flux: </span><span class="si">{:.2f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">E_0</span><span class="p">))</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Energy Balance: </span><span class="si">{:.2f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">Q_0</span><span class="o">+</span><span class="n">L_d</span><span class="o">-</span><span class="n">L_u</span><span class="o">-</span><span class="n">H_0</span><span class="o">-</span><span class="n">E_0</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Surface temperature: 301.69
-Global radiation: 490.00
-Longwave down: 249.17
-Longwave up: 469.69
-Surface heat flux: 139.38
-Latent heat flux: 130.11
 </pre></div>
 </div>
 </div>
