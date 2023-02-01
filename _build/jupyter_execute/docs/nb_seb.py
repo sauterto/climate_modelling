@@ -10,7 +10,7 @@
 
 # **Task 1**: Develop a simple SEB model. The turbulent flows are to be parameterised using a simple bulk approach. Write a function that takes the following arguments: surface temperature, air temperature, relative humidity, albedo, global radiation, atmospheric pressure, air density, wind speed, altitude measured and roughness length. The function should return the short-wave radiation balance and the two turbulent energy fluxes.
 
-# In[3]:
+# In[ ]:
 
 
 import math
@@ -68,7 +68,7 @@ def E_sat(T):
     return Ew
 
 
-# In[6]:
+# In[ ]:
 
 
 # Test the SEB function
@@ -99,7 +99,7 @@ print('Energy Balance: {:.2f}'.format(Q_0+L_d-L_u-H_0-E_0))
 
 # **Task 2**: Now we need to optimize for the surface temperature. Therefore, we need to write a so-called optimization function. In our case the sum of all fluxes should be zero. The SEB depends on the surface temperature. So we have to find the surface temperature which fulfills the condition $SEB(T_0)=Q_0+L_d-L_u-H_0-E_0=0$. 
 
-# In[8]:
+# In[ ]:
 
 
 def optim_T0(x,T_a,f,albedo,G,p,rho,U_L,z,z0):
@@ -128,13 +128,13 @@ def optim_T0(x,T_a,f,albedo,G,p,rho,U_L,z,z0):
 
 # We use the **minimize function** from the scipy module to find the temperature values. 
 
-# In[13]:
+# In[ ]:
 
 
 optim_T0(293.5,T_a,f,albedo,G,p,rho,U,z,z0)
 
 
-# In[14]:
+# In[ ]:
 
 
 # Test the SEB function
@@ -154,13 +154,13 @@ p = 1013      # Pressure
 res = minimize(optim_T0,x0=XXXXXX,args=(XXXXXX),bounds=((XXXXXX,XXXXXX),), \
                          method='L-BFGS-B',options={'eps':1e-8})
 
-res
+print('Result: {:} \n'.format(res))
 print('Optimizes T0: {:.2f}'.format(res.x[0]))
 
 
 # The temperature value is stored in the x value of the result dictionary
 
-# In[15]:
+# In[ ]:
 
 
 # Assign optimization result to variable T_0

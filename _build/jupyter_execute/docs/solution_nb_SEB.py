@@ -10,7 +10,7 @@
 
 # **Task 1**: Develop a simple SEB model. The turbulent flows are to be parameterised using a simple bulk approach. Write a function that takes the following arguments: surface temperature, air temperature, relative humidity, albedo, global radiation, atmospheric pressure, air density, wind speed, altitude measured and roughness length. The function should return the short-wave radiation balance and the two turbulent energy fluxes.
 
-# In[1]:
+# In[14]:
 
 
 import math
@@ -46,7 +46,8 @@ def EB_fluxes(T_0,T_a,f,albedo,G,p,rho,U_L,z,z_0):
     Cs_q = np.power(kappa,2.0) / ( np.log(z/z_0) * np.log(z/z_0) )  
     
     # Correction factor for incoming longwave radiation
-    eps_cs = 0.23 + 0.433 * np.power(100*(f*E_sat(T_a))/T_a,1.0/8.0)
+    T_atmos = 273.0
+    eps_cs = 0.23 + 0.433 * np.power(100*(f*E_sat(T_atmos))/T_atmos,1.0/8.0)
     
     # Select the appropriate latent heat constant
     L = 2.83e6 # latent heat for sublimation
@@ -56,8 +57,8 @@ def EB_fluxes(T_0,T_a,f,albedo,G,p,rho,U_L,z,z_0):
     E_0 = rho * ((L*0.622)/p) * Cs_q * U_L * (E_sat(T_0)-f*E_sat(T_a))
     
     # Calculate radiation budget
-    L_d = eps_cs * sigma * (T_a)**4
-    L_u = sigma * (T_0)**4 
+    L_d = eps_cs * sigma * (T_atmos)**4
+    L_u = 0.99 * sigma * (T_0)**4 
     Q_0 = (1-albedo)*G #+ L_d - L_u
 
     return (Q_0, L_d, L_u, H_0, E_0)
@@ -68,7 +69,7 @@ def E_sat(T):
     return Ew
 
 
-# In[2]:
+# In[38]:
 
 
 # Test the SEB function
@@ -97,9 +98,23 @@ print('Latent heat flux: {:.2f}'.format(E_0))
 print('Energy Balance: {:.2f}'.format(Q_0+L_d-L_u-H_0-E_0))
 
 
+# In[31]:
+
+
+values = []
+T_surface = []
+for val in np.arange(270,310,0.1):
+    Q_0, L_d, L_u, H_0, E_0 = EB_fluxes(val,T_a,f,albedo,G,p,rho,U,z,z0)
+    values.append(val)
+    T_surface.append(Q_0+L_d-L_u-H_0-E_0)
+    
+plt.plot(values, T_surface)
+plt.axhline(y = 0, color = 'r')
+
+
 # **Task 2**: Now we need to optimize for the surface temperature. Therefore, we need to write a so-called optimization function. In our case the sum of all fluxes should be zero. The SEB depends on the surface temperature. So we have to find the surface temperature which fulfills the condition $SEB(T_0)=Q_0+H_0+E_0=0$. 
 
-# In[3]:
+# In[32]:
 
 
 def optim_T0(x,T_a,f,albedo,G,p,rho,U_L,z,z0):
@@ -126,9 +141,26 @@ def optim_T0(x,T_a,f,albedo,G,p,rho,U_L,z,z0):
     return res
 
 
+# In[40]:
+
+
+T_0 = 283.0   # Surface temperature
+T_a = 280.0   # Air temperature 
+f = 0.7       # Relative humidity
+albedo = 0.3  # albedo
+G = 700.0     # Incoming shortwave radiation
+rho = 1.1     # Air density
+U = 2.0       # Wind velocity
+z =  2.0      # Measurement height
+z0 = 1e-3     # Roughness length
+p = 1013      # Pressure
+
+optim_T0(290,T_a,f,albedo,G,p,rho,U,z,z0)
+
+
 # We use the **minimize function** from the scipy module to find the temperature values. 
 
-# In[10]:
+# In[41]:
 
 
 # Test the SEB function
@@ -148,13 +180,13 @@ p = 1013      # Pressure
 res = minimize(optim_T0,x0=T_0,args=(T_a,f,albedo,G,p,rho,U,z,z0),bounds=((None,400),), \
                          method='L-BFGS-B',options={'eps':1e-8})
 
-print(""+res)
+print('Result: {:} \n'.format(res))
 print('Optimizes T0: {:.2f}'.format(res.x[0]))
 
 
 # The temperature value is stored in the x value of the result dictionary
 
-# In[7]:
+# In[34]:
 
 
 # Assign optimization result to variable T_0
